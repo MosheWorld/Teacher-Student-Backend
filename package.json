@@ -1,0 +1,17 @@
+{
+  "name": "teacher-student-backend",
+  "version": "1.0.0",
+  "description": "teacher-student-backend code of nodejs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.16.2",
+    "lodash": "^4.17.4",
+    "mongoose": "^4.12.3"
+  }
+}
