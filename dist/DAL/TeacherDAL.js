@@ -35,6 +35,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+var mongodb_1 = require("mongodb");
 var TeacherModel_1 = require("../models/TeacherModel");
 var TeacherDal = /** @class */ (function () {
     function TeacherDal() {
@@ -52,6 +53,19 @@ var TeacherDal = /** @class */ (function () {
                     case 1:
                         teachersCollection = _a.sent();
                         return [2 /*return*/, teachersCollection];
+                }
+            });
+        });
+    };
+    TeacherDal.prototype.GetByID = function (id) {
+        return __awaiter(this, void 0, void 0, function () {
+            var teacher;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, TeacherModel_1.default.find({ _id: new mongodb_1.ObjectID(id) })];
+                    case 1:
+                        teacher = _a.sent();
+                        return [2 /*return*/, teacher];
                 }
             });
         });

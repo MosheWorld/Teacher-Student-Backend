@@ -54,6 +54,21 @@ var TeacherLogic = /** @class */ (function () {
             });
         });
     };
+    TeacherLogic.prototype.GetByID = function (id) {
+        return __awaiter(this, void 0, void 0, function () {
+            var tDal, teacher;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        tDal = new TeacherDAL_1.TeacherDal();
+                        return [4 /*yield*/, tDal.GetByID(id)];
+                    case 1:
+                        teacher = _a.sent();
+                        return [2 /*return*/, teacher];
+                }
+            });
+        });
+    };
     TeacherLogic.prototype.Create = function (teacherData) {
         return __awaiter(this, void 0, void 0, function () {
             var tDal;

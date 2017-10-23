@@ -1,3 +1,4 @@
+import { ObjectID } from 'mongodb';
 import { TeacherInterface } from './../Entities/Teaacher.interface';
 import DataBaseConnector from '../models/TeacherModel';
 
@@ -10,6 +11,11 @@ export class TeacherDal {
             return error.message;
         });
         return teachersCollection;
+    }
+
+    public async GetByID(id) {
+        let teacher = await DataBaseConnector.find({ _id: new ObjectID(id) });
+        return teacher;
     }
 
     public async Create(teacherData: TeacherInterface) {
