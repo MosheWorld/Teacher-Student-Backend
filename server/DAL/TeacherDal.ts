@@ -1,6 +1,6 @@
 import { ObjectID } from 'mongodb';
-import { TeacherInterface } from './../Entities/Teaacher.interface';
-import DataBaseConnector from '../models/TeacherModel';
+import { TeacherInterface } from './../Interfaces/Teaacher.interface';
+import DataBaseConnector from '../Models/TeacherModel';
 
 export class TeacherDal {
 
@@ -21,5 +21,10 @@ export class TeacherDal {
     public async Create(teacherData: TeacherInterface) {
         let returnedValue = await DataBaseConnector.collection.insert(teacherData);
         return returnedValue;
+    }
+
+    public async DeleteByID(id) {
+        let response = await DataBaseConnector.collection.deleteOne({ _id: new ObjectID(id) });
+        return response;
     }
 }

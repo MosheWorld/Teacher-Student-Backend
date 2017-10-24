@@ -1,5 +1,5 @@
 import { Router, Request, Response } from 'express';
-import { TeacherInterface } from './../Entities/Teaacher.interface';
+import { TeacherInterface } from './../Interfaces/Teaacher.interface';
 import { TeacherLogic } from './../Logic/TeacherLogic';
 
 // Assign router to the express.Router() instance
@@ -12,14 +12,14 @@ router.get('/getall', (req: Request, res: Response) => {
         .then((teachers) => {
             res.json(teachers);
         }).catch((error) => {
-            res.status(404).send(error.message);
+            res.status(400).send(error.message);
         });
 });
 
 router.get('/getbyid/:id', (req: Request, res: Response) => {
     let id = req.params.id;
 
-    if (id == null) { res.status(404).send("Model is not valid."); }
+    if (id == null) { res.status(400).send("Model is not valid."); }
 
     let tManager = new TeacherLogic();
 
@@ -27,21 +27,40 @@ router.get('/getbyid/:id', (req: Request, res: Response) => {
         .then((teacher) => {
             res.json(teacher);
         }).catch((error) => {
-            res.status(404).send(error.message);
+            res.status(400).send(error.message);
         });
 });
 
-// Should be post method with TeacherInterface data.
-router.get('/create', (req: Request, res: Response) => {
+router.post('/create', (req: Request, res: Response) => {
+
+    if (req.body == null || req.body.firstName == null || req.body.lastName == null) {
+        return res.status(400).send("Model is not valid.");
+    }
+
     let tManager = new TeacherLogic();
-    let teacherData: TeacherInterface = { firstName: "a", lastName: "b" };
+    let teacherData: TeacherInterface = { firstName: req.body.firstName, lastName: req.body.lastName }
 
     tManager.Create(teacherData)
         .then((success) => {
             res.send(success);
         })
         .catch((error) => {
-            res.status(404).send(error.message);
+            res.status(400).send(error.message);
+        });
+});
+
+router.delete('/delete/:id', (req: Request, res: Response) => {
+    let id = req.params.id;
+
+    if (id == null) { res.status(400).send("Model is not valid."); }
+
+    let tManager = new TeacherLogic();
+
+    tManager.Delete(id)
+        .then((response) => {
+            res.json(response);
+        }).catch((error) => {
+            res.status(400).send(error.message);
         });
 });
 

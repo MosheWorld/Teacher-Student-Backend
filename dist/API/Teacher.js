@@ -10,32 +10,47 @@ router.get('/getall', function (req, res) {
         .then(function (teachers) {
         res.json(teachers);
     }).catch(function (error) {
-        res.status(404).send(error.message);
+        res.status(400).send(error.message);
     });
 });
 router.get('/getbyid/:id', function (req, res) {
     var id = req.params.id;
     if (id == null) {
-        res.status(404).send("Model is not valid.");
+        res.status(400).send("Model is not valid.");
     }
     var tManager = new TeacherLogic_1.TeacherLogic();
     tManager.GetByID(id)
         .then(function (teacher) {
         res.json(teacher);
     }).catch(function (error) {
-        res.status(404).send(error.message);
+        res.status(400).send(error.message);
     });
 });
-// Should be post method with TeacherInterface data.
-router.get('/create', function (req, res) {
+router.post('/create', function (req, res) {
+    if (req.body == null || req.body.firstName == null || req.body.lastName == null) {
+        return res.status(400).send("Model is not valid.");
+    }
     var tManager = new TeacherLogic_1.TeacherLogic();
-    var teacherData = { firstName: "a", lastName: "b" };
+    var teacherData = { firstName: req.body.firstName, lastName: req.body.lastName };
     tManager.Create(teacherData)
         .then(function (success) {
         res.send(success);
     })
         .catch(function (error) {
-        res.status(404).send(error.message);
+        res.status(400).send(error.message);
+    });
+});
+router.delete('/delete/:id', function (req, res) {
+    var id = req.params.id;
+    if (id == null) {
+        res.status(400).send("Model is not valid.");
+    }
+    var tManager = new TeacherLogic_1.TeacherLogic();
+    tManager.Delete(id)
+        .then(function (response) {
+        res.json(response);
+    }).catch(function (error) {
+        res.status(400).send(error.message);
     });
 });
 exports.TeacherController = router;

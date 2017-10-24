@@ -1,4 +1,4 @@
-import { TeacherInterface } from './../Entities/Teaacher.interface';
+import { TeacherInterface } from './../Interfaces/Teaacher.interface';
 import { TeacherDal } from './../DAL/TeacherDAL';
 
 export class TeacherLogic {
@@ -20,5 +20,12 @@ export class TeacherLogic {
     public async Create(teacherData: TeacherInterface) {
         let tDal = new TeacherDal();
         await tDal.Create(teacherData);
+    }
+
+    public async Delete(id) {
+        let tDal = new TeacherDal();
+
+        let response = await tDal.DeleteByID(id);
+        return response;
     }
 }
