@@ -11,8 +11,12 @@ router.get('/getall', (req: Request, res: Response) => {
     tManager.GetAll()
         .then((teachers) => {
             res.json(teachers);
+            console.log("Here");
+            console.log(teachers);
         }).catch((error) => {
             res.status(400).send(error.message);
+            console.log("Here");
+            console.log(error);
         });
 });
 

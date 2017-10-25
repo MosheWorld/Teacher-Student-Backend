@@ -9,8 +9,12 @@ router.get('/getall', function (req, res) {
     tManager.GetAll()
         .then(function (teachers) {
         res.json(teachers);
+        console.log("Here");
+        console.log(teachers);
     }).catch(function (error) {
         res.status(400).send(error.message);
+        console.log("Here");
+        console.log(error);
     });
 });
 router.get('/getbyid/:id', function (req, res) {
