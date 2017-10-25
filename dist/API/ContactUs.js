@@ -5,7 +5,13 @@ var ContactUsLogic_1 = require("./../Logic/ContactUsLogic");
 // Assign router to the express.Router() instance
 var router = express_1.Router();
 router.get('/getall', function (req, res) {
-    res.send("a");
+    var cManager = new ContactUsLogic_1.ContactUsLogic();
+    cManager.GetAll()
+        .then(function (contactusList) {
+        res.json(contactusList);
+    }).catch(function (error) {
+        res.status(400).send(error.message);
+    });
 });
 router.post('/create', function (req, res) {
     if (req.body == null || req.body == null ||

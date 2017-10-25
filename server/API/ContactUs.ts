@@ -6,7 +6,14 @@ import { ContactUsLogic } from './../Logic/ContactUsLogic';
 const router: Router = Router();
 
 router.get('/getall', (req: Request, res: Response) => {
-    res.send("a");
+    let cManager = new ContactUsLogic();
+
+    cManager.GetAll()
+    .then((contactusList) => {
+        res.json(contactusList);
+    }).catch((error) => {
+        res.status(400).send(error.message);
+    });
 });
 
 router.post('/create', (req: Request, res: Response) => {

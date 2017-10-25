@@ -39,6 +39,21 @@ var ContactUsDal_1 = require("./../DAL/ContactUsDal");
 var ContactUsLogic = /** @class */ (function () {
     function ContactUsLogic() {
     }
+    ContactUsLogic.prototype.GetAll = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var cDal;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        cDal = new ContactUsDal_1.ContactUsDal();
+                        return [4 /*yield*/, cDal.GetAll()];
+                    case 1:
+                        _a.sent();
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
     ContactUsLogic.prototype.Create = function (contactUsData) {
         return __awaiter(this, void 0, void 0, function () {
             var cDal;
