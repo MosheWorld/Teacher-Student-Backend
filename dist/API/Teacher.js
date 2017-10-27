@@ -35,7 +35,7 @@ router.post('/create', function (req, res) {
         firstName: req.body.firstName, lastName: req.body.lastName,
         age: req.body.age, email: req.body.email, priceFrom: req.body.priceFrom, priceTo: req.body.priceTo,
         phone: req.body.phone, personalMessage: req.body.personalMessage, teachesAt: req.body.teachesAt,
-        teachesSubjects: req.body.teachesSubjects
+        teachesSubjects: req.body.teachesSubjects, gender: req.body.gender
     };
     tManager.Create(teacherData)
         .then(function (success) {
@@ -71,6 +71,7 @@ function IsModelValid(model) {
         model.teachesSubjects.length === 0 ||
         IsStringNullOrEmpty(model.email) ||
         IsStringNullOrEmpty(model.phone) ||
+        IsStringNullOrEmpty(model.gender) ||
         IsStringNullOrEmpty(model.lastName) ||
         IsStringNullOrEmpty(model.firstName) ||
         IsStringNullOrEmpty(model.personalMessage)) {

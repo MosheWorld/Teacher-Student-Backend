@@ -43,7 +43,7 @@ router.post('/create', (req: Request, res: Response) => {
         firstName: req.body.firstName, lastName: req.body.lastName,
         age: req.body.age, email: req.body.email, priceFrom: req.body.priceFrom, priceTo: req.body.priceTo,
         phone: req.body.phone, personalMessage: req.body.personalMessage, teachesAt: req.body.teachesAt,
-        teachesSubjects: req.body.teachesSubjects
+        teachesSubjects: req.body.teachesSubjects, gender: req.body.gender
     }
 
     tManager.Create(teacherData)
@@ -73,16 +73,14 @@ router.delete('/delete/:id', (req: Request, res: Response) => {
 function IsModelValid(model) {
     if (model == null ||
         model.age == null || model.age < 0 || model.age > 120 ||
-        model.priceFrom == null ||
-        model.priceFrom < 0 ||
-        model.priceTo == null ||
-        model.priceTo > 1000 ||
-        model.teachesAt == null ||
-        model.teachesAt < 0 ||
-        model.teachesSubjects == null ||
-        model.teachesSubjects.length === 0 ||
+        model.priceFrom == null || model.priceFrom < 0 ||
+        model.priceTo == null || model.priceTo > 1000 ||
+        model.priceFrom > model.priceTo ||
+        model.teachesAt == null || model.teachesAt < 0 ||
+        model.teachesSubjects == null || model.teachesSubjects.length === 0 ||
         IsStringNullOrEmpty(model.email) ||
         IsStringNullOrEmpty(model.phone) ||
+        IsStringNullOrEmpty(model.gender) ||
         IsStringNullOrEmpty(model.lastName) ||
         IsStringNullOrEmpty(model.firstName) ||
         IsStringNullOrEmpty(model.personalMessage)) {

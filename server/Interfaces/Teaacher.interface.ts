@@ -7,6 +7,7 @@ export interface TeacherInterface {
     priceFrom: number;
     phone: string;
     email: string;
+    gender: string;
     lastName: string;
     firstName: string;
     personalMessage: string;
