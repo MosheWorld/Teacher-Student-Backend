@@ -1,5 +1,5 @@
-import { ContactUsInterface } from './../Interfaces/ContactUs.interface';
 import DataBaseConnector from '../Models/ContactUsModel';
+import { ContactUsInterface } from './../Interfaces/ContactUs.interface';
 
 export class ContactUsDal {
 

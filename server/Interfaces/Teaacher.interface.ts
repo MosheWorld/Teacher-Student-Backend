@@ -2,13 +2,13 @@ import { TeachesAt } from '../Enums/TeachesAt.Enum';
 import { TeachesSubjects } from '../Enums/TeachesSubjects.Enum';
 
 export interface TeacherInterface {
-    firstName: string;
-    lastName: string;
     age: number;
-    email: string;
-    priceFrom: number;
     priceTo: number;
+    priceFrom: number;
     phone: string;
+    email: string;
+    lastName: string;
+    firstName: string;
     personalMessage: string;
     teachesAt: TeachesAt;
     teachesSubjects: TeachesSubjects[];

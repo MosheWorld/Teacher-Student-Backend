@@ -1,6 +1,6 @@
 export interface ContactUsInterface {
-    fullName: string;
     email: string;
-    contactReason: string;
     message: string;
+    fullName: string;
+    contactReason: string;
 }

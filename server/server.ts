@@ -27,7 +27,7 @@ const port: number = process.env.PORT || 8000;
 app.use('/teacher', TeacherController);
 app.use('/contactus', ContactUsController);
 
-// Serve the application at the given port
+// Serve the application at the given port.
 app.listen(port, () => {
     console.log(`Listening at http://localhost:${port}/`);
 });

@@ -22,7 +22,7 @@ mongoose.connect(process.env.MONGODB_URI || "mongodb://Moshe:ab123456@ds133465.m
 var port = process.env.PORT || 8000;
 app.use('/teacher', Teacher_1.TeacherController);
 app.use('/contactus', ContactUs_1.ContactUsController);
-// Serve the application at the given port
+// Serve the application at the given port.
 app.listen(port, function () {
     console.log("Listening at http://localhost:" + port + "/");
 });
