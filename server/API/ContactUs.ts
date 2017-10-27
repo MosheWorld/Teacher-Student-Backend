@@ -1,6 +1,6 @@
 import { Router, Request, Response } from 'express';
-import { ContactUsInterface } from './../Interfaces/ContactUs.interface';
 import { ContactUsLogic } from './../Logic/ContactUsLogic';
+import { ContactUsInterface } from './../Interfaces/ContactUs.interface';
 
 // Assign router to the express.Router() instance
 const router: Router = Router();
@@ -9,20 +9,16 @@ router.get('/getall', (req: Request, res: Response) => {
     let cManager = new ContactUsLogic();
 
     cManager.GetAll()
-    .then((contactusList) => {
-        res.json(contactusList);
-    }).catch((error) => {
-        res.status(400).send(error.message);
-    });
+        .then((contactusList) => {
+            res.json(contactusList);
+        }).catch((error) => {
+            res.status(400).send(error.message);
+        });
 });
 
 router.post('/create', (req: Request, res: Response) => {
 
-    if (req.body == null || req.body == null ||
-        req.body.fullName == null || req.body.fullName === "" ||
-        req.body.email == null || req.body.email === "" ||
-        req.body.contactReason == null || req.body.contactReason === "" ||
-        req.body.message == null || req.body.message === "") {
+    if (req.body == null || !IsModelValid(req.body)) {
         return res.status(400).send("Model is not valid.");
     }
 
@@ -34,12 +30,32 @@ router.post('/create', (req: Request, res: Response) => {
     }
 
     cManager.Create(contactUsData)
-    .then((success) => {
-        res.send(success);
-    })
-    .catch((error) => {
-        res.status(400).send(error.message);
-    });
+        .then((success) => {
+            res.send(success);
+        })
+        .catch((error) => {
+            res.status(400).send(error.message);
+        });
 });
+
+function IsModelValid(model) {
+    if (model == null ||
+        IsStringNullOrEmpty(model.email) ||
+        IsStringNullOrEmpty(model.message) ||
+        IsStringNullOrEmpty(model.fullName) ||
+        IsStringNullOrEmpty(model.contactReason)) {
+        return false;
+    } else {
+        return true;
+    }
+}
+
+function IsStringNullOrEmpty(str) {
+    if (str == null || str === "") {
+        return true;
+    } else {
+        return false;
+    }
+}
 
 export const ContactUsController: Router = router;

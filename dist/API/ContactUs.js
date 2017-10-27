@@ -14,11 +14,7 @@ router.get('/getall', function (req, res) {
     });
 });
 router.post('/create', function (req, res) {
-    if (req.body == null || req.body == null ||
-        req.body.fullName == null || req.body.fullName === "" ||
-        req.body.email == null || req.body.email === "" ||
-        req.body.contactReason == null || req.body.contactReason === "" ||
-        req.body.message == null || req.body.message === "") {
+    if (req.body == null || !IsModelValid(req.body)) {
         return res.status(400).send("Model is not valid.");
     }
     var cManager = new ContactUsLogic_1.ContactUsLogic();
@@ -35,4 +31,24 @@ router.post('/create', function (req, res) {
         res.status(400).send(error.message);
     });
 });
+function IsModelValid(model) {
+    if (model == null ||
+        IsStringNullOrEmpty(model.email) ||
+        IsStringNullOrEmpty(model.message) ||
+        IsStringNullOrEmpty(model.fullName) ||
+        IsStringNullOrEmpty(model.contactReason)) {
+        return false;
+    }
+    else {
+        return true;
+    }
+}
+function IsStringNullOrEmpty(str) {
+    if (str == null || str === "") {
+        return true;
+    }
+    else {
+        return false;
+    }
+}
 exports.ContactUsController = router;
