@@ -61,14 +61,11 @@ router.delete('/delete/:id', function (req, res) {
 function IsModelValid(model) {
     if (model == null ||
         model.age == null || model.age < 0 || model.age > 120 ||
-        model.priceFrom == null ||
-        model.priceFrom < 0 ||
-        model.priceTo == null ||
-        model.priceTo > 1000 ||
-        model.teachesAt == null ||
-        model.teachesAt < 0 ||
-        model.teachesSubjects == null ||
-        model.teachesSubjects.length === 0 ||
+        model.priceFrom == null || model.priceFrom < 0 ||
+        model.priceTo == null || model.priceTo > 1000 ||
+        model.priceFrom > model.priceTo ||
+        model.teachesAt == null || model.teachesAt < 0 ||
+        model.teachesSubjects == null || model.teachesSubjects.length === 0 ||
         IsStringNullOrEmpty(model.email) ||
         IsStringNullOrEmpty(model.phone) ||
         IsStringNullOrEmpty(model.gender) ||
