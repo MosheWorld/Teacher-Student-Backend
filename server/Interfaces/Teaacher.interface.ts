@@ -12,5 +12,5 @@ export interface TeacherInterface {
     firstName: string;
     personalMessage: string;
     teachesAt: TeachesAt;
-    teachesSubjects: TeachesSubjects[];
+    teachesInstitutions: TeachesSubjects[];
 }

@@ -2,7 +2,6 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 var express_1 = require("express");
 var ContactUsLogic_1 = require("./../Logic/ContactUsLogic");
-// Assign router to the express.Router() instance
 var router = express_1.Router();
 router.get('/getall', function (req, res) {
     var cManager = new ContactUsLogic_1.ContactUsLogic();

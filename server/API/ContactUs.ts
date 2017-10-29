@@ -1,8 +1,8 @@
 import { Router, Request, Response } from 'express';
+
 import { ContactUsLogic } from './../Logic/ContactUsLogic';
 import { ContactUsInterface } from './../Interfaces/ContactUs.interface';
 
-// Assign router to the express.Router() instance
 const router: Router = Router();
 
 router.get('/getall', (req: Request, res: Response) => {
@@ -38,7 +38,7 @@ router.post('/create', (req: Request, res: Response) => {
         });
 });
 
-function IsModelValid(model) {
+function IsModelValid(model: any) {
     if (model == null ||
         IsStringNullOrEmpty(model.email) ||
         IsStringNullOrEmpty(model.message) ||
@@ -50,7 +50,7 @@ function IsModelValid(model) {
     }
 }
 
-function IsStringNullOrEmpty(str) {
+function IsStringNullOrEmpty(str: string) {
     if (str == null || str === "") {
         return true;
     } else {

@@ -35,7 +35,9 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+var lodash_1 = require("lodash");
 var TeacherDAL_1 = require("./../DAL/TeacherDAL");
+var TeachesAt_Enum_1 = require("../Enums/TeachesAt.Enum");
 var TeacherLogic = /** @class */ (function () {
     function TeacherLogic() {
     }
@@ -98,6 +100,87 @@ var TeacherLogic = /** @class */ (function () {
                 }
             });
         });
+    };
+    TeacherLogic.prototype.SearchTeacher = function (searchData) {
+        return __awaiter(this, void 0, void 0, function () {
+            var _this = this;
+            var teacherCollection, teacherCollectionToReturn;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.GetAll()];
+                    case 1:
+                        teacherCollection = _a.sent();
+                        teacherCollectionToReturn = [];
+                        teacherCollection.forEach(function (element) {
+                            // Teaches institutions check.
+                            if (lodash_1._.includes(element.teachesInstitutions, searchData.teachesInstitutions)) {
+                                // Price check.
+                                if (_this.IsNumberInRange(element.priceFrom, element.priceTo, searchData.fromPrice, searchData.toPrice)) {
+                                    // Gender check.
+                                    if (_this.IsGenderMatch(element.gender, searchData.gender)) {
+                                        // Teaches At check.
+                                        if (_this.IsTeachesAtMatch(element.teachesAt, searchData.teachesAt)) {
+                                            teacherCollectionToReturn.push(element);
+                                        }
+                                    }
+                                }
+                            }
+                        });
+                        return [2 /*return*/, teacherCollectionToReturn];
+                }
+            });
+        });
+    };
+    TeacherLogic.prototype.IsNumberInRange = function (lowerRange1, upperRange1, lowerRange2, upperRange2) {
+        // Checks if second range is inside the first range.
+        if (lowerRange1 <= lowerRange2 && upperRange1 >= upperRange2) {
+            return true;
+        }
+        else if (lowerRange1 >= lowerRange2 && lowerRange1 <= upperRange2 && upperRange1 >= upperRange2) {
+            return true;
+        }
+        else if (lowerRange1 <= lowerRange2 && upperRange1 >= lowerRange2 && upperRange1 <= upperRange2) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    };
+    TeacherLogic.prototype.IsGenderMatch = function (genderTeacher, genderSearch) {
+        var isGenderOkay = false;
+        switch (genderSearch) {
+            case '':
+                isGenderOkay = true;
+                break;
+            case 'Male':
+                isGenderOkay = genderTeacher === 'Male' || genderTeacher === '' ? true : false;
+                break;
+            case 'Female':
+                isGenderOkay = genderTeacher === 'Female' || genderTeacher === '' ? true : false;
+                break;
+            default:
+                isGenderOkay = false;
+                break;
+        }
+        return isGenderOkay;
+    };
+    TeacherLogic.prototype.IsTeachesAtMatch = function (teachesAtTeacher, teachesAtSearch) {
+        var isGenderOkay = false;
+        switch (teachesAtSearch) {
+            case TeachesAt_Enum_1.TeachesAt.Both:
+                isGenderOkay = true;
+                break;
+            case TeachesAt_Enum_1.TeachesAt.Home:
+                isGenderOkay = teachesAtTeacher === TeachesAt_Enum_1.TeachesAt.Home || teachesAtTeacher === TeachesAt_Enum_1.TeachesAt.Both ? true : false;
+                break;
+            case TeachesAt_Enum_1.TeachesAt.AcademicInstitution:
+                isGenderOkay = teachesAtTeacher === TeachesAt_Enum_1.TeachesAt.AcademicInstitution || teachesAtTeacher === TeachesAt_Enum_1.TeachesAt.Both ? true : false;
+                break;
+            default:
+                isGenderOkay = false;
+                break;
+        }
+        return isGenderOkay;
     };
     return TeacherLogic;
 }());

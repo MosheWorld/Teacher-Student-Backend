@@ -1,9 +1,9 @@
 import { Router, Request, Response } from 'express';
+
 import { TeacherLogic } from './../Logic/TeacherLogic';
 import { TeachesSubjects } from '../Enums/TeachesSubjects.Enum';
 import { TeacherInterface } from './../Interfaces/Teaacher.interface';
 
-// Assign router to the express.Router() instance
 const router: Router = Router();
 
 router.get('/getall', (req: Request, res: Response) => {
@@ -32,9 +32,42 @@ router.get('/getbyid/:id', (req: Request, res: Response) => {
         });
 });
 
+// router.get('/search/:fromprice/:toprice/:teachesat/:teachesinstitutions/:gender', (req: Request, res: Response) => {
+//     console.log(req.query.fromprice);
+//     console.log(req.query.toprice);
+//     console.log(req.query.teachesat);
+//     console.log(req.query.teachesinstitutions);
+//     console.log(req.query.gender);
+//     res.send("a");
+// });
+
+router.post('/search', (req: Request, res: Response) => {
+
+    if (req.body == null || !IsModelSearchValid(req.body)) {
+        return res.status(400).send("Model is not valid.");
+    }
+
+    let tManager = new TeacherLogic();
+    let searchData = {
+        fromPrice: req.body.fromPrice,
+        toPrice: req.body.toPrice,
+        teachesAt: req.body.teachesat,
+        teachesInstitutions: req.body.teachesinstitutions,
+        gender: req.body.gender
+    };
+
+    tManager.SearchTeacher(searchData)
+        .then((success) => {
+            res.send(success);
+        })
+        .catch((error) => {
+            res.status(400).send(error.message);
+        });
+});
+
 router.post('/create', (req: Request, res: Response) => {
 
-    if (req.body == null || !IsModelValid(req.body)) {
+    if (req.body == null || !IsModelCreateValid(req.body)) {
         return res.status(400).send("Model is not valid.");
     }
 
@@ -43,7 +76,7 @@ router.post('/create', (req: Request, res: Response) => {
         firstName: req.body.firstName, lastName: req.body.lastName,
         age: req.body.age, email: req.body.email, priceFrom: req.body.priceFrom, priceTo: req.body.priceTo,
         phone: req.body.phone, personalMessage: req.body.personalMessage, teachesAt: req.body.teachesAt,
-        teachesSubjects: req.body.teachesSubjects, gender: req.body.gender
+        teachesInstitutions: req.body.teachesInstitutions, gender: req.body.gender
     }
 
     tManager.Create(teacherData)
@@ -70,14 +103,14 @@ router.delete('/delete/:id', (req: Request, res: Response) => {
         });
 });
 
-function IsModelValid(model) {
+function IsModelCreateValid(model: any) {
     if (model == null ||
         model.age == null || model.age < 0 || model.age > 120 ||
         model.priceFrom == null || model.priceFrom < 0 ||
         model.priceTo == null || model.priceTo > 1000 ||
         model.priceFrom > model.priceTo ||
         model.teachesAt == null || model.teachesAt < 0 ||
-        model.teachesSubjects == null || model.teachesSubjects.length === 0 ||
+        model.teachesInstitutions == null || model.teachesInstitutions.length === 0 ||
         IsStringNullOrEmpty(model.email) ||
         IsStringNullOrEmpty(model.phone) ||
         IsStringNullOrEmpty(model.gender) ||
@@ -90,7 +123,23 @@ function IsModelValid(model) {
     }
 }
 
-function IsStringNullOrEmpty(str) {
+function IsModelSearchValid(model: any) {
+    // We allow model.gender to be empty, in this case we search for both genders.
+    if (model == null ||
+        model.fromPrice == null || model.fromPrice < 0 ||
+        model.toPrice == null || model.toPrice < 0 ||
+        model.teachesat == null || model.teachesat < 0 ||
+        model.teachesinstitutions == null || model.teachesinstitutions < 0 ||
+        model.gender == null
+    ) {
+        return false;
+    }
+    else {
+        return true;
+    }
+}
+
+function IsStringNullOrEmpty(str: string) {
     if (str == null || str === "") {
         return true;
     } else {

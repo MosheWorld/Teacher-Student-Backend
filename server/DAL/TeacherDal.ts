@@ -1,19 +1,20 @@
 import { ObjectID } from 'mongodb';
+
 import DataBaseConnector from '../Models/TeacherModel';
 import { TeacherInterface } from './../Interfaces/Teaacher.interface';
 
 export class TeacherDal {
-
     public async GetAll() {
         let teachersCollection = await DataBaseConnector.find({}, (error, teachers) => {
             return teachers ? teachers : null;
         }).catch((error) => {
             return error.message;
         });
+
         return teachersCollection;
     }
 
-    public async GetByID(id) {
+    public async GetByID(id: any) {
         let teacher = await DataBaseConnector.find({ _id: new ObjectID(id) });
         return teacher;
     }
@@ -23,7 +24,7 @@ export class TeacherDal {
         return returnedValue;
     }
 
-    public async DeleteByID(id) {
+    public async DeleteByID(id: any) {
         let response = await DataBaseConnector.collection.deleteOne({ _id: new ObjectID(id) });
         return response;
     }
