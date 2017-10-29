@@ -41,8 +41,8 @@ router.post('/search', function (req, res) {
     var searchData = {
         fromPrice: req.body.fromPrice,
         toPrice: req.body.toPrice,
-        teachesAt: req.body.teachesat,
-        teachesInstitutions: req.body.teachesinstitutions,
+        teachesAt: req.body.teachesAt,
+        teachesInstitutions: req.body.teachesInstitutions,
         gender: req.body.gender
     };
     tManager.SearchTeacher(searchData)
@@ -110,8 +110,8 @@ function IsModelSearchValid(model) {
     if (model == null ||
         model.fromPrice == null || model.fromPrice < 0 ||
         model.toPrice == null || model.toPrice < 0 ||
-        model.teachesat == null || model.teachesat < 0 ||
-        model.teachesinstitutions == null || model.teachesinstitutions < 0 ||
+        model.teachesAt == null || model.teachesAt < 0 ||
+        model.teachesInstitutions == null || model.teachesInstitutions < 0 ||
         model.gender == null) {
         return false;
     }
