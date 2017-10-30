@@ -26,11 +26,6 @@ router.get('/getbyid/:id', function (req, res) {
     });
 });
 // router.get('/search/:fromprice/:toprice/:teachesat/:teachesinstitutions/:gender', (req: Request, res: Response) => {
-//     console.log(req.query.fromprice);
-//     console.log(req.query.toprice);
-//     console.log(req.query.teachesat);
-//     console.log(req.query.teachesinstitutions);
-//     console.log(req.query.gender);
 //     res.send("a");
 // });
 router.post('/search', function (req, res) {
@@ -62,7 +57,7 @@ router.post('/create', function (req, res) {
         firstName: req.body.firstName, lastName: req.body.lastName,
         age: req.body.age, email: req.body.email, priceFrom: req.body.priceFrom, priceTo: req.body.priceTo,
         phone: req.body.phone, personalMessage: req.body.personalMessage, teachesAt: req.body.teachesAt,
-        teachesInstitutions: req.body.teachesInstitutions, gender: req.body.gender
+        teachesInstitutions: req.body.teachesInstitutions, gender: req.body.gender, recommendations: []
     };
     tManager.Create(teacherData)
         .then(function (success) {
@@ -71,6 +66,28 @@ router.post('/create', function (req, res) {
         .catch(function (error) {
         res.status(400).send(error.message);
     });
+});
+router.post('/addrecommend', function (req, res) {
+    try {
+        if (req.body == null || IsStringNullOrEmpty(req.body.id) || !IsRecommendValid(req.body.recommendData)) {
+            return res.status(400).send("Model is not valid.");
+        }
+        var tManager = new TeacherLogic_1.TeacherLogic();
+        var recommendData = {
+            fullName: req.body.recommendData.fullName, email: req.body.recommendData.email,
+            message: req.body.recommendData.message, rate: req.body.recommendData.rate
+        };
+        tManager.AddRecommendToExistingTeacher(req.body.id, req.body.recommendData)
+            .then(function (success) {
+            res.send(success);
+        })
+            .catch(function (error) {
+            res.status(400).send(error.message);
+        });
+    }
+    catch (ex) {
+        res.status(400).send(ex);
+    }
 });
 router.delete('/delete/:id', function (req, res) {
     var id = req.params.id;
@@ -89,7 +106,7 @@ function IsModelCreateValid(model) {
     if (model == null ||
         model.age == null || model.age < 0 || model.age > 120 ||
         model.priceFrom == null || model.priceFrom < 0 ||
-        model.priceTo == null || model.priceTo > 1000 ||
+        model.priceTo == null || model.priceTo > 200 ||
         model.priceFrom > model.priceTo ||
         model.teachesAt == null || model.teachesAt < 0 ||
         model.teachesInstitutions == null || model.teachesInstitutions.length === 0 ||
@@ -113,6 +130,18 @@ function IsModelSearchValid(model) {
         model.teachesAt == null || model.teachesAt < 0 ||
         model.teachesInstitutions == null || model.teachesInstitutions < 0 ||
         model.gender == null) {
+        return false;
+    }
+    else {
+        return true;
+    }
+}
+function IsRecommendValid(model) {
+    if (model == null ||
+        model.email == null ||
+        model.rate == null || model.rate < 0 || model.rate > 5 ||
+        IsStringNullOrEmpty(model.fullName) ||
+        IsStringNullOrEmpty(model.message)) {
         return false;
     }
     else {

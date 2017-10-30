@@ -131,6 +131,26 @@ var TeacherLogic = /** @class */ (function () {
             });
         });
     };
+    TeacherLogic.prototype.AddRecommendToExistingTeacher = function (id, recommendData) {
+        return __awaiter(this, void 0, void 0, function () {
+            var tDal, currentTeacher, recommendCollection;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        tDal = new TeacherDAL_1.TeacherDal();
+                        return [4 /*yield*/, this.GetByID(id)];
+                    case 1:
+                        currentTeacher = _a.sent();
+                        if (currentTeacher == null || currentTeacher._id == null) {
+                            throw new Error("User not found.");
+                        }
+                        recommendCollection = currentTeacher.recommendations;
+                        recommendCollection.push(recommendData);
+                        return [2 /*return*/, tDal.UpdateRecommendations(currentTeacher._id, recommendCollection)];
+                }
+            });
+        });
+    };
     TeacherLogic.prototype.IsNumberInRange = function (lowerRange1, upperRange1, lowerRange2, upperRange2) {
         // Checks if second range is inside the first range.
         if (lowerRange1 <= lowerRange2 && upperRange1 >= upperRange2) {

@@ -11,7 +11,8 @@ const TeacherSchema = new mongoose.Schema({
     firstName: { type: String, required: true },
     personalMessage: { type: String, required: true },
     teachesAt: { type: Number, required: true, min: 0 },
-    teachesInstitutions: { type: [], required: true }
+    teachesInstitutions: { type: [], required: true },
+    recommendations: { type: [], required: true }
 }, { timestamps: true });
 
 const TeacherModel = mongoose.model("Teacher", TeacherSchema);

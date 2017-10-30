@@ -62,7 +62,7 @@ var TeacherDal = /** @class */ (function () {
             var teacher;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, TeacherModel_1.default.find({ _id: new mongodb_1.ObjectID(id) })];
+                    case 0: return [4 /*yield*/, TeacherModel_1.default.findOne({ _id: new mongodb_1.ObjectID(id) })];
                     case 1:
                         teacher = _a.sent();
                         return [2 /*return*/, teacher];
@@ -93,6 +93,16 @@ var TeacherDal = /** @class */ (function () {
                         response = _a.sent();
                         return [2 /*return*/, response];
                 }
+            });
+        });
+    };
+    TeacherDal.prototype.UpdateRecommendations = function (id, recommendData) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                TeacherModel_1.default.collection.updateOne({ _id: id }, {
+                    $set: { "recommendations": recommendData },
+                });
+                return [2 /*return*/];
             });
         });
     };

@@ -15,7 +15,7 @@ export class TeacherDal {
     }
 
     public async GetByID(id: any) {
-        let teacher = await DataBaseConnector.find({ _id: new ObjectID(id) });
+        let teacher = await DataBaseConnector.findOne({ _id: new ObjectID(id) });
         return teacher;
     }
 
@@ -27,5 +27,11 @@ export class TeacherDal {
     public async DeleteByID(id: any) {
         let response = await DataBaseConnector.collection.deleteOne({ _id: new ObjectID(id) });
         return response;
+    }
+
+    public async UpdateRecommendations(id, recommendData) {
+        DataBaseConnector.collection.updateOne({ _id: id }, {
+            $set: { "recommendations": recommendData },
+        });
     }
 }

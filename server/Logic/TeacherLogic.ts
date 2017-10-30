@@ -31,7 +31,7 @@ export class TeacherLogic {
         return response;
     }
 
-    public async SearchTeacher(searchData) {
+    public async SearchTeacher(searchData: any) {
         let teacherCollection = await this.GetAll();
         let teacherCollectionToReturn: any[] = [];
 
@@ -52,6 +52,20 @@ export class TeacherLogic {
         });
 
         return teacherCollectionToReturn;
+    }
+
+    public async AddRecommendToExistingTeacher(id, recommendData) {
+        let tDal = new TeacherDal();
+        let currentTeacher = await this.GetByID(id);
+
+        if (currentTeacher == null || currentTeacher._id == null) {
+            throw new Error("User not found.");
+        }
+
+        let recommendCollection = currentTeacher.recommendations;
+        recommendCollection.push(recommendData);
+
+        return tDal.UpdateRecommendations(currentTeacher._id, recommendCollection);
     }
 
     private IsNumberInRange(lowerRange1: number, upperRange1: number, lowerRange2: number, upperRange2: number) {
