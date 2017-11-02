@@ -4,7 +4,7 @@
   "description": "teacher-student-backend code of nodejs",
   "main": "index.js",
   "scripts": {
-    "start": "node dist/server.js",
+    "start": "node server/server.ts",
     "build": "tsc",
     "postinstall": "npm run build"
   },
