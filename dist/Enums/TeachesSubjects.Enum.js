@@ -1,0 +1,20 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var TeachesSubjects;
+(function (TeachesSubjects) {
+    TeachesSubjects[TeachesSubjects["HolonInstituteOfTechnology"] = 0] = "HolonInstituteOfTechnology";
+    TeachesSubjects[TeachesSubjects["Technion"] = 1] = "Technion";
+    TeachesSubjects[TeachesSubjects["TelAvivUniversity"] = 2] = "TelAvivUniversity";
+    TeachesSubjects[TeachesSubjects["BenGurionUniversity"] = 4] = "BenGurionUniversity";
+    TeachesSubjects[TeachesSubjects["TheHebrewUniversity"] = 8] = "TheHebrewUniversity";
+    TeachesSubjects[TeachesSubjects["BarIlanUniversity"] = 16] = "BarIlanUniversity";
+    TeachesSubjects[TeachesSubjects["TelAvivJaffaAcademicCollege"] = 32] = "TelAvivJaffaAcademicCollege";
+    TeachesSubjects[TeachesSubjects["IDCHerzliya"] = 64] = "IDCHerzliya";
+    TeachesSubjects[TeachesSubjects["ArielUniversity"] = 128] = "ArielUniversity";
+    TeachesSubjects[TeachesSubjects["HaifaUniversity"] = 256] = "HaifaUniversity";
+    TeachesSubjects[TeachesSubjects["SapirAcademicCollege"] = 512] = "SapirAcademicCollege";
+    TeachesSubjects[TeachesSubjects["ORTBraudeCollegeofEngineering"] = 1024] = "ORTBraudeCollegeofEngineering";
+    TeachesSubjects[TeachesSubjects["TheOpenUniversity"] = 2048] = "TheOpenUniversity";
+    TeachesSubjects[TeachesSubjects["CollegeofManagement"] = 4096] = "CollegeofManagement";
+    TeachesSubjects[TeachesSubjects["AchvaAcademicCampus"] = 8192] = "AchvaAcademicCampus";
+})(TeachesSubjects = exports.TeachesSubjects || (exports.TeachesSubjects = {}));
