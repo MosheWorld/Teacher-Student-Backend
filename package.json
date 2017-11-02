@@ -4,7 +4,7 @@
   "description": "teacher-student-backend code of nodejs",
   "main": "index.js",
   "scripts": {
-    "start": "node dist\\server.js"
+    "start": "node dist/server.js"
   },
   "engines": {
     "node": "8.5.0",
