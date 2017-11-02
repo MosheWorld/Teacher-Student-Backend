@@ -36,7 +36,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var mongodb_1 = require("mongodb");
-var TeacherModel_1 = require("../Models/TeacherModel.js");
+var TeacherModel_1 = require("../Models/TeacherModel");
 var TeacherDal = /** @class */ (function () {
     function TeacherDal() {
     }
