@@ -17,7 +17,7 @@ app.use(function (req, res, next) {
     next();
 });
 mongoose.Promise = global.Promise;
-mongoose.connect(process.env.MONGODB_URI || "mongodb://Moshe:ab123456@ds133465.mlab.com:33465/teacher-student-database", { useMongoClient: true });
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://Moshe:ab123456@ds133465.mlab.com:33465/teacher-student-database', { useMongoClient: true });
 // The port the express app will listen on
 var port = process.env.PORT || 8000;
 app.use('/teacher', Teacher_1.TeacherController);
