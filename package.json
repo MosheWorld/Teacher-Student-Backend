@@ -4,8 +4,7 @@
   "description": "teacher-student-backend code of nodejs",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node dist/server.js"
+    "start": "node dist\\server.js"
   },
   "engines": {
     "node": "8.5.0",
