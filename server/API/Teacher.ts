@@ -8,29 +8,37 @@ import { RecommendationsInterface } from './../Interfaces/Recommendations.interf
 const router: Router = Router();
 
 router.get('/getall', (req: Request, res: Response) => {
-    let tManager = new TeacherLogic();
+    try {
+        let tManager = new TeacherLogic();
 
-    tManager.GetAll()
-        .then((teachers) => {
-            res.json(teachers);
-        }).catch((error) => {
-            res.status(400).send(error.message);
-        });
+        tManager.GetAll()
+            .then((teachers) => {
+                res.json(teachers);
+            }).catch((error) => {
+                res.status(400).send(error.message);
+            });
+    } catch (ex) {
+        res.status(400).send(ex.message);
+    }
 });
 
 router.get('/getbyid/:id', (req: Request, res: Response) => {
-    let id = req.params.id;
+    try {
+        let id = req.params.id;
 
-    if (id == null) { res.status(400).send("Model is not valid."); }
+        if (id == null) { res.status(400).send("Model is not valid."); }
 
-    let tManager = new TeacherLogic();
+        let tManager = new TeacherLogic();
 
-    tManager.GetByID(id)
-        .then((teacher) => {
-            res.json(teacher);
-        }).catch((error) => {
-            res.status(400).send(error.message);
-        });
+        tManager.GetByID(id)
+            .then((teacher) => {
+                res.json(teacher);
+            }).catch((error) => {
+                res.status(400).send(error.message);
+            });
+    } catch (ex) {
+        res.status(400).send(ex.message);
+    }
 });
 
 router.post('/getlistofteachersbyid', (req: Request, res: Response) => {
@@ -55,50 +63,57 @@ router.post('/getlistofteachersbyid', (req: Request, res: Response) => {
 });
 
 router.post('/search', (req: Request, res: Response) => {
+    try {
+        if (req.body == null || !IsModelSearchValid(req.body)) {
+            return res.status(400).send("Model is not valid.");
+        }
 
-    if (req.body == null || !IsModelSearchValid(req.body)) {
-        return res.status(400).send("Model is not valid.");
+        let tManager = new TeacherLogic();
+        let searchData = {
+            fromPrice: req.body.fromPrice,
+            toPrice: req.body.toPrice,
+            teachesAt: req.body.teachesAt,
+            teachesInstitutions: req.body.teachesInstitutions,
+            gender: req.body.gender
+        };
+
+        tManager.SearchTeacher(searchData)
+            .then((success) => {
+                res.send(success);
+            })
+            .catch((error) => {
+                res.status(400).send(error.message);
+            });
+    } catch (ex) {
+        res.status(400).send(ex.message);
     }
-
-    let tManager = new TeacherLogic();
-    let searchData = {
-        fromPrice: req.body.fromPrice,
-        toPrice: req.body.toPrice,
-        teachesAt: req.body.teachesAt,
-        teachesInstitutions: req.body.teachesInstitutions,
-        gender: req.body.gender
-    };
-
-    tManager.SearchTeacher(searchData)
-        .then((success) => {
-            res.send(success);
-        })
-        .catch((error) => {
-            res.status(400).send(error.message);
-        });
 });
 
 router.post('/create', (req: Request, res: Response) => {
+    try {
+        if (req.body == null || !IsModelCreateValid(req.body)) {
+            return res.status(400).send("Model is not valid.");
+        }
 
-    if (req.body == null || !IsModelCreateValid(req.body)) {
-        return res.status(400).send("Model is not valid.");
+        let tManager = new TeacherLogic();
+        let teacherData: TeacherInterface = {
+            firstName: req.body.firstName, lastName: req.body.lastName,
+            age: req.body.age, email: req.body.email, priceFrom: req.body.priceFrom, priceTo: req.body.priceTo,
+            phone: req.body.phone, personalMessage: req.body.personalMessage, teachesAt: req.body.teachesAt,
+            teachesInstitutions: req.body.teachesInstitutions, gender: req.body.gender, recommendations: []
+        }
+
+        tManager.Create(teacherData)
+            .then((success) => {
+                res.send(success);
+            })
+            .catch((error) => {
+                res.status(400).send(error.message);
+            });
+    } catch (ex) {
+        res.status(400).send(ex.message);
     }
 
-    let tManager = new TeacherLogic();
-    let teacherData: TeacherInterface = {
-        firstName: req.body.firstName, lastName: req.body.lastName,
-        age: req.body.age, email: req.body.email, priceFrom: req.body.priceFrom, priceTo: req.body.priceTo,
-        phone: req.body.phone, personalMessage: req.body.personalMessage, teachesAt: req.body.teachesAt,
-        teachesInstitutions: req.body.teachesInstitutions, gender: req.body.gender, recommendations: []
-    }
-
-    tManager.Create(teacherData)
-        .then((success) => {
-            res.send(success);
-        })
-        .catch((error) => {
-            res.status(400).send(error.message);
-        });
 });
 
 router.post('/addrecommend', (req: Request, res: Response) => {
@@ -126,18 +141,22 @@ router.post('/addrecommend', (req: Request, res: Response) => {
 });
 
 router.delete('/delete/:id', (req: Request, res: Response) => {
-    let id = req.params.id;
+    try {
+        let id = req.params.id;
 
-    if (id == null) { res.status(400).send("Model is not valid."); }
+        if (id == null) { res.status(400).send("Model is not valid."); }
 
-    let tManager = new TeacherLogic();
+        let tManager = new TeacherLogic();
 
-    tManager.Delete(id)
-        .then((response) => {
-            res.json(response);
-        }).catch((error) => {
-            res.status(400).send(error.message);
-        });
+        tManager.Delete(id)
+            .then((response) => {
+                res.json(response);
+            }).catch((error) => {
+                res.status(400).send(error.message);
+            });
+    } catch (ex) {
+        res.status(400).send(ex.message);
+    }
 });
 
 function IsModelCreateValid(model: any) {

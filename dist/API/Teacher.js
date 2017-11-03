@@ -4,26 +4,36 @@ var express_1 = require("express");
 var TeacherLogic_1 = require("./../Logic/TeacherLogic");
 var router = express_1.Router();
 router.get('/getall', function (req, res) {
-    var tManager = new TeacherLogic_1.TeacherLogic();
-    tManager.GetAll()
-        .then(function (teachers) {
-        res.json(teachers);
-    }).catch(function (error) {
-        res.status(400).send(error.message);
-    });
+    try {
+        var tManager = new TeacherLogic_1.TeacherLogic();
+        tManager.GetAll()
+            .then(function (teachers) {
+            res.json(teachers);
+        }).catch(function (error) {
+            res.status(400).send(error.message);
+        });
+    }
+    catch (ex) {
+        res.status(400).send(ex.message);
+    }
 });
 router.get('/getbyid/:id', function (req, res) {
-    var id = req.params.id;
-    if (id == null) {
-        res.status(400).send("Model is not valid.");
+    try {
+        var id = req.params.id;
+        if (id == null) {
+            res.status(400).send("Model is not valid.");
+        }
+        var tManager = new TeacherLogic_1.TeacherLogic();
+        tManager.GetByID(id)
+            .then(function (teacher) {
+            res.json(teacher);
+        }).catch(function (error) {
+            res.status(400).send(error.message);
+        });
     }
-    var tManager = new TeacherLogic_1.TeacherLogic();
-    tManager.GetByID(id)
-        .then(function (teacher) {
-        res.json(teacher);
-    }).catch(function (error) {
-        res.status(400).send(error.message);
-    });
+    catch (ex) {
+        res.status(400).send(ex.message);
+    }
 });
 router.post('/getlistofteachersbyid', function (req, res) {
     try {
@@ -44,43 +54,53 @@ router.post('/getlistofteachersbyid', function (req, res) {
     }
 });
 router.post('/search', function (req, res) {
-    if (req.body == null || !IsModelSearchValid(req.body)) {
-        return res.status(400).send("Model is not valid.");
+    try {
+        if (req.body == null || !IsModelSearchValid(req.body)) {
+            return res.status(400).send("Model is not valid.");
+        }
+        var tManager = new TeacherLogic_1.TeacherLogic();
+        var searchData = {
+            fromPrice: req.body.fromPrice,
+            toPrice: req.body.toPrice,
+            teachesAt: req.body.teachesAt,
+            teachesInstitutions: req.body.teachesInstitutions,
+            gender: req.body.gender
+        };
+        tManager.SearchTeacher(searchData)
+            .then(function (success) {
+            res.send(success);
+        })
+            .catch(function (error) {
+            res.status(400).send(error.message);
+        });
     }
-    var tManager = new TeacherLogic_1.TeacherLogic();
-    var searchData = {
-        fromPrice: req.body.fromPrice,
-        toPrice: req.body.toPrice,
-        teachesAt: req.body.teachesAt,
-        teachesInstitutions: req.body.teachesInstitutions,
-        gender: req.body.gender
-    };
-    tManager.SearchTeacher(searchData)
-        .then(function (success) {
-        res.send(success);
-    })
-        .catch(function (error) {
-        res.status(400).send(error.message);
-    });
+    catch (ex) {
+        res.status(400).send(ex.message);
+    }
 });
 router.post('/create', function (req, res) {
-    if (req.body == null || !IsModelCreateValid(req.body)) {
-        return res.status(400).send("Model is not valid.");
+    try {
+        if (req.body == null || !IsModelCreateValid(req.body)) {
+            return res.status(400).send("Model is not valid.");
+        }
+        var tManager = new TeacherLogic_1.TeacherLogic();
+        var teacherData = {
+            firstName: req.body.firstName, lastName: req.body.lastName,
+            age: req.body.age, email: req.body.email, priceFrom: req.body.priceFrom, priceTo: req.body.priceTo,
+            phone: req.body.phone, personalMessage: req.body.personalMessage, teachesAt: req.body.teachesAt,
+            teachesInstitutions: req.body.teachesInstitutions, gender: req.body.gender, recommendations: []
+        };
+        tManager.Create(teacherData)
+            .then(function (success) {
+            res.send(success);
+        })
+            .catch(function (error) {
+            res.status(400).send(error.message);
+        });
     }
-    var tManager = new TeacherLogic_1.TeacherLogic();
-    var teacherData = {
-        firstName: req.body.firstName, lastName: req.body.lastName,
-        age: req.body.age, email: req.body.email, priceFrom: req.body.priceFrom, priceTo: req.body.priceTo,
-        phone: req.body.phone, personalMessage: req.body.personalMessage, teachesAt: req.body.teachesAt,
-        teachesInstitutions: req.body.teachesInstitutions, gender: req.body.gender, recommendations: []
-    };
-    tManager.Create(teacherData)
-        .then(function (success) {
-        res.send(success);
-    })
-        .catch(function (error) {
-        res.status(400).send(error.message);
-    });
+    catch (ex) {
+        res.status(400).send(ex.message);
+    }
 });
 router.post('/addrecommend', function (req, res) {
     try {
@@ -105,17 +125,22 @@ router.post('/addrecommend', function (req, res) {
     }
 });
 router.delete('/delete/:id', function (req, res) {
-    var id = req.params.id;
-    if (id == null) {
-        res.status(400).send("Model is not valid.");
+    try {
+        var id = req.params.id;
+        if (id == null) {
+            res.status(400).send("Model is not valid.");
+        }
+        var tManager = new TeacherLogic_1.TeacherLogic();
+        tManager.Delete(id)
+            .then(function (response) {
+            res.json(response);
+        }).catch(function (error) {
+            res.status(400).send(error.message);
+        });
     }
-    var tManager = new TeacherLogic_1.TeacherLogic();
-    tManager.Delete(id)
-        .then(function (response) {
-        res.json(response);
-    }).catch(function (error) {
-        res.status(400).send(error.message);
-    });
+    catch (ex) {
+        res.status(400).send(ex.message);
+    }
 });
 function IsModelCreateValid(model) {
     if (model == null ||

@@ -6,36 +6,43 @@ import { ContactUsInterface } from './../Interfaces/ContactUs.interface';
 const router: Router = Router();
 
 router.get('/getall', (req: Request, res: Response) => {
-    let cManager = new ContactUsLogic();
+    try {
+        let cManager = new ContactUsLogic();
 
-    cManager.GetAll()
-        .then((contactusList) => {
-            res.json(contactusList);
-        }).catch((error) => {
-            res.status(400).send(error.message);
-        });
+        cManager.GetAll()
+            .then((contactusList) => {
+                res.json(contactusList);
+            }).catch((error) => {
+                res.status(400).send(error.message);
+            });
+    } catch (ex) {
+        res.status(400).send(ex.message);
+    }
 });
 
 router.post('/create', (req: Request, res: Response) => {
+    try {
+        if (req.body == null || !IsModelValid(req.body)) {
+            return res.status(400).send("Model is not valid.");
+        }
 
-    if (req.body == null || !IsModelValid(req.body)) {
-        return res.status(400).send("Model is not valid.");
+        let cManager = new ContactUsLogic();
+        let contactUsData: ContactUsInterface = {
+            fullName: req.body.fullName,
+            email: req.body.email, contactReason: req.body.contactReason,
+            message: req.body.message
+        }
+
+        cManager.Create(contactUsData)
+            .then((success) => {
+                res.send(success);
+            })
+            .catch((error) => {
+                res.status(400).send(error.message);
+            });
+    } catch (ex) {
+        res.status(400).send(ex.message);
     }
-
-    let cManager = new ContactUsLogic();
-    let contactUsData: ContactUsInterface = {
-        fullName: req.body.fullName,
-        email: req.body.email, contactReason: req.body.contactReason,
-        message: req.body.message
-    }
-
-    cManager.Create(contactUsData)
-        .then((success) => {
-            res.send(success);
-        })
-        .catch((error) => {
-            res.status(400).send(error.message);
-        });
 });
 
 function IsModelValid(model: any) {
