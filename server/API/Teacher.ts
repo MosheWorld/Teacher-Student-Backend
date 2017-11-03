@@ -33,9 +33,26 @@ router.get('/getbyid/:id', (req: Request, res: Response) => {
         });
 });
 
-// router.get('/search/:fromprice/:toprice/:teachesat/:teachesinstitutions/:gender', (req: Request, res: Response) => {
-//     res.send("a");
-// });
+router.post('/getlistofteachersbyid', (req: Request, res: Response) => {
+    try {
+        if (req.body == null || req.body.listOfTeacherID == null || !IsListOfIDValid(req.body.listOfTeacherID)) {
+            return res.status(400).send("Model is not valid.");
+        }
+
+        let tManager = new TeacherLogic();
+        let arrayOfTeacherID = req.body.listOfTeacherID;
+
+        tManager.GetListOfTeachersByID(arrayOfTeacherID)
+            .then((teacherList) => {
+                res.send(teacherList);
+            }).catch((error) => {
+                res.status(400).send(error);
+            });
+
+    } catch (ex) {
+        res.status(400).send(ex.message);
+    }
+});
 
 router.post('/search', (req: Request, res: Response) => {
 
@@ -177,6 +194,19 @@ function IsStringNullOrEmpty(str: string) {
         return true;
     } else {
         return false;
+    }
+}
+
+function IsListOfIDValid(listOfTeacherID) {
+    if (listOfTeacherID == null || listOfTeacherID.length === 0) {
+        return false;
+    } else {
+        listOfTeacherID.forEach(element => {
+            if (IsStringNullOrEmpty(element)) {
+                throw new Error("One element is null or empty.");
+            }
+        });
+        return true;
     }
 }
 

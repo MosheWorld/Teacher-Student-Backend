@@ -25,9 +25,24 @@ router.get('/getbyid/:id', function (req, res) {
         res.status(400).send(error.message);
     });
 });
-// router.get('/search/:fromprice/:toprice/:teachesat/:teachesinstitutions/:gender', (req: Request, res: Response) => {
-//     res.send("a");
-// });
+router.post('/getlistofteachersbyid', function (req, res) {
+    try {
+        if (req.body == null || req.body.listOfTeacherID == null || !IsListOfIDValid(req.body.listOfTeacherID)) {
+            return res.status(400).send("Model is not valid.");
+        }
+        var tManager = new TeacherLogic_1.TeacherLogic();
+        var arrayOfTeacherID = req.body.listOfTeacherID;
+        tManager.GetListOfTeachersByID(arrayOfTeacherID)
+            .then(function (teacherList) {
+            res.send(teacherList);
+        }).catch(function (error) {
+            res.status(400).send(error);
+        });
+    }
+    catch (ex) {
+        res.status(400).send(ex.message);
+    }
+});
 router.post('/search', function (req, res) {
     if (req.body == null || !IsModelSearchValid(req.body)) {
         return res.status(400).send("Model is not valid.");
@@ -154,6 +169,19 @@ function IsStringNullOrEmpty(str) {
     }
     else {
         return false;
+    }
+}
+function IsListOfIDValid(listOfTeacherID) {
+    if (listOfTeacherID == null || listOfTeacherID.length === 0) {
+        return false;
+    }
+    else {
+        listOfTeacherID.forEach(function (element) {
+            if (IsStringNullOrEmpty(element)) {
+                throw new Error("One element is null or empty.");
+            }
+        });
+        return true;
     }
 }
 exports.TeacherController = router;

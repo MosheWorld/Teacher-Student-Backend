@@ -151,6 +151,32 @@ var TeacherLogic = /** @class */ (function () {
             });
         });
     };
+    TeacherLogic.prototype.GetListOfTeachersByID = function (listOfTeacherID) {
+        return __awaiter(this, void 0, void 0, function () {
+            var teacherListToReturn, tDal, _i, listOfTeacherID_1, id, teacher;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        teacherListToReturn = [];
+                        tDal = new TeacherDAL_1.TeacherDal();
+                        _i = 0, listOfTeacherID_1 = listOfTeacherID;
+                        _a.label = 1;
+                    case 1:
+                        if (!(_i < listOfTeacherID_1.length)) return [3 /*break*/, 4];
+                        id = listOfTeacherID_1[_i];
+                        return [4 /*yield*/, tDal.GetByID(id)];
+                    case 2:
+                        teacher = _a.sent();
+                        teacherListToReturn.push(teacher);
+                        _a.label = 3;
+                    case 3:
+                        _i++;
+                        return [3 /*break*/, 1];
+                    case 4: return [2 /*return*/, teacherListToReturn];
+                }
+            });
+        });
+    };
     TeacherLogic.prototype.IsNumberInRange = function (lowerRange1, upperRange1, lowerRange2, upperRange2) {
         // Checks if second range is inside the first range.
         if (lowerRange1 <= lowerRange2 && upperRange1 >= upperRange2) {

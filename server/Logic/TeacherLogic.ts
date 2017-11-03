@@ -68,6 +68,18 @@ export class TeacherLogic {
         return tDal.UpdateRecommendations(currentTeacher._id, recommendCollection);
     }
 
+    public async GetListOfTeachersByID(listOfTeacherID) {
+        let teacherListToReturn: any = [];
+        let tDal = new TeacherDal();
+
+        for (let id of listOfTeacherID) {
+            let teacher = await tDal.GetByID(id);
+            teacherListToReturn.push(teacher);
+        }
+
+        return teacherListToReturn;
+    }
+
     private IsNumberInRange(lowerRange1: number, upperRange1: number, lowerRange2: number, upperRange2: number) {
         // Checks if second range is inside the first range.
         if (lowerRange1 <= lowerRange2 && upperRange1 >= upperRange2) {
