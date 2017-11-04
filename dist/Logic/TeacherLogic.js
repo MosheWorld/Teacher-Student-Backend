@@ -185,18 +185,11 @@ var TeacherLogic = /** @class */ (function () {
         });
     };
     TeacherLogic.prototype.IsNumberInRange = function (lowerRange1, upperRange1, lowerRange2, upperRange2) {
-        // Checks if second range is inside the first range.
-        if (lowerRange1 <= lowerRange2 && upperRange1 >= upperRange2) {
-            return true;
-        }
-        else if (lowerRange1 >= lowerRange2 && lowerRange1 <= upperRange2 && upperRange1 >= upperRange2) {
-            return true;
-        }
-        else if (lowerRange1 <= lowerRange2 && upperRange1 >= lowerRange2 && upperRange1 <= upperRange2) {
-            return true;
+        if (upperRange2 < lowerRange1) {
+            return false;
         }
         else {
-            return false;
+            return true;
         }
     };
     TeacherLogic.prototype.IsGenderMatch = function (genderTeacher, genderSearch) {

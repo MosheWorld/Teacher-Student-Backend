@@ -90,15 +90,10 @@ export class TeacherLogic {
     }
 
     private IsNumberInRange(lowerRange1: number, upperRange1: number, lowerRange2: number, upperRange2: number) {
-        // Checks if second range is inside the first range.
-        if (lowerRange1 <= lowerRange2 && upperRange1 >= upperRange2) {
-            return true;
-        } else if (lowerRange1 >= lowerRange2 && lowerRange1 <= upperRange2 && upperRange1 >= upperRange2) {
-            return true;
-        } else if (lowerRange1 <= lowerRange2 && upperRange1 >= lowerRange2 && upperRange1 <= upperRange2) {
-            return true;
-        } else {
+        if(upperRange2 < lowerRange1){
             return false;
+        }else{
+            return true;
         }
     }
 
