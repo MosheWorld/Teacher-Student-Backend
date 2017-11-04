@@ -67,11 +67,12 @@ export class TeacherLogic {
         recommendCollection.push(recommendData);
 
         // Calculates new rate for the teacher.
-        let newRate = 0;
+        let newRate:number = 0;
         for (let recommend of recommendCollection) {
             newRate += recommend.rate;
         }
         newRate = newRate / recommendCollection.length;
+        newRate = parseFloat((Math.round(newRate * 100)/100).toFixed(2));
 
         return tDal.UpdateRecommendations(currentTeacher._id, recommendCollection, newRate);
     }

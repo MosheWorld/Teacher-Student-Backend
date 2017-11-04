@@ -152,6 +152,7 @@ var TeacherLogic = /** @class */ (function () {
                             newRate += recommend.rate;
                         }
                         newRate = newRate / recommendCollection.length;
+                        newRate = parseFloat((Math.round(newRate * 100) / 100).toFixed(2));
                         return [2 /*return*/, tDal.UpdateRecommendations(currentTeacher._id, recommendCollection, newRate)];
                 }
             });
