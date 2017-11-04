@@ -4,6 +4,7 @@ import { RecommendationsInterface } from './Recommendations.interface';
 
 export interface TeacherInterface {
     age: number;
+    rate: number;
     priceTo: number;
     priceFrom: number;
     phone: string;

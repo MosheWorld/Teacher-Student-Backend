@@ -133,7 +133,7 @@ var TeacherLogic = /** @class */ (function () {
     };
     TeacherLogic.prototype.AddRecommendToExistingTeacher = function (id, recommendData) {
         return __awaiter(this, void 0, void 0, function () {
-            var tDal, currentTeacher, recommendCollection;
+            var tDal, currentTeacher, recommendCollection, newRate, _i, recommendCollection_1, recommend;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
@@ -146,7 +146,13 @@ var TeacherLogic = /** @class */ (function () {
                         }
                         recommendCollection = currentTeacher.recommendations;
                         recommendCollection.push(recommendData);
-                        return [2 /*return*/, tDal.UpdateRecommendations(currentTeacher._id, recommendCollection)];
+                        newRate = 0;
+                        for (_i = 0, recommendCollection_1 = recommendCollection; _i < recommendCollection_1.length; _i++) {
+                            recommend = recommendCollection_1[_i];
+                            newRate += recommend.rate;
+                        }
+                        newRate = newRate / recommendCollection.length;
+                        return [2 /*return*/, tDal.UpdateRecommendations(currentTeacher._id, recommendCollection, newRate)];
                 }
             });
         });

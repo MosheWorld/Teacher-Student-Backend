@@ -96,11 +96,11 @@ var TeacherDal = /** @class */ (function () {
             });
         });
     };
-    TeacherDal.prototype.UpdateRecommendations = function (id, recommendData) {
+    TeacherDal.prototype.UpdateRecommendations = function (id, recommendData, rateData) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 TeacherModel_1.default.collection.updateOne({ _id: id }, {
-                    $set: { "recommendations": recommendData },
+                    $set: { "recommendations": recommendData, "rate": rateData },
                 });
                 return [2 /*return*/];
             });

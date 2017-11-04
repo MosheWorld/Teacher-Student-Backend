@@ -29,9 +29,9 @@ export class TeacherDal {
         return response;
     }
 
-    public async UpdateRecommendations(id, recommendData) {
+    public async UpdateRecommendations(id, recommendData, rateData) {
         DataBaseConnector.collection.updateOne({ _id: id }, {
-            $set: { "recommendations": recommendData },
+            $set: { "recommendations": recommendData, "rate": rateData },
         });
     }
 }

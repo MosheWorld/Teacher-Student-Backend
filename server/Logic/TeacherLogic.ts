@@ -62,10 +62,18 @@ export class TeacherLogic {
             throw new Error("User not found.");
         }
 
-        let recommendCollection = currentTeacher.recommendations;
+        // Adding new recommendation to the recommendation list for specific teacher.
+        let recommendCollection: any[] = currentTeacher.recommendations;
         recommendCollection.push(recommendData);
 
-        return tDal.UpdateRecommendations(currentTeacher._id, recommendCollection);
+        // Calculates new rate for the teacher.
+        let newRate = 0;
+        for (let recommend of recommendCollection) {
+            newRate += recommend.rate;
+        }
+        newRate = newRate / recommendCollection.length;
+
+        return tDal.UpdateRecommendations(currentTeacher._id, recommendCollection, newRate);
     }
 
     public async GetListOfTeachersByID(listOfTeacherID) {

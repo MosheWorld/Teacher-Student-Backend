@@ -88,7 +88,8 @@ router.post('/create', function (req, res) {
             firstName: req.body.firstName, lastName: req.body.lastName,
             age: req.body.age, email: req.body.email, priceFrom: req.body.priceFrom, priceTo: req.body.priceTo,
             phone: req.body.phone, personalMessage: req.body.personalMessage, teachesAt: req.body.teachesAt,
-            teachesInstitutions: req.body.teachesInstitutions, gender: req.body.gender, recommendations: []
+            teachesInstitutions: req.body.teachesInstitutions, gender: req.body.gender, recommendations: [],
+            rate: req.body.rate
         };
         tManager.Create(teacherData)
             .then(function (success) {
@@ -145,6 +146,7 @@ router.delete('/delete/:id', function (req, res) {
 function IsModelCreateValid(model) {
     if (model == null ||
         model.age == null || model.age < 0 || model.age > 120 ||
+        model.rate == null || model.rate < 0 || model.rate > 5 ||
         model.priceFrom == null || model.priceFrom < 0 ||
         model.priceTo == null || model.priceTo > 200 ||
         model.priceFrom > model.priceTo ||
