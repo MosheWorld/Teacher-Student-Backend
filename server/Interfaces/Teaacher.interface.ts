@@ -9,6 +9,7 @@ export interface TeacherInterface {
     priceFrom: number;
     phone: string;
     email: string;
+    image: string;
     gender: string;
     lastName: string;
     firstName: string;
@@ -16,4 +17,5 @@ export interface TeacherInterface {
     teachesAt: TeachesAt;
     teachesInstitutions: TeachesSubjects[];
     recommendations: RecommendationsInterface[];
+
 }

@@ -89,7 +89,7 @@ router.post('/create', function (req, res) {
             age: req.body.age, email: req.body.email, priceFrom: req.body.priceFrom, priceTo: req.body.priceTo,
             phone: req.body.phone, personalMessage: req.body.personalMessage, teachesAt: req.body.teachesAt,
             teachesInstitutions: req.body.teachesInstitutions, gender: req.body.gender, recommendations: [],
-            rate: req.body.rate
+            rate: req.body.rate, image: req.body.image
         };
         tManager.Create(teacherData)
             .then(function (success) {
