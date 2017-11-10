@@ -1,7 +1,6 @@
 import { Router, Request, Response } from 'express';
 
 import { TeacherLogic } from './../Logic/TeacherLogic';
-import { TeachesSubjects } from '../Enums/TeachesSubjects.Enum';
 import { TeacherInterface } from './../Interfaces/Teaacher.interface';
 import { RecommendationsInterface } from './../Interfaces/Recommendations.interface';
 

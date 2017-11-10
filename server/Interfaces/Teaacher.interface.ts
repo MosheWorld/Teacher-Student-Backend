@@ -1,5 +1,5 @@
 import { TeachesAt } from '../Enums/TeachesAt.Enum';
-import { TeachesSubjects } from '../Enums/TeachesSubjects.Enum';
+import { TeachesInstitutions } from './../Enums/TeachesInstitutions.Enum';
 import { RecommendationsInterface } from './Recommendations.interface';
 
 export interface TeacherInterface {
@@ -15,7 +15,7 @@ export interface TeacherInterface {
     firstName: string;
     personalMessage: string;
     teachesAt: TeachesAt;
-    teachesInstitutions: TeachesSubjects[];
+    teachesInstitutions: TeachesInstitutions[];
     recommendations: RecommendationsInterface[];
 
 }
