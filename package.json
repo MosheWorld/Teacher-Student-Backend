@@ -16,6 +16,7 @@
     "body-parser": "^1.18.2",
     "express": "^4.16.2",
     "lodash": "^4.17.4",
-    "mongoose": "^4.12.3"
+    "mongoose": "^4.12.3",
+    "validator": "^9.1.1"
   }
 }
