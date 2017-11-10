@@ -1,6 +1,5 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var isEmail_1 = require("validator/lib/isEmail");
 var express_1 = require("express");
 var TeacherLogic_1 = require("./../Logic/TeacherLogic");
 var router = express_1.Router();
@@ -153,7 +152,7 @@ function IsModelCreateValid(model) {
         model.priceFrom > model.priceTo ||
         model.teachesAt == null || model.teachesAt < 1 ||
         model.teachesInstitutions == null || model.teachesInstitutions.length === 0 ||
-        IsStringNullOrEmpty(model.email) || !isEmail_1.default(model.email) ||
+        IsStringNullOrEmpty(model.email) ||
         IsStringNullOrEmpty(model.phone) ||
         IsStringNullOrEmpty(model.gender) ||
         IsStringNullOrEmpty(model.lastName) ||
@@ -182,7 +181,7 @@ function IsModelSearchValid(model) {
 function IsRecommendValid(model) {
     if (model == null ||
         model.rate == null || model.rate < 0 || model.rate > 5 ||
-        IsStringNullOrEmpty(model.email) || !isEmail_1.default(model.email) ||
+        IsStringNullOrEmpty(model.email) ||
         IsStringNullOrEmpty(model.fullName) ||
         IsStringNullOrEmpty(model.message)) {
         return false;

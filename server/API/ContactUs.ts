@@ -1,4 +1,3 @@
-import validator from 'validator';
 import { Router, Request, Response } from 'express';
 
 import { ContactUsLogic } from './../Logic/ContactUsLogic';
@@ -48,7 +47,7 @@ router.post('/create', (req: Request, res: Response) => {
 
 function IsModelValid(model: any) {
     if (model == null ||
-        IsStringNullOrEmpty(model.email) || !validator.isEmail(model.email) ||
+        IsStringNullOrEmpty(model.email) ||
         IsStringNullOrEmpty(model.message) ||
         IsStringNullOrEmpty(model.fullName) ||
         IsStringNullOrEmpty(model.contactReason)) {

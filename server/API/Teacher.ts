@@ -1,4 +1,3 @@
-import isEmail from 'validator/lib/isEmail';
 import { Router, Request, Response } from 'express';
 
 import { TeacherLogic } from './../Logic/TeacherLogic';
@@ -170,7 +169,7 @@ function IsModelCreateValid(model: any) {
         model.priceFrom > model.priceTo ||
         model.teachesAt == null || model.teachesAt < 1 ||
         model.teachesInstitutions == null || model.teachesInstitutions.length === 0 ||
-        IsStringNullOrEmpty(model.email) || !isEmail(model.email) ||
+        IsStringNullOrEmpty(model.email) ||
         IsStringNullOrEmpty(model.phone) ||
         IsStringNullOrEmpty(model.gender) ||
         IsStringNullOrEmpty(model.lastName) ||
@@ -201,7 +200,7 @@ function IsModelSearchValid(model: any) {
 function IsRecommendValid(model: any) {
     if (model == null ||
         model.rate == null || model.rate < 0 || model.rate > 5 ||
-        IsStringNullOrEmpty(model.email) || !isEmail(model.email) ||
+        IsStringNullOrEmpty(model.email) ||
         IsStringNullOrEmpty(model.fullName) ||
         IsStringNullOrEmpty(model.message)) {
         return false;

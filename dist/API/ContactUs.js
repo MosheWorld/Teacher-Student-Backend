@@ -1,6 +1,5 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var validator_1 = require("validator");
 var express_1 = require("express");
 var ContactUsLogic_1 = require("./../Logic/ContactUsLogic");
 var router = express_1.Router();
@@ -43,7 +42,7 @@ router.post('/create', function (req, res) {
 });
 function IsModelValid(model) {
     if (model == null ||
-        IsStringNullOrEmpty(model.email) || !validator_1.default.isEmail(model.email) ||
+        IsStringNullOrEmpty(model.email) ||
         IsStringNullOrEmpty(model.message) ||
         IsStringNullOrEmpty(model.fullName) ||
         IsStringNullOrEmpty(model.contactReason)) {
