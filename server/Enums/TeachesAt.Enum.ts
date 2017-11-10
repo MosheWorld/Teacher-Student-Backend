@@ -1,5 +1,5 @@
 export enum TeachesAt {
-    Home = 0,
-    AcademicInstitution = 1,
-    Both = 2
+    Home = 1,
+    AcademicInstitution = 2,
+    Both = 3
 }

@@ -150,7 +150,7 @@ function IsModelCreateValid(model) {
         model.priceFrom == null || model.priceFrom < 0 ||
         model.priceTo == null || model.priceTo > 200 ||
         model.priceFrom > model.priceTo ||
-        model.teachesAt == null || model.teachesAt < 0 ||
+        model.teachesAt == null || model.teachesAt < 1 ||
         model.teachesInstitutions == null || model.teachesInstitutions.length === 0 ||
         IsStringNullOrEmpty(model.email) ||
         IsStringNullOrEmpty(model.phone) ||

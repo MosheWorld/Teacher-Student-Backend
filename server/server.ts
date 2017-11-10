@@ -1,14 +1,14 @@
 import * as express from "express";
-import * as bodyParser from "body-parser";
 import * as mongoose from "mongoose";
+import * as bodyParser from "body-parser";
 
 import { TeacherController } from './API/Teacher';
 import { ContactUsController } from './API/ContactUs';
 
 // Create a new express application instance.
 const app: express.Application = express();
-app.use(bodyParser.json({limit: '50mb'}));
-app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
+app.use(bodyParser.json({limit: '1mb'}));
+app.use(bodyParser.urlencoded({limit: '1mb', extended: true}));
 
 app.use(function (req, res, next) {
     res.setHeader('Access-Control-Allow-Origin', '*');
@@ -21,7 +21,7 @@ app.use(function (req, res, next) {
 mongoose.Promise = global.Promise;
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://Moshe:ab123456@ds133465.mlab.com:33465/teacher-student-database', { useMongoClient: true });
 
-// The port the express app will listen on
+// The port the express app will listen on.
 const port: number = process.env.PORT || 8000;
 
 app.use('/teacher', TeacherController);
