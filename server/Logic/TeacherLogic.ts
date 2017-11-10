@@ -2,7 +2,7 @@ import { _ } from 'lodash';
 
 import { TeacherDal } from './../DAL/TeacherDAL';
 import { TeachesAt } from '../Enums/TeachesAt.Enum';
-import { TeacherInterface } from './../Interfaces/Teaacher.interface';
+import { TeacherInterface } from './../Interfaces/Teacher.interface';
 
 export class TeacherLogic {
     public async GetAll() {

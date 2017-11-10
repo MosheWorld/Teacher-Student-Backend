@@ -1,7 +1,7 @@
 import { Router, Request, Response } from 'express';
 
 import { TeacherLogic } from './../Logic/TeacherLogic';
-import { TeacherInterface } from './../Interfaces/Teaacher.interface';
+import { TeacherInterface } from './../Interfaces/Teacher.interface';
 import { RecommendationsInterface } from './../Interfaces/Recommendations.interface';
 
 const router: Router = Router();
