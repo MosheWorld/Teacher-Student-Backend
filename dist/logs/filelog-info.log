@@ -1,0 +1,5 @@
+{"level":"info","message":"Enter teacher/getlistofteachersbyid","timestamp":"2017-11-11T12:30:52.293Z"}
+{"level":"info","message":"Out teacher/getlistofteachersbyid","timestamp":"2017-11-11T12:30:52.303Z"}
+{"level":"info","message":"Enter teacher/getall","timestamp":"2017-11-11T12:31:18.666Z"}
+{"level":"info","message":"Out teacher/getall","timestamp":"2017-11-11T12:31:18.667Z"}
+{"level":"info","message":"Enter teacher/getlistofteachersbyid","timestamp":"2017-11-11T12:32:29.138Z"}
