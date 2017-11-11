@@ -1,1 +1,4 @@
-first
+{"level":"info","message":"Enter teacher/getall","timestamp":"2017-11-11T13:28:25.649Z"}
+{"level":"info","message":"Out teacher/getall","timestamp":"2017-11-11T13:28:25.657Z"}
+{"level":"info","message":"Enter teacher/getlistofteachersbyid","timestamp":"2017-11-11T13:28:28.365Z"}
+{"level":"info","message":"Out teacher/getlistofteachersbyid","timestamp":"2017-11-11T13:28:28.368Z"}
