@@ -35,20 +35,24 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+var logger_1 = require("./../LogService/logger");
 var ContactUsModel_1 = require("../Models/ContactUsModel");
 var ContactUsDal = /** @class */ (function () {
     function ContactUsDal() {
+        this.logger = new logger_1.Logger();
     }
     ContactUsDal.prototype.GetAll = function () {
         return __awaiter(this, void 0, void 0, function () {
             var contactUsCollection;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, ContactUsModel_1.default.find({}, function (error, contactUs) {
-                            return contactUs ? contactUs : null;
-                        }).catch(function (error) {
-                            return error.message;
-                        })];
+                    case 0:
+                        this.logger.debug("Enter ContactUs", "DAL GetAll");
+                        return [4 /*yield*/, ContactUsModel_1.default.find({}, function (error, contactUs) {
+                                return contactUs ? contactUs : null;
+                            }).catch(function (error) {
+                                return error.message;
+                            })];
                     case 1:
                         contactUsCollection = _a.sent();
                         return [2 /*return*/, contactUsCollection];
@@ -61,7 +65,9 @@ var ContactUsDal = /** @class */ (function () {
             var returnedValue;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, ContactUsModel_1.default.collection.insert(contactUsData)];
+                    case 0:
+                        this.logger.debug("Enter ContactUs", "DAL Create", contactUsData);
+                        return [4 /*yield*/, ContactUsModel_1.default.collection.insert(contactUsData)];
                     case 1:
                         returnedValue = _a.sent();
                         return [2 /*return*/, returnedValue];

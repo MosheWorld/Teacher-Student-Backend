@@ -36,20 +36,24 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var mongodb_1 = require("mongodb");
+var logger_1 = require("./../LogService/logger");
 var TeacherModel_1 = require("../Models/TeacherModel");
 var TeacherDal = /** @class */ (function () {
     function TeacherDal() {
+        this.logger = new logger_1.Logger();
     }
     TeacherDal.prototype.GetAll = function () {
         return __awaiter(this, void 0, void 0, function () {
             var teachersCollection;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, TeacherModel_1.default.find({}, function (error, teachers) {
-                            return teachers ? teachers : null;
-                        }).catch(function (error) {
-                            return error.message;
-                        })];
+                    case 0:
+                        this.logger.debug("Enter Teacher", "DAL GetAll");
+                        return [4 /*yield*/, TeacherModel_1.default.find({}, function (error, teachers) {
+                                return teachers ? teachers : null;
+                            }).catch(function (error) {
+                                return error.message;
+                            })];
                     case 1:
                         teachersCollection = _a.sent();
                         return [2 /*return*/, teachersCollection];
@@ -62,7 +66,9 @@ var TeacherDal = /** @class */ (function () {
             var teacher;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, TeacherModel_1.default.findOne({ _id: new mongodb_1.ObjectID(id) })];
+                    case 0:
+                        this.logger.debug("Enter Teacher", "DAL GetAll", { id: id });
+                        return [4 /*yield*/, TeacherModel_1.default.findOne({ _id: new mongodb_1.ObjectID(id) })];
                     case 1:
                         teacher = _a.sent();
                         return [2 /*return*/, teacher];
@@ -75,7 +81,9 @@ var TeacherDal = /** @class */ (function () {
             var returnedValue;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, TeacherModel_1.default.collection.insert(teacherData)];
+                    case 0:
+                        this.logger.debug("Enter Teacher", "DAL Create", teacherData);
+                        return [4 /*yield*/, TeacherModel_1.default.collection.insert(teacherData)];
                     case 1:
                         returnedValue = _a.sent();
                         return [2 /*return*/, returnedValue];
@@ -88,7 +96,9 @@ var TeacherDal = /** @class */ (function () {
             var response;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, TeacherModel_1.default.collection.deleteOne({ _id: new mongodb_1.ObjectID(id) })];
+                    case 0:
+                        this.logger.debug("Enter Teacher", "DAL DeleteByID", { id: id });
+                        return [4 /*yield*/, TeacherModel_1.default.collection.deleteOne({ _id: new mongodb_1.ObjectID(id) })];
                     case 1:
                         response = _a.sent();
                         return [2 /*return*/, response];
@@ -99,6 +109,7 @@ var TeacherDal = /** @class */ (function () {
     TeacherDal.prototype.UpdateRecommendations = function (id, recommendData, rateData) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
+                this.logger.debug("Enter Teacher", "DAL UpdateRecommendations", { id: id, recommendData: recommendData, rateData: rateData });
                 TeacherModel_1.default.collection.updateOne({ _id: id }, {
                     $set: { "recommendations": recommendData, "rate": rateData },
                 });
