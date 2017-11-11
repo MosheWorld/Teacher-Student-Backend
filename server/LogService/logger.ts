@@ -10,7 +10,7 @@ export class Logger {
             transports: [
                 new (winston.transports.File)({
                     name: 'debug-file-log',
-                    filename: 'logs\\filelog-debug.log',
+                    filename:  process.cwd() + '\\logs\\filelog-debug.log',
                     level: 'debug'
                 })
             ]
@@ -20,7 +20,7 @@ export class Logger {
             transports: [
                 new (winston.transports.File)({
                     name: 'info-file-log',
-                    filename: 'logs\\filelog-info.log',
+                    filename: process.cwd() + '\\logs\\filelog-info.log',
                     level: 'info'
                 })
             ]
@@ -30,7 +30,7 @@ export class Logger {
             transports: [
                 new (winston.transports.File)({
                     name: 'error-file-log',
-                    filename: 'logs\\filelog-error.log',
+                    filename: process.cwd() + '\\logs\\filelog-error.log',
                     level: 'error'
                 })
             ]
