@@ -17,5 +17,4 @@ export interface TeacherInterface {
     teachesAt: TeachesAt;
     teachesInstitutions: TeachesInstitutions[];
     recommendations: RecommendationsInterface[];
-
 }
