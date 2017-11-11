@@ -1,3 +1,4 @@
+import { Logger } from './../LogService/logger';
 import { _ } from 'lodash';
 
 import { TeacherDal } from './../DAL/TeacherDAL';
@@ -5,7 +6,14 @@ import { TeachesAt } from '../Enums/TeachesAt.Enum';
 import { TeacherInterface } from './../Interfaces/Teacher.interface';
 
 export class TeacherLogic {
+    private logger;
+
+    public constructor() {
+        this.logger = new Logger();
+    }
+
     public async GetAll() {
+        this.logger.debug("Enter Teacher", "Logic GetAll");
         let tDal = new TeacherDal();
 
         let teacherCollection = await tDal.GetAll();
@@ -13,6 +21,7 @@ export class TeacherLogic {
     }
 
     public async GetByID(id) {
+        this.logger.debug("Enter Teacher", "Logic GetByID", id);
         let tDal = new TeacherDal();
 
         let teacher = await tDal.GetByID(id);
@@ -20,11 +29,13 @@ export class TeacherLogic {
     }
 
     public async Create(teacherData: TeacherInterface) {
+        this.logger.debug("Enter Teacher", "Logic Create", teacherData);
         let tDal = new TeacherDal();
         await tDal.Create(teacherData);
     }
 
     public async Delete(id) {
+        this.logger.debug("Enter Teacher", "Logic Delete ", id);
         let tDal = new TeacherDal();
 
         let response = await tDal.DeleteByID(id);
@@ -32,6 +43,7 @@ export class TeacherLogic {
     }
 
     public async SearchTeacher(searchData: any) {
+        this.logger.debug("Enter Teacher", "Logic SearchTeacher", searchData);
         let teacherCollection = await this.GetAll();
         let teacherCollectionToReturn: any[] = [];
 
@@ -55,6 +67,7 @@ export class TeacherLogic {
     }
 
     public async AddRecommendToExistingTeacher(id, recommendData) {
+        this.logger.debug("Enter Teacher", "Logic AddRecommendToExistingTeacher", { id: id, recommendData: recommendData });
         let tDal = new TeacherDal();
         let currentTeacher = await this.GetByID(id);
 
@@ -67,17 +80,18 @@ export class TeacherLogic {
         recommendCollection.push(recommendData);
 
         // Calculates new rate for the teacher.
-        let newRate:number = 0;
+        let newRate: number = 0;
         for (let recommend of recommendCollection) {
             newRate += recommend.rate;
         }
         newRate = newRate / recommendCollection.length;
-        newRate = parseFloat((Math.round(newRate * 100)/100).toFixed(2));
+        newRate = parseFloat((Math.round(newRate * 100) / 100).toFixed(2));
 
         return tDal.UpdateRecommendations(currentTeacher._id, recommendCollection, newRate);
     }
 
     public async GetListOfTeachersByID(listOfTeacherID) {
+        this.logger.debug("Enter Teacher", "Logic GetListOfTeachersByID", { list: listOfTeacherID });
         let teacherListToReturn: any = [];
         let tDal = new TeacherDal();
 
@@ -90,9 +104,9 @@ export class TeacherLogic {
     }
 
     private IsNumberInRange(lowerRange1: number, upperRange1: number, lowerRange2: number, upperRange2: number) {
-        if(upperRange2 < lowerRange1){
+        if (upperRange2 < lowerRange1) {
             return false;
-        }else{
+        } else {
             return true;
         }
     }

@@ -1,0 +1,9 @@
+{"level":"debug","message":"Enter Logic GetAll","timestamp":"2017-11-11T12:08:47.684Z"}
+{"level":"debug","message":"Enter Logic GetAll","timestamp":"2017-11-11T12:12:19.238Z"}
+{"level":"debug","message":"Enter Logic GetAll","timestamp":"2017-11-11T12:13:05.335Z"}
+{"level":"debug","message":"Enter Logic GetAll","timestamp":"2017-11-11T12:13:42.969Z"}
+{"level":"debug","message":"Enter Logic GetAll","timestamp":"2017-11-11T12:17:13.830Z"}
+{"id":"5a0365367185b20012fe83b1","recommendData":{"fullName":"Elinor Magel","email":"ElinorMagel@gmail.com","message":"Helping alot, amazing person, I wish I could marry him!","rate":5},"level":"debug","message":"Enter Logic AddRecommendToExistingTeacher","timestamp":"2017-11-11T12:17:50.167Z"}
+{"level":"debug","message":"Enter Logic GetByID 5a0365367185b20012fe83b1","timestamp":"2017-11-11T12:17:50.167Z"}
+["5a0365367185b20012fe83b1","5a05ebc25836e9001222f583","5a05eb435836e9001222f582","5a03222fea2a8b1c3c8e92c3","5a055639b3c50a00120e7749","59fd9f707f71b300125521d1"]
+{"list":["5a0365367185b20012fe83b1","5a05ebc25836e9001222f583","5a05eb435836e9001222f582","5a03222fea2a8b1c3c8e92c3","5a055639b3c50a00120e7749","59fd9f707f71b300125521d1"],"level":"debug","message":"Enter Logic GetListOfTeachersByID","timestamp":"2017-11-11T12:19:47.801Z"}

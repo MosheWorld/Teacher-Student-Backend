@@ -35,9 +35,11 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+var logger_1 = require("./../LogService/logger");
 var ContactUsDal_1 = require("./../DAL/ContactUsDal");
 var ContactUsLogic = /** @class */ (function () {
     function ContactUsLogic() {
+        this.logger = new logger_1.Logger();
     }
     ContactUsLogic.prototype.GetAll = function () {
         return __awaiter(this, void 0, void 0, function () {
@@ -45,6 +47,7 @@ var ContactUsLogic = /** @class */ (function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
+                        this.logger.debug("Enter ContactUs", "Logic GetAll");
                         cDal = new ContactUsDal_1.ContactUsDal();
                         return [4 /*yield*/, cDal.GetAll()];
                     case 1:
@@ -60,6 +63,7 @@ var ContactUsLogic = /** @class */ (function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
+                        this.logger.debug("Enter ContactUs", "Logic Create", contactUsData);
                         cDal = new ContactUsDal_1.ContactUsDal();
                         return [4 /*yield*/, cDal.Create(contactUsData)];
                     case 1:

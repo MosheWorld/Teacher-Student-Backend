@@ -1,12 +1,17 @@
 import { Router, Request, Response } from 'express';
 
+import { Logger } from './../LogService/logger';
 import { ContactUsLogic } from './../Logic/ContactUsLogic';
 import { ContactUsInterface } from './../Interfaces/ContactUs.interface';
 
 const router: Router = Router();
 
+let logger = new Logger();
+
 router.get('/getall', (req: Request, res: Response) => {
     try {
+        logger.info("Enter", "contactus/getall");
+
         let cManager = new ContactUsLogic();
 
         cManager.GetAll()
@@ -15,14 +20,20 @@ router.get('/getall', (req: Request, res: Response) => {
             }).catch((error) => {
                 res.status(400).send(error.message);
             });
+
+        logger.info("Out", "contactus/getall");
     } catch (ex) {
+        logger.error("Out", "contactus/getall", ex.message);
         res.status(400).send(ex.message);
     }
 });
 
 router.post('/create', (req: Request, res: Response) => {
     try {
+        logger.info("Enter", "contactus/create");
+
         if (req.body == null || !IsModelValid(req.body)) {
+            logger.error("Model is not valid.", "contactus/create", req.body);
             return res.status(400).send("Model is not valid.");
         }
 
@@ -40,7 +51,10 @@ router.post('/create', (req: Request, res: Response) => {
             .catch((error) => {
                 res.status(400).send(error.message);
             });
+
+            logger.info("Enter", "contactus/create");
     } catch (ex) {
+        logger.error("Out", "contactus/create", ex.message);
         res.status(400).send(ex.message);
     }
 });

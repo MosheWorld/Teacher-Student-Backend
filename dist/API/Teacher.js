@@ -1,10 +1,13 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var express_1 = require("express");
+var logger_1 = require("./../LogService/logger");
 var TeacherLogic_1 = require("./../Logic/TeacherLogic");
 var router = express_1.Router();
+var logger = new logger_1.Logger();
 router.get('/getall', function (req, res) {
     try {
+        logger.info("Enter", "teacher/getall");
         var tManager = new TeacherLogic_1.TeacherLogic();
         tManager.GetAll()
             .then(function (teachers) {
@@ -12,15 +15,19 @@ router.get('/getall', function (req, res) {
         }).catch(function (error) {
             res.status(400).send(error.message);
         });
+        logger.info("Out", "teacher/getall");
     }
     catch (ex) {
+        logger.error("Out", "teacher/getall", ex.message);
         res.status(400).send(ex.message);
     }
 });
 router.get('/getbyid/:id', function (req, res) {
     try {
+        logger.info("Enter", "teacher/getbyid" + req.params.id);
         var id = req.params.id;
         if (id == null) {
+            logger.error("Model is not valid.", "teacher/getbyid/");
             res.status(400).send("Model is not valid.");
         }
         var tManager = new TeacherLogic_1.TeacherLogic();
@@ -30,14 +37,18 @@ router.get('/getbyid/:id', function (req, res) {
         }).catch(function (error) {
             res.status(400).send(error.message);
         });
+        logger.info("Out", "teacher/getbyid" + req.params.id);
     }
     catch (ex) {
+        logger.error("Out", "teacher/getbyid" + req.params.id, ex.message);
         res.status(400).send(ex.message);
     }
 });
 router.post('/getlistofteachersbyid', function (req, res) {
     try {
+        logger.info("Enter", "teacher/getlistofteachersbyid");
         if (req.body == null || req.body.listOfTeacherID == null || !IsListOfIDValid(req.body.listOfTeacherID)) {
+            logger.error("Model is not valid.", "teacher/getlistofteachersbyid", req.body);
             return res.status(400).send("Model is not valid.");
         }
         var tManager = new TeacherLogic_1.TeacherLogic();
@@ -48,14 +59,18 @@ router.post('/getlistofteachersbyid', function (req, res) {
         }).catch(function (error) {
             res.status(400).send(error);
         });
+        logger.info("Out", "teacher/getlistofteachersbyid");
     }
     catch (ex) {
+        logger.error("Out", "teacher/getlistofteachersbyid", ex.message);
         res.status(400).send(ex.message);
     }
 });
 router.post('/search', function (req, res) {
     try {
+        logger.info("Enter", "teacher/search");
         if (req.body == null || !IsModelSearchValid(req.body)) {
+            logger.error("Model is not valid.", "teacher/search", req.body);
             return res.status(400).send("Model is not valid.");
         }
         var tManager = new TeacherLogic_1.TeacherLogic();
@@ -73,14 +88,18 @@ router.post('/search', function (req, res) {
             .catch(function (error) {
             res.status(400).send(error.message);
         });
+        logger.info("Out", "teacher/search");
     }
     catch (ex) {
+        logger.error("Out", "teacher/search", ex.message);
         res.status(400).send(ex.message);
     }
 });
 router.post('/create', function (req, res) {
     try {
+        logger.info("Enter", "teacher/create");
         if (req.body == null || !IsModelCreateValid(req.body)) {
+            logger.error("Model is not valid.", "teacher/create", req.body);
             return res.status(400).send("Model is not valid.");
         }
         var tManager = new TeacherLogic_1.TeacherLogic();
@@ -98,14 +117,18 @@ router.post('/create', function (req, res) {
             .catch(function (error) {
             res.status(400).send(error.message);
         });
+        logger.info("Out", "teacher/create");
     }
     catch (ex) {
+        logger.error("Out", "teacher/create", ex.message);
         res.status(400).send(ex.message);
     }
 });
 router.post('/addrecommend', function (req, res) {
     try {
+        logger.info("Enter", "teacher/addrecommend");
         if (req.body == null || IsStringNullOrEmpty(req.body.id) || !IsRecommendValid(req.body.recommendData)) {
+            logger.error("Model is not valid.", "teacher/addrecommend", req.body);
             return res.status(400).send("Model is not valid.");
         }
         var tManager = new TeacherLogic_1.TeacherLogic();
@@ -120,15 +143,19 @@ router.post('/addrecommend', function (req, res) {
             .catch(function (error) {
             res.status(400).send(error.message);
         });
+        logger.info("Out", "teacher/addrecommend");
     }
     catch (ex) {
+        logger.error("Out", "teacher/addrecommend", ex.message);
         res.status(400).send(ex);
     }
 });
 router.delete('/delete/:id', function (req, res) {
     try {
+        logger.info("Enter", "teacher/delete/" + req.params.id);
         var id = req.params.id;
         if (id == null) {
+            logger.error("Model is not valid.", "teacher/delete/");
             res.status(400).send("Model is not valid.");
         }
         var tManager = new TeacherLogic_1.TeacherLogic();
@@ -138,8 +165,10 @@ router.delete('/delete/:id', function (req, res) {
         }).catch(function (error) {
             res.status(400).send(error.message);
         });
+        logger.info("Out", "teacher/delete/" + req.params.id);
     }
     catch (ex) {
+        logger.error("Out", "teacher/delete/" + req.params.id, ex.message);
         res.status(400).send(ex.message);
     }
 });

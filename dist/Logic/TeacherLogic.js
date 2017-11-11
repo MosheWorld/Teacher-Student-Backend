@@ -35,11 +35,13 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+var logger_1 = require("./../LogService/logger");
 var lodash_1 = require("lodash");
 var TeacherDAL_1 = require("./../DAL/TeacherDAL");
 var TeachesAt_Enum_1 = require("../Enums/TeachesAt.Enum");
 var TeacherLogic = /** @class */ (function () {
     function TeacherLogic() {
+        this.logger = new logger_1.Logger();
     }
     TeacherLogic.prototype.GetAll = function () {
         return __awaiter(this, void 0, void 0, function () {
@@ -47,6 +49,7 @@ var TeacherLogic = /** @class */ (function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
+                        this.logger.debug("Enter Teacher", "Logic GetAll");
                         tDal = new TeacherDAL_1.TeacherDal();
                         return [4 /*yield*/, tDal.GetAll()];
                     case 1:
@@ -62,6 +65,7 @@ var TeacherLogic = /** @class */ (function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
+                        this.logger.debug("Enter Teacher", "Logic GetByID", id);
                         tDal = new TeacherDAL_1.TeacherDal();
                         return [4 /*yield*/, tDal.GetByID(id)];
                     case 1:
@@ -77,6 +81,7 @@ var TeacherLogic = /** @class */ (function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
+                        this.logger.debug("Enter Teacher", "Logic Create", teacherData);
                         tDal = new TeacherDAL_1.TeacherDal();
                         return [4 /*yield*/, tDal.Create(teacherData)];
                     case 1:
@@ -92,6 +97,7 @@ var TeacherLogic = /** @class */ (function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
+                        this.logger.debug("Enter Teacher", "Logic Delete ", id);
                         tDal = new TeacherDAL_1.TeacherDal();
                         return [4 /*yield*/, tDal.DeleteByID(id)];
                     case 1:
@@ -107,7 +113,9 @@ var TeacherLogic = /** @class */ (function () {
             var teacherCollection, teacherCollectionToReturn;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.GetAll()];
+                    case 0:
+                        this.logger.debug("Enter Teacher", "Logic SearchTeacher", searchData);
+                        return [4 /*yield*/, this.GetAll()];
                     case 1:
                         teacherCollection = _a.sent();
                         teacherCollectionToReturn = [];
@@ -137,6 +145,7 @@ var TeacherLogic = /** @class */ (function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
+                        this.logger.debug("Enter Teacher", "Logic AddRecommendToExistingTeacher", { id: id, recommendData: recommendData });
                         tDal = new TeacherDAL_1.TeacherDal();
                         return [4 /*yield*/, this.GetByID(id)];
                     case 1:
@@ -164,6 +173,7 @@ var TeacherLogic = /** @class */ (function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
+                        this.logger.debug("Enter Teacher", "Logic GetListOfTeachersByID", { list: listOfTeacherID });
                         teacherListToReturn = [];
                         tDal = new TeacherDAL_1.TeacherDal();
                         _i = 0, listOfTeacherID_1 = listOfTeacherID;
