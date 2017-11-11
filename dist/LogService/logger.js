@@ -7,7 +7,7 @@ var Logger = /** @class */ (function () {
             transports: [
                 new (winston.transports.File)({
                     name: 'debug-file-log',
-                    filename: 'logs//filelog-debug.log',
+                    filename: 'logs\\filelog-debug.log',
                     level: 'debug'
                 })
             ]
@@ -16,7 +16,7 @@ var Logger = /** @class */ (function () {
             transports: [
                 new (winston.transports.File)({
                     name: 'info-file-log',
-                    filename: 'logs//filelog-info.log',
+                    filename: 'logs\\filelog-info.log',
                     level: 'info'
                 })
             ]
@@ -25,7 +25,7 @@ var Logger = /** @class */ (function () {
             transports: [
                 new (winston.transports.File)({
                     name: 'error-file-log',
-                    filename: 'logs//filelog-error.log',
+                    filename: 'logs\\filelog-error.log',
                     level: 'error'
                 })
             ]
