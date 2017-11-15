@@ -180,10 +180,10 @@ function IsModelCreateValid(model) {
         model.priceTo == null || model.priceTo > 200 ||
         model.priceFrom > model.priceTo ||
         model.teachesAt == null || model.teachesAt < 1 ||
+        model.gender == null || model.gender < 0 ||
         model.teachesInstitutions == null || model.teachesInstitutions.length === 0 ||
         IsStringNullOrEmpty(model.email) ||
         IsStringNullOrEmpty(model.phone) ||
-        IsStringNullOrEmpty(model.gender) ||
         IsStringNullOrEmpty(model.lastName) ||
         IsStringNullOrEmpty(model.firstName) ||
         IsStringNullOrEmpty(model.personalMessage)) {

@@ -2,6 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 var mongoose = require("mongoose");
 var TeacherSchema = new mongoose.Schema({
+    gender: { type: Number, required: true },
     priceTo: { type: Number, required: true, min: 0 },
     teachesAt: { type: Number, required: true, min: 0 },
     rate: { type: Number, required: true, min: 0, max: 5 },
@@ -9,7 +10,6 @@ var TeacherSchema = new mongoose.Schema({
     priceFrom: { type: Number, required: true, min: 0, max: 200 },
     image: { type: String },
     email: { type: String, required: true },
-    gender: { type: String, required: true },
     lastName: { type: String, required: true },
     firstName: { type: String, required: true },
     personalMessage: { type: String, required: true },

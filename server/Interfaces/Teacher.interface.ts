@@ -5,12 +5,12 @@ import { RecommendationsInterface } from './Recommendations.interface';
 export interface TeacherInterface {
     age: number;
     rate: number;
+    gender: number;
     priceTo: number;
     priceFrom: number;
     phone: string;
     email: string;
     image: string;
-    gender: string;
     lastName: string;
     firstName: string;
     personalMessage: string;
