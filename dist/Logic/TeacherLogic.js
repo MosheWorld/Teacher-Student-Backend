@@ -121,7 +121,7 @@ var TeacherLogic = /** @class */ (function () {
                         teacherCollectionToReturn = [];
                         teacherCollection.forEach(function (element) {
                             // Teaches institutions check.
-                            if (lodash_1._.includes(element.teachesInstitutions, searchData.teachesInstitutions)) {
+                            if (_this.IsInstitutionsMatch(element.teachesInstitutions, searchData.teachesInstitutions)) {
                                 // Price check.
                                 if (_this.IsNumberInRange(element.priceFrom, element.priceTo, searchData.fromPrice, searchData.toPrice)) {
                                     // Gender check.
@@ -205,14 +205,15 @@ var TeacherLogic = /** @class */ (function () {
     TeacherLogic.prototype.IsGenderMatch = function (genderTeacher, genderSearch) {
         var isGenderOkay = false;
         switch (genderSearch) {
-            case '':
+            case 1:
+                isGenderOkay = genderTeacher === 1 ? true : false;
+                break;
+            case 2:
+                isGenderOkay = genderTeacher === 2 ? true : false;
+                break;
+            case 3:
+            case null:
                 isGenderOkay = true;
-                break;
-            case 'Male':
-                isGenderOkay = genderTeacher === 'Male' || genderTeacher === '' ? true : false;
-                break;
-            case 'Female':
-                isGenderOkay = genderTeacher === 'Female' || genderTeacher === '' ? true : false;
                 break;
             default:
                 isGenderOkay = false;
@@ -223,20 +224,32 @@ var TeacherLogic = /** @class */ (function () {
     TeacherLogic.prototype.IsTeachesAtMatch = function (teachesAtTeacher, teachesAtSearch) {
         var isGenderOkay = false;
         switch (teachesAtSearch) {
-            case TeachesAt_Enum_1.TeachesAt.Both:
-                isGenderOkay = true;
-                break;
             case TeachesAt_Enum_1.TeachesAt.Home:
                 isGenderOkay = teachesAtTeacher === TeachesAt_Enum_1.TeachesAt.Home || teachesAtTeacher === TeachesAt_Enum_1.TeachesAt.Both ? true : false;
                 break;
             case TeachesAt_Enum_1.TeachesAt.AcademicInstitution:
                 isGenderOkay = teachesAtTeacher === TeachesAt_Enum_1.TeachesAt.AcademicInstitution || teachesAtTeacher === TeachesAt_Enum_1.TeachesAt.Both ? true : false;
                 break;
+            case TeachesAt_Enum_1.TeachesAt.Both:
+            case null:
+                isGenderOkay = true;
+                break;
             default:
                 isGenderOkay = false;
                 break;
         }
         return isGenderOkay;
+    };
+    TeacherLogic.prototype.IsInstitutionsMatch = function (elementInstitutions, searchInstitutions) {
+        if (searchInstitutions == null) {
+            return true;
+        }
+        else if (lodash_1._.includes(elementInstitutions, searchInstitutions)) {
+            return true;
+        }
+        else {
+            return false;
+        }
     };
     return TeacherLogic;
 }());

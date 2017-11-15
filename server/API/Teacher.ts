@@ -228,13 +228,10 @@ function IsModelCreateValid(model: any) {
 }
 
 function IsModelSearchValid(model: any) {
-    // We allow model.gender to be empty, in this case we search for both genders.
     if (model == null ||
         model.fromPrice == null || model.fromPrice < 0 ||
         model.toPrice == null || model.toPrice < 0 ||
-        model.teachesAt == null || model.teachesAt < 0 ||
-        model.teachesInstitutions == null || model.teachesInstitutions < 0 ||
-        model.gender == null
+        model.fromPrice > model.toPrice
     ) {
         return false;
     }

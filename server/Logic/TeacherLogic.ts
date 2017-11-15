@@ -49,7 +49,7 @@ export class TeacherLogic {
 
         teacherCollection.forEach(element => {
             // Teaches institutions check.
-            if (_.includes(element.teachesInstitutions, searchData.teachesInstitutions)) {
+            if (this.IsInstitutionsMatch(element.teachesInstitutions, searchData.teachesInstitutions)) {
                 // Price check.
                 if (this.IsNumberInRange(element.priceFrom, element.priceTo, searchData.fromPrice, searchData.toPrice)) {
                     // Gender check.
@@ -111,18 +111,19 @@ export class TeacherLogic {
         }
     }
 
-    private IsGenderMatch(genderTeacher: string, genderSearch: string) {
+    private IsGenderMatch(genderTeacher: number, genderSearch: number) {
         let isGenderOkay: boolean = false;
 
         switch (genderSearch) {
-            case '':
+            case 1:
+                isGenderOkay = genderTeacher === 1 ? true : false;
+                break;
+            case 2:
+                isGenderOkay = genderTeacher === 2 ? true : false;
+                break;
+            case 3:
+            case null:
                 isGenderOkay = true;
-                break;
-            case 'Male':
-                isGenderOkay = genderTeacher === 'Male' || genderTeacher === '' ? true : false;
-                break;
-            case 'Female':
-                isGenderOkay = genderTeacher === 'Female' || genderTeacher === '' ? true : false;
                 break;
             default:
                 isGenderOkay = false;
@@ -136,14 +137,15 @@ export class TeacherLogic {
         let isGenderOkay: boolean = false;
 
         switch (teachesAtSearch) {
-            case TeachesAt.Both:
-                isGenderOkay = true;
-                break;
             case TeachesAt.Home:
                 isGenderOkay = teachesAtTeacher === TeachesAt.Home || teachesAtTeacher === TeachesAt.Both ? true : false;
                 break;
             case TeachesAt.AcademicInstitution:
                 isGenderOkay = teachesAtTeacher === TeachesAt.AcademicInstitution || teachesAtTeacher === TeachesAt.Both ? true : false;
+                break;
+            case TeachesAt.Both:
+            case null:
+                isGenderOkay = true;
                 break;
             default:
                 isGenderOkay = false;
@@ -151,5 +153,16 @@ export class TeacherLogic {
         }
 
         return isGenderOkay;
+    }
+
+    private IsInstitutionsMatch(elementInstitutions: any, searchInstitutions: any) {
+        if (searchInstitutions == null) {
+            return true;
+        }
+        else if (_.includes(elementInstitutions, searchInstitutions)) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }
