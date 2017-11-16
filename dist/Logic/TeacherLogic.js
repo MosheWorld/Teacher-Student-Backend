@@ -122,13 +122,16 @@ var TeacherLogic = /** @class */ (function () {
                         teacherCollection.forEach(function (element) {
                             // Teaches institutions check.
                             if (_this.IsInstitutionsMatch(element.teachesInstitutions, searchData.teachesInstitutions)) {
-                                // Price check.
-                                if (_this.IsNumberInRange(element.priceFrom, element.priceTo, searchData.fromPrice, searchData.toPrice)) {
-                                    // Gender check.
-                                    if (_this.IsGenderMatch(element.gender, searchData.gender)) {
-                                        // Teaches At check.
-                                        if (_this.IsTeachesAtMatch(element.teachesAt, searchData.teachesAt)) {
-                                            teacherCollectionToReturn.push(element);
+                                // Teaches Subjects check.
+                                if (_this.IsSubjectsMatch(element.teachesSubjects, searchData.teachesSubjects)) {
+                                    // Price check.
+                                    if (_this.IsNumberInRange(element.priceFrom, element.priceTo, searchData.fromPrice, searchData.toPrice)) {
+                                        // Gender check.
+                                        if (_this.IsGenderMatch(element.gender, searchData.gender)) {
+                                            // Teaches At check.
+                                            if (_this.IsTeachesAtMatch(element.teachesAt, searchData.teachesAt)) {
+                                                teacherCollectionToReturn.push(element);
+                                            }
                                         }
                                     }
                                 }
@@ -245,6 +248,17 @@ var TeacherLogic = /** @class */ (function () {
             return true;
         }
         else if (lodash_1._.includes(elementInstitutions, searchInstitutions)) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    };
+    TeacherLogic.prototype.IsSubjectsMatch = function (elementSubjects, searchSubject) {
+        if (searchSubject == null) {
+            return true;
+        }
+        else if (lodash_1._.includes(elementSubjects, searchSubject)) {
             return true;
         }
         else {

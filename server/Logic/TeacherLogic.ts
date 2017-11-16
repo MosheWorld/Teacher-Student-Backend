@@ -50,13 +50,16 @@ export class TeacherLogic {
         teacherCollection.forEach(element => {
             // Teaches institutions check.
             if (this.IsInstitutionsMatch(element.teachesInstitutions, searchData.teachesInstitutions)) {
-                // Price check.
-                if (this.IsNumberInRange(element.priceFrom, element.priceTo, searchData.fromPrice, searchData.toPrice)) {
-                    // Gender check.
-                    if (this.IsGenderMatch(element.gender, searchData.gender)) {
-                        // Teaches At check.
-                        if (this.IsTeachesAtMatch(element.teachesAt, searchData.teachesAt)) {
-                            teacherCollectionToReturn.push(element);
+                // Teaches Subjects check.
+                if (this.IsSubjectsMatch(element.teachesSubjects, searchData.teachesSubjects)) {
+                    // Price check.
+                    if (this.IsNumberInRange(element.priceFrom, element.priceTo, searchData.fromPrice, searchData.toPrice)) {
+                        // Gender check.
+                        if (this.IsGenderMatch(element.gender, searchData.gender)) {
+                            // Teaches At check.
+                            if (this.IsTeachesAtMatch(element.teachesAt, searchData.teachesAt)) {
+                                teacherCollectionToReturn.push(element);
+                            }
                         }
                     }
                 }
@@ -160,6 +163,16 @@ export class TeacherLogic {
             return true;
         }
         else if (_.includes(elementInstitutions, searchInstitutions)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    private IsSubjectsMatch(elementSubjects: any, searchSubject: any) {
+        if (searchSubject == null) {
+            return true;
+        } else if (_.includes(elementSubjects, searchSubject)) {
             return true;
         } else {
             return false;

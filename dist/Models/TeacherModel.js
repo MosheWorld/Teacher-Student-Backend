@@ -15,6 +15,7 @@ var TeacherSchema = new mongoose.Schema({
     personalMessage: { type: String, required: true },
     phone: { type: String, required: true, minlength: 9 },
     teachesInstitutions: { type: [], required: true },
+    teachesSubjects: { type: [], required: true },
     recommendations: { type: [], required: true }
 }, { timestamps: true });
 var TeacherModel = mongoose.model("Teacher", TeacherSchema);

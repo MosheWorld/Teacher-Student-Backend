@@ -97,6 +97,7 @@ router.post('/search', (req: Request, res: Response) => {
             toPrice: req.body.toPrice,
             teachesAt: req.body.teachesAt,
             teachesInstitutions: req.body.teachesInstitutions,
+            teachesSubjects: req.body.teachesSubjects,
             gender: req.body.gender
         };
 
@@ -130,7 +131,7 @@ router.post('/create', (req: Request, res: Response) => {
             age: req.body.age, email: req.body.email, priceFrom: req.body.priceFrom, priceTo: req.body.priceTo,
             phone: req.body.phone, personalMessage: req.body.personalMessage, teachesAt: req.body.teachesAt,
             teachesInstitutions: req.body.teachesInstitutions, gender: req.body.gender, recommendations: [],
-            rate: req.body.rate, image: req.body.image
+            rate: req.body.rate, image: req.body.image, teachesSubjects: req.body.teachesSubjects
         }
 
         tManager.Create(teacherData)
