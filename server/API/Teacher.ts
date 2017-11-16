@@ -217,6 +217,7 @@ function IsModelCreateValid(model: any) {
         model.teachesAt == null || model.teachesAt < 1 ||
         model.gender == null || model.gender < 0 ||
         model.teachesInstitutions == null || model.teachesInstitutions.length === 0 ||
+        model.teachesSubjects == null || model.teachesSubjects.length === 0 ||
         IsStringNullOrEmpty(model.email) ||
         IsStringNullOrEmpty(model.phone) ||
         IsStringNullOrEmpty(model.lastName) ||
