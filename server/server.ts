@@ -2,7 +2,7 @@ import * as express from "express";
 import * as mongoose from "mongoose";
 import * as bodyParser from "body-parser";
 
-
+import { ImageController } from './API/Image';
 import { TeacherController } from './API/Teacher';
 import { ContactUsController } from './API/ContactUs';
 
@@ -27,6 +27,7 @@ const port: number = process.env.PORT || 8000;
 
 app.use('/teacher', TeacherController);
 app.use('/contactus', ContactUsController);
+app.use('/image', ImageController);
 
 // Serve the application at the given port.
 app.listen(port, () => {

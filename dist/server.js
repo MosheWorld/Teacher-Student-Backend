@@ -3,6 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var express = require("express");
 var mongoose = require("mongoose");
 var bodyParser = require("body-parser");
+var Image_1 = require("./API/Image");
 var Teacher_1 = require("./API/Teacher");
 var ContactUs_1 = require("./API/ContactUs");
 // Create a new express application instance.
@@ -22,6 +23,7 @@ mongoose.connect(process.env.MONGODB_URI || 'mongodb://Moshe:ab123456@ds133465.m
 var port = process.env.PORT || 8000;
 app.use('/teacher', Teacher_1.TeacherController);
 app.use('/contactus', ContactUs_1.ContactUsController);
+app.use('/image', Image_1.ImageController);
 // Serve the application at the given port.
 app.listen(port, function () {
     console.log("Listening at http://localhost:" + port + "/");

@@ -66,3 +66,71 @@
 {"fromPrice":30,"toPrice":190,"teachesAt":null,"teachesInstitutions":null,"teachesSubjects":null,"gender":null,"level":"debug","message":"Enter Teacher Logic SearchTeacher","timestamp":"2017-11-16T22:13:50.676Z"}
 {"level":"debug","message":"Enter Teacher Logic GetAll","timestamp":"2017-11-16T22:13:50.676Z"}
 {"level":"debug","message":"Enter Teacher DAL GetAll","timestamp":"2017-11-16T22:13:50.676Z"}
+{"level":"debug","message":"Enter Teacher DAL GetAll","timestamp":"2017-11-21T21:30:36.233Z"}
+{"level":"debug","message":"Enter Teacher Logic GetAll","timestamp":"2017-11-21T21:30:36.232Z"}
+{"level":"debug","message":"Enter Teacher DAL GetAll","timestamp":"2017-11-21T21:33:21.625Z"}
+{"level":"debug","message":"Enter Teacher Logic GetAll","timestamp":"2017-11-21T21:33:21.625Z"}
+{"level":"debug","message":"Enter Teacher Logic GetAll","timestamp":"2017-11-21T21:34:23.878Z"}
+{"level":"debug","message":"Enter Teacher DAL GetAll","timestamp":"2017-11-21T21:34:23.879Z"}
+{"level":"debug","message":"Enter Teacher Logic GetAll","timestamp":"2017-11-21T21:37:27.494Z"}
+{"level":"debug","message":"Enter Teacher DAL GetAll","timestamp":"2017-11-21T21:37:27.495Z"}
+{"level":"debug","message":"Enter Teacher Logic GetAll","timestamp":"2017-11-21T21:41:16.192Z"}
+{"level":"debug","message":"Enter Teacher DAL GetAll","timestamp":"2017-11-21T21:41:16.193Z"}
+{"level":"debug","message":"Enter Teacher DAL GetAll","timestamp":"2017-11-21T21:42:26.900Z"}
+{"level":"debug","message":"Enter Teacher Logic GetAll","timestamp":"2017-11-21T21:42:26.899Z"}
+{"level":"debug","message":"Enter Image Logic GetImageByID","timestamp":"2017-11-21T21:58:59.040Z"}
+{"imageID":{},"level":"debug","message":"Enter Image DAL GetImageByID","timestamp":"2017-11-21T21:58:59.041Z"}
+{"level":"debug","message":"Enter Image Logic GetImageByID","timestamp":"2017-11-21T21:59:19.966Z"}
+{"imageID":{},"level":"debug","message":"Enter Image DAL GetImageByID","timestamp":"2017-11-21T21:59:19.967Z"}
+{"level":"debug","message":"Enter Image Logic GetImageByID","timestamp":"2017-11-21T21:59:31.962Z"}
+{"imageID":{},"level":"debug","message":"Enter Image DAL GetImageByID","timestamp":"2017-11-21T21:59:31.963Z"}
+{"level":"debug","message":"Enter Image Logic GetImageByID","timestamp":"2017-11-21T21:59:49.688Z"}
+{"imageID":{},"level":"debug","message":"Enter Image DAL GetImageByID","timestamp":"2017-11-21T21:59:49.688Z"}
+{"level":"debug","message":"Enter Image Logic GetImageByID","timestamp":"2017-11-21T21:59:55.633Z"}
+{"imageID":{},"level":"debug","message":"Enter Image DAL GetImageByID","timestamp":"2017-11-21T21:59:55.634Z"}
+{"level":"debug","message":"Enter Image Logic GetImageByID","timestamp":"2017-11-21T22:00:09.097Z"}
+{"imageID":{},"level":"debug","message":"Enter Image DAL GetImageByID","timestamp":"2017-11-21T22:00:09.097Z"}
+{"imageID":{},"level":"debug","message":"Enter Image DAL GetImageByID","timestamp":"2017-11-21T22:00:25.440Z"}
+{"level":"debug","message":"Enter Image Logic GetImageByID","timestamp":"2017-11-21T22:00:25.440Z"}
+{"level":"debug","message":"Enter Image Logic GetImageByID","timestamp":"2017-11-21T22:00:33.055Z"}
+{"imageID":{},"level":"debug","message":"Enter Image DAL GetImageByID","timestamp":"2017-11-21T22:00:33.056Z"}
+{"level":"debug","message":"Enter Image Logic GetImageByID","timestamp":"2017-11-21T22:00:47.771Z"}
+{"imageID":{},"level":"debug","message":"Enter Image DAL GetImageByID","timestamp":"2017-11-21T22:00:47.772Z"}
+{"level":"debug","message":"Enter Image Logic GetImageByID","timestamp":"2017-11-21T22:01:07.963Z"}
+{"imageID":{},"level":"debug","message":"Enter Image DAL GetImageByID","timestamp":"2017-11-21T22:01:07.964Z"}
+{"level":"debug","message":"Enter Image Logic GetImageByID","timestamp":"2017-11-21T22:01:19.808Z"}
+{"imageID":{},"level":"debug","message":"Enter Image DAL GetImageByID","timestamp":"2017-11-21T22:01:19.809Z"}
+{"level":"debug","message":"Enter Image Logic GetImageByID","timestamp":"2017-11-21T22:01:26.728Z"}
+{"imageID":{},"level":"debug","message":"Enter Image DAL GetImageByID","timestamp":"2017-11-21T22:01:26.728Z"}
+{"level":"debug","message":"Enter Image Logic GetImageByID","timestamp":"2017-11-21T22:01:34.332Z"}
+{"imageID":{},"level":"debug","message":"Enter Image DAL GetImageByID","timestamp":"2017-11-21T22:01:34.332Z"}
+{"imageID":{},"level":"debug","message":"Enter Image DAL GetImageByID","timestamp":"2017-11-21T22:01:50.542Z"}
+{"level":"debug","message":"Enter Image Logic GetImageByID","timestamp":"2017-11-21T22:01:50.542Z"}
+{"level":"debug","message":"Enter Image Logic GetImageByID","timestamp":"2017-11-21T22:02:57.697Z"}
+{"imageID":{},"level":"debug","message":"Enter Image DAL GetImageByID","timestamp":"2017-11-21T22:02:57.697Z"}
+{"level":"debug","message":"Enter Image Logic GetImageByID","timestamp":"2017-11-21T22:03:43.577Z"}
+{"imageID":{},"level":"debug","message":"Enter Image DAL GetImageByID","timestamp":"2017-11-21T22:03:43.578Z"}
+{"level":"debug","message":"Enter Image Logic GetImageByID 5a149dc38c449131c03fe0e8","timestamp":"2017-11-21T22:03:52.798Z"}
+{"imageID":"5a149dc38c449131c03fe0e8","level":"debug","message":"Enter Image DAL GetImageByID","timestamp":"2017-11-21T22:03:52.800Z"}
+{"imageID":"5a149dc38c449131c03fe0e8","level":"debug","message":"Enter Image DAL GetImageByID","timestamp":"2017-11-21T22:04:59.515Z"}
+{"level":"debug","message":"Enter Image Logic GetImageByID 5a149dc38c449131c03fe0e8","timestamp":"2017-11-21T22:04:59.514Z"}
+{"level":"debug","message":"Enter Image Logic GetImageByID 5a149dc38c449131c03fe0e8","timestamp":"2017-11-21T22:05:51.713Z"}
+{"imageID":"5a149dc38c449131c03fe0e8","level":"debug","message":"Enter Image DAL GetImageByID","timestamp":"2017-11-21T22:05:51.713Z"}
+{"level":"debug","message":"Enter Image Logic GetImageByID 5a149dc38c449131c03fe0e8","timestamp":"2017-11-21T22:05:58.413Z"}
+{"imageID":"5a149dc38c449131c03fe0e8","level":"debug","message":"Enter Image DAL GetImageByID","timestamp":"2017-11-21T22:05:58.413Z"}
+{"level":"debug","message":"Enter Image Logic GetImageByID 5a149dc38c449131c03fe0e8","timestamp":"2017-11-21T22:06:03.077Z"}
+{"imageID":"5a149dc38c449131c03fe0e8","level":"debug","message":"Enter Image DAL GetImageByID","timestamp":"2017-11-21T22:06:03.077Z"}
+{"level":"debug","message":"Enter Image Logic GetImageByID 5a149dc38c449131c03fe0e8","timestamp":"2017-11-21T22:06:07.800Z"}
+{"imageID":"5a149dc38c449131c03fe0e8","level":"debug","message":"Enter Image DAL GetImageByID","timestamp":"2017-11-21T22:06:07.800Z"}
+{"level":"debug","message":"Enter Image Logic GetImageByID 5a149dc38c449131c03fe0e8","timestamp":"2017-11-21T22:06:19.928Z"}
+{"imageID":"5a149dc38c449131c03fe0e8","level":"debug","message":"Enter Image DAL GetImageByID","timestamp":"2017-11-21T22:06:19.928Z"}
+{"data":"5a149dc38c449131c03fe0e8","level":"debug","message":"Enter Image Logic GetImageByID","timestamp":"2017-11-21T22:06:58.672Z"}
+{"imageID":{"data":"5a149dc38c449131c03fe0e8"},"level":"debug","message":"Enter Image DAL GetImageByID","timestamp":"2017-11-21T22:06:58.673Z"}
+{"data":"5a149dc38c449131c03fe0e8","level":"debug","message":"Enter Image Logic GetImageByID","timestamp":"2017-11-21T22:07:07.406Z"}
+{"imageID":{"data":"5a149dc38c449131c03fe0e8"},"level":"debug","message":"Enter Image DAL GetImageByID","timestamp":"2017-11-21T22:07:07.407Z"}
+{"data":"5a149dc38c449131c03fe0e8","level":"debug","message":"Enter Image Logic GetImageByID","timestamp":"2017-11-21T22:07:24.431Z"}
+{"imageID":{"data":"5a149dc38c449131c03fe0e8"},"level":"debug","message":"Enter Image DAL GetImageByID","timestamp":"2017-11-21T22:07:24.432Z"}
+{"imagepath":"5a149dc38c449131c03fe0e8","level":"debug","message":"Enter Image Logic GetImageByID","timestamp":"2017-11-21T22:08:18.971Z"}
+{"imageID":{"imagepath":"5a149dc38c449131c03fe0e8"},"level":"debug","message":"Enter Image DAL GetImageByID","timestamp":"2017-11-21T22:08:18.972Z"}
+{"level":"debug","message":"Enter Image Logic GetImageByID 5a149dc38c449131c03fe0e8","timestamp":"2017-11-21T22:08:44.210Z"}
+{"imageID":"5a149dc38c449131c03fe0e8","level":"debug","message":"Enter Image DAL GetImageByID","timestamp":"2017-11-21T22:08:44.211Z"}
