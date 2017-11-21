@@ -25,9 +25,9 @@ mongoose.connect(process.env.MONGODB_URI || 'mongodb://Moshe:ab123456@ds133465.m
 // The port the express app will listen on.
 const port: number = process.env.PORT || 8000;
 
+app.use('/image', ImageController);
 app.use('/teacher', TeacherController);
 app.use('/contactus', ContactUsController);
-app.use('/image', ImageController);
 
 // Serve the application at the given port.
 app.listen(port, () => {

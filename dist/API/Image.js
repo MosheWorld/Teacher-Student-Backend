@@ -9,7 +9,7 @@ router.post('/getimagebyid', function (req, res) {
     try {
         logger.info("Enter", "image/getimagebyid");
         var imageID = req.body.imagePath;
-        if (imageID == null) {
+        if (imageID == null || imageID == "") {
             logger.error("Model is not valid.", "image/getimagebyid");
             res.status(400).send("Model is not valid.");
         }

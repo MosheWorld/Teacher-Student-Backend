@@ -13,7 +13,7 @@ router.post('/getimagebyid', (req: Request, res: Response) => {
         
         let imageID = req.body.imagePath;
 
-        if (imageID == null) {
+        if (imageID == null || imageID == "") {
             logger.error("Model is not valid.", "image/getimagebyid");
             res.status(400).send("Model is not valid.");
         }

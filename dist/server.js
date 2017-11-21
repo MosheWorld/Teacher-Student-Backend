@@ -21,9 +21,9 @@ mongoose.Promise = global.Promise;
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://Moshe:ab123456@ds133465.mlab.com:33465/teacher-student-database', { useMongoClient: true });
 // The port the express app will listen on.
 var port = process.env.PORT || 8000;
+app.use('/image', Image_1.ImageController);
 app.use('/teacher', Teacher_1.TeacherController);
 app.use('/contactus', ContactUs_1.ContactUsController);
-app.use('/image', Image_1.ImageController);
 // Serve the application at the given port.
 app.listen(port, function () {
     console.log("Listening at http://localhost:" + port + "/");
