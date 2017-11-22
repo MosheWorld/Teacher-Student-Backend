@@ -1,16 +1,19 @@
 import * as winston from 'winston';
 
 export class Logger {
+    //#region Members
     private debugLogger;
     private infoLogger;
     private errorLogger;
+    //#endregion
 
+    //#region Constructor
     constructor() {
         this.debugLogger = new (winston.Logger)({
             transports: [
                 new (winston.transports.File)({
                     name: 'debug-file-log',
-                    filename:  process.cwd() + '//logs//filelog-debug.log',
+                    filename: process.cwd() + '//logs//filelog-debug.log',
                     level: 'debug'
                 })
             ]
@@ -36,7 +39,9 @@ export class Logger {
             ]
         });
     }
+    //#endregion
 
+    //#region Public Methods
     public debug(title: any = null, message: any = null, data: any = null) {
         this.debugLogger.debug(title, message, data);
     }
@@ -48,4 +53,5 @@ export class Logger {
     public error(title: any = null, message: any = null, data: any = null) {
         this.errorLogger.error(title, message, data);
     }
+    //#endregion
 }

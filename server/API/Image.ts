@@ -3,10 +3,12 @@ import { Router, Request, Response } from 'express';
 import { Logger } from './../LogService/logger';
 import { ImageLogic } from '../Logic/ImageLogic';
 
-const router: Router = Router();
-
+//#region Members
 let logger = new Logger();
+const router: Router = Router();
+//#endregion
 
+//#region Routers
 router.post('/getimagebyid', (req: Request, res: Response) => {
     try {
         logger.info("Enter", "image/getimagebyid");
@@ -33,5 +35,6 @@ router.post('/getimagebyid', (req: Request, res: Response) => {
         res.status(400).send(ex.message);
     }
 });
+//#endregion
 
 export const ImageController: Router = router;

@@ -4,10 +4,12 @@ import { Logger } from './../LogService/logger';
 import { ContactUsLogic } from './../Logic/ContactUsLogic';
 import { ContactUsInterface } from './../Interfaces/ContactUs.interface';
 
-const router: Router = Router();
-
+//#region Members
 let logger = new Logger();
+const router: Router = Router();
+//#endregion
 
+//#region Routers
 router.get('/getall', (req: Request, res: Response) => {
     try {
         logger.info("Enter", "contactus/getall");
@@ -52,13 +54,15 @@ router.post('/create', (req: Request, res: Response) => {
                 res.status(400).send(error.message);
             });
 
-            logger.info("Enter", "contactus/create");
+        logger.info("Enter", "contactus/create");
     } catch (ex) {
         logger.error("Out", "contactus/create", ex.message);
         res.status(400).send(ex.message);
     }
 });
+//#endregion
 
+//#region Functions
 function IsModelValid(model: any) {
     if (model == null ||
         IsStringNullOrEmpty(model.email) ||
@@ -78,5 +82,6 @@ function IsStringNullOrEmpty(str: string) {
         return false;
     }
 }
+//#endregion
 
 export const ContactUsController: Router = router;

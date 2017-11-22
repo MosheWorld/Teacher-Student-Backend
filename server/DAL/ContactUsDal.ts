@@ -3,12 +3,17 @@ import DataBaseConnector from '../Models/ContactUsModel';
 import { ContactUsInterface } from './../Interfaces/ContactUs.interface';
 
 export class ContactUsDal {
+    //#region Members
     private logger;
+    //#endregion
 
+    //#region Constructor
     public constructor() {
         this.logger = new Logger();
     }
+    //#endregion
 
+    //#region Public Methods
     public async GetAll() {
         this.logger.debug("Enter ContactUs", "DAL GetAll");
         let contactUsCollection = await DataBaseConnector.find({}, (error, contactUs) => {
@@ -25,4 +30,5 @@ export class ContactUsDal {
         let returnedValue = await DataBaseConnector.collection.insert(contactUsData);
         return returnedValue;
     }
+    //#endregion
 }

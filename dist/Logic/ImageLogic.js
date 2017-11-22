@@ -38,9 +38,13 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var ImageDal_1 = require("./../DAL/ImageDal");
 var logger_1 = require("./../LogService/logger");
 var ImageLogic = /** @class */ (function () {
+    //#endregion
+    //#region Constructor
     function ImageLogic() {
         this.logger = new logger_1.Logger();
     }
+    //#endregion
+    //#region Public Methods
     ImageLogic.prototype.GetImageByID = function (imageID) {
         return __awaiter(this, void 0, void 0, function () {
             var iManager, image;

@@ -42,9 +42,13 @@ var logger_1 = require("./../LogService/logger");
 var TeacherDAL_1 = require("./../DAL/TeacherDAL");
 var TeachesAt_Enum_1 = require("../Enums/TeachesAt.Enum");
 var TeacherLogic = /** @class */ (function () {
+    //#endregion
+    //#region Constructor
     function TeacherLogic() {
         this.logger = new logger_1.Logger();
     }
+    //#endregion
+    //#region Public Methods
     TeacherLogic.prototype.GetAll = function () {
         return __awaiter(this, void 0, void 0, function () {
             var tDal, teacherCollection;
@@ -210,6 +214,8 @@ var TeacherLogic = /** @class */ (function () {
             });
         });
     };
+    //#endregion
+    //#region Private Methods
     TeacherLogic.prototype.IsNumberInRange = function (lowerRange1, upperRange1, lowerRange2, upperRange2) {
         if (upperRange2 < lowerRange1) {
             return false;

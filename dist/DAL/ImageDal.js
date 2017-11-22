@@ -39,9 +39,13 @@ var mongodb_1 = require("mongodb");
 var logger_1 = require("./../LogService/logger");
 var ImageModel_1 = require("../Models/ImageModel");
 var ImageDal = /** @class */ (function () {
+    //#endregion
+    //#region Constructor
     function ImageDal() {
         this.logger = new logger_1.Logger();
     }
+    //#endregion
+    //#region Public Methods
     ImageDal.prototype.GetImageByID = function (imageID) {
         return __awaiter(this, void 0, void 0, function () {
             var image;

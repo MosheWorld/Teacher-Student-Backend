@@ -3,8 +3,11 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var express_1 = require("express");
 var logger_1 = require("./../LogService/logger");
 var ContactUsLogic_1 = require("./../Logic/ContactUsLogic");
-var router = express_1.Router();
+//#region Members
 var logger = new logger_1.Logger();
+var router = express_1.Router();
+//#endregion
+//#region Routers
 router.get('/getall', function (req, res) {
     try {
         logger.info("Enter", "contactus/getall");
@@ -49,6 +52,8 @@ router.post('/create', function (req, res) {
         res.status(400).send(ex.message);
     }
 });
+//#endregion
+//#region Functions
 function IsModelValid(model) {
     if (model == null ||
         IsStringNullOrEmpty(model.email) ||
@@ -69,4 +74,5 @@ function IsStringNullOrEmpty(str) {
         return false;
     }
 }
+//#endregion
 exports.ContactUsController = router;

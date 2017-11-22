@@ -8,12 +8,17 @@ import { TeachesAt } from '../Enums/TeachesAt.Enum';
 import { TeacherInterface } from './../Interfaces/Teacher.interface';
 
 export class TeacherLogic {
+    //#region Members
     private logger;
+    //#endregion
 
+    //#region Constructor
     public constructor() {
         this.logger = new Logger();
     }
+    //#endregion
 
+    //#region Public Methods
     public async GetAll() {
         this.logger.debug("Enter Teacher", "Logic GetAll");
         let tDal = new TeacherDal();
@@ -45,8 +50,8 @@ export class TeacherLogic {
             teacherID: new ObjectID(teacherObjectID),
             image: image
         };
-        
-        let imageObjectID = await iManager.Create(newImageObject);
+
+        const imageObjectID = await iManager.Create(newImageObject);
 
         tDal.UpdateImage(teacherObjectID, imageObjectID.toString());
     }
@@ -122,7 +127,9 @@ export class TeacherLogic {
 
         return teacherListToReturn;
     }
+    //#endregion
 
+    //#region Private Methods
     private IsNumberInRange(lowerRange1: number, upperRange1: number, lowerRange2: number, upperRange2: number) {
         if (upperRange2 < lowerRange1) {
             return false;
@@ -195,4 +202,5 @@ export class TeacherLogic {
             return false;
         }
     }
+    //#endregion
 }

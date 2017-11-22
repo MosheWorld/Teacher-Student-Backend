@@ -5,10 +5,12 @@ import { TeacherLogic } from './../Logic/TeacherLogic';
 import { TeacherInterface } from './../Interfaces/Teacher.interface';
 import { RecommendationsInterface } from './../Interfaces/Recommendations.interface';
 
-const router: Router = Router();
-
+//#region Members
 let logger = new Logger();
+const router: Router = Router();
+//#endregion
 
+//#region Routers
 router.get('/getall', (req: Request, res: Response) => {
     try {
         logger.info("Enter", "teacher/getall");
@@ -205,7 +207,9 @@ router.delete('/delete/:id', (req: Request, res: Response) => {
         res.status(400).send(ex.message);
     }
 });
+//#endregion
 
+//#region Functions
 function IsModelCreateValid(model: any) {
 
     if (model == null ||
@@ -274,5 +278,6 @@ function IsListOfIDValid(listOfTeacherID) {
         return true;
     }
 }
+//#endregion
 
 export const TeacherController: Router = router;

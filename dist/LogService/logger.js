@@ -2,6 +2,8 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 var winston = require("winston");
 var Logger = /** @class */ (function () {
+    //#endregion
+    //#region Constructor
     function Logger() {
         this.debugLogger = new (winston.Logger)({
             transports: [
@@ -31,6 +33,8 @@ var Logger = /** @class */ (function () {
             ]
         });
     }
+    //#endregion
+    //#region Public Methods
     Logger.prototype.debug = function (title, message, data) {
         if (title === void 0) { title = null; }
         if (message === void 0) { message = null; }

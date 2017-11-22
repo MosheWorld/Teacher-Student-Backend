@@ -38,9 +38,13 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var logger_1 = require("./../LogService/logger");
 var ContactUsModel_1 = require("../Models/ContactUsModel");
 var ContactUsDal = /** @class */ (function () {
+    //#endregion
+    //#region Constructor
     function ContactUsDal() {
         this.logger = new logger_1.Logger();
     }
+    //#endregion
+    //#region Public Methods
     ContactUsDal.prototype.GetAll = function () {
         return __awaiter(this, void 0, void 0, function () {
             var contactUsCollection;

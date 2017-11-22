@@ -3,8 +3,11 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var express_1 = require("express");
 var logger_1 = require("./../LogService/logger");
 var TeacherLogic_1 = require("./../Logic/TeacherLogic");
-var router = express_1.Router();
+//#region Members
 var logger = new logger_1.Logger();
+var router = express_1.Router();
+//#endregion
+//#region Routers
 router.get('/getall', function (req, res) {
     try {
         logger.info("Enter", "teacher/getall");
@@ -173,6 +176,8 @@ router.delete('/delete/:id', function (req, res) {
         res.status(400).send(ex.message);
     }
 });
+//#endregion
+//#region Functions
 function IsModelCreateValid(model) {
     if (model == null ||
         model.age == null || model.age < 0 || model.age > 120 ||
@@ -239,4 +244,5 @@ function IsListOfIDValid(listOfTeacherID) {
         return true;
     }
 }
+//#endregion
 exports.TeacherController = router;

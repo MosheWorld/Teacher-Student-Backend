@@ -39,9 +39,13 @@ var mongodb_1 = require("mongodb");
 var logger_1 = require("./../LogService/logger");
 var TeacherModel_1 = require("../Models/TeacherModel");
 var TeacherDal = /** @class */ (function () {
+    //#endregion
+    //#region Constructor
     function TeacherDal() {
         this.logger = new logger_1.Logger();
     }
+    //#endregion
+    //#region Public Methods
     TeacherDal.prototype.GetAll = function () {
         return __awaiter(this, void 0, void 0, function () {
             var teachersCollection;

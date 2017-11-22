@@ -3,8 +3,11 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var express_1 = require("express");
 var logger_1 = require("./../LogService/logger");
 var ImageLogic_1 = require("../Logic/ImageLogic");
-var router = express_1.Router();
+//#region Members
 var logger = new logger_1.Logger();
+var router = express_1.Router();
+//#endregion
+//#region Routers
 router.post('/getimagebyid', function (req, res) {
     try {
         logger.info("Enter", "image/getimagebyid");
@@ -27,4 +30,5 @@ router.post('/getimagebyid', function (req, res) {
         res.status(400).send(ex.message);
     }
 });
+//#endregion
 exports.ImageController = router;

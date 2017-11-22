@@ -5,12 +5,17 @@ import DataBaseConnector from '../Models/TeacherModel';
 import { TeacherInterface } from './../Interfaces/Teacher.interface';
 
 export class TeacherDal {
+    //#region Members
     private logger;
+    //#endregion
 
+    //#region Constructor
     public constructor() {
         this.logger = new Logger();
     }
+    //#endregion
 
+    //#region Public Methods
     public async GetAll() {
         this.logger.debug("Enter Teacher", "DAL GetAll");
         let teachersCollection = await DataBaseConnector.find({}, (error, teachers) => {
@@ -31,7 +36,7 @@ export class TeacherDal {
     public Create(teacherData: any) {
         return new Promise((resolve, reject) => {
             this.logger.debug("Enter Teacher", "DAL Create", teacherData);
-            
+
             DataBaseConnector.collection.insert(teacherData, (error) => {
                 if (error) { reject("Error occurred when inserting to Teacher Create database."); }
                 resolve(teacherData._id);
@@ -58,4 +63,5 @@ export class TeacherDal {
             $set: { "image": imagePath },
         });
     }
+    //#endregion
 }
