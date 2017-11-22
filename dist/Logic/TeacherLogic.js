@@ -35,8 +35,10 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var logger_1 = require("./../LogService/logger");
 var lodash_1 = require("lodash");
+var mongodb_1 = require("mongodb");
+var ImageLogic_1 = require("./ImageLogic");
+var logger_1 = require("./../LogService/logger");
 var TeacherDAL_1 = require("./../DAL/TeacherDAL");
 var TeachesAt_Enum_1 = require("../Enums/TeachesAt.Enum");
 var TeacherLogic = /** @class */ (function () {
@@ -77,15 +79,26 @@ var TeacherLogic = /** @class */ (function () {
     };
     TeacherLogic.prototype.Create = function (teacherData) {
         return __awaiter(this, void 0, void 0, function () {
-            var tDal;
+            var tDal, iManager, image, teacherObjectID, newImageObject, imageObjectID;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
                         this.logger.debug("Enter Teacher", "Logic Create", teacherData);
                         tDal = new TeacherDAL_1.TeacherDal();
+                        iManager = new ImageLogic_1.ImageLogic();
+                        image = teacherData.image;
+                        teacherData.image = undefined;
                         return [4 /*yield*/, tDal.Create(teacherData)];
                     case 1:
-                        _a.sent();
+                        teacherObjectID = _a.sent();
+                        newImageObject = {
+                            teacherID: new mongodb_1.ObjectID(teacherObjectID),
+                            image: image
+                        };
+                        return [4 /*yield*/, iManager.Create(newImageObject)];
+                    case 2:
+                        imageObjectID = _a.sent();
+                        tDal.UpdateImage(teacherObjectID, imageObjectID.toString());
                         return [2 /*return*/];
                 }
             });

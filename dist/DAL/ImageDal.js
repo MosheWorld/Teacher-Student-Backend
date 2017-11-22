@@ -57,6 +57,18 @@ var ImageDal = /** @class */ (function () {
             });
         });
     };
+    ImageDal.prototype.Create = function (TeacherIDImage) {
+        var _this = this;
+        return new Promise(function (resolve, reject) {
+            _this.logger.debug("Enter Create", "DAL Create", TeacherIDImage);
+            ImageModel_1.default.collection.insert(TeacherIDImage, function (error) {
+                if (error) {
+                    reject("Error occurred when inserting to Teacher Create database.");
+                }
+                resolve(TeacherIDImage._id);
+            });
+        });
+    };
     return ImageDal;
 }());
 exports.ImageDal = ImageDal;

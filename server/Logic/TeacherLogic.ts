@@ -1,6 +1,8 @@
-import { Logger } from './../LogService/logger';
 import { _ } from 'lodash';
 
+import { ObjectID } from 'mongodb';
+import { ImageLogic } from './ImageLogic';
+import { Logger } from './../LogService/logger';
 import { TeacherDal } from './../DAL/TeacherDAL';
 import { TeachesAt } from '../Enums/TeachesAt.Enum';
 import { TeacherInterface } from './../Interfaces/Teacher.interface';
@@ -30,8 +32,23 @@ export class TeacherLogic {
 
     public async Create(teacherData: TeacherInterface) {
         this.logger.debug("Enter Teacher", "Logic Create", teacherData);
+
         let tDal = new TeacherDal();
-        await tDal.Create(teacherData);
+        let iManager = new ImageLogic();
+
+        let image = teacherData.image;
+        teacherData.image = undefined;
+
+        const teacherObjectID = await tDal.Create(teacherData);
+
+        let newImageObject = {
+            teacherID: new ObjectID(teacherObjectID),
+            image: image
+        };
+        
+        let imageObjectID = await iManager.Create(newImageObject);
+
+        tDal.UpdateImage(teacherObjectID, imageObjectID.toString());
     }
 
     public async Delete(id) {

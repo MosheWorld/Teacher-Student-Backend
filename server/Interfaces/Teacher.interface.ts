@@ -11,7 +11,7 @@ export interface TeacherInterface {
     priceFrom: number;
     phone: string;
     email: string;
-    image: string;
+    image?: String;
     lastName: string;
     firstName: string;
     personalMessage: string;

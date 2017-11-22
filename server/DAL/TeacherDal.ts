@@ -28,10 +28,15 @@ export class TeacherDal {
         return teacher;
     }
 
-    public async Create(teacherData: TeacherInterface) {
-        this.logger.debug("Enter Teacher", "DAL Create", teacherData);
-        let returnedValue = await DataBaseConnector.collection.insert(teacherData);
-        return returnedValue;
+    public Create(teacherData: any) {
+        return new Promise((resolve, reject) => {
+            this.logger.debug("Enter Teacher", "DAL Create", teacherData);
+            
+            DataBaseConnector.collection.insert(teacherData, (error) => {
+                if (error) { reject("Error occurred when inserting to Teacher Create database."); }
+                resolve(teacherData._id);
+            });
+        });
     }
 
     public async DeleteByID(id: any) {
@@ -41,9 +46,16 @@ export class TeacherDal {
     }
 
     public async UpdateRecommendations(id, recommendData, rateData) {
-        this.logger.debug("Enter Teacher", "DAL UpdateRecommendations", {id:id,recommendData:recommendData,rateData:rateData});
+        this.logger.debug("Enter Teacher", "DAL UpdateRecommendations", { id: id, recommendData: recommendData, rateData: rateData });
         DataBaseConnector.collection.updateOne({ _id: id }, {
             $set: { "recommendations": recommendData, "rate": rateData },
+        });
+    }
+
+    public async UpdateImage(id, imagePath) {
+        this.logger.debug("Enter Teacher", "DAL UpdateImage", { id: id, image: imagePath });
+        DataBaseConnector.collection.updateOne({ _id: id }, {
+            $set: { "image": imagePath },
         });
     }
 }

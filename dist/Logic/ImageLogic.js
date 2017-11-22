@@ -57,6 +57,20 @@ var ImageLogic = /** @class */ (function () {
             });
         });
     };
+    ImageLogic.prototype.Create = function (TeacherIDImage) {
+        return __awaiter(this, void 0, void 0, function () {
+            var iManager;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        this.logger.debug("Enter Create", "Logic Create", TeacherIDImage);
+                        iManager = new ImageDal_1.ImageDal();
+                        return [4 /*yield*/, iManager.Create(TeacherIDImage)];
+                    case 1: return [2 /*return*/, _a.sent()];
+                }
+            });
+        });
+    };
     return ImageLogic;
 }());
 exports.ImageLogic = ImageLogic;

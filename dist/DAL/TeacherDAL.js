@@ -77,17 +77,14 @@ var TeacherDal = /** @class */ (function () {
         });
     };
     TeacherDal.prototype.Create = function (teacherData) {
-        return __awaiter(this, void 0, void 0, function () {
-            var returnedValue;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        this.logger.debug("Enter Teacher", "DAL Create", teacherData);
-                        return [4 /*yield*/, TeacherModel_1.default.collection.insert(teacherData)];
-                    case 1:
-                        returnedValue = _a.sent();
-                        return [2 /*return*/, returnedValue];
+        var _this = this;
+        return new Promise(function (resolve, reject) {
+            _this.logger.debug("Enter Teacher", "DAL Create", teacherData);
+            TeacherModel_1.default.collection.insert(teacherData, function (error) {
+                if (error) {
+                    reject("Error occurred when inserting to Teacher Create database.");
                 }
+                resolve(teacherData._id);
             });
         });
     };
@@ -112,6 +109,17 @@ var TeacherDal = /** @class */ (function () {
                 this.logger.debug("Enter Teacher", "DAL UpdateRecommendations", { id: id, recommendData: recommendData, rateData: rateData });
                 TeacherModel_1.default.collection.updateOne({ _id: id }, {
                     $set: { "recommendations": recommendData, "rate": rateData },
+                });
+                return [2 /*return*/];
+            });
+        });
+    };
+    TeacherDal.prototype.UpdateImage = function (id, imagePath) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                this.logger.debug("Enter Teacher", "DAL UpdateImage", { id: id, image: imagePath });
+                TeacherModel_1.default.collection.updateOne({ _id: id }, {
+                    $set: { "image": imagePath },
                 });
                 return [2 /*return*/];
             });

@@ -15,4 +15,10 @@ export class ImageLogic {
         let image = await iManager.GetImageByID(imageID);
         return image;
     }
+
+    public async Create(TeacherIDImage: any){
+        this.logger.debug("Enter Create", "Logic Create", TeacherIDImage);
+        let iManager = new ImageDal();
+        return await iManager.Create(TeacherIDImage);
+    }
 }

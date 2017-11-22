@@ -10,7 +10,7 @@ let logger = new Logger();
 router.post('/getimagebyid', (req: Request, res: Response) => {
     try {
         logger.info("Enter", "image/getimagebyid");
-        
+
         let imageID = req.body.imagePath;
 
         if (imageID == null || imageID == "") {

@@ -14,4 +14,15 @@ export class ImageDal {
         let image = await DataBaseConnector.findOne({ _id: new ObjectID(imageID) });
         return image;
     }
+
+    public Create(TeacherIDImage: any) {
+        return new Promise((resolve, reject) => {
+            this.logger.debug("Enter Create", "DAL Create", TeacherIDImage);
+            
+            DataBaseConnector.collection.insert(TeacherIDImage, (error) => {
+                if (error) { reject("Error occurred when inserting to Teacher Create database."); }
+                resolve(TeacherIDImage._id);
+            });
+        });
+    }
 }
