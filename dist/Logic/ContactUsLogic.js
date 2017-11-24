@@ -54,9 +54,7 @@ var ContactUsLogic = /** @class */ (function () {
                         this.logger.debug("Enter ContactUs", "Logic GetAll");
                         cDal = new ContactUsDal_1.ContactUsDal();
                         return [4 /*yield*/, cDal.GetAll()];
-                    case 1:
-                        _a.sent();
-                        return [2 /*return*/];
+                    case 1: return [2 /*return*/, _a.sent()];
                 }
             });
         });

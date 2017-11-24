@@ -16,7 +16,7 @@ export class TeacherDal {
     //#endregion
 
     //#region Public Methods
-    public GetAll():Promise<any[]> {
+    public GetAll(): Promise<any[]> {
         return new Promise((resolve, reject) => {
             this.logger.debug("Enter Teacher", "DAL GetAll");
 
@@ -25,15 +25,15 @@ export class TeacherDal {
                 return teachers ? teachers : null;
             });
 
-            resolve( teachersCollection);
+            resolve(teachersCollection);
         });
     }
 
-    public GetByID(id: any):Promise<any> {
+    public GetByID(id: any): Promise<any> {
         return new Promise((resolve, reject) => {
             this.logger.debug("Enter Teacher", "DAL GetAll", { id: id });
 
-            let teacher =  DataBaseConnector.findOne({ _id: new ObjectID(id) }, (error, teacher) => {
+            let teacher = DataBaseConnector.findOne({ _id: new ObjectID(id) }, (error, teacher) => {
                 if (error) { reject("Error occurred when gettings teacher from database."); }
                 return teacher ? teacher : null;
             });
@@ -53,11 +53,11 @@ export class TeacherDal {
         });
     }
 
-    public  DeleteByID(id: any) {
+    public DeleteByID(id: any) {
         return new Promise((resolve, reject) => {
             this.logger.debug("Enter Teacher", "DAL DeleteByID", { id: id });
 
-            DataBaseConnector.collection.deleteOne({ _id: new ObjectID(id) },(error) =>{
+            DataBaseConnector.collection.deleteOne({ _id: new ObjectID(id) }, (error) => {
                 if (error) { reject("Error occurred when deleteing teacher from database."); }
                 resolve();
             });
@@ -65,17 +65,29 @@ export class TeacherDal {
 
     }
 
-    public async UpdateRecommendations(id, recommendData, rateData) {
-        this.logger.debug("Enter Teacher", "DAL UpdateRecommendations", { id: id, recommendData: recommendData, rateData: rateData });
-        DataBaseConnector.collection.updateOne({ _id: id }, {
-            $set: { "recommendations": recommendData, "rate": rateData },
+    public UpdateRecommendations(id, recommendData, rateData) {
+        return new Promise((resolve, reject) => {
+            this.logger.debug("Enter Teacher", "DAL UpdateRecommendations", { id: id, recommendData: recommendData, rateData: rateData });
+
+            DataBaseConnector.collection.updateOne({ _id: id }, {
+                $set: { "recommendations": recommendData, "rate": rateData },
+            }, (error) => {
+                if (error) { reject("Error occurred when updating recommendation at database."); }
+                resolve();
+            });
         });
     }
 
-    public async UpdateImage(id, imagePath) {
+    public UpdateImage(id, imagePath) {
+        return new Promise((resolve, reject) => {
         this.logger.debug("Enter Teacher", "DAL UpdateImage", { id: id, image: imagePath });
+
         DataBaseConnector.collection.updateOne({ _id: id }, {
-            $set: { "image": imagePath },
+                $set: { "image": imagePath },
+            }, (error) => {
+                if (error) { reject("Error occurred when updating imagePath at database."); }
+                resolve();
+            });
         });
     }
     //#endregion

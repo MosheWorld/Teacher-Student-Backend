@@ -14,21 +14,28 @@ export class ContactUsDal {
     //#endregion
 
     //#region Public Methods
-    public async GetAll() {
-        this.logger.debug("Enter ContactUs", "DAL GetAll");
-        let contactUsCollection = await DataBaseConnector.find({}, (error, contactUs) => {
-            return contactUs ? contactUs : null;
-        }).catch((error) => {
-            return error.message;
-        });
+    public GetAll(): Promise<any[]> {
+        return new Promise((resolve, reject) => {
+            this.logger.debug("Enter ContactUs", "DAL GetAll");
 
-        return contactUsCollection;
+            let contactUsCollection = DataBaseConnector.find({}, (error, contactUs) => {
+                if (error) { reject("Error occurred when gettings all contact us from database."); }
+                return contactUs ? contactUs : null;
+            });
+
+            resolve(contactUsCollection);
+        });
     }
 
-    public async Create(contactUsData: ContactUsInterface) {
-        this.logger.debug("Enter ContactUs", "DAL Create", contactUsData);
-        let returnedValue = await DataBaseConnector.collection.insert(contactUsData);
-        return returnedValue;
+    public Create(contactUsData: ContactUsInterface) {
+        return new Promise((resolve, reject) => {
+            this.logger.debug("Enter ContactUs", "DAL Create", contactUsData);
+
+            DataBaseConnector.collection.insert(contactUsData, (error) => {
+                if (error) { reject("Error occurred when inserting to Image Create database."); }
+                resolve();
+            });
+        });
     }
     //#endregion
 }

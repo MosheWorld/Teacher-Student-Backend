@@ -45,3 +45,15 @@
 {"level":"info","message":"Out teacher/delete/5a1815c5b80fe02408c5b460","timestamp":"2017-11-24T13:22:10.358Z"}
 {"level":"info","message":"Enter teacher/delete/5a0ede7b9a430d0014cd1379","timestamp":"2017-11-24T13:23:54.041Z"}
 {"level":"info","message":"Out teacher/delete/5a0ede7b9a430d0014cd1379","timestamp":"2017-11-24T13:23:54.049Z"}
+{"level":"info","message":"Enter teacher/getall","timestamp":"2017-11-24T15:11:21.879Z"}
+{"level":"info","message":"Out teacher/getall","timestamp":"2017-11-24T15:11:21.883Z"}
+{"level":"info","message":"Enter contactus/getall","timestamp":"2017-11-24T15:32:59.473Z"}
+{"level":"info","message":"Out contactus/getall","timestamp":"2017-11-24T15:32:59.478Z"}
+{"level":"info","message":"Enter contactus/getall","timestamp":"2017-11-24T15:35:05.959Z"}
+{"level":"info","message":"Out contactus/getall","timestamp":"2017-11-24T15:35:05.963Z"}
+{"level":"info","message":"Enter teacher/getall","timestamp":"2017-11-24T15:35:13.303Z"}
+{"level":"info","message":"Out teacher/getall","timestamp":"2017-11-24T15:35:13.305Z"}
+{"level":"info","message":"Enter teacher/getall","timestamp":"2017-11-24T15:35:46.855Z"}
+{"level":"info","message":"Out teacher/getall","timestamp":"2017-11-24T15:35:46.859Z"}
+{"level":"info","message":"Enter contactus/getall","timestamp":"2017-11-24T15:35:49.384Z"}
+{"level":"info","message":"Out contactus/getall","timestamp":"2017-11-24T15:35:49.386Z"}

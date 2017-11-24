@@ -14,10 +14,17 @@ export class ImageDal {
     //#endregion
 
     //#region Public Methods
-    public async GetImageByID(imageID: string) {
-        this.logger.debug("Enter Image", "DAL GetImageByID", { imageID: imageID });
-        let image = await DataBaseConnector.findOne({ _id: new ObjectID(imageID) });
-        return image;
+    public GetImageByID(imageID: string): Promise<any> {
+        return new Promise((resolve, reject) => {
+            this.logger.debug("Enter Image", "DAL GetImageByID", { imageID: imageID });
+
+            let image = DataBaseConnector.findOne({ _id: new ObjectID(imageID) }, (error, image) => {
+                if (error) { reject("Error occurred when getting image by ID from database."); }
+                return image ? image : null;
+            });
+
+            resolve(image);
+        });
     }
 
     public Create(TeacherIDImage: any) {

@@ -17,7 +17,7 @@ export class ContactUsLogic {
     public async GetAll() {
         this.logger.debug("Enter ContactUs", "Logic GetAll");
         let cDal = new ContactUsDal();
-        await cDal.GetAll();
+        return await cDal.GetAll();
     }
 
     public async Create(contactUsData: ContactUsInterface) {
