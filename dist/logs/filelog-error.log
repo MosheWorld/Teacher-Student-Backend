@@ -1,2 +1,2 @@
-{"level":"debug","message":"Enter Teacher DAL GetAll","timestamp":"2017-11-22T18:40:37.329Z"}{"level":"error","message":"Model is not valid. teacher/search","timestamp":"2017-11-24T13:08:21.659Z"}
-{"level":"error","message":"Model is not valid. teacher/search","timestamp":"2017-11-24T13:08:23.429Z"}
+{"level":"error","message":"Model is not valid. teacher/search","timestamp":"2017-11-24T13:08:23.429Z"}{"level":"error","message":"Out teacher/getall Converting circular structure to JSON","timestamp":"2017-11-24T22:04:59.881Z"}
+{"level":"error","message":"Out teacher/getall Converting circular structure to JSON","timestamp":"2017-11-24T22:05:09.469Z"}
