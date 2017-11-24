@@ -126,8 +126,7 @@ var TeacherLogic = /** @class */ (function () {
     };
     TeacherLogic.prototype.SearchTeacher = function (searchData) {
         return __awaiter(this, void 0, void 0, function () {
-            var _this = this;
-            var teacherCollection, teacherCollectionToReturn;
+            var teacherCollection, teacherCollectionToReturn, _i, teacherCollection_1, element;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
@@ -136,24 +135,25 @@ var TeacherLogic = /** @class */ (function () {
                     case 1:
                         teacherCollection = _a.sent();
                         teacherCollectionToReturn = [];
-                        teacherCollection.forEach(function (element) {
+                        for (_i = 0, teacherCollection_1 = teacherCollection; _i < teacherCollection_1.length; _i++) {
+                            element = teacherCollection_1[_i];
                             // Teaches institutions check.
-                            if (_this.IsInstitutionsMatch(element.teachesInstitutions, searchData.teachesInstitutions)) {
+                            if (this.IsInstitutionsMatch(element.teachesInstitutions, searchData.teachesInstitutions)) {
                                 // Teaches Subjects check.
-                                if (_this.IsSubjectsMatch(element.teachesSubjects, searchData.teachesSubjects)) {
+                                if (this.IsSubjectsMatch(element.teachesSubjects, searchData.teachesSubjects)) {
                                     // Price check.
-                                    if (_this.IsNumberInRange(element.priceFrom, element.priceTo, searchData.fromPrice, searchData.toPrice)) {
+                                    if (this.IsNumberInRange(element.priceFrom, element.priceTo, searchData.fromPrice, searchData.toPrice)) {
                                         // Gender check.
-                                        if (_this.IsGenderMatch(element.gender, searchData.gender)) {
+                                        if (this.IsGenderMatch(element.gender, searchData.gender)) {
                                             // Teaches At check.
-                                            if (_this.IsTeachesAtMatch(element.teachesAt, searchData.teachesAt)) {
+                                            if (this.IsTeachesAtMatch(element.teachesAt, searchData.teachesAt)) {
                                                 teacherCollectionToReturn.push(element);
                                             }
                                         }
                                     }
                                 }
                             }
-                        });
+                        }
                         return [2 /*return*/, teacherCollectionToReturn];
                 }
             });

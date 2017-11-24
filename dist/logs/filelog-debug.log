@@ -1,1 +1,58 @@
-{"level":"debug","message":"Enter Teacher DAL GetAll","timestamp":"2017-11-22T18:40:37.329Z"}
+{"level":"debug","message":"Enter Teacher DAL GetAll","timestamp":"2017-11-22T18:40:37.329Z"}{"level":"debug","message":"Enter Teacher DAL GetAll","timestamp":"2017-11-24T12:49:43.196Z"}
+{"level":"debug","message":"Enter Teacher Logic GetAll","timestamp":"2017-11-24T12:49:43.196Z"}
+{"level":"debug","message":"Enter Teacher Logic GetAll","timestamp":"2017-11-24T12:50:46.918Z"}
+{"level":"debug","message":"Enter Teacher DAL GetAll","timestamp":"2017-11-24T12:50:46.919Z"}
+{"level":"debug","message":"Enter Teacher DAL GetAll","timestamp":"2017-11-24T12:51:06.523Z"}
+{"fromPrice":30,"toPrice":190,"teachesAt":null,"teachesInstitutions":null,"teachesSubjects":null,"gender":null,"level":"debug","message":"Enter Teacher Logic SearchTeacher","timestamp":"2017-11-24T12:51:06.521Z"}
+{"level":"debug","message":"Enter Teacher Logic GetAll","timestamp":"2017-11-24T12:51:06.521Z"}
+{"firstName":"Test","lastName":"Tester","age":25,"email":"Test@gmail.com","priceFrom":80,"priceTo":150,"phone":"0547574769","personalMessage":"Test on fire.","teachesAt":2,"teachesInstitutions":[4096,8192],"gender":1,"recommendations":[],"rate":0,"image":"12345","teachesSubjects":[1,2,3],"level":"debug","message":"Enter Teacher Logic Create","timestamp":"2017-11-24T12:51:17.058Z"}
+{"firstName":"Test","lastName":"Tester","age":25,"email":"Test@gmail.com","priceFrom":80,"priceTo":150,"phone":"0547574769","personalMessage":"Test on fire.","teachesAt":2,"teachesInstitutions":[4096,8192],"gender":1,"recommendations":[],"rate":0,"teachesSubjects":[1,2,3],"level":"debug","message":"Enter Teacher DAL Create","timestamp":"2017-11-24T12:51:17.059Z"}
+{"teacherID":{"_bsontype":"ObjectID","id":{"0":90,"1":24,"2":21,"3":197,"4":184,"5":15,"6":224,"7":36,"8":8,"9":197,"10":180,"11":96}},"image":"12345","level":"debug","message":"Enter Create DAL Create","timestamp":"2017-11-24T12:51:17.221Z"}
+{"teacherID":{"_bsontype":"ObjectID","id":{"0":90,"1":24,"2":21,"3":197,"4":184,"5":15,"6":224,"7":36,"8":8,"9":197,"10":180,"11":96}},"image":"12345","level":"debug","message":"Enter Create Logic Create","timestamp":"2017-11-24T12:51:17.220Z"}
+{"id":{"_bsontype":"ObjectID","id":{"0":90,"1":24,"2":21,"3":197,"4":184,"5":15,"6":224,"7":36,"8":8,"9":197,"10":180,"11":96}},"image":"5a1815c5b80fe02408c5b461","level":"debug","message":"Enter Teacher DAL UpdateImage","timestamp":"2017-11-24T12:51:17.426Z"}
+{"level":"debug","message":"Enter Teacher Logic GetAll","timestamp":"2017-11-24T12:51:36.405Z"}
+{"level":"debug","message":"Enter Teacher DAL GetAll","timestamp":"2017-11-24T12:51:36.405Z"}
+{"level":"debug","message":"Enter Teacher Logic GetAll","timestamp":"2017-11-24T12:52:39.067Z"}
+{"level":"debug","message":"Enter Teacher DAL GetAll","timestamp":"2017-11-24T12:52:39.068Z"}
+{"level":"debug","message":"Enter Teacher Logic GetAll","timestamp":"2017-11-24T12:53:39.847Z"}
+{"level":"debug","message":"Enter Teacher DAL GetAll","timestamp":"2017-11-24T12:53:39.847Z"}
+{"level":"debug","message":"Enter Teacher Logic GetAll","timestamp":"2017-11-24T12:59:08.842Z"}
+{"level":"debug","message":"Enter Teacher DAL GetAll","timestamp":"2017-11-24T12:59:08.842Z"}
+{"fromPrice":30,"toPrice":190,"teachesAt":null,"teachesInstitutions":null,"teachesSubjects":null,"gender":null,"level":"debug","message":"Enter Teacher Logic SearchTeacher","timestamp":"2017-11-24T12:59:17.079Z"}
+{"level":"debug","message":"Enter Teacher Logic GetAll","timestamp":"2017-11-24T12:59:17.079Z"}
+{"level":"debug","message":"Enter Teacher DAL GetAll","timestamp":"2017-11-24T12:59:17.079Z"}
+{"fromPrice":30,"toPrice":190,"teachesAt":null,"teachesInstitutions":null,"teachesSubjects":null,"gender":null,"level":"debug","message":"Enter Teacher Logic SearchTeacher","timestamp":"2017-11-24T12:59:46.091Z"}
+{"level":"debug","message":"Enter Teacher DAL GetAll","timestamp":"2017-11-24T12:59:46.091Z"}
+{"level":"debug","message":"Enter Teacher Logic GetAll","timestamp":"2017-11-24T12:59:46.091Z"}
+{"fromPrice":30,"toPrice":190,"teachesAt":null,"teachesInstitutions":null,"teachesSubjects":null,"gender":2,"level":"debug","message":"Enter Teacher Logic SearchTeacher","timestamp":"2017-11-24T12:59:58.206Z"}
+{"level":"debug","message":"Enter Teacher Logic GetAll","timestamp":"2017-11-24T12:59:58.206Z"}
+{"level":"debug","message":"Enter Teacher DAL GetAll","timestamp":"2017-11-24T12:59:58.206Z"}
+{"fromPrice":30,"toPrice":190,"teachesAt":null,"teachesInstitutions":null,"teachesSubjects":null,"gender":2,"level":"debug","message":"Enter Teacher Logic SearchTeacher","timestamp":"2017-11-24T13:08:32.491Z"}
+{"level":"debug","message":"Enter Teacher Logic GetAll","timestamp":"2017-11-24T13:08:32.492Z"}
+{"level":"debug","message":"Enter Teacher DAL GetAll","timestamp":"2017-11-24T13:08:32.492Z"}
+{"level":"debug","message":"Enter Teacher Logic GetByID 5a0365367185b20012fe83b1","timestamp":"2017-11-24T13:10:48.346Z"}
+{"id":"5a0365367185b20012fe83b1","level":"debug","message":"Enter Teacher DAL GetAll","timestamp":"2017-11-24T13:10:48.346Z"}
+{"level":"debug","message":"Enter Teacher Logic GetByID 5a0365367185b20012fe83b1","timestamp":"2017-11-24T13:11:31.695Z"}
+{"id":"5a0365367185b20012fe83b1","level":"debug","message":"Enter Teacher DAL GetAll","timestamp":"2017-11-24T13:11:31.696Z"}
+{"level":"debug","message":"Enter Teacher Logic GetByID 5a0365367185b20012fe83b1","timestamp":"2017-11-24T13:11:55.257Z"}
+{"id":"5a0365367185b20012fe83b1","level":"debug","message":"Enter Teacher DAL GetAll","timestamp":"2017-11-24T13:11:55.259Z"}
+{"level":"debug","message":"Enter Teacher Logic GetByID 5a0365367185b20012fe83b1","timestamp":"2017-11-24T13:13:37.195Z"}
+{"id":"5a0365367185b20012fe83b1","level":"debug","message":"Enter Teacher DAL GetAll","timestamp":"2017-11-24T13:13:37.197Z"}
+{"level":"debug","message":"Enter Teacher Logic GetByID 5a0365367185b20012fe83b1","timestamp":"2017-11-24T13:14:16.353Z"}
+{"id":"5a0365367185b20012fe83b1","level":"debug","message":"Enter Teacher DAL GetAll","timestamp":"2017-11-24T13:14:16.355Z"}
+{"id":"5a0365367185b20012fe83b1","level":"debug","message":"Enter Teacher DAL GetAll","timestamp":"2017-11-24T13:15:03.173Z"}
+{"level":"debug","message":"Enter Teacher Logic GetByID 5a0365367185b20012fe83b1","timestamp":"2017-11-24T13:15:03.171Z"}
+{"level":"debug","message":"Enter Teacher Logic Delete  id=\"5a0712e0e4d183001274b5bd\"","timestamp":"2017-11-24T13:20:17.643Z"}
+{"id":"id=\"5a0712e0e4d183001274b5bd\"","level":"debug","message":"Enter Teacher DAL DeleteByID","timestamp":"2017-11-24T13:20:17.643Z"}
+{"id":"id=\"5a0712e0e4d183001274b5bd\"","level":"debug","message":"Enter Teacher DAL DeleteByID","timestamp":"2017-11-24T13:20:43.191Z"}
+{"level":"debug","message":"Enter Teacher Logic Delete  id=\"5a0712e0e4d183001274b5bd\"","timestamp":"2017-11-24T13:20:43.191Z"}
+{"level":"debug","message":"Enter Teacher Logic Delete  id=\"5a0712e0e4d183001274b5bd\"","timestamp":"2017-11-24T13:21:22.074Z"}
+{"id":"id=\"5a0712e0e4d183001274b5bd\"","level":"debug","message":"Enter Teacher DAL DeleteByID","timestamp":"2017-11-24T13:21:22.075Z"}
+{"level":"debug","message":"Enter Teacher Logic Delete  \"5a0712e0e4d183001274b5bd\"","timestamp":"2017-11-24T13:21:36.911Z"}
+{"id":"\"5a0712e0e4d183001274b5bd\"","level":"debug","message":"Enter Teacher DAL DeleteByID","timestamp":"2017-11-24T13:21:36.911Z"}
+{"level":"debug","message":"Enter Teacher Logic Delete  5a0712e0e4d183001274b5bd","timestamp":"2017-11-24T13:21:45.931Z"}
+{"id":"5a0712e0e4d183001274b5bd","level":"debug","message":"Enter Teacher DAL DeleteByID","timestamp":"2017-11-24T13:21:45.931Z"}
+{"level":"debug","message":"Enter Teacher Logic Delete  5a1815c5b80fe02408c5b460","timestamp":"2017-11-24T13:22:10.358Z"}
+{"id":"5a1815c5b80fe02408c5b460","level":"debug","message":"Enter Teacher DAL DeleteByID","timestamp":"2017-11-24T13:22:10.358Z"}
+{"id":"5a0ede7b9a430d0014cd1379","level":"debug","message":"Enter Teacher DAL DeleteByID","timestamp":"2017-11-24T13:23:54.046Z"}
+{"level":"debug","message":"Enter Teacher Logic Delete  5a0ede7b9a430d0014cd1379","timestamp":"2017-11-24T13:23:54.045Z"}

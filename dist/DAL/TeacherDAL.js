@@ -47,37 +47,29 @@ var TeacherDal = /** @class */ (function () {
     //#endregion
     //#region Public Methods
     TeacherDal.prototype.GetAll = function () {
-        return __awaiter(this, void 0, void 0, function () {
-            var teachersCollection;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        this.logger.debug("Enter Teacher", "DAL GetAll");
-                        return [4 /*yield*/, TeacherModel_1.default.find({}, function (error, teachers) {
-                                return teachers ? teachers : null;
-                            }).catch(function (error) {
-                                return error.message;
-                            })];
-                    case 1:
-                        teachersCollection = _a.sent();
-                        return [2 /*return*/, teachersCollection];
+        var _this = this;
+        return new Promise(function (resolve, reject) {
+            _this.logger.debug("Enter Teacher", "DAL GetAll");
+            var teachersCollection = TeacherModel_1.default.find({}, function (error, teachers) {
+                if (error) {
+                    reject("Error occurred when gettings all Teachers from database.");
                 }
+                return teachers ? teachers : null;
             });
+            resolve(teachersCollection);
         });
     };
     TeacherDal.prototype.GetByID = function (id) {
-        return __awaiter(this, void 0, void 0, function () {
-            var teacher;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        this.logger.debug("Enter Teacher", "DAL GetAll", { id: id });
-                        return [4 /*yield*/, TeacherModel_1.default.findOne({ _id: new mongodb_1.ObjectID(id) })];
-                    case 1:
-                        teacher = _a.sent();
-                        return [2 /*return*/, teacher];
+        var _this = this;
+        return new Promise(function (resolve, reject) {
+            _this.logger.debug("Enter Teacher", "DAL GetAll", { id: id });
+            var teacher = TeacherModel_1.default.findOne({ _id: new mongodb_1.ObjectID(id) }, function (error, teacher) {
+                if (error) {
+                    reject("Error occurred when gettings teacher from database.");
                 }
+                return teacher ? teacher : null;
             });
+            resolve(teacher);
         });
     };
     TeacherDal.prototype.Create = function (teacherData) {
@@ -93,17 +85,14 @@ var TeacherDal = /** @class */ (function () {
         });
     };
     TeacherDal.prototype.DeleteByID = function (id) {
-        return __awaiter(this, void 0, void 0, function () {
-            var response;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        this.logger.debug("Enter Teacher", "DAL DeleteByID", { id: id });
-                        return [4 /*yield*/, TeacherModel_1.default.collection.deleteOne({ _id: new mongodb_1.ObjectID(id) })];
-                    case 1:
-                        response = _a.sent();
-                        return [2 /*return*/, response];
+        var _this = this;
+        return new Promise(function (resolve, reject) {
+            _this.logger.debug("Enter Teacher", "DAL DeleteByID", { id: id });
+            TeacherModel_1.default.collection.deleteOne({ _id: new mongodb_1.ObjectID(id) }, function (error) {
+                if (error) {
+                    reject("Error occurred when deleteing teacher from database.");
                 }
+                resolve();
             });
         });
     };

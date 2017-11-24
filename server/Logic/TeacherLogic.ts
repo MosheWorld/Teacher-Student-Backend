@@ -66,10 +66,10 @@ export class TeacherLogic {
 
     public async SearchTeacher(searchData: any) {
         this.logger.debug("Enter Teacher", "Logic SearchTeacher", searchData);
-        let teacherCollection = await this.GetAll();
+        let teacherCollection: any[] = await this.GetAll();
         let teacherCollectionToReturn: any[] = [];
 
-        teacherCollection.forEach(element => {
+        for (let element of teacherCollection) {
             // Teaches institutions check.
             if (this.IsInstitutionsMatch(element.teachesInstitutions, searchData.teachesInstitutions)) {
                 // Teaches Subjects check.
@@ -86,7 +86,7 @@ export class TeacherLogic {
                     }
                 }
             }
-        });
+        }
 
         return teacherCollectionToReturn;
     }

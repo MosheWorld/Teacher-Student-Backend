@@ -16,21 +16,30 @@ export class TeacherDal {
     //#endregion
 
     //#region Public Methods
-    public async GetAll() {
-        this.logger.debug("Enter Teacher", "DAL GetAll");
-        let teachersCollection = await DataBaseConnector.find({}, (error, teachers) => {
-            return teachers ? teachers : null;
-        }).catch((error) => {
-            return error.message;
-        });
+    public GetAll():Promise<any[]> {
+        return new Promise((resolve, reject) => {
+            this.logger.debug("Enter Teacher", "DAL GetAll");
 
-        return teachersCollection;
+            let teachersCollection = DataBaseConnector.find({}, (error, teachers) => {
+                if (error) { reject("Error occurred when gettings all Teachers from database."); }
+                return teachers ? teachers : null;
+            });
+
+            resolve( teachersCollection);
+        });
     }
 
-    public async GetByID(id: any) {
-        this.logger.debug("Enter Teacher", "DAL GetAll", { id: id });
-        let teacher = await DataBaseConnector.findOne({ _id: new ObjectID(id) });
-        return teacher;
+    public GetByID(id: any):Promise<any> {
+        return new Promise((resolve, reject) => {
+            this.logger.debug("Enter Teacher", "DAL GetAll", { id: id });
+
+            let teacher =  DataBaseConnector.findOne({ _id: new ObjectID(id) }, (error, teacher) => {
+                if (error) { reject("Error occurred when gettings teacher from database."); }
+                return teacher ? teacher : null;
+            });
+
+            resolve(teacher);
+        });
     }
 
     public Create(teacherData: any) {
@@ -44,10 +53,16 @@ export class TeacherDal {
         });
     }
 
-    public async DeleteByID(id: any) {
-        this.logger.debug("Enter Teacher", "DAL DeleteByID", { id: id });
-        let response = await DataBaseConnector.collection.deleteOne({ _id: new ObjectID(id) });
-        return response;
+    public  DeleteByID(id: any) {
+        return new Promise((resolve, reject) => {
+            this.logger.debug("Enter Teacher", "DAL DeleteByID", { id: id });
+
+            DataBaseConnector.collection.deleteOne({ _id: new ObjectID(id) },(error) =>{
+                if (error) { reject("Error occurred when deleteing teacher from database."); }
+                resolve();
+            });
+        });
+
     }
 
     public async UpdateRecommendations(id, recommendData, rateData) {
