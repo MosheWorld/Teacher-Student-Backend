@@ -56,12 +56,17 @@ export class TeacherLogic {
         tDal.UpdateImage(teacherObjectID, imageObjectID.toString());
     }
 
-    public async Delete(id) {
+    public async DeleteByID(id) {
         this.logger.debug("Enter Teacher", "Logic Delete ", id);
-        let tDal = new TeacherDal();
 
-        let response = await tDal.DeleteByID(id);
-        return response;
+        let tDal = new TeacherDal();
+        let iManager = new ImageLogic();
+
+        let teacher = await this.GetByID(id);
+
+        // Run in parallel, no dependency between functions.
+        tDal.DeleteByID(id);
+        iManager.DeleteByID(teacher.image);
     }
 
     public async SearchTeacher(searchData: any) {

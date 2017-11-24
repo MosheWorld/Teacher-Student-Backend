@@ -75,6 +75,17 @@ var ImageLogic = /** @class */ (function () {
             });
         });
     };
+    ImageLogic.prototype.DeleteByID = function (id) {
+        return __awaiter(this, void 0, void 0, function () {
+            var iManager;
+            return __generator(this, function (_a) {
+                this.logger.debug("Enter DeleteByID", "Logic DeleteByID", id);
+                iManager = new ImageDal_1.ImageDal();
+                iManager.DeleteByID(id);
+                return [2 /*return*/];
+            });
+        });
+    };
     return ImageLogic;
 }());
 exports.ImageLogic = ImageLogic;

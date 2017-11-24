@@ -108,18 +108,22 @@ var TeacherLogic = /** @class */ (function () {
             });
         });
     };
-    TeacherLogic.prototype.Delete = function (id) {
+    TeacherLogic.prototype.DeleteByID = function (id) {
         return __awaiter(this, void 0, void 0, function () {
-            var tDal, response;
+            var tDal, iManager, teacher;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
                         this.logger.debug("Enter Teacher", "Logic Delete ", id);
                         tDal = new TeacherDAL_1.TeacherDal();
-                        return [4 /*yield*/, tDal.DeleteByID(id)];
+                        iManager = new ImageLogic_1.ImageLogic();
+                        return [4 /*yield*/, this.GetByID(id)];
                     case 1:
-                        response = _a.sent();
-                        return [2 /*return*/, response];
+                        teacher = _a.sent();
+                        // Run in parallel, no dependency between functions.
+                        tDal.DeleteByID(id);
+                        iManager.DeleteByID(teacher.image);
+                        return [2 /*return*/];
                 }
             });
         });

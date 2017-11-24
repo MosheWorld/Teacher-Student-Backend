@@ -68,3 +68,67 @@
 {"level":"debug","message":"Enter Teacher DAL GetAll","timestamp":"2017-11-24T15:35:46.857Z"}
 {"level":"debug","message":"Enter ContactUs Logic GetAll","timestamp":"2017-11-24T15:35:49.385Z"}
 {"level":"debug","message":"Enter ContactUs DAL GetAll","timestamp":"2017-11-24T15:35:49.385Z"}
+{"level":"debug","message":"Enter Teacher Logic GetAll","timestamp":"2017-11-24T18:19:38.386Z"}
+{"level":"debug","message":"Enter Teacher DAL GetAll","timestamp":"2017-11-24T18:19:38.386Z"}
+{"level":"debug","message":"Enter Image Logic GetImageByID 5a149dc38c449131c03fe0e7","timestamp":"2017-11-24T18:19:43.517Z"}
+{"imageID":"5a15833daa5a810014904965","level":"debug","message":"Enter Image DAL GetImageByID","timestamp":"2017-11-24T18:19:43.523Z"}
+{"imageID":"5a149dc38c449131c03fe0e7","level":"debug","message":"Enter Image DAL GetImageByID","timestamp":"2017-11-24T18:19:43.518Z"}
+{"level":"debug","message":"Enter Image Logic GetImageByID 5a15833daa5a810014904965","timestamp":"2017-11-24T18:19:43.522Z"}
+{"imageID":"5a18362925cf6d0014993e83","level":"debug","message":"Enter Image DAL GetImageByID","timestamp":"2017-11-24T18:19:43.525Z"}
+{"level":"debug","message":"Enter Image Logic GetImageByID 5a149dc38c449131c03fe0e9","timestamp":"2017-11-24T18:19:43.528Z"}
+{"imageID":"5a149dc38c449131c03fe0e8","level":"debug","message":"Enter Image DAL GetImageByID","timestamp":"2017-11-24T18:19:43.527Z"}
+{"level":"debug","message":"Enter Image Logic GetImageByID 5a149dc38c449131c03fe0e8","timestamp":"2017-11-24T18:19:43.526Z"}
+{"imageID":"5a149dc38c449131c03fe0e9","level":"debug","message":"Enter Image DAL GetImageByID","timestamp":"2017-11-24T18:19:43.528Z"}
+{"level":"debug","message":"Enter Image Logic GetImageByID 5a149dc38c449131c03fe0eb","timestamp":"2017-11-24T18:19:43.531Z"}
+{"imageID":"5a149dc38c449131c03fe0eb","level":"debug","message":"Enter Image DAL GetImageByID","timestamp":"2017-11-24T18:19:43.532Z"}
+{"level":"debug","message":"Enter Image Logic GetImageByID 5a18362925cf6d0014993e83","timestamp":"2017-11-24T18:19:43.525Z"}
+{"level":"debug","message":"Enter Teacher Logic GetAll","timestamp":"2017-11-24T18:20:16.688Z"}
+{"level":"debug","message":"Enter Teacher DAL GetAll","timestamp":"2017-11-24T18:20:16.688Z"}
+{"level":"debug","message":"Enter Image Logic GetImageByID 5a149dc38c449131c03fe0e7","timestamp":"2017-11-24T18:20:18.177Z"}
+{"imageID":"5a149dc38c449131c03fe0e7","level":"debug","message":"Enter Image DAL GetImageByID","timestamp":"2017-11-24T18:20:18.177Z"}
+{"level":"debug","message":"Enter Image Logic GetImageByID 5a15833daa5a810014904965","timestamp":"2017-11-24T18:20:18.181Z"}
+{"imageID":"5a15833daa5a810014904965","level":"debug","message":"Enter Image DAL GetImageByID","timestamp":"2017-11-24T18:20:18.182Z"}
+{"level":"debug","message":"Enter Image Logic GetImageByID 5a18362925cf6d0014993e83","timestamp":"2017-11-24T18:20:18.188Z"}
+{"imageID":"5a18362925cf6d0014993e83","level":"debug","message":"Enter Image DAL GetImageByID","timestamp":"2017-11-24T18:20:18.188Z"}
+{"level":"debug","message":"Enter Image Logic GetImageByID 5a149dc38c449131c03fe0e8","timestamp":"2017-11-24T18:20:40.727Z"}
+{"imageID":"5a149dc38c449131c03fe0e8","level":"debug","message":"Enter Image DAL GetImageByID","timestamp":"2017-11-24T18:20:40.727Z"}
+{"level":"debug","message":"Enter Image Logic GetImageByID 5a149dc38c449131c03fe0e9","timestamp":"2017-11-24T18:21:15.231Z"}
+{"imageID":"5a149dc38c449131c03fe0e9","level":"debug","message":"Enter Image DAL GetImageByID","timestamp":"2017-11-24T18:21:15.232Z"}
+{"level":"debug","message":"Enter Teacher Logic GetAll","timestamp":"2017-11-24T18:21:19.609Z"}
+{"level":"debug","message":"Enter Teacher DAL GetAll","timestamp":"2017-11-24T18:21:19.609Z"}
+{"level":"debug","message":"Enter Teacher Logic GetAll","timestamp":"2017-11-24T18:21:44.392Z"}
+{"level":"debug","message":"Enter Teacher DAL GetAll","timestamp":"2017-11-24T18:21:44.392Z"}
+{"level":"debug","message":"Enter Image Logic GetImageByID 5a149dc38c449131c03fe0e7","timestamp":"2017-11-24T18:21:45.908Z"}
+{"imageID":"5a149dc38c449131c03fe0e7","level":"debug","message":"Enter Image DAL GetImageByID","timestamp":"2017-11-24T18:21:45.909Z"}
+{"imageID":"5a15833daa5a810014904965","level":"debug","message":"Enter Image DAL GetImageByID","timestamp":"2017-11-24T18:21:45.916Z"}
+{"level":"debug","message":"Enter Image Logic GetImageByID 5a15833daa5a810014904965","timestamp":"2017-11-24T18:21:45.916Z"}
+{"level":"debug","message":"Enter Image Logic GetImageByID 5a18362925cf6d0014993e83","timestamp":"2017-11-24T18:21:45.918Z"}
+{"imageID":"5a18362925cf6d0014993e83","level":"debug","message":"Enter Image DAL GetImageByID","timestamp":"2017-11-24T18:21:45.919Z"}
+{"level":"debug","message":"Enter Image Logic GetImageByID 5a149dc38c449131c03fe0e8","timestamp":"2017-11-24T18:21:45.922Z"}
+{"imageID":"5a149dc38c449131c03fe0e8","level":"debug","message":"Enter Image DAL GetImageByID","timestamp":"2017-11-24T18:21:45.922Z"}
+{"level":"debug","message":"Enter Image Logic GetImageByID 5a149dc38c449131c03fe0e9","timestamp":"2017-11-24T18:21:45.933Z"}
+{"imageID":"5a149dc38c449131c03fe0e9","level":"debug","message":"Enter Image DAL GetImageByID","timestamp":"2017-11-24T18:21:45.933Z"}
+{"level":"debug","message":"Enter Image Logic GetImageByID 5a149dc38c449131c03fe0eb","timestamp":"2017-11-24T18:21:45.936Z"}
+{"imageID":"5a149dc38c449131c03fe0eb","level":"debug","message":"Enter Image DAL GetImageByID","timestamp":"2017-11-24T18:21:45.937Z"}
+{"firstName":"Test","lastName":"Test2","age":23,"email":"a@walal.com","priceFrom":2,"priceTo":3,"phone":"0542477052","personalMessage":"dfsdfsdfdsfdsf","teachesAt":2,"teachesInstitutions":[2,6],"gender":1,"recommendations":[],"rate":0,"teachesSubjects":[3],"level":"debug","message":"Enter Teacher DAL Create","timestamp":"2017-11-24T18:22:56.088Z"}
+{"firstName":"Test","lastName":"Test2","age":23,"email":"a@walal.com","priceFrom":2,"priceTo":3,"phone":"0542477052","personalMessage":"dfsdfsdfdsfdsf","teachesAt":2,"teachesInstitutions":[2,6],"gender":1,"recommendations":[],"rate":0,"image":null,"teachesSubjects":[3],"level":"debug","message":"Enter Teacher Logic Create","timestamp":"2017-11-24T18:22:56.087Z"}
+{"teacherID":{"_bsontype":"ObjectID","id":{"0":90,"1":24,"2":99,"3":128,"4":99,"5":19,"6":4,"7":24,"8":56,"9":79,"10":44,"11":116}},"image":null,"level":"debug","message":"Enter Create Logic Create","timestamp":"2017-11-24T18:22:57.484Z"}
+{"teacherID":{"_bsontype":"ObjectID","id":{"0":90,"1":24,"2":99,"3":128,"4":99,"5":19,"6":4,"7":24,"8":56,"9":79,"10":44,"11":116}},"image":null,"level":"debug","message":"Enter Create DAL Create","timestamp":"2017-11-24T18:22:57.486Z"}
+{"id":{"_bsontype":"ObjectID","id":{"0":90,"1":24,"2":99,"3":128,"4":99,"5":19,"6":4,"7":24,"8":56,"9":79,"10":44,"11":116}},"image":"5a18638163130418384f2c75","level":"debug","message":"Enter Teacher DAL UpdateImage","timestamp":"2017-11-24T18:22:58.880Z"}
+{"level":"debug","message":"Enter Teacher Logic Delete  5a18638063130418384f2c74","timestamp":"2017-11-24T18:24:36.484Z"}
+{"level":"debug","message":"Enter Teacher Logic GetByID 5a18638063130418384f2c74","timestamp":"2017-11-24T18:24:36.486Z"}
+{"id":"5a18638063130418384f2c74","level":"debug","message":"Enter Teacher DAL GetAll","timestamp":"2017-11-24T18:24:36.486Z"}
+{"id":"5a18638063130418384f2c74","level":"debug","message":"Enter Teacher DAL DeleteByID","timestamp":"2017-11-24T18:24:37.879Z"}
+{"level":"debug","message":"Enter DeleteByID Logic DeleteByID 5a18638163130418384f2c75","timestamp":"2017-11-24T18:24:37.880Z"}
+{"level":"debug","message":"Enter DeleteByID DAL DeleteByID 5a18638163130418384f2c75","timestamp":"2017-11-24T18:24:37.880Z"}
+{"firstName":"test","lastName":"test","age":23,"email":"a@walla.com","priceFrom":2,"priceTo":3,"phone":"0542477052","personalMessage":"sfdsfdsfsdfdsfs","teachesAt":1,"teachesInstitutions":[6],"gender":1,"recommendations":[],"rate":0,"image":null,"teachesSubjects":[4],"level":"debug","message":"Enter Teacher Logic Create","timestamp":"2017-11-24T18:27:43.133Z"}
+{"firstName":"test","lastName":"test","age":23,"email":"a@walla.com","priceFrom":2,"priceTo":3,"phone":"0542477052","personalMessage":"sfdsfdsfsdfdsfs","teachesAt":1,"teachesInstitutions":[6],"gender":1,"recommendations":[],"rate":0,"teachesSubjects":[4],"level":"debug","message":"Enter Teacher DAL Create","timestamp":"2017-11-24T18:27:43.134Z"}
+{"teacherID":{"_bsontype":"ObjectID","id":{"0":90,"1":24,"2":100,"3":159,"4":236,"5":236,"6":250,"7":37,"8":4,"9":24,"10":86,"11":216}},"image":null,"level":"debug","message":"Enter Create Logic Create","timestamp":"2017-11-24T18:27:44.641Z"}
+{"teacherID":{"_bsontype":"ObjectID","id":{"0":90,"1":24,"2":100,"3":159,"4":236,"5":236,"6":250,"7":37,"8":4,"9":24,"10":86,"11":216}},"image":null,"level":"debug","message":"Enter Create DAL Create","timestamp":"2017-11-24T18:27:44.645Z"}
+{"id":{"_bsontype":"ObjectID","id":{"0":90,"1":24,"2":100,"3":159,"4":236,"5":236,"6":250,"7":37,"8":4,"9":24,"10":86,"11":216}},"image":"5a1864a0ececfa25041856d9","level":"debug","message":"Enter Teacher DAL UpdateImage","timestamp":"2017-11-24T18:27:45.416Z"}
+{"level":"debug","message":"Enter Teacher Logic Delete  5a18649fececfa25041856d8","timestamp":"2017-11-24T18:28:17.618Z"}
+{"level":"debug","message":"Enter Teacher Logic GetByID 5a18649fececfa25041856d8","timestamp":"2017-11-24T18:28:17.620Z"}
+{"id":"5a18649fececfa25041856d8","level":"debug","message":"Enter Teacher DAL GetAll","timestamp":"2017-11-24T18:28:17.620Z"}
+{"id":"5a18649fececfa25041856d8","level":"debug","message":"Enter Teacher DAL DeleteByID","timestamp":"2017-11-24T18:28:21.988Z"}
+{"level":"debug","message":"Enter DeleteByID Logic DeleteByID 5a1864a0ececfa25041856d9","timestamp":"2017-11-24T18:28:21.993Z"}
+{"level":"debug","message":"Enter DeleteByID DAL DeleteByID 5a1864a0ececfa25041856d9","timestamp":"2017-11-24T18:28:21.995Z"}

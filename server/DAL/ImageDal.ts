@@ -37,5 +37,16 @@ export class ImageDal {
             });
         });
     }
+
+    public DeleteByID(id) {
+        return new Promise((resolve, reject) => {
+            this.logger.debug("Enter DeleteByID", "DAL DeleteByID", id);
+
+            DataBaseConnector.deleteOne({_id: new ObjectID(id)}, (error) => {
+                if (error) { reject("Error occurred when deleting image from database."); }
+                resolve();
+            })
+        });
+    }
     //#endregion
 }

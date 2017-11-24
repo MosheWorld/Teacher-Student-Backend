@@ -154,25 +154,25 @@ router.post('/addrecommend', function (req, res) {
         res.status(400).send(ex);
     }
 });
-router.delete('/delete/:id', function (req, res) {
+router.delete('/deletebyid/:id', function (req, res) {
     try {
-        logger.info("Enter", "teacher/delete/" + req.params.id);
+        logger.info("Enter", "teacher/deletebyid/" + req.params.id);
         var id = req.params.id;
         if (id == null) {
             logger.error("Model is not valid.", "teacher/delete/");
             res.status(400).send("Model is not valid.");
         }
         var tManager = new TeacherLogic_1.TeacherLogic();
-        tManager.Delete(id)
+        tManager.DeleteByID(id)
             .then(function (response) {
             res.json(response);
         }).catch(function (error) {
             res.status(400).send(error.message);
         });
-        logger.info("Out", "teacher/delete/" + req.params.id);
+        logger.info("Out", "teacher/deletebyid/" + req.params.id);
     }
     catch (ex) {
-        logger.error("Out", "teacher/delete/" + req.params.id, ex.message);
+        logger.error("Out", "teacher/deletebyid/" + req.params.id, ex.message);
         res.status(400).send(ex.message);
     }
 });

@@ -36,6 +36,18 @@ var ImageDal = /** @class */ (function () {
             });
         });
     };
+    ImageDal.prototype.DeleteByID = function (id) {
+        var _this = this;
+        return new Promise(function (resolve, reject) {
+            _this.logger.debug("Enter DeleteByID", "DAL DeleteByID", id);
+            ImageModel_1.default.deleteOne({ _id: new mongodb_1.ObjectID(id) }, function (error) {
+                if (error) {
+                    reject("Error occurred when deleting image from database.");
+                }
+                resolve();
+            });
+        });
+    };
     return ImageDal;
 }());
 exports.ImageDal = ImageDal;

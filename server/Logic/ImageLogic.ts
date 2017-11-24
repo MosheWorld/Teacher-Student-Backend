@@ -26,5 +26,11 @@ export class ImageLogic {
         let iManager = new ImageDal();
         return await iManager.Create(TeacherIDImage);
     }
+
+    public async DeleteByID(id) {
+        this.logger.debug("Enter DeleteByID", "Logic DeleteByID", id);
+        let iManager = new ImageDal();
+        iManager.DeleteByID(id);
+    }
     //#endregion
 }

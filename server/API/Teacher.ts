@@ -181,9 +181,9 @@ router.post('/addrecommend', (req: Request, res: Response) => {
     }
 });
 
-router.delete('/delete/:id', (req: Request, res: Response) => {
+router.delete('/deletebyid/:id', (req: Request, res: Response) => {
     try {
-        logger.info("Enter", "teacher/delete/" + req.params.id);
+        logger.info("Enter", "teacher/deletebyid/" + req.params.id);
 
         let id = req.params.id;
 
@@ -194,16 +194,16 @@ router.delete('/delete/:id', (req: Request, res: Response) => {
 
         let tManager = new TeacherLogic();
 
-        tManager.Delete(id)
+        tManager.DeleteByID(id)
             .then((response) => {
                 res.json(response);
             }).catch((error) => {
                 res.status(400).send(error.message);
             });
 
-        logger.info("Out", "teacher/delete/" + req.params.id);
+        logger.info("Out", "teacher/deletebyid/" + req.params.id);
     } catch (ex) {
-        logger.error("Out", "teacher/delete/" + req.params.id, ex.message);
+        logger.error("Out", "teacher/deletebyid/" + req.params.id, ex.message);
         res.status(400).send(ex.message);
     }
 });
