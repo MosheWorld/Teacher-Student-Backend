@@ -7,6 +7,8 @@ var Image_1 = require("./API/Image");
 var Teacher_1 = require("./API/Teacher");
 var ContactUs_1 = require("./API/ContactUs");
 var IPMonitorModel_1 = require("./Models/IPMonitorModel");
+mongoose.Promise = global.Promise;
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://Moshe:ab123456@ds133465.mlab.com:33465/teacher-student-database', { useMongoClient: true });
 // Create a new express application instance.
 var app = express();
 app.use(bodyParser.json({ limit: '1mb' }));
@@ -16,11 +18,6 @@ app.use(function (req, res, next) {
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
     res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
     res.setHeader('Access-Control-Allow-Credentials', true);
-    next();
-});
-mongoose.Promise = global.Promise;
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://Moshe:ab123456@ds133465.mlab.com:33465/teacher-student-database', { useMongoClient: true });
-app.use(function (req, res, next) {
     InsertIP(req);
     next();
 });
@@ -37,8 +34,9 @@ function InsertIP(req) {
             join('/') + ' ' + [d.getHours(), d.getMinutes(), d.getSeconds()].join(':');
         var data = {
             "ip": req.headers['x-forwarded-for'] || req.connection.remoteAddress,
-            "ips": req.ips,
-            "date": dformat.toString()
+            "path": req.originalUrl,
+            "date": dformat.toString(),
+            "subdomains": req.subdomains
         };
         IPMonitorModel_1.default.collection.insert(data, function (error) { resolve(); });
     });
