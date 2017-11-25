@@ -89,6 +89,19 @@ var TeacherDal = /** @class */ (function () {
             });
         });
     };
+    TeacherDal.prototype.SearchTeacher = function (query) {
+        var _this = this;
+        return new Promise(function (resolve, reject) {
+            _this.logger.debug("Enter Teacher", "DAL SearchTeacher");
+            var teachers = TeacherModel_1.default.find(query, function (error, teachers) {
+                if (error) {
+                    reject("Error occurred when find teacher at database.");
+                }
+                return teachers ? teachers : null;
+            });
+            resolve(teachers);
+        });
+    };
     return TeacherDal;
 }());
 exports.TeacherDal = TeacherDal;

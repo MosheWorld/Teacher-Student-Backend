@@ -90,5 +90,18 @@ export class TeacherDal {
             });
         });
     }
+
+    public SearchTeacher(query: any): Promise<any>{
+        return new Promise((resolve, reject) => {
+            this.logger.debug("Enter Teacher", "DAL SearchTeacher");
+
+            let teachers = DataBaseConnector.find(query, (error, teachers) => {
+                if (error) { reject("Error occurred when find teacher at database."); }
+                return teachers ? teachers : null;
+            });
+
+            resolve(teachers);
+        });
+    }
     //#endregion
 }

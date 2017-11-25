@@ -71,8 +71,14 @@ export class TeacherLogic {
 
     public async SearchTeacher(searchData: any) {
         this.logger.debug("Enter Teacher", "Logic SearchTeacher", searchData);
+        let tDal = new TeacherDal();
+
         let teacherCollection: any[] = await this.GetAll();
         let teacherCollectionToReturn: any[] = [];
+
+        let teachersFound = await tDal.SearchTeacher(this.BuildSearchQuery(searchData));
+
+        console.log(teachersFound);
 
         for (let element of teacherCollection) {
             // Teaches institutions check.
@@ -80,7 +86,7 @@ export class TeacherLogic {
                 // Teaches Subjects check.
                 if (this.IsSubjectsMatch(element.teachesSubjects, searchData.teachesSubjects)) {
                     // Price check.
-                    if (this.IsNumberInRange(element.priceFrom, element.priceTo, searchData.fromPrice, searchData.toPrice)) {
+                    if (this.IsNumberInRange(element.priceFrom, searchData.toPrice)) {
                         // Gender check.
                         if (this.IsGenderMatch(element.gender, searchData.gender)) {
                             // Teaches At check.
@@ -135,7 +141,7 @@ export class TeacherLogic {
     //#endregion
 
     //#region Private Methods
-    private IsNumberInRange(lowerRange1: number, upperRange1: number, lowerRange2: number, upperRange2: number) {
+    private IsNumberInRange(lowerRange1: number, upperRange2: number) {
         if (upperRange2 < lowerRange1) {
             return false;
         } else {
@@ -205,6 +211,40 @@ export class TeacherLogic {
             return true;
         } else {
             return false;
+        }
+    }
+    
+    // Work on this function.
+    private BuildSearchQuery(searchData: any) {
+        return {
+            gender: this.GetGenderQuery(searchData.gender),
+            teachesInstitutions: this.GetIncludesArrayQuery(searchData.teachesInstitutions),
+            teachesSubjects: this.GetIncludesArrayQuery(searchData.teachesSubjects),
+            teachesAt: this.GetTeachesAtQuery(searchData.teachesAt)
+        };
+    }
+
+    private GetIncludesArrayQuery(data) {
+        if (data == null) {
+            return { $gt: 0 }
+        } else {
+            return data;
+        }
+    }
+
+    private GetTeachesAtQuery(data) {
+        if (data == null || data == TeachesAt.Both) {
+            return { $gt: 0 }
+        } else {
+            return { $in: [data, 3] }
+        }
+    }
+
+    private GetGenderQuery(data) {
+        if (data == null || data === 3) {
+            return { $gt: 0 }
+        } else {
+            return data;
         }
     }
     //#endregion

@@ -130,15 +130,20 @@ var TeacherLogic = /** @class */ (function () {
     };
     TeacherLogic.prototype.SearchTeacher = function (searchData) {
         return __awaiter(this, void 0, void 0, function () {
-            var teacherCollection, teacherCollectionToReturn, _i, teacherCollection_1, element;
+            var tDal, teacherCollection, teacherCollectionToReturn, teachersFound, _i, teacherCollection_1, element;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
                         this.logger.debug("Enter Teacher", "Logic SearchTeacher", searchData);
+                        tDal = new TeacherDAL_1.TeacherDal();
                         return [4 /*yield*/, this.GetAll()];
                     case 1:
                         teacherCollection = _a.sent();
                         teacherCollectionToReturn = [];
+                        return [4 /*yield*/, tDal.SearchTeacher(this.BuildSearchQuery(searchData))];
+                    case 2:
+                        teachersFound = _a.sent();
+                        console.log(teachersFound);
                         for (_i = 0, teacherCollection_1 = teacherCollection; _i < teacherCollection_1.length; _i++) {
                             element = teacherCollection_1[_i];
                             // Teaches institutions check.
@@ -146,7 +151,7 @@ var TeacherLogic = /** @class */ (function () {
                                 // Teaches Subjects check.
                                 if (this.IsSubjectsMatch(element.teachesSubjects, searchData.teachesSubjects)) {
                                     // Price check.
-                                    if (this.IsNumberInRange(element.priceFrom, element.priceTo, searchData.fromPrice, searchData.toPrice)) {
+                                    if (this.IsNumberInRange(element.priceFrom, searchData.toPrice)) {
                                         // Gender check.
                                         if (this.IsGenderMatch(element.gender, searchData.gender)) {
                                             // Teaches At check.
@@ -220,7 +225,7 @@ var TeacherLogic = /** @class */ (function () {
     };
     //#endregion
     //#region Private Methods
-    TeacherLogic.prototype.IsNumberInRange = function (lowerRange1, upperRange1, lowerRange2, upperRange2) {
+    TeacherLogic.prototype.IsNumberInRange = function (lowerRange1, upperRange2) {
         if (upperRange2 < lowerRange1) {
             return false;
         }
@@ -286,6 +291,39 @@ var TeacherLogic = /** @class */ (function () {
         }
         else {
             return false;
+        }
+    };
+    // Work on this function.
+    TeacherLogic.prototype.BuildSearchQuery = function (searchData) {
+        return {
+            gender: this.GetGenderQuery(searchData.gender),
+            teachesInstitutions: this.GetIncludesArrayQuery(searchData.teachesInstitutions),
+            teachesSubjects: this.GetIncludesArrayQuery(searchData.teachesSubjects),
+            teachesAt: this.GetTeachesAtQuery(searchData.teachesAt)
+        };
+    };
+    TeacherLogic.prototype.GetIncludesArrayQuery = function (data) {
+        if (data == null) {
+            return { $gt: 0 };
+        }
+        else {
+            return data;
+        }
+    };
+    TeacherLogic.prototype.GetTeachesAtQuery = function (data) {
+        if (data == null || data == TeachesAt_Enum_1.TeachesAt.Both) {
+            return { $gt: 0 };
+        }
+        else {
+            return { $in: [data, 3] };
+        }
+    };
+    TeacherLogic.prototype.GetGenderQuery = function (data) {
+        if (data == null || data === 3) {
+            return { $gt: 0 };
+        }
+        else {
+            return data;
         }
     };
     return TeacherLogic;
