@@ -80,23 +80,22 @@ export class TeacherDal {
 
     public UpdateImage(id, imagePath) {
         return new Promise((resolve, reject) => {
-        this.logger.debug("Enter Teacher", "DAL UpdateImage", { id: id, image: imagePath });
+            this.logger.debug("Enter Teacher", "DAL UpdateImage", { id: id, image: imagePath });
 
-        DataBaseConnector.collection.updateOne({ _id: id }, {
-                $set: { "image": imagePath },
-            }, (error) => {
-                if (error) { reject("Error occurred when updating imagePath at database."); }
-                resolve();
-            });
+            DataBaseConnector.collection.updateOne({ _id: id }, { $set: { "image": imagePath }, }
+                ,(error) => {
+                    if (error) { reject("Error occurred when updating imagePath at database."); }
+                    resolve();
+                });
         });
     }
 
-    public SearchTeacher(query: any): Promise<any>{
+    public SearchTeacher(query: any): Promise<any> {
         return new Promise((resolve, reject) => {
             this.logger.debug("Enter Teacher", "DAL SearchTeacher");
 
             let teachers = DataBaseConnector.find(query, (error, teachers) => {
-                if (error) { reject("Error occurred when find teacher at database."); }
+                if (error) { reject("Error occurred when find teachers by query at database."); }
                 return teachers ? teachers : null;
             });
 

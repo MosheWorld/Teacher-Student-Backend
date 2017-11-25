@@ -73,33 +73,7 @@ export class TeacherLogic {
         this.logger.debug("Enter Teacher", "Logic SearchTeacher", searchData);
         let tDal = new TeacherDal();
 
-        let teacherCollection: any[] = await this.GetAll();
-        let teacherCollectionToReturn: any[] = [];
-
-        let teachersFound = await tDal.SearchTeacher(this.BuildSearchQuery(searchData));
-
-        console.log(teachersFound);
-
-        for (let element of teacherCollection) {
-            // Teaches institutions check.
-            if (this.IsInstitutionsMatch(element.teachesInstitutions, searchData.teachesInstitutions)) {
-                // Teaches Subjects check.
-                if (this.IsSubjectsMatch(element.teachesSubjects, searchData.teachesSubjects)) {
-                    // Price check.
-                    if (this.IsNumberInRange(element.priceFrom, searchData.toPrice)) {
-                        // Gender check.
-                        if (this.IsGenderMatch(element.gender, searchData.gender)) {
-                            // Teaches At check.
-                            if (this.IsTeachesAtMatch(element.teachesAt, searchData.teachesAt)) {
-                                teacherCollectionToReturn.push(element);
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
-        return teacherCollectionToReturn;
+        return await tDal.SearchTeacher(this.BuildSearchQuery(searchData));
     }
 
     public async AddRecommendToExistingTeacher(id, recommendData) {
@@ -141,86 +115,13 @@ export class TeacherLogic {
     //#endregion
 
     //#region Private Methods
-    private IsNumberInRange(lowerRange1: number, upperRange2: number) {
-        if (upperRange2 < lowerRange1) {
-            return false;
-        } else {
-            return true;
-        }
-    }
-
-    private IsGenderMatch(genderTeacher: number, genderSearch: number) {
-        let isGenderOkay: boolean = false;
-
-        switch (genderSearch) {
-            case 1:
-                isGenderOkay = genderTeacher === 1 ? true : false;
-                break;
-            case 2:
-                isGenderOkay = genderTeacher === 2 ? true : false;
-                break;
-            case 3:
-            case null:
-                isGenderOkay = true;
-                break;
-            default:
-                isGenderOkay = false;
-                break;
-        }
-
-        return isGenderOkay;
-    }
-
-    private IsTeachesAtMatch(teachesAtTeacher: number, teachesAtSearch: number) {
-        let isGenderOkay: boolean = false;
-
-        switch (teachesAtSearch) {
-            case TeachesAt.Home:
-                isGenderOkay = teachesAtTeacher === TeachesAt.Home || teachesAtTeacher === TeachesAt.Both ? true : false;
-                break;
-            case TeachesAt.AcademicInstitution:
-                isGenderOkay = teachesAtTeacher === TeachesAt.AcademicInstitution || teachesAtTeacher === TeachesAt.Both ? true : false;
-                break;
-            case TeachesAt.Both:
-            case null:
-                isGenderOkay = true;
-                break;
-            default:
-                isGenderOkay = false;
-                break;
-        }
-
-        return isGenderOkay;
-    }
-
-    private IsInstitutionsMatch(elementInstitutions: any, searchInstitutions: any) {
-        if (searchInstitutions == null) {
-            return true;
-        }
-        else if (_.includes(elementInstitutions, searchInstitutions)) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    private IsSubjectsMatch(elementSubjects: any, searchSubject: any) {
-        if (searchSubject == null) {
-            return true;
-        } else if (_.includes(elementSubjects, searchSubject)) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-    
-    // Work on this function.
     private BuildSearchQuery(searchData: any) {
         return {
             gender: this.GetGenderQuery(searchData.gender),
             teachesInstitutions: this.GetIncludesArrayQuery(searchData.teachesInstitutions),
             teachesSubjects: this.GetIncludesArrayQuery(searchData.teachesSubjects),
-            teachesAt: this.GetTeachesAtQuery(searchData.teachesAt)
+            teachesAt: this.GetTeachesAtQuery(searchData.teachesAt),
+            priceFrom: { $lt: searchData.toPrice }
         };
     }
 

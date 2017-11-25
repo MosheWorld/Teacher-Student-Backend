@@ -79,9 +79,7 @@ var TeacherDal = /** @class */ (function () {
         var _this = this;
         return new Promise(function (resolve, reject) {
             _this.logger.debug("Enter Teacher", "DAL UpdateImage", { id: id, image: imagePath });
-            TeacherModel_1.default.collection.updateOne({ _id: id }, {
-                $set: { "image": imagePath },
-            }, function (error) {
+            TeacherModel_1.default.collection.updateOne({ _id: id }, { $set: { "image": imagePath }, }, function (error) {
                 if (error) {
                     reject("Error occurred when updating imagePath at database.");
                 }
@@ -95,7 +93,7 @@ var TeacherDal = /** @class */ (function () {
             _this.logger.debug("Enter Teacher", "DAL SearchTeacher");
             var teachers = TeacherModel_1.default.find(query, function (error, teachers) {
                 if (error) {
-                    reject("Error occurred when find teacher at database.");
+                    reject("Error occurred when find teachers by query at database.");
                 }
                 return teachers ? teachers : null;
             });

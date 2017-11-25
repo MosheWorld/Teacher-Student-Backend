@@ -35,7 +35,6 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var lodash_1 = require("lodash");
 var mongodb_1 = require("mongodb");
 var ImageLogic_1 = require("./ImageLogic");
 var logger_1 = require("./../LogService/logger");
@@ -130,40 +129,14 @@ var TeacherLogic = /** @class */ (function () {
     };
     TeacherLogic.prototype.SearchTeacher = function (searchData) {
         return __awaiter(this, void 0, void 0, function () {
-            var tDal, teacherCollection, teacherCollectionToReturn, teachersFound, _i, teacherCollection_1, element;
+            var tDal;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
                         this.logger.debug("Enter Teacher", "Logic SearchTeacher", searchData);
                         tDal = new TeacherDAL_1.TeacherDal();
-                        return [4 /*yield*/, this.GetAll()];
-                    case 1:
-                        teacherCollection = _a.sent();
-                        teacherCollectionToReturn = [];
                         return [4 /*yield*/, tDal.SearchTeacher(this.BuildSearchQuery(searchData))];
-                    case 2:
-                        teachersFound = _a.sent();
-                        console.log(teachersFound);
-                        for (_i = 0, teacherCollection_1 = teacherCollection; _i < teacherCollection_1.length; _i++) {
-                            element = teacherCollection_1[_i];
-                            // Teaches institutions check.
-                            if (this.IsInstitutionsMatch(element.teachesInstitutions, searchData.teachesInstitutions)) {
-                                // Teaches Subjects check.
-                                if (this.IsSubjectsMatch(element.teachesSubjects, searchData.teachesSubjects)) {
-                                    // Price check.
-                                    if (this.IsNumberInRange(element.priceFrom, searchData.toPrice)) {
-                                        // Gender check.
-                                        if (this.IsGenderMatch(element.gender, searchData.gender)) {
-                                            // Teaches At check.
-                                            if (this.IsTeachesAtMatch(element.teachesAt, searchData.teachesAt)) {
-                                                teacherCollectionToReturn.push(element);
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                        return [2 /*return*/, teacherCollectionToReturn];
+                    case 1: return [2 /*return*/, _a.sent()];
                 }
             });
         });
@@ -225,81 +198,13 @@ var TeacherLogic = /** @class */ (function () {
     };
     //#endregion
     //#region Private Methods
-    TeacherLogic.prototype.IsNumberInRange = function (lowerRange1, upperRange2) {
-        if (upperRange2 < lowerRange1) {
-            return false;
-        }
-        else {
-            return true;
-        }
-    };
-    TeacherLogic.prototype.IsGenderMatch = function (genderTeacher, genderSearch) {
-        var isGenderOkay = false;
-        switch (genderSearch) {
-            case 1:
-                isGenderOkay = genderTeacher === 1 ? true : false;
-                break;
-            case 2:
-                isGenderOkay = genderTeacher === 2 ? true : false;
-                break;
-            case 3:
-            case null:
-                isGenderOkay = true;
-                break;
-            default:
-                isGenderOkay = false;
-                break;
-        }
-        return isGenderOkay;
-    };
-    TeacherLogic.prototype.IsTeachesAtMatch = function (teachesAtTeacher, teachesAtSearch) {
-        var isGenderOkay = false;
-        switch (teachesAtSearch) {
-            case TeachesAt_Enum_1.TeachesAt.Home:
-                isGenderOkay = teachesAtTeacher === TeachesAt_Enum_1.TeachesAt.Home || teachesAtTeacher === TeachesAt_Enum_1.TeachesAt.Both ? true : false;
-                break;
-            case TeachesAt_Enum_1.TeachesAt.AcademicInstitution:
-                isGenderOkay = teachesAtTeacher === TeachesAt_Enum_1.TeachesAt.AcademicInstitution || teachesAtTeacher === TeachesAt_Enum_1.TeachesAt.Both ? true : false;
-                break;
-            case TeachesAt_Enum_1.TeachesAt.Both:
-            case null:
-                isGenderOkay = true;
-                break;
-            default:
-                isGenderOkay = false;
-                break;
-        }
-        return isGenderOkay;
-    };
-    TeacherLogic.prototype.IsInstitutionsMatch = function (elementInstitutions, searchInstitutions) {
-        if (searchInstitutions == null) {
-            return true;
-        }
-        else if (lodash_1._.includes(elementInstitutions, searchInstitutions)) {
-            return true;
-        }
-        else {
-            return false;
-        }
-    };
-    TeacherLogic.prototype.IsSubjectsMatch = function (elementSubjects, searchSubject) {
-        if (searchSubject == null) {
-            return true;
-        }
-        else if (lodash_1._.includes(elementSubjects, searchSubject)) {
-            return true;
-        }
-        else {
-            return false;
-        }
-    };
-    // Work on this function.
     TeacherLogic.prototype.BuildSearchQuery = function (searchData) {
         return {
             gender: this.GetGenderQuery(searchData.gender),
             teachesInstitutions: this.GetIncludesArrayQuery(searchData.teachesInstitutions),
             teachesSubjects: this.GetIncludesArrayQuery(searchData.teachesSubjects),
-            teachesAt: this.GetTeachesAtQuery(searchData.teachesAt)
+            teachesAt: this.GetTeachesAtQuery(searchData.teachesAt),
+            priceFrom: { $lt: searchData.toPrice }
         };
     };
     TeacherLogic.prototype.GetIncludesArrayQuery = function (data) {
