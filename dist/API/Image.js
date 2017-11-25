@@ -8,10 +8,10 @@ var logger = new logger_1.Logger();
 var router = express_1.Router();
 //#endregion
 //#region Routers
-router.post('/getimagebyid', function (req, res) {
+router.get('/getimagebyid/:imagePath', function (req, res) {
     try {
         logger.info("Enter", "image/getimagebyid");
-        var imageID = req.body.imagePath;
+        var imageID = req.params.imagePath;
         if (imageID == null || imageID == "") {
             logger.error("Model is not valid.", "image/getimagebyid");
             res.status(400).send("Model is not valid.");

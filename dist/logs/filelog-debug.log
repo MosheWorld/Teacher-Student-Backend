@@ -115,3 +115,11 @@
 {"fromPrice":30,"toPrice":190,"teachesAt":null,"teachesInstitutions":null,"teachesSubjects":null,"gender":2,"level":"debug","message":"Enter Teacher Logic SearchTeacher","timestamp":"2017-11-25T08:32:26.705Z"}
 {"level":"debug","message":"Enter Teacher DAL GetAll","timestamp":"2017-11-25T08:32:26.706Z"}
 {"level":"debug","message":"Enter Teacher Logic GetAll","timestamp":"2017-11-25T08:32:26.706Z"}
+{"level":"debug","message":"Enter Image Logic GetImageByID 5a149dc38c449131c03fe0e7","timestamp":"2017-11-25T09:36:39.675Z"}
+{"imageID":"5a149dc38c449131c03fe0e7","level":"debug","message":"Enter Image DAL GetImageByID","timestamp":"2017-11-25T09:36:39.676Z"}
+{"imageID":"5a149dc38c449131c03fe0e8","level":"debug","message":"Enter Image DAL GetImageByID","timestamp":"2017-11-25T09:36:49.490Z"}
+{"level":"debug","message":"Enter Image Logic GetImageByID 5a149dc38c449131c03fe0e8","timestamp":"2017-11-25T09:36:49.490Z"}
+{"level":"debug","message":"Enter Image Logic GetImageByID 5a149dc38c449131c03fe0e8","timestamp":"2017-11-25T09:38:18.507Z"}
+{"imageID":"5a149dc38c449131c03fe0e8","level":"debug","message":"Enter Image DAL GetImageByID","timestamp":"2017-11-25T09:38:18.507Z"}
+{"imageID":"5a149dc38c449131c03fe0e7","level":"debug","message":"Enter Image DAL GetImageByID","timestamp":"2017-11-25T09:39:18.806Z"}
+{"level":"debug","message":"Enter Image Logic GetImageByID 5a149dc38c449131c03fe0e7","timestamp":"2017-11-25T09:39:18.806Z"}

@@ -112,3 +112,11 @@
 {"level":"info","message":"Out teacher/search","timestamp":"2017-11-25T08:31:24.913Z"}
 {"level":"info","message":"Enter teacher/search","timestamp":"2017-11-25T08:32:26.702Z"}
 {"level":"info","message":"Out teacher/search","timestamp":"2017-11-25T08:32:26.708Z"}
+{"level":"info","message":"Enter image/getimagebyid","timestamp":"2017-11-25T09:36:39.674Z"}
+{"level":"info","message":"Out image/getimagebyid","timestamp":"2017-11-25T09:36:39.678Z"}
+{"level":"info","message":"Enter image/getimagebyid","timestamp":"2017-11-25T09:36:49.489Z"}
+{"level":"info","message":"Out image/getimagebyid","timestamp":"2017-11-25T09:36:49.490Z"}
+{"level":"info","message":"Enter image/getimagebyid","timestamp":"2017-11-25T09:38:18.501Z"}
+{"level":"info","message":"Out image/getimagebyid","timestamp":"2017-11-25T09:38:18.510Z"}
+{"level":"info","message":"Enter image/getimagebyid","timestamp":"2017-11-25T09:39:18.804Z"}
+{"level":"info","message":"Out image/getimagebyid","timestamp":"2017-11-25T09:39:18.810Z"}

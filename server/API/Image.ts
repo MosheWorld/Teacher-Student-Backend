@@ -9,11 +9,11 @@ const router: Router = Router();
 //#endregion
 
 //#region Routers
-router.post('/getimagebyid', (req: Request, res: Response) => {
+router.get('/getimagebyid/:imagePath', (req: Request, res: Response) => {
     try {
         logger.info("Enter", "image/getimagebyid");
 
-        let imageID = req.body.imagePath;
+        let imageID = req.params.imagePath;
 
         if (imageID == null || imageID == "") {
             logger.error("Model is not valid.", "image/getimagebyid");
