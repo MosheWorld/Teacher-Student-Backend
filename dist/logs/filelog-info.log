@@ -120,3 +120,7 @@
 {"level":"info","message":"Out image/getimagebyid","timestamp":"2017-11-25T09:38:18.510Z"}
 {"level":"info","message":"Enter image/getimagebyid","timestamp":"2017-11-25T09:39:18.804Z"}
 {"level":"info","message":"Out image/getimagebyid","timestamp":"2017-11-25T09:39:18.810Z"}
+{"level":"info","message":"Enter teacher/getall","timestamp":"2017-11-25T10:04:49.698Z"}
+{"level":"info","message":"Out teacher/getall","timestamp":"2017-11-25T10:04:49.702Z"}
+{"level":"info","message":"Enter teacher/getall","timestamp":"2017-11-25T10:07:16.380Z"}
+{"level":"info","message":"Out teacher/getall","timestamp":"2017-11-25T10:07:16.383Z"}

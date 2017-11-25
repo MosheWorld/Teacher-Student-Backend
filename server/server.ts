@@ -42,6 +42,8 @@ function MonitorRequestHttp(req) {
     Contact mmoshikoo@gmail.com for any personal request, responding fast.
     */
     return new Promise((resolve, reject) => {
+        if (req.method === "OPTIONS") { resolve(); return; }
+
         let d = new Date,
             dformat = [d.getDate(), d.getMonth() + 1, d.getFullYear()].
                 join('/') + ' ' + [d.getHours(), d.getMinutes(), d.getSeconds()].join(':');
