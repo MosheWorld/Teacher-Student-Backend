@@ -31,7 +31,7 @@ router.get('/getall', (req: Request, res: Response) => {
     }
 });
 
-router.post('/getbyid/:id', (req: Request, res: Response) => {
+router.get('/getbyid/:id', (req: Request, res: Response) => {
     try {
         logger.info("Enter", "teacher/getbyid" + req.params.id);
 

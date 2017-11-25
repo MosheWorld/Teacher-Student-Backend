@@ -25,7 +25,7 @@ router.get('/getall', function (req, res) {
         res.status(400).send(ex.message);
     }
 });
-router.post('/getbyid/:id', function (req, res) {
+router.get('/getbyid/:id', function (req, res) {
     try {
         logger.info("Enter", "teacher/getbyid" + req.params.id);
         var id = req.params.id;
