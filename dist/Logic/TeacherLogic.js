@@ -204,7 +204,7 @@ var TeacherLogic = /** @class */ (function () {
             teachesInstitutions: this.GetIncludesArrayQuery(searchData.teachesInstitutions),
             teachesSubjects: this.GetIncludesArrayQuery(searchData.teachesSubjects),
             teachesAt: this.GetTeachesAtQuery(searchData.teachesAt),
-            priceFrom: { $gt: searchData.toPrice }
+            priceFrom: { $lt: searchData.toPrice }
         };
     };
     TeacherLogic.prototype.GetIncludesArrayQuery = function (data) {
