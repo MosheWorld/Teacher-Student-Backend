@@ -121,7 +121,7 @@ export class TeacherLogic {
             teachesInstitutions: this.GetIncludesArrayQuery(searchData.teachesInstitutions),
             teachesSubjects: this.GetIncludesArrayQuery(searchData.teachesSubjects),
             teachesAt: this.GetTeachesAtQuery(searchData.teachesAt),
-            priceFrom: { $lt: searchData.toPrice }
+            priceFrom: { $gt: searchData.toPrice }
         };
     }
 

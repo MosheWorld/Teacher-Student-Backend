@@ -1,2 +1,1 @@
-{"level":"error","message":"Model is not valid. teacher/search","timestamp":"2017-11-24T13:08:23.429Z"}{"level":"error","message":"Out teacher/getall Converting circular structure to JSON","timestamp":"2017-11-24T22:04:59.881Z"}
-{"level":"error","message":"Out teacher/getall Converting circular structure to JSON","timestamp":"2017-11-24T22:05:09.469Z"}
+{"level":"info","message":"Out teacher/getall","timestamp":"2017-11-24T22:12:02.923Z"}
