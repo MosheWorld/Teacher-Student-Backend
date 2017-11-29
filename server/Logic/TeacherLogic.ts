@@ -156,19 +156,19 @@ export class TeacherLogic {
         }
     }
 
-    private async SendEmailToTeacher(teacherData: TeacherInterface, subject: string, emailTo: SendEmailTo) {
-        this.logger.debug("Enter Teacher", "Logic SendEmailToTeacher", {teacherData:teacherData, });
+    private async SendEmailToTeacher(teacherData: TeacherInterface, subject: string, emailToEnum: SendEmailTo) {
+        this.logger.debug("Enter Teacher", "Logic SendEmailToTeacher", { teacherData: teacherData, subject: subject, emailToEnum: emailToEnum });
 
         let eManager = new Emailer();
 
         let body = "";
         let email = "";
 
-        if (emailTo == SendEmailTo.Teacher) {
+        if (emailToEnum == SendEmailTo.Teacher) {
             body = '<div dir="ltr"></div>Hello ' + teacherData.firstName + ' ' + teacherData.lastName + ' and welcome to StudyHub.<br/> We hope you will find students from out application, improve your personal details and it will be fine.<br/>.<br/>Enjoy from StudyHub team and especially Moshe Binieli.<br/></div>';
             email = teacherData.email;
-        } else if (emailTo == SendEmailTo.Owner) {
-            body = 'Hey Moshe Binieli, new teacher has joined to your application, his name is '+ teacherData.firstName + ' ' + teacherData.lastName +', you may see him at databases for more information, have a good day.';
+        } else if (emailToEnum == SendEmailTo.Owner) {
+            body = 'Hey Moshe Binieli, new teacher has joined to your application, his name is ' + teacherData.firstName + ' ' + teacherData.lastName + ', you may see him at databases for more information, have a good day.';
             email = "mmoshikoo@gmail.com";
         }
 

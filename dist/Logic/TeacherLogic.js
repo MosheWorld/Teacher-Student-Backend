@@ -236,19 +236,19 @@ var TeacherLogic = /** @class */ (function () {
             return data;
         }
     };
-    TeacherLogic.prototype.SendEmailToTeacher = function (teacherData, subject, emailTo) {
+    TeacherLogic.prototype.SendEmailToTeacher = function (teacherData, subject, emailToEnum) {
         return __awaiter(this, void 0, void 0, function () {
             var eManager, body, email;
             return __generator(this, function (_a) {
-                this.logger.debug("Enter Teacher", "Logic SendEmailToTeacher", { teacherData: teacherData, });
+                this.logger.debug("Enter Teacher", "Logic SendEmailToTeacher", { teacherData: teacherData, subject: subject, emailToEnum: emailToEnum });
                 eManager = new Emailer_1.Emailer();
                 body = "";
                 email = "";
-                if (emailTo == SendEmailTo_Enum_1.SendEmailTo.Teacher) {
+                if (emailToEnum == SendEmailTo_Enum_1.SendEmailTo.Teacher) {
                     body = '<div dir="ltr"></div>Hello ' + teacherData.firstName + ' ' + teacherData.lastName + ' and welcome to StudyHub.<br/> We hope you will find students from out application, improve your personal details and it will be fine.<br/>.<br/>Enjoy from StudyHub team and especially Moshe Binieli.<br/></div>';
                     email = teacherData.email;
                 }
-                else if (emailTo == SendEmailTo_Enum_1.SendEmailTo.Owner) {
+                else if (emailToEnum == SendEmailTo_Enum_1.SendEmailTo.Owner) {
                     body = 'Hey Moshe Binieli, new teacher has joined to your application, his name is ' + teacherData.firstName + ' ' + teacherData.lastName + ', you may see him at databases for more information, have a good day.';
                     email = "mmoshikoo@gmail.com";
                 }
