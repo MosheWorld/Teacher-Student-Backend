@@ -1,1 +1,16 @@
-{"level":"info","message":"Out teacher/getall","timestamp":"2017-11-24T22:12:02.923Z"}
+{"level":"info","message":"Out teacher/getall","timestamp":"2017-11-24T22:12:02.923Z"}{"level":"info","message":"Enter teacher/create","timestamp":"2017-11-29T20:12:12.771Z"}
+{"level":"info","message":"Out teacher/create","timestamp":"2017-11-29T20:12:12.774Z"}
+{"level":"info","message":"Enter teacher/create","timestamp":"2017-11-29T20:13:08.743Z"}
+{"level":"info","message":"Out teacher/create","timestamp":"2017-11-29T20:13:08.747Z"}
+{"level":"info","message":"Enter teacher/create","timestamp":"2017-11-29T20:21:40.225Z"}
+{"level":"info","message":"Out teacher/create","timestamp":"2017-11-29T20:21:40.228Z"}
+{"level":"info","message":"Enter teacher/create","timestamp":"2017-11-29T20:23:10.417Z"}
+{"level":"info","message":"Out teacher/create","timestamp":"2017-11-29T20:23:10.421Z"}
+{"level":"info","message":"Enter teacher/deletebyid/5a1f149ccaa9d102e0d48bf8","timestamp":"2017-11-29T20:26:24.831Z"}
+{"level":"info","message":"Out teacher/deletebyid/5a1f149ccaa9d102e0d48bf8","timestamp":"2017-11-29T20:26:24.836Z"}
+{"level":"info","message":"Enter teacher/deletebyid/5a1f14d4fd30f927b0cbf309","timestamp":"2017-11-29T20:26:42.515Z"}
+{"level":"info","message":"Out teacher/deletebyid/5a1f14d4fd30f927b0cbf309","timestamp":"2017-11-29T20:26:42.518Z"}
+{"level":"info","message":"Enter teacher/deletebyid/5a1f16d4f6f79f1830f14234","timestamp":"2017-11-29T20:26:48.028Z"}
+{"level":"info","message":"Out teacher/deletebyid/5a1f16d4f6f79f1830f14234","timestamp":"2017-11-29T20:26:48.029Z"}
+{"level":"info","message":"Enter teacher/deletebyid/5a1f172e7091f80048dca154","timestamp":"2017-11-29T20:26:54.217Z"}
+{"level":"info","message":"Out teacher/deletebyid/5a1f172e7091f80048dca154","timestamp":"2017-11-29T20:26:54.221Z"}

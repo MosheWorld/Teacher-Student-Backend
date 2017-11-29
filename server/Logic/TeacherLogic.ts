@@ -1,9 +1,11 @@
+import { SendEmailTo } from './../Enums/SendEmailTo.Enum';
 import { _ } from 'lodash';
 
 import { ObjectID } from 'mongodb';
 import { ImageLogic } from './ImageLogic';
 import { Logger } from './../LogService/logger';
 import { TeacherDal } from './../DAL/TeacherDAL';
+import { Emailer } from './../Integration/Emailer';
 import { TeachesAt } from '../Enums/TeachesAt.Enum';
 import { TeacherInterface } from './../Interfaces/Teacher.interface';
 
@@ -41,6 +43,7 @@ export class TeacherLogic {
         let tDal = new TeacherDal();
         let iManager = new ImageLogic();
 
+
         let image = teacherData.image;
         teacherData.image = undefined;
 
@@ -52,6 +55,10 @@ export class TeacherLogic {
         };
 
         const imageObjectID = await iManager.Create(newImageObject);
+
+        // Those three functions runs in parallel to reduce performance.
+        this.SendEmailToTeacher(teacherData, 'Welcome new teacher ✔', SendEmailTo.Teacher);
+        this.SendEmailToTeacher(teacherData, 'New teacher has joined ✔', SendEmailTo.Owner);
 
         tDal.UpdateImage(teacherObjectID, imageObjectID.toString());
     }
@@ -147,6 +154,25 @@ export class TeacherLogic {
         } else {
             return data;
         }
+    }
+
+    private async SendEmailToTeacher(teacherData: TeacherInterface, subject: string, emailTo: SendEmailTo) {
+        this.logger.debug("Enter Teacher", "Logic SendEmailToTeacher", {teacherData:teacherData, });
+
+        let eManager = new Emailer();
+
+        let body = "";
+        let email = "";
+
+        if (emailTo == SendEmailTo.Teacher) {
+            body = '<div dir="ltr"></div>Hello ' + teacherData.firstName + ' ' + teacherData.lastName + ' and welcome to StudyHub.<br/> We hope you will find students from out application, improve your personal details and it will be fine.<br/>.<br/>Enjoy from StudyHub team and especially Moshe Binieli.<br/></div>';
+            email = teacherData.email;
+        } else if (emailTo == SendEmailTo.Owner) {
+            body = 'Hey Moshe Binieli, new teacher has joined to your application, his name is '+ teacherData.firstName + ' ' + teacherData.lastName +', you may see him at databases for more information, have a good day.';
+            email = "mmoshikoo@gmail.com";
+        }
+
+        eManager.SendEmailAsync(email, subject, body);
     }
     //#endregion
 }

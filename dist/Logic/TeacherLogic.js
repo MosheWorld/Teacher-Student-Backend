@@ -35,10 +35,12 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+var SendEmailTo_Enum_1 = require("./../Enums/SendEmailTo.Enum");
 var mongodb_1 = require("mongodb");
 var ImageLogic_1 = require("./ImageLogic");
 var logger_1 = require("./../LogService/logger");
 var TeacherDAL_1 = require("./../DAL/TeacherDAL");
+var Emailer_1 = require("./../Integration/Emailer");
 var TeachesAt_Enum_1 = require("../Enums/TeachesAt.Enum");
 var TeacherLogic = /** @class */ (function () {
     //#endregion
@@ -101,6 +103,9 @@ var TeacherLogic = /** @class */ (function () {
                         return [4 /*yield*/, iManager.Create(newImageObject)];
                     case 2:
                         imageObjectID = _a.sent();
+                        // Those three functions runs in parallel to reduce performance.
+                        this.SendEmailToTeacher(teacherData, 'Welcome new teacher ✔', SendEmailTo_Enum_1.SendEmailTo.Teacher);
+                        this.SendEmailToTeacher(teacherData, 'New teacher has joined ✔', SendEmailTo_Enum_1.SendEmailTo.Owner);
                         tDal.UpdateImage(teacherObjectID, imageObjectID.toString());
                         return [2 /*return*/];
                 }
@@ -230,6 +235,27 @@ var TeacherLogic = /** @class */ (function () {
         else {
             return data;
         }
+    };
+    TeacherLogic.prototype.SendEmailToTeacher = function (teacherData, subject, emailTo) {
+        return __awaiter(this, void 0, void 0, function () {
+            var eManager, body, email;
+            return __generator(this, function (_a) {
+                this.logger.debug("Enter Teacher", "Logic SendEmailToTeacher", { teacherData: teacherData, });
+                eManager = new Emailer_1.Emailer();
+                body = "";
+                email = "";
+                if (emailTo == SendEmailTo_Enum_1.SendEmailTo.Teacher) {
+                    body = '<div dir="ltr"></div>Hello ' + teacherData.firstName + ' ' + teacherData.lastName + ' and welcome to StudyHub.<br/> We hope you will find students from out application, improve your personal details and it will be fine.<br/>.<br/>Enjoy from StudyHub team and especially Moshe Binieli.<br/></div>';
+                    email = teacherData.email;
+                }
+                else if (emailTo == SendEmailTo_Enum_1.SendEmailTo.Owner) {
+                    body = 'Hey Moshe Binieli, new teacher has joined to your application, his name is ' + teacherData.firstName + ' ' + teacherData.lastName + ', you may see him at databases for more information, have a good day.';
+                    email = "mmoshikoo@gmail.com";
+                }
+                eManager.SendEmailAsync(email, subject, body);
+                return [2 /*return*/];
+            });
+        });
     };
     return TeacherLogic;
 }());
