@@ -1,1 +1,3 @@
 node_modules/
+dist/Config/Config.json
+server/Config/Config.json
