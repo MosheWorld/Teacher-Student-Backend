@@ -1,4 +1,4 @@
-require("./config/config");
+require("./Config/Config");
 
 import * as express from "express";
 import * as mongoose from "mongoose";
