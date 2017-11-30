@@ -1,1 +1,12 @@
-{"level":"debug","message":"Enter Teacher Logic GetByID 5a1f149ccaa9d102e0d48bf8","timestamp":"2017-11-29T20:26:24.833Z"}
+{"level":"debug","message":"Enter Teacher Logic GetByID 5a1f149ccaa9d102e0d48bf8","timestamp":"2017-11-29T20:26:24.833Z"}{"level":"info","message":"Enter teacher/getall","timestamp":"2017-11-30T19:44:27.196Z"}
+{"level":"info","message":"Out teacher/getall","timestamp":"2017-11-30T19:44:27.200Z"}
+{"level":"info","message":"Enter teacher/getall","timestamp":"2017-11-30T19:46:46.419Z"}
+{"level":"info","message":"Out teacher/getall","timestamp":"2017-11-30T19:46:46.424Z"}
+{"level":"info","message":"Enter teacher/getall","timestamp":"2017-11-30T19:53:38.138Z"}
+{"level":"info","message":"Out teacher/getall","timestamp":"2017-11-30T19:53:38.143Z"}
+{"level":"info","message":"Enter teacher/getall","timestamp":"2017-11-30T20:04:33.801Z"}
+{"level":"info","message":"Out teacher/getall","timestamp":"2017-11-30T20:04:33.805Z"}
+{"level":"info","message":"Enter teacher/getall","timestamp":"2017-11-30T20:04:37.753Z"}
+{"level":"info","message":"Out teacher/getall","timestamp":"2017-11-30T20:04:37.758Z"}
+{"level":"info","message":"Enter teacher/getall","timestamp":"2017-11-30T20:08:35.089Z"}
+{"level":"info","message":"Out teacher/getall","timestamp":"2017-11-30T20:08:35.093Z"}

@@ -1,1 +1,12 @@
-{"level":"debug","message":"Enter Teacher Logic GetByID 5a1f149ccaa9d102e0d48bf8","timestamp":"2017-11-29T20:26:24.833Z"}
+{"level":"debug","message":"Enter Teacher Logic GetByID 5a1f149ccaa9d102e0d48bf8","timestamp":"2017-11-29T20:26:24.833Z"}{"level":"debug","message":"Enter Teacher Logic GetAll","timestamp":"2017-11-30T19:44:27.198Z"}
+{"level":"debug","message":"Enter Teacher DAL GetAll","timestamp":"2017-11-30T19:44:27.198Z"}
+{"level":"debug","message":"Enter Teacher Logic GetAll","timestamp":"2017-11-30T19:46:46.421Z"}
+{"level":"debug","message":"Enter Teacher DAL GetAll","timestamp":"2017-11-30T19:46:46.422Z"}
+{"level":"debug","message":"Enter Teacher Logic GetAll","timestamp":"2017-11-30T19:53:38.140Z"}
+{"level":"debug","message":"Enter Teacher DAL GetAll","timestamp":"2017-11-30T19:53:38.140Z"}
+{"level":"debug","message":"Enter Teacher Logic GetAll","timestamp":"2017-11-30T20:04:33.801Z"}
+{"level":"debug","message":"Enter Teacher DAL GetAll","timestamp":"2017-11-30T20:04:33.801Z"}
+{"level":"debug","message":"Enter Teacher Logic GetAll","timestamp":"2017-11-30T20:04:37.757Z"}
+{"level":"debug","message":"Enter Teacher DAL GetAll","timestamp":"2017-11-30T20:04:37.757Z"}
+{"level":"debug","message":"Enter Teacher Logic GetAll","timestamp":"2017-11-30T20:08:35.091Z"}
+{"level":"debug","message":"Enter Teacher DAL GetAll","timestamp":"2017-11-30T20:08:35.092Z"}
