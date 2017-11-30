@@ -10,3 +10,11 @@
 {"level":"info","message":"Out teacher/getall","timestamp":"2017-11-30T20:04:37.758Z"}
 {"level":"info","message":"Enter teacher/getall","timestamp":"2017-11-30T20:08:35.089Z"}
 {"level":"info","message":"Out teacher/getall","timestamp":"2017-11-30T20:08:35.093Z"}
+{"level":"info","message":"Enter teacher/getall","timestamp":"2017-11-30T20:24:41.669Z"}
+{"level":"info","message":"Out teacher/getall","timestamp":"2017-11-30T20:24:41.673Z"}
+{"level":"info","message":"Enter teacher/getall","timestamp":"2017-11-30T20:29:36.595Z"}
+{"level":"info","message":"Out teacher/getall","timestamp":"2017-11-30T20:29:36.599Z"}
+{"level":"info","message":"Enter teacher/create","timestamp":"2017-11-30T20:33:35.670Z"}
+{"level":"info","message":"Out teacher/create","timestamp":"2017-11-30T20:33:35.675Z"}
+{"level":"info","message":"Enter teacher/deletebyid/5a206b1fd103d825505e36a6","timestamp":"2017-11-30T20:34:11.238Z"}
+{"level":"info","message":"Out teacher/deletebyid/5a206b1fd103d825505e36a6","timestamp":"2017-11-30T20:34:11.240Z"}

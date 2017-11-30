@@ -21,8 +21,8 @@ var Emailer = /** @class */ (function () {
         return nodemailer.createTransport({
             service: 'Gmail',
             auth: {
-                user: 'studyhubemail@gmail.com',
-                pass: 'nuaheuvhpv'
+                user: process.env.EMAIL_USERNAME,
+                pass: process.env.EMAIL_PASSWORD
             }
         });
     };

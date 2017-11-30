@@ -10,3 +10,20 @@
 {"level":"debug","message":"Enter Teacher DAL GetAll","timestamp":"2017-11-30T20:04:37.757Z"}
 {"level":"debug","message":"Enter Teacher Logic GetAll","timestamp":"2017-11-30T20:08:35.091Z"}
 {"level":"debug","message":"Enter Teacher DAL GetAll","timestamp":"2017-11-30T20:08:35.092Z"}
+{"level":"debug","message":"Enter Teacher Logic GetAll","timestamp":"2017-11-30T20:24:41.671Z"}
+{"level":"debug","message":"Enter Teacher DAL GetAll","timestamp":"2017-11-30T20:24:41.671Z"}
+{"level":"debug","message":"Enter Teacher Logic GetAll","timestamp":"2017-11-30T20:29:36.597Z"}
+{"level":"debug","message":"Enter Teacher DAL GetAll","timestamp":"2017-11-30T20:29:36.597Z"}
+{"firstName":"Test","lastName":"Tester","age":25,"email":"mmoshikoo@gmail.com","priceFrom":80,"priceTo":150,"phone":"0547574769","personalMessage":"Test on fire.","teachesAt":2,"teachesInstitutions":[4096,8192],"gender":1,"recommendations":[],"rate":0,"image":"12345","teachesSubjects":[1,2,3],"level":"debug","message":"Enter Teacher Logic Create","timestamp":"2017-11-30T20:33:35.671Z"}
+{"firstName":"Test","lastName":"Tester","age":25,"email":"mmoshikoo@gmail.com","priceFrom":80,"priceTo":150,"phone":"0547574769","personalMessage":"Test on fire.","teachesAt":2,"teachesInstitutions":[4096,8192],"gender":1,"recommendations":[],"rate":0,"teachesSubjects":[1,2,3],"level":"debug","message":"Enter Teacher DAL Create","timestamp":"2017-11-30T20:33:35.672Z"}
+{"teacherID":{"_bsontype":"ObjectID","id":{"0":90,"1":32,"2":107,"3":31,"4":209,"5":3,"6":216,"7":37,"8":80,"9":94,"10":54,"11":166}},"image":"12345","level":"debug","message":"Enter Create Logic Create","timestamp":"2017-11-30T20:33:35.879Z"}
+{"teacherID":{"_bsontype":"ObjectID","id":{"0":90,"1":32,"2":107,"3":31,"4":209,"5":3,"6":216,"7":37,"8":80,"9":94,"10":54,"11":166}},"image":"12345","level":"debug","message":"Enter Create DAL Create","timestamp":"2017-11-30T20:33:35.880Z"}
+{"teacherData":{"firstName":"Test","lastName":"Tester","age":25,"email":"mmoshikoo@gmail.com","priceFrom":80,"priceTo":150,"phone":"0547574769","personalMessage":"Test on fire.","teachesAt":2,"teachesInstitutions":[4096,8192],"gender":1,"recommendations":[],"rate":0,"teachesSubjects":[1,2,3],"_id":{"_bsontype":"ObjectID","id":{"0":90,"1":32,"2":107,"3":31,"4":209,"5":3,"6":216,"7":37,"8":80,"9":94,"10":54,"11":166}}},"subject":"Welcome new teacher ✔","emailToEnum":2,"level":"debug","message":"Enter Teacher Logic SendEmailToTeacher","timestamp":"2017-11-30T20:33:36.110Z"}
+{"id":{"_bsontype":"ObjectID","id":{"0":90,"1":32,"2":107,"3":31,"4":209,"5":3,"6":216,"7":37,"8":80,"9":94,"10":54,"11":166}},"image":"5a206b1fd103d825505e36a7","level":"debug","message":"Enter Teacher DAL UpdateImage","timestamp":"2017-11-30T20:33:36.142Z"}
+{"teacherData":{"firstName":"Test","lastName":"Tester","age":25,"email":"mmoshikoo@gmail.com","priceFrom":80,"priceTo":150,"phone":"0547574769","personalMessage":"Test on fire.","teachesAt":2,"teachesInstitutions":[4096,8192],"gender":1,"recommendations":[],"rate":0,"teachesSubjects":[1,2,3],"_id":{"_bsontype":"ObjectID","id":{"0":90,"1":32,"2":107,"3":31,"4":209,"5":3,"6":216,"7":37,"8":80,"9":94,"10":54,"11":166}}},"subject":"New teacher has joined ✔","emailToEnum":1,"level":"debug","message":"Enter Teacher Logic SendEmailToTeacher","timestamp":"2017-11-30T20:33:36.138Z"}
+{"level":"debug","message":"Enter Teacher Logic Delete  5a206b1fd103d825505e36a6","timestamp":"2017-11-30T20:34:11.238Z"}
+{"level":"debug","message":"Enter Teacher Logic GetByID 5a206b1fd103d825505e36a6","timestamp":"2017-11-30T20:34:11.239Z"}
+{"id":"5a206b1fd103d825505e36a6","level":"debug","message":"Enter Teacher DAL GetAll","timestamp":"2017-11-30T20:34:11.239Z"}
+{"id":"5a206b1fd103d825505e36a6","level":"debug","message":"Enter Teacher DAL DeleteByID","timestamp":"2017-11-30T20:34:12.739Z"}
+{"level":"debug","message":"Enter DeleteByID Logic DeleteByID 5a206b1fd103d825505e36a7","timestamp":"2017-11-30T20:34:12.739Z"}
+{"level":"debug","message":"Enter DeleteByID DAL DeleteByID 5a206b1fd103d825505e36a7","timestamp":"2017-11-30T20:34:12.739Z"}

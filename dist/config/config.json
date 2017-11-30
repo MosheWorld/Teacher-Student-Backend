@@ -1,0 +1,8 @@
+{
+    "development": {
+        "PORT": 8000,
+        "MONGODB_URI": "mongodb://Moshe:ab123456@ds133465.mlab.com:33465/teacher-student-database",
+        "EMAIL_USERNAME": "studyhubemail@gmail.com",
+        "EMAIL_PASSWORD": "nuaheuvhpv"
+    }
+}
