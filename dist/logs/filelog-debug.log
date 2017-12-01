@@ -27,3 +27,15 @@
 {"id":"5a206b1fd103d825505e36a6","level":"debug","message":"Enter Teacher DAL DeleteByID","timestamp":"2017-11-30T20:34:12.739Z"}
 {"level":"debug","message":"Enter DeleteByID Logic DeleteByID 5a206b1fd103d825505e36a7","timestamp":"2017-11-30T20:34:12.739Z"}
 {"level":"debug","message":"Enter DeleteByID DAL DeleteByID 5a206b1fd103d825505e36a7","timestamp":"2017-11-30T20:34:12.739Z"}
+{"level":"debug","message":"Enter Teacher Router teacher/getall","timestamp":"2017-12-01T08:42:16.545Z"}
+{"level":"debug","message":"Enter Teacher Logic GetAll","timestamp":"2017-12-01T08:42:16.545Z"}
+{"level":"debug","message":"Enter Teacher DAL GetAll","timestamp":"2017-12-01T08:42:16.545Z"}
+{"level":"debug","message":"Enter Teacher Router teacher/getall","timestamp":"2017-12-01T08:42:34.147Z"}
+{"level":"debug","message":"Enter Teacher Logic GetAll","timestamp":"2017-12-01T08:42:34.149Z"}
+{"level":"debug","message":"Enter Teacher DAL GetAll","timestamp":"2017-12-01T08:42:34.150Z"}
+{"level":"debug","message":"Enter Teacher Router teacher/getall","timestamp":"2017-12-01T08:43:11.282Z"}
+{"level":"debug","message":"Enter Teacher Logic GetAll","timestamp":"2017-12-01T08:43:11.283Z"}
+{"level":"debug","message":"Enter Teacher DAL GetAll","timestamp":"2017-12-01T08:43:11.283Z"}
+{"level":"debug","message":"Enter Teacher Router teacher/getall","timestamp":"2017-12-01T08:43:35.688Z"}
+{"level":"debug","message":"Enter Teacher DAL GetAll","timestamp":"2017-12-01T08:43:35.689Z"}
+{"level":"debug","message":"Enter Teacher Logic GetAll","timestamp":"2017-12-01T08:43:35.689Z"}

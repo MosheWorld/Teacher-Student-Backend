@@ -18,3 +18,7 @@
 {"level":"info","message":"Out teacher/create","timestamp":"2017-11-30T20:33:35.675Z"}
 {"level":"info","message":"Enter teacher/deletebyid/5a206b1fd103d825505e36a6","timestamp":"2017-11-30T20:34:11.238Z"}
 {"level":"info","message":"Out teacher/deletebyid/5a206b1fd103d825505e36a6","timestamp":"2017-11-30T20:34:11.240Z"}
+{"level":"info","message":"Out teacher/getall","timestamp":"2017-12-01T08:42:16.547Z"}
+{"level":"info","message":"Out teacher/getall","timestamp":"2017-12-01T08:42:34.152Z"}
+{"level":"info","message":"Out teacher/getall","timestamp":"2017-12-01T08:43:11.285Z"}
+{"level":"info","message":"Out teacher/getall","timestamp":"2017-12-01T08:43:35.689Z"}
