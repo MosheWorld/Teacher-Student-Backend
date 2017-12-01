@@ -10,7 +10,7 @@ var router = express_1.Router();
 //#region Routers
 router.get('/getall', function (req, res) {
     try {
-        logger.info("Enter", "teacher/getall");
+        logger.debug("Enter Teacher", "Router teacher/getall");
         var tManager = new TeacherLogic_1.TeacherLogic();
         tManager.GetAll()
             .then(function (teachers) {
@@ -27,7 +27,7 @@ router.get('/getall', function (req, res) {
 });
 router.get('/getbyid/:id', function (req, res) {
     try {
-        logger.info("Enter", "teacher/getbyid" + req.params.id);
+        logger.debug("Enter Teacher", "Router teacher/getbyid" + req.params.id);
         var id = req.params.id;
         if (id == null) {
             logger.error("Model is not valid.", "teacher/getbyid/");
@@ -49,7 +49,7 @@ router.get('/getbyid/:id', function (req, res) {
 });
 router.post('/getlistofteachersbyid', function (req, res) {
     try {
-        logger.info("Enter", "teacher/getlistofteachersbyid");
+        logger.debug("Enter Teacher", "Router teacher/getlistofteachersbyid");
         if (req.body == null || req.body.listOfTeacherID == null || !IsListOfIDValid(req.body.listOfTeacherID)) {
             logger.error("Model is not valid.", "teacher/getlistofteachersbyid", req.body);
             return res.status(400).send("Model is not valid.");
@@ -71,7 +71,7 @@ router.post('/getlistofteachersbyid', function (req, res) {
 });
 router.post('/search', function (req, res) {
     try {
-        logger.info("Enter", "teacher/search");
+        logger.debug("Enter Teacher", "Router teacher/search");
         if (req.body == null || !IsModelSearchValid(req.body)) {
             logger.error("Model is not valid.", "teacher/search", req.body);
             return res.status(400).send("Model is not valid.");
@@ -101,7 +101,7 @@ router.post('/search', function (req, res) {
 });
 router.post('/create', function (req, res) {
     try {
-        logger.info("Enter", "teacher/create");
+        logger.debug("Enter Teacher", "Router teacher/create");
         if (req.body == null || !IsModelCreateValid(req.body)) {
             logger.error("Model is not valid.", "teacher/create", req.body);
             return res.status(400).send("Model is not valid.");
@@ -130,7 +130,7 @@ router.post('/create', function (req, res) {
 });
 router.post('/addrecommend', function (req, res) {
     try {
-        logger.info("Enter", "teacher/addrecommend");
+        logger.debug("Enter Teacher", "Router teacher/addrecommend");
         if (req.body == null || IsStringNullOrEmpty(req.body.id) || !IsRecommendValid(req.body.recommendData)) {
             logger.error("Model is not valid.", "teacher/addrecommend", req.body);
             return res.status(400).send("Model is not valid.");
@@ -156,7 +156,7 @@ router.post('/addrecommend', function (req, res) {
 });
 router.delete('/deletebyid/:id', function (req, res) {
     try {
-        logger.info("Enter", "teacher/deletebyid/" + req.params.id);
+        logger.debug("Enter Teacher", "Router teacher/deletebyid/" + req.params.id);
         var id = req.params.id;
         if (id == null) {
             logger.error("Model is not valid.", "teacher/delete/");
@@ -179,6 +179,7 @@ router.delete('/deletebyid/:id', function (req, res) {
 //#endregion
 //#region Functions
 function IsModelCreateValid(model) {
+    logger.debug("Enter Teacher", "Router IsModelCreateValid", { model: model });
     if (model == null ||
         model.age == null || model.age < 0 || model.age > 120 ||
         model.rate == null || model.rate < 0 || model.rate > 5 ||
@@ -201,6 +202,7 @@ function IsModelCreateValid(model) {
     }
 }
 function IsModelSearchValid(model) {
+    logger.debug("Enter Teacher", "Router IsModelSearchValid", { model: model });
     if (model == null ||
         model.fromPrice == null || model.fromPrice < 0 ||
         model.toPrice == null || model.toPrice < 0 ||
@@ -212,6 +214,7 @@ function IsModelSearchValid(model) {
     }
 }
 function IsRecommendValid(model) {
+    logger.debug("Enter Teacher", "Router IsRecommendValid", { model: model });
     if (model == null ||
         model.rate == null || model.rate < 0 || model.rate > 5 ||
         IsStringNullOrEmpty(model.email) ||
@@ -224,6 +227,7 @@ function IsRecommendValid(model) {
     }
 }
 function IsStringNullOrEmpty(str) {
+    logger.debug("Enter Teacher", "Router IsStringNullOrEmpty", { data: str });
     if (str == null || str === "") {
         return true;
     }
@@ -232,6 +236,7 @@ function IsStringNullOrEmpty(str) {
     }
 }
 function IsListOfIDValid(listOfTeacherID) {
+    logger.debug("Enter Teacher", "Router IsListOfIDValid", { data: listOfTeacherID });
     if (listOfTeacherID == null || listOfTeacherID.length === 0) {
         return false;
     }

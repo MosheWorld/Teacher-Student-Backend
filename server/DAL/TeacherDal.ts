@@ -31,7 +31,7 @@ export class TeacherDal {
 
     public GetByID(id: any): Promise<any> {
         return new Promise((resolve, reject) => {
-            this.logger.debug("Enter Teacher", "DAL GetAll", { id: id });
+            this.logger.debug("Enter Teacher", "DAL GetByID", { id: id });
 
             let teacher = DataBaseConnector.findOne({ _id: new ObjectID(id) }, (error, teacher) => {
                 if (error) { reject("Error occurred when gettings teacher from database."); }
@@ -83,7 +83,7 @@ export class TeacherDal {
             this.logger.debug("Enter Teacher", "DAL UpdateImage", { id: id, image: imagePath });
 
             DataBaseConnector.collection.updateOne({ _id: id }, { $set: { "image": imagePath }, }
-                ,(error) => {
+                , (error) => {
                     if (error) { reject("Error occurred when updating imagePath at database."); }
                     resolve();
                 });
@@ -92,7 +92,7 @@ export class TeacherDal {
 
     public SearchTeacher(query: any): Promise<any> {
         return new Promise((resolve, reject) => {
-            this.logger.debug("Enter Teacher", "DAL SearchTeacher");
+            this.logger.debug("Enter Teacher", "DAL SearchTeacher", { query: query });
 
             let teachers = DataBaseConnector.find(query, (error, teachers) => {
                 if (error) { reject("Error occurred when find teachers by query at database."); }

@@ -29,7 +29,7 @@ export class ImageDal {
 
     public Create(TeacherIDImage: any) {
         return new Promise((resolve, reject) => {
-            this.logger.debug("Enter Create", "DAL Create", TeacherIDImage);
+            this.logger.debug("Enter Image", "DAL Create", TeacherIDImage);
 
             DataBaseConnector.collection.insert(TeacherIDImage, (error) => {
                 if (error) { reject("Error occurred when inserting to Teacher Create database."); }
@@ -40,7 +40,7 @@ export class ImageDal {
 
     public DeleteByID(id) {
         return new Promise((resolve, reject) => {
-            this.logger.debug("Enter DeleteByID", "DAL DeleteByID", id);
+            this.logger.debug("Enter Image", "DAL DeleteByID", { id: id });
 
             DataBaseConnector.deleteOne({ _id: new ObjectID(id) }, (error) => {
                 if (error) { reject("Error occurred when deleting image from database."); }

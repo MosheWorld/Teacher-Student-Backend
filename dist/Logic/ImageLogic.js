@@ -67,7 +67,7 @@ var ImageLogic = /** @class */ (function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        this.logger.debug("Enter Create", "Logic Create", TeacherIDImage);
+                        this.logger.debug("Enter Image", "Logic Create", TeacherIDImage);
                         iManager = new ImageDal_1.ImageDal();
                         return [4 /*yield*/, iManager.Create(TeacherIDImage)];
                     case 1: return [2 /*return*/, _a.sent()];
@@ -79,7 +79,7 @@ var ImageLogic = /** @class */ (function () {
         return __awaiter(this, void 0, void 0, function () {
             var iManager;
             return __generator(this, function (_a) {
-                this.logger.debug("Enter DeleteByID", "Logic DeleteByID", id);
+                this.logger.debug("Enter Image", "Logic DeleteByID", id);
                 iManager = new ImageDal_1.ImageDal();
                 iManager.DeleteByID(id);
                 return [2 /*return*/];

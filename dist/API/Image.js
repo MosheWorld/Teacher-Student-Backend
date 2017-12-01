@@ -10,7 +10,7 @@ var router = express_1.Router();
 //#region Routers
 router.get('/getimagebyid/:imagePath', function (req, res) {
     try {
-        logger.info("Enter", "image/getimagebyid");
+        logger.debug("Enter Image", "Router image/getimagebyid");
         var imageID = req.params.imagePath;
         if (imageID == null || imageID == "") {
             logger.error("Model is not valid.", "image/getimagebyid");

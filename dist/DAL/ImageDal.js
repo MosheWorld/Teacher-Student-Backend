@@ -27,7 +27,7 @@ var ImageDal = /** @class */ (function () {
     ImageDal.prototype.Create = function (TeacherIDImage) {
         var _this = this;
         return new Promise(function (resolve, reject) {
-            _this.logger.debug("Enter Create", "DAL Create", TeacherIDImage);
+            _this.logger.debug("Enter Image", "DAL Create", TeacherIDImage);
             ImageModel_1.default.collection.insert(TeacherIDImage, function (error) {
                 if (error) {
                     reject("Error occurred when inserting to Teacher Create database.");
@@ -39,7 +39,7 @@ var ImageDal = /** @class */ (function () {
     ImageDal.prototype.DeleteByID = function (id) {
         var _this = this;
         return new Promise(function (resolve, reject) {
-            _this.logger.debug("Enter DeleteByID", "DAL DeleteByID", id);
+            _this.logger.debug("Enter Image", "DAL DeleteByID", { id: id });
             ImageModel_1.default.deleteOne({ _id: new mongodb_1.ObjectID(id) }, function (error) {
                 if (error) {
                     reject("Error occurred when deleting image from database.");

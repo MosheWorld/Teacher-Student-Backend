@@ -12,7 +12,7 @@ const router: Router = Router();
 //#region Routers
 router.get('/getall', (req: Request, res: Response) => {
     try {
-        logger.info("Enter", "contactus/getall");
+        logger.debug("Enter ContactUs", "Router contactus/getall");
 
         let cManager = new ContactUsLogic();
 
@@ -32,7 +32,7 @@ router.get('/getall', (req: Request, res: Response) => {
 
 router.post('/create', (req: Request, res: Response) => {
     try {
-        logger.info("Enter", "contactus/create");
+        logger.debug("Enter ContactUs", "Router contactus/create");
 
         if (req.body == null || !IsModelValid(req.body)) {
             logger.error("Model is not valid.", "contactus/create", req.body);
@@ -64,6 +64,8 @@ router.post('/create', (req: Request, res: Response) => {
 
 //#region Functions
 function IsModelValid(model: any) {
+    logger.debug("Enter ContactUs", "Router IsModelValid", { model: model });
+
     if (model == null ||
         IsStringNullOrEmpty(model.email) ||
         IsStringNullOrEmpty(model.message) ||
@@ -76,6 +78,8 @@ function IsModelValid(model: any) {
 }
 
 function IsStringNullOrEmpty(str: string) {
+    logger.debug("Enter ContactUs", "Router IsStringNullOrEmpty", { data: str });
+
     if (str == null || str === "") {
         return true;
     } else {

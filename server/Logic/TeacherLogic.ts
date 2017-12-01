@@ -64,7 +64,7 @@ export class TeacherLogic {
     }
 
     public async DeleteByID(id) {
-        this.logger.debug("Enter Teacher", "Logic Delete ", id);
+        this.logger.debug("Enter Teacher", "Logic DeleteByID", id);
 
         let tDal = new TeacherDal();
         let iManager = new ImageLogic();
@@ -109,6 +109,7 @@ export class TeacherLogic {
 
     public async GetListOfTeachersByID(listOfTeacherID) {
         this.logger.debug("Enter Teacher", "Logic GetListOfTeachersByID", { list: listOfTeacherID });
+
         let teacherListToReturn: any = [];
         let tDal = new TeacherDal();
 
@@ -123,6 +124,8 @@ export class TeacherLogic {
 
     //#region Private Methods
     private BuildSearchQuery(searchData: any) {
+        this.logger.debug("Enter Teacher", "Logic BuildSearchQuery", { searchData: searchData });
+        
         return {
             gender: this.GetGenderQuery(searchData.gender),
             teachesInstitutions: this.GetIncludesArrayQuery(searchData.teachesInstitutions),
@@ -133,6 +136,8 @@ export class TeacherLogic {
     }
 
     private GetIncludesArrayQuery(data) {
+        this.logger.debug("Enter Teacher", "Logic GetIncludesArrayQuery", { data: data });
+
         if (data == null) {
             return { $gt: 0 }
         } else {
@@ -141,6 +146,8 @@ export class TeacherLogic {
     }
 
     private GetTeachesAtQuery(data) {
+        this.logger.debug("Enter Teacher", "Logic GetTeachesAtQuery", { data: data });
+
         if (data == null || data == TeachesAt.Both) {
             return { $gt: 0 }
         } else {
@@ -149,6 +156,8 @@ export class TeacherLogic {
     }
 
     private GetGenderQuery(data) {
+        this.logger.debug("Enter Teacher", "Logic GetGenderQuery", { data: data });
+
         if (data == null || data === 3) {
             return { $gt: 0 }
         } else {

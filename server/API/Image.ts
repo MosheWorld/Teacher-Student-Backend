@@ -11,7 +11,7 @@ const router: Router = Router();
 //#region Routers
 router.get('/getimagebyid/:imagePath', (req: Request, res: Response) => {
     try {
-        logger.info("Enter", "image/getimagebyid");
+        logger.debug("Enter Image", "Router image/getimagebyid");
 
         let imageID = req.params.imagePath;
 

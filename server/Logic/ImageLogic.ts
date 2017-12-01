@@ -22,13 +22,13 @@ export class ImageLogic {
     }
 
     public async Create(TeacherIDImage: any) {
-        this.logger.debug("Enter Create", "Logic Create", TeacherIDImage);
+        this.logger.debug("Enter Image", "Logic Create", TeacherIDImage);
         let iManager = new ImageDal();
         return await iManager.Create(TeacherIDImage);
     }
 
     public async DeleteByID(id) {
-        this.logger.debug("Enter DeleteByID", "Logic DeleteByID", id);
+        this.logger.debug("Enter Image", "Logic DeleteByID", id);
         let iManager = new ImageDal();
         iManager.DeleteByID(id);
     }

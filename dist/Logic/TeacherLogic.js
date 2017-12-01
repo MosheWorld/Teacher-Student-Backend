@@ -118,7 +118,7 @@ var TeacherLogic = /** @class */ (function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        this.logger.debug("Enter Teacher", "Logic Delete ", id);
+                        this.logger.debug("Enter Teacher", "Logic DeleteByID", id);
                         tDal = new TeacherDAL_1.TeacherDal();
                         iManager = new ImageLogic_1.ImageLogic();
                         return [4 /*yield*/, this.GetByID(id)];
@@ -204,6 +204,7 @@ var TeacherLogic = /** @class */ (function () {
     //#endregion
     //#region Private Methods
     TeacherLogic.prototype.BuildSearchQuery = function (searchData) {
+        this.logger.debug("Enter Teacher", "Logic BuildSearchQuery", { searchData: searchData });
         return {
             gender: this.GetGenderQuery(searchData.gender),
             teachesInstitutions: this.GetIncludesArrayQuery(searchData.teachesInstitutions),
@@ -213,6 +214,7 @@ var TeacherLogic = /** @class */ (function () {
         };
     };
     TeacherLogic.prototype.GetIncludesArrayQuery = function (data) {
+        this.logger.debug("Enter Teacher", "Logic GetIncludesArrayQuery", { data: data });
         if (data == null) {
             return { $gt: 0 };
         }
@@ -221,6 +223,7 @@ var TeacherLogic = /** @class */ (function () {
         }
     };
     TeacherLogic.prototype.GetTeachesAtQuery = function (data) {
+        this.logger.debug("Enter Teacher", "Logic GetTeachesAtQuery", { data: data });
         if (data == null || data == TeachesAt_Enum_1.TeachesAt.Both) {
             return { $gt: 0 };
         }
@@ -229,6 +232,7 @@ var TeacherLogic = /** @class */ (function () {
         }
     };
     TeacherLogic.prototype.GetGenderQuery = function (data) {
+        this.logger.debug("Enter Teacher", "Logic GetGenderQuery", { data: data });
         if (data == null || data === 3) {
             return { $gt: 0 };
         }

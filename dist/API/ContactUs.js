@@ -10,7 +10,7 @@ var router = express_1.Router();
 //#region Routers
 router.get('/getall', function (req, res) {
     try {
-        logger.info("Enter", "contactus/getall");
+        logger.debug("Enter ContactUs", "Router contactus/getall");
         var cManager = new ContactUsLogic_1.ContactUsLogic();
         cManager.GetAll()
             .then(function (contactusList) {
@@ -27,7 +27,7 @@ router.get('/getall', function (req, res) {
 });
 router.post('/create', function (req, res) {
     try {
-        logger.info("Enter", "contactus/create");
+        logger.debug("Enter ContactUs", "Router contactus/create");
         if (req.body == null || !IsModelValid(req.body)) {
             logger.error("Model is not valid.", "contactus/create", req.body);
             return res.status(400).send("Model is not valid.");
@@ -55,6 +55,7 @@ router.post('/create', function (req, res) {
 //#endregion
 //#region Functions
 function IsModelValid(model) {
+    logger.debug("Enter ContactUs", "Router IsModelValid", { model: model });
     if (model == null ||
         IsStringNullOrEmpty(model.email) ||
         IsStringNullOrEmpty(model.message) ||
@@ -67,6 +68,7 @@ function IsModelValid(model) {
     }
 }
 function IsStringNullOrEmpty(str) {
+    logger.debug("Enter ContactUs", "Router IsStringNullOrEmpty", { data: str });
     if (str == null || str === "") {
         return true;
     }

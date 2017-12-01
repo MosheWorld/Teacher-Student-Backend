@@ -27,7 +27,7 @@ var TeacherDal = /** @class */ (function () {
     TeacherDal.prototype.GetByID = function (id) {
         var _this = this;
         return new Promise(function (resolve, reject) {
-            _this.logger.debug("Enter Teacher", "DAL GetAll", { id: id });
+            _this.logger.debug("Enter Teacher", "DAL GetByID", { id: id });
             var teacher = TeacherModel_1.default.findOne({ _id: new mongodb_1.ObjectID(id) }, function (error, teacher) {
                 if (error) {
                     reject("Error occurred when gettings teacher from database.");
@@ -90,7 +90,7 @@ var TeacherDal = /** @class */ (function () {
     TeacherDal.prototype.SearchTeacher = function (query) {
         var _this = this;
         return new Promise(function (resolve, reject) {
-            _this.logger.debug("Enter Teacher", "DAL SearchTeacher");
+            _this.logger.debug("Enter Teacher", "DAL SearchTeacher", { query: query });
             var teachers = TeacherModel_1.default.find(query, function (error, teachers) {
                 if (error) {
                     reject("Error occurred when find teachers by query at database.");

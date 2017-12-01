@@ -13,7 +13,7 @@ const router: Router = Router();
 //#region Routers
 router.get('/getall', (req: Request, res: Response) => {
     try {
-        logger.info("Enter", "teacher/getall");
+        logger.debug("Enter Teacher", "Router teacher/getall");
 
         let tManager = new TeacherLogic();
 
@@ -33,7 +33,7 @@ router.get('/getall', (req: Request, res: Response) => {
 
 router.get('/getbyid/:id', (req: Request, res: Response) => {
     try {
-        logger.info("Enter", "teacher/getbyid" + req.params.id);
+        logger.debug("Enter Teacher", "Router teacher/getbyid" + req.params.id);
 
         let id = req.params.id;
 
@@ -60,7 +60,7 @@ router.get('/getbyid/:id', (req: Request, res: Response) => {
 
 router.post('/getlistofteachersbyid', (req: Request, res: Response) => {
     try {
-        logger.info("Enter", "teacher/getlistofteachersbyid");
+        logger.debug("Enter Teacher", "Router teacher/getlistofteachersbyid");
 
         if (req.body == null || req.body.listOfTeacherID == null || !IsListOfIDValid(req.body.listOfTeacherID)) {
             logger.error("Model is not valid.", "teacher/getlistofteachersbyid", req.body);
@@ -86,7 +86,7 @@ router.post('/getlistofteachersbyid', (req: Request, res: Response) => {
 
 router.post('/search', (req: Request, res: Response) => {
     try {
-        logger.info("Enter", "teacher/search");
+        logger.debug("Enter Teacher", "Router teacher/search");
 
         if (req.body == null || !IsModelSearchValid(req.body)) {
             logger.error("Model is not valid.", "teacher/search", req.body);
@@ -120,7 +120,7 @@ router.post('/search', (req: Request, res: Response) => {
 
 router.post('/create', (req: Request, res: Response) => {
     try {
-        logger.info("Enter", "teacher/create");
+        logger.debug("Enter Teacher", "Router teacher/create");
 
         if (req.body == null || !IsModelCreateValid(req.body)) {
             logger.error("Model is not valid.", "teacher/create", req.body);
@@ -153,7 +153,7 @@ router.post('/create', (req: Request, res: Response) => {
 
 router.post('/addrecommend', (req: Request, res: Response) => {
     try {
-        logger.info("Enter", "teacher/addrecommend");
+        logger.debug("Enter Teacher", "Router teacher/addrecommend");
 
         if (req.body == null || IsStringNullOrEmpty(req.body.id) || !IsRecommendValid(req.body.recommendData)) {
             logger.error("Model is not valid.", "teacher/addrecommend", req.body);
@@ -183,7 +183,7 @@ router.post('/addrecommend', (req: Request, res: Response) => {
 
 router.delete('/deletebyid/:id', (req: Request, res: Response) => {
     try {
-        logger.info("Enter", "teacher/deletebyid/" + req.params.id);
+        logger.debug("Enter Teacher", "Router teacher/deletebyid/" + req.params.id);
 
         let id = req.params.id;
 
@@ -212,6 +212,7 @@ router.delete('/deletebyid/:id', (req: Request, res: Response) => {
 
 //#region Functions
 function IsModelCreateValid(model: any) {
+    logger.debug("Enter Teacher", "Router IsModelCreateValid", { model: model });
 
     if (model == null ||
         model.age == null || model.age < 0 || model.age > 120 ||
@@ -235,6 +236,8 @@ function IsModelCreateValid(model: any) {
 }
 
 function IsModelSearchValid(model: any) {
+    logger.debug("Enter Teacher", "Router IsModelSearchValid", { model: model });
+
     if (model == null ||
         model.fromPrice == null || model.fromPrice < 0 ||
         model.toPrice == null || model.toPrice < 0 ||
@@ -248,6 +251,8 @@ function IsModelSearchValid(model: any) {
 }
 
 function IsRecommendValid(model: any) {
+    logger.debug("Enter Teacher", "Router IsRecommendValid", { model: model });
+
     if (model == null ||
         model.rate == null || model.rate < 0 || model.rate > 5 ||
         IsStringNullOrEmpty(model.email) ||
@@ -260,6 +265,8 @@ function IsRecommendValid(model: any) {
 }
 
 function IsStringNullOrEmpty(str: string) {
+    logger.debug("Enter Teacher", "Router IsStringNullOrEmpty", { data: str });
+
     if (str == null || str === "") {
         return true;
     } else {
@@ -268,6 +275,8 @@ function IsStringNullOrEmpty(str: string) {
 }
 
 function IsListOfIDValid(listOfTeacherID) {
+    logger.debug("Enter Teacher", "Router IsListOfIDValid", { data: listOfTeacherID });
+
     if (listOfTeacherID == null || listOfTeacherID.length === 0) {
         return false;
     } else {

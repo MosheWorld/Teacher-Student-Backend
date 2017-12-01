@@ -1,5 +1,6 @@
 "use strict";
 var env = process.env.NODE_ENV || 'development';
+//#region On Init Function
 if (env === 'development') {
     var config = require('./Config.json');
     var envConfig_1 = config[env];
@@ -7,3 +8,4 @@ if (env === 'development') {
         process.env[key] = envConfig_1[key];
     });
 }
+//#endregion 
