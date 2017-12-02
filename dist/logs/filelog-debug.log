@@ -27,3 +27,24 @@
 {"level":"debug","message":"Enter Teacher Logic GetAll","timestamp":"2017-12-02T09:46:33.139Z"}
 {"level":"debug","message":"Enter Teacher Router teacher/getall","timestamp":"2017-12-02T09:46:33.137Z"}
 {"level":"debug","message":"Enter Teacher DAL GetAll","timestamp":"2017-12-02T09:46:33.139Z"}
+{"level":"debug","message":"Enter Teacher Router teacher/deletebyid/5a206fa831d0d30014a62970","timestamp":"2017-12-02T09:51:04.619Z"}
+{"id":"5a206fa831d0d30014a62970","level":"debug","message":"Enter Teacher DAL GetByID","timestamp":"2017-12-02T09:51:04.621Z"}
+{"level":"debug","message":"Enter Teacher Logic DeleteByID 5a206fa831d0d30014a62970","timestamp":"2017-12-02T09:51:04.620Z"}
+{"level":"debug","message":"Enter Teacher Logic GetByID 5a206fa831d0d30014a62970","timestamp":"2017-12-02T09:51:04.620Z"}
+{"id":"5a206fa831d0d30014a62970","level":"debug","message":"Enter Teacher DAL DeleteByID","timestamp":"2017-12-02T09:51:05.127Z"}
+{"id":"5a206fa831d0d30014a62971","level":"debug","message":"Enter Image DAL DeleteByID","timestamp":"2017-12-02T09:51:05.133Z"}
+{"level":"debug","message":"Enter Image Logic DeleteByID 5a206fa831d0d30014a62971","timestamp":"2017-12-02T09:51:05.132Z"}
+{"level":"debug","message":"Enter Teacher Router teacher/deletebyid/5a22762d6352a82fe4ed1916","timestamp":"2017-12-02T09:51:11.100Z"}
+{"level":"debug","message":"Enter Teacher Logic DeleteByID 5a22762d6352a82fe4ed1916","timestamp":"2017-12-02T09:51:11.100Z"}
+{"id":"5a22762d6352a82fe4ed1916","level":"debug","message":"Enter Teacher DAL GetByID","timestamp":"2017-12-02T09:51:11.101Z"}
+{"level":"debug","message":"Enter Teacher Logic GetByID 5a22762d6352a82fe4ed1916","timestamp":"2017-12-02T09:51:11.101Z"}
+{"id":"5a22762d6352a82fe4ed1916","level":"debug","message":"Enter Teacher DAL DeleteByID","timestamp":"2017-12-02T09:51:11.205Z"}
+{"id":"5a22762d6352a82fe4ed1917","level":"debug","message":"Enter Image DAL DeleteByID","timestamp":"2017-12-02T09:51:11.208Z"}
+{"level":"debug","message":"Enter Image Logic DeleteByID 5a22762d6352a82fe4ed1917","timestamp":"2017-12-02T09:51:11.206Z"}
+{"level":"debug","message":"Enter Teacher Router teacher/deletebyid/5a1f1fda40657a0014cbd07d","timestamp":"2017-12-02T09:51:22.364Z"}
+{"level":"debug","message":"Enter Teacher Logic DeleteByID 5a1f1fda40657a0014cbd07d","timestamp":"2017-12-02T09:51:22.364Z"}
+{"id":"5a1f1fda40657a0014cbd07d","level":"debug","message":"Enter Teacher DAL GetByID","timestamp":"2017-12-02T09:51:22.366Z"}
+{"level":"debug","message":"Enter Teacher Logic GetByID 5a1f1fda40657a0014cbd07d","timestamp":"2017-12-02T09:51:22.365Z"}
+{"id":"5a1f1fda40657a0014cbd07d","level":"debug","message":"Enter Teacher DAL DeleteByID","timestamp":"2017-12-02T09:51:22.467Z"}
+{"level":"debug","message":"Enter Image Logic DeleteByID 5a1f1fda40657a0014cbd07e","timestamp":"2017-12-02T09:51:22.468Z"}
+{"id":"5a1f1fda40657a0014cbd07e","level":"debug","message":"Enter Image DAL DeleteByID","timestamp":"2017-12-02T09:51:22.468Z"}

@@ -4,6 +4,9 @@ import * as express from "express";
 import * as mongoose from "mongoose";
 import * as bodyParser from "body-parser";
 
+var passport = require('passport')
+    , FacebookStrategy = require('passport-facebook').Strategy;
+
 import { ImageController } from './API/Image';
 import { TeacherController } from './API/Teacher';
 import { ContactUsController } from './API/ContactUs';
@@ -16,6 +19,19 @@ const app: express.Application = express();
 app.use(bodyParser.json({ limit: '1mb' }));
 app.use(bodyParser.urlencoded({ limit: '1mb', extended: true }));
 
+passport.use(new FacebookStrategy({
+    clientID: '1471232119590726',
+    clientSecret: 'b2585b14606bb93687ed30a95bbf027c',
+    callbackURL: "localhost:8000/auth/facebook/callback"
+},
+    function (accessToken, refreshToken, profile, done) {
+        console.log(accessToken);
+        console.log(refreshToken);
+        console.log(profile);
+        done(null);
+    }
+));
+
 app.use(function (req, res, next) {
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
@@ -23,6 +39,11 @@ app.use(function (req, res, next) {
     res.setHeader('Access-Control-Allow-Credentials', true);
     next();
 });
+
+app.get('/auth/facebook', passport.authenticate('facebook'));
+app.get('/auth/facebook/callback',
+passport.authenticate('facebook', { successRedirect: '/',
+                                    failureRedirect: '/login' }));
 
 //#region Routers
 app.use('/image', ImageController);
