@@ -17,7 +17,7 @@ app.use(bodyParser.urlencoded({ limit: '1mb', extended: true }));
 passport.use(new FacebookStrategy({
     clientID: '1471232119590726',
     clientSecret: 'b2585b14606bb93687ed30a95bbf027c',
-    callbackURL: "localhost:8000/auth/facebook/callback"
+    callbackURL: "https://teacher-student-backend.herokuapp.com/auth/facebook/callback"
 }, function (accessToken, refreshToken, profile, done) {
     console.log(accessToken);
     console.log(refreshToken);
