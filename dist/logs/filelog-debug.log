@@ -1,41 +1,29 @@
-{"level":"debug","message":"Enter Teacher Logic GetByID 5a1f149ccaa9d102e0d48bf8","timestamp":"2017-11-29T20:26:24.833Z"}{"level":"debug","message":"Enter Teacher Logic GetAll","timestamp":"2017-11-30T19:44:27.198Z"}
-{"level":"debug","message":"Enter Teacher DAL GetAll","timestamp":"2017-11-30T19:44:27.198Z"}
-{"level":"debug","message":"Enter Teacher Logic GetAll","timestamp":"2017-11-30T19:46:46.421Z"}
-{"level":"debug","message":"Enter Teacher DAL GetAll","timestamp":"2017-11-30T19:46:46.422Z"}
-{"level":"debug","message":"Enter Teacher Logic GetAll","timestamp":"2017-11-30T19:53:38.140Z"}
-{"level":"debug","message":"Enter Teacher DAL GetAll","timestamp":"2017-11-30T19:53:38.140Z"}
-{"level":"debug","message":"Enter Teacher Logic GetAll","timestamp":"2017-11-30T20:04:33.801Z"}
-{"level":"debug","message":"Enter Teacher DAL GetAll","timestamp":"2017-11-30T20:04:33.801Z"}
-{"level":"debug","message":"Enter Teacher Logic GetAll","timestamp":"2017-11-30T20:04:37.757Z"}
-{"level":"debug","message":"Enter Teacher DAL GetAll","timestamp":"2017-11-30T20:04:37.757Z"}
-{"level":"debug","message":"Enter Teacher Logic GetAll","timestamp":"2017-11-30T20:08:35.091Z"}
-{"level":"debug","message":"Enter Teacher DAL GetAll","timestamp":"2017-11-30T20:08:35.092Z"}
-{"level":"debug","message":"Enter Teacher Logic GetAll","timestamp":"2017-11-30T20:24:41.671Z"}
-{"level":"debug","message":"Enter Teacher DAL GetAll","timestamp":"2017-11-30T20:24:41.671Z"}
-{"level":"debug","message":"Enter Teacher Logic GetAll","timestamp":"2017-11-30T20:29:36.597Z"}
-{"level":"debug","message":"Enter Teacher DAL GetAll","timestamp":"2017-11-30T20:29:36.597Z"}
-{"firstName":"Test","lastName":"Tester","age":25,"email":"mmoshikoo@gmail.com","priceFrom":80,"priceTo":150,"phone":"0547574769","personalMessage":"Test on fire.","teachesAt":2,"teachesInstitutions":[4096,8192],"gender":1,"recommendations":[],"rate":0,"image":"12345","teachesSubjects":[1,2,3],"level":"debug","message":"Enter Teacher Logic Create","timestamp":"2017-11-30T20:33:35.671Z"}
-{"firstName":"Test","lastName":"Tester","age":25,"email":"mmoshikoo@gmail.com","priceFrom":80,"priceTo":150,"phone":"0547574769","personalMessage":"Test on fire.","teachesAt":2,"teachesInstitutions":[4096,8192],"gender":1,"recommendations":[],"rate":0,"teachesSubjects":[1,2,3],"level":"debug","message":"Enter Teacher DAL Create","timestamp":"2017-11-30T20:33:35.672Z"}
-{"teacherID":{"_bsontype":"ObjectID","id":{"0":90,"1":32,"2":107,"3":31,"4":209,"5":3,"6":216,"7":37,"8":80,"9":94,"10":54,"11":166}},"image":"12345","level":"debug","message":"Enter Create Logic Create","timestamp":"2017-11-30T20:33:35.879Z"}
-{"teacherID":{"_bsontype":"ObjectID","id":{"0":90,"1":32,"2":107,"3":31,"4":209,"5":3,"6":216,"7":37,"8":80,"9":94,"10":54,"11":166}},"image":"12345","level":"debug","message":"Enter Create DAL Create","timestamp":"2017-11-30T20:33:35.880Z"}
-{"teacherData":{"firstName":"Test","lastName":"Tester","age":25,"email":"mmoshikoo@gmail.com","priceFrom":80,"priceTo":150,"phone":"0547574769","personalMessage":"Test on fire.","teachesAt":2,"teachesInstitutions":[4096,8192],"gender":1,"recommendations":[],"rate":0,"teachesSubjects":[1,2,3],"_id":{"_bsontype":"ObjectID","id":{"0":90,"1":32,"2":107,"3":31,"4":209,"5":3,"6":216,"7":37,"8":80,"9":94,"10":54,"11":166}}},"subject":"Welcome new teacher ✔","emailToEnum":2,"level":"debug","message":"Enter Teacher Logic SendEmailToTeacher","timestamp":"2017-11-30T20:33:36.110Z"}
-{"id":{"_bsontype":"ObjectID","id":{"0":90,"1":32,"2":107,"3":31,"4":209,"5":3,"6":216,"7":37,"8":80,"9":94,"10":54,"11":166}},"image":"5a206b1fd103d825505e36a7","level":"debug","message":"Enter Teacher DAL UpdateImage","timestamp":"2017-11-30T20:33:36.142Z"}
-{"teacherData":{"firstName":"Test","lastName":"Tester","age":25,"email":"mmoshikoo@gmail.com","priceFrom":80,"priceTo":150,"phone":"0547574769","personalMessage":"Test on fire.","teachesAt":2,"teachesInstitutions":[4096,8192],"gender":1,"recommendations":[],"rate":0,"teachesSubjects":[1,2,3],"_id":{"_bsontype":"ObjectID","id":{"0":90,"1":32,"2":107,"3":31,"4":209,"5":3,"6":216,"7":37,"8":80,"9":94,"10":54,"11":166}}},"subject":"New teacher has joined ✔","emailToEnum":1,"level":"debug","message":"Enter Teacher Logic SendEmailToTeacher","timestamp":"2017-11-30T20:33:36.138Z"}
-{"level":"debug","message":"Enter Teacher Logic Delete  5a206b1fd103d825505e36a6","timestamp":"2017-11-30T20:34:11.238Z"}
-{"level":"debug","message":"Enter Teacher Logic GetByID 5a206b1fd103d825505e36a6","timestamp":"2017-11-30T20:34:11.239Z"}
-{"id":"5a206b1fd103d825505e36a6","level":"debug","message":"Enter Teacher DAL GetAll","timestamp":"2017-11-30T20:34:11.239Z"}
-{"id":"5a206b1fd103d825505e36a6","level":"debug","message":"Enter Teacher DAL DeleteByID","timestamp":"2017-11-30T20:34:12.739Z"}
-{"level":"debug","message":"Enter DeleteByID Logic DeleteByID 5a206b1fd103d825505e36a7","timestamp":"2017-11-30T20:34:12.739Z"}
-{"level":"debug","message":"Enter DeleteByID DAL DeleteByID 5a206b1fd103d825505e36a7","timestamp":"2017-11-30T20:34:12.739Z"}
-{"level":"debug","message":"Enter Teacher Router teacher/getall","timestamp":"2017-12-01T08:42:16.545Z"}
-{"level":"debug","message":"Enter Teacher Logic GetAll","timestamp":"2017-12-01T08:42:16.545Z"}
-{"level":"debug","message":"Enter Teacher DAL GetAll","timestamp":"2017-12-01T08:42:16.545Z"}
-{"level":"debug","message":"Enter Teacher Router teacher/getall","timestamp":"2017-12-01T08:42:34.147Z"}
-{"level":"debug","message":"Enter Teacher Logic GetAll","timestamp":"2017-12-01T08:42:34.149Z"}
-{"level":"debug","message":"Enter Teacher DAL GetAll","timestamp":"2017-12-01T08:42:34.150Z"}
-{"level":"debug","message":"Enter Teacher Router teacher/getall","timestamp":"2017-12-01T08:43:11.282Z"}
-{"level":"debug","message":"Enter Teacher Logic GetAll","timestamp":"2017-12-01T08:43:11.283Z"}
-{"level":"debug","message":"Enter Teacher DAL GetAll","timestamp":"2017-12-01T08:43:11.283Z"}
-{"level":"debug","message":"Enter Teacher Router teacher/getall","timestamp":"2017-12-01T08:43:35.688Z"}
-{"level":"debug","message":"Enter Teacher DAL GetAll","timestamp":"2017-12-01T08:43:35.689Z"}
-{"level":"debug","message":"Enter Teacher Logic GetAll","timestamp":"2017-12-01T08:43:35.689Z"}
+{"level":"debug","message":"Enter Teacher Router teacher/getall","timestamp":"2017-12-02T09:44:04.858Z"}
+{"level":"debug","message":"Enter Teacher Logic GetAll","timestamp":"2017-12-02T09:44:04.859Z"}
+{"level":"debug","message":"Enter Teacher DAL GetAll","timestamp":"2017-12-02T09:44:04.859Z"}
+{"level":"debug","message":"Enter Teacher Router teacher/getall","timestamp":"2017-12-02T09:45:10.900Z"}
+{"level":"debug","message":"Enter Teacher Logic GetAll","timestamp":"2017-12-02T09:45:10.901Z"}
+{"level":"debug","message":"Enter Teacher DAL GetAll","timestamp":"2017-12-02T09:45:10.901Z"}
+{"level":"debug","message":"Enter Teacher Router teacher/create","timestamp":"2017-12-02T09:45:17.361Z"}
+{"model":{"firstName":"Test","lastName":"Tester","age":25,"email":"mmoshikoo@gmail.com","priceFrom":80,"priceTo":150,"phone":"0547574769","personalMessage":"Test on fire.","teachesAt":2,"gender":1,"rate":0,"recommendations":[],"teachesInstitutions":[4096,8192],"teachesSubjects":[1,2,3],"image":"12345"},"level":"debug","message":"Enter Teacher Router IsModelCreateValid","timestamp":"2017-12-02T09:45:17.361Z"}
+{"data":"mmoshikoo@gmail.com","level":"debug","message":"Enter Teacher Router IsStringNullOrEmpty","timestamp":"2017-12-02T09:45:17.361Z"}
+{"data":"0547574769","level":"debug","message":"Enter Teacher Router IsStringNullOrEmpty","timestamp":"2017-12-02T09:45:17.361Z"}
+{"data":"Tester","level":"debug","message":"Enter Teacher Router IsStringNullOrEmpty","timestamp":"2017-12-02T09:45:17.362Z"}
+{"data":"Test","level":"debug","message":"Enter Teacher Router IsStringNullOrEmpty","timestamp":"2017-12-02T09:45:17.362Z"}
+{"data":"Test on fire.","level":"debug","message":"Enter Teacher Router IsStringNullOrEmpty","timestamp":"2017-12-02T09:45:17.362Z"}
+{"firstName":"Test","lastName":"Tester","age":25,"email":"mmoshikoo@gmail.com","priceFrom":80,"priceTo":150,"phone":"0547574769","personalMessage":"Test on fire.","teachesAt":2,"teachesInstitutions":[4096,8192],"gender":1,"recommendations":[],"rate":0,"image":"12345","teachesSubjects":[1,2,3],"level":"debug","message":"Enter Teacher Logic Create","timestamp":"2017-12-02T09:45:17.362Z"}
+{"firstName":"Test","lastName":"Tester","age":25,"email":"mmoshikoo@gmail.com","priceFrom":80,"priceTo":150,"phone":"0547574769","personalMessage":"Test on fire.","teachesAt":2,"teachesInstitutions":[4096,8192],"gender":1,"recommendations":[],"rate":0,"teachesSubjects":[1,2,3],"level":"debug","message":"Enter Teacher DAL Create","timestamp":"2017-12-02T09:45:17.362Z"}
+{"teacherID":{"_bsontype":"ObjectID","id":{"0":90,"1":34,"2":118,"3":45,"4":99,"5":82,"6":168,"7":47,"8":228,"9":237,"10":25,"11":22}},"image":"12345","level":"debug","message":"Enter Image Logic Create","timestamp":"2017-12-02T09:45:17.489Z"}
+{"teacherID":{"_bsontype":"ObjectID","id":{"0":90,"1":34,"2":118,"3":45,"4":99,"5":82,"6":168,"7":47,"8":228,"9":237,"10":25,"11":22}},"image":"12345","level":"debug","message":"Enter Image DAL Create","timestamp":"2017-12-02T09:45:17.491Z"}
+{"teacherData":{"firstName":"Test","lastName":"Tester","age":25,"email":"mmoshikoo@gmail.com","priceFrom":80,"priceTo":150,"phone":"0547574769","personalMessage":"Test on fire.","teachesAt":2,"teachesInstitutions":[4096,8192],"gender":1,"recommendations":[],"rate":0,"teachesSubjects":[1,2,3],"_id":{"_bsontype":"ObjectID","id":{"0":90,"1":34,"2":118,"3":45,"4":99,"5":82,"6":168,"7":47,"8":228,"9":237,"10":25,"11":22}}},"subject":"Welcome new teacher ✔","emailToEnum":2,"level":"debug","message":"Enter Teacher Logic SendEmailToTeacher","timestamp":"2017-12-02T09:45:17.611Z"}
+{"id":{"_bsontype":"ObjectID","id":{"0":90,"1":34,"2":118,"3":45,"4":99,"5":82,"6":168,"7":47,"8":228,"9":237,"10":25,"11":22}},"image":"5a22762d6352a82fe4ed1917","level":"debug","message":"Enter Teacher DAL UpdateImage","timestamp":"2017-12-02T09:45:17.642Z"}
+{"teacherData":{"firstName":"Test","lastName":"Tester","age":25,"email":"mmoshikoo@gmail.com","priceFrom":80,"priceTo":150,"phone":"0547574769","personalMessage":"Test on fire.","teachesAt":2,"teachesInstitutions":[4096,8192],"gender":1,"recommendations":[],"rate":0,"teachesSubjects":[1,2,3],"_id":{"_bsontype":"ObjectID","id":{"0":90,"1":34,"2":118,"3":45,"4":99,"5":82,"6":168,"7":47,"8":228,"9":237,"10":25,"11":22}}},"subject":"New teacher has joined ✔","emailToEnum":1,"level":"debug","message":"Enter Teacher Logic SendEmailToTeacher","timestamp":"2017-12-02T09:45:17.642Z"}
+{"to":"mmoshikoo@gmail.com","subject":"Welcome new teacher ✔","body":"<div dir=\"ltr\"></div>Hello Test Tester and welcome to StudyHub.<br/> We hope you will find students from out application, improve your personal details and it will be fine.<br/>.<br/>Enjoy from StudyHub team and especially Moshe Binieli.<br/></div>","level":"debug","message":"Enter Emailer Logic and Dal SendEmailAsync","timestamp":"2017-12-02T09:45:17.611Z"}
+{"level":"debug","message":"Enter Emailer Logic and Dal CreateTransport","timestamp":"2017-12-02T09:45:17.611Z"}
+{"to":"mmoshikoo@gmail.com","subject":"Welcome new teacher ✔","body":"<div dir=\"ltr\"></div>Hello Test Tester and welcome to StudyHub.<br/> We hope you will find students from out application, improve your personal details and it will be fine.<br/>.<br/>Enjoy from StudyHub team and especially Moshe Binieli.<br/></div>","level":"debug","message":"Enter Emailer Logic and Dal MailOptions","timestamp":"2017-12-02T09:45:17.616Z"}
+{"to":"mmoshikoo@gmail.com","subject":"New teacher has joined ✔","body":"Hey Moshe Binieli, new teacher has joined to your application, his name is Test Tester, you may see him at databases for more information, have a good day.","level":"debug","message":"Enter Emailer Logic and Dal SendEmailAsync","timestamp":"2017-12-02T09:45:17.642Z"}
+{"level":"debug","message":"Enter Emailer Logic and Dal CreateTransport","timestamp":"2017-12-02T09:45:17.642Z"}
+{"to":"mmoshikoo@gmail.com","subject":"New teacher has joined ✔","body":"Hey Moshe Binieli, new teacher has joined to your application, his name is Test Tester, you may see him at databases for more information, have a good day.","level":"debug","message":"Enter Emailer Logic and Dal MailOptions","timestamp":"2017-12-02T09:45:17.642Z"}
+{"level":"debug","message":"Enter Teacher Logic GetAll","timestamp":"2017-12-02T09:46:33.139Z"}
+{"level":"debug","message":"Enter Teacher Router teacher/getall","timestamp":"2017-12-02T09:46:33.137Z"}
+{"level":"debug","message":"Enter Teacher DAL GetAll","timestamp":"2017-12-02T09:46:33.139Z"}

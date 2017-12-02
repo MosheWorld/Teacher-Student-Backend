@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var nodemailer = require('nodemailer');
-var Logger_1 = require("./../LogService/logger");
+var Logger_1 = require("./../LogService/Logger");
 var Emailer = /** @class */ (function () {
     //#endregion
     //#region Constructor
