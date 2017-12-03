@@ -10,7 +10,7 @@ const router: Router = Router();
 
 //#region Public Methods
 router.get('/facebook',
-    passport.authenticate('facebook', { scope: ['id', 'displayName', 'public_profile', 'email'] })
+    passport.authenticate('facebook')
 );
 
 router.get('/facebook/callback',
@@ -18,6 +18,10 @@ router.get('/facebook/callback',
         successRedirect: '/',
         failureRedirect: '/login'
     }));
+
+router.get('/login', (req: Request, res: Response) => {
+    console.log("here");
+});
 //#endregion
 
 export const AuthController: Router = router;
