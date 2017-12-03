@@ -1,6 +1,6 @@
 const nodemailer = require('nodemailer');
 
-import { Logger } from './../LogService/Logger';
+import { Logger } from './../LogService/logger';
 
 export class Emailer {
     //#region Members
