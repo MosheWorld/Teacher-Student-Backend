@@ -8,13 +8,7 @@ var logger = new logger_1.Logger();
 var router = express_1.Router();
 //#endregion
 //#region Public Methods
-router.get('/facebook', passport.authenticate('facebook'));
-router.get('/facebook/callback', passport.authenticate('facebook', {
-    successRedirect: '/',
-    failureRedirect: '/login'
-}));
-router.get('/login', function (req, res) {
-    console.log("here");
-});
+router.get('/facebook', passport.authenticate('facebook', { scope: ['public_profile', 'email'] }));
+router.get('/facebook/callback', passport.authenticate('facebook', { successRedirect: '/', failureRedirect: '/login' }));
 //#endregion
 exports.AuthController = router;
