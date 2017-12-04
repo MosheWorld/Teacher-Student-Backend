@@ -10,8 +10,6 @@ import { ImageController } from './API/Image';
 import { TeacherController } from './API/Teacher';
 import { ContactUsController } from './API/ContactUs';
 
-const FacebookStrategy = require('passport-facebook').Strategy;
-
 mongoose.Promise = global.Promise;
 mongoose.connect(process.env.MONGODB_URI, { useMongoClient: true });
 
@@ -20,6 +18,8 @@ const app: express.Application = express();
 
 app.use(bodyParser.json({ limit: '1mb' }));
 app.use(bodyParser.urlencoded({ limit: '1mb', extended: true }));
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
@@ -29,19 +29,7 @@ app.use((req, res, next) => {
     next();
 });
 
-//#region Auth Strategies
-passport.use(new FacebookStrategy({
-    clientID: process.env.FACEBOOK_CLIENT_ID,
-    clientSecret: process.env.FACEBOOK_CLIENT_SECRET,
-    callbackURL: process.env.FACEBOOK_CALLBACK_URL,
-    profileFields: ['id', 'displayName', 'emails']
-},
-    (accessToken, refreshToken, profile, done) => {
-        console.log(profile);
-        done(profile);
-    }
-));
-//#endregion
+require("./Config/Passport");
 
 //#region Routers
 app.use('/auth', AuthController);
