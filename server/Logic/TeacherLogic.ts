@@ -10,19 +10,8 @@ import { TeachesAt } from '../Enums/TeachesAt.Enum';
 import { TeacherInterface } from './../Interfaces/Teacher.interface';
 
 export class TeacherLogic {
-    //#region Members
-    private logger;
-    //#endregion
-
-    //#region Constructor
-    public constructor() {
-        this.logger = new Logger();
-    }
-    //#endregion
-
     //#region Public Methods
     public async GetAll() {
-        this.logger.debug("Enter Teacher", "Logic GetAll");
         let tDal = new TeacherDal();
 
         let teacherCollection = await tDal.GetAll();
@@ -30,7 +19,6 @@ export class TeacherLogic {
     }
 
     public async GetByID(id) {
-        this.logger.debug("Enter Teacher", "Logic GetByID", id);
         let tDal = new TeacherDal();
 
         let teacher = await tDal.GetByID(id);
@@ -38,11 +26,8 @@ export class TeacherLogic {
     }
 
     public async Create(teacherData: TeacherInterface) {
-        this.logger.debug("Enter Teacher", "Logic Create", teacherData);
-
         let tDal = new TeacherDal();
         let iManager = new ImageLogic();
-
 
         let image = teacherData.image;
         teacherData.image = undefined;
@@ -64,8 +49,6 @@ export class TeacherLogic {
     }
 
     public async DeleteByID(id) {
-        this.logger.debug("Enter Teacher", "Logic DeleteByID", id);
-
         let tDal = new TeacherDal();
         let iManager = new ImageLogic();
 
@@ -77,14 +60,12 @@ export class TeacherLogic {
     }
 
     public async SearchTeacher(searchData: any) {
-        this.logger.debug("Enter Teacher", "Logic SearchTeacher", searchData);
         let tDal = new TeacherDal();
 
         return await tDal.SearchTeacher(this.BuildSearchQuery(searchData));
     }
 
     public async AddRecommendToExistingTeacher(id, recommendData) {
-        this.logger.debug("Enter Teacher", "Logic AddRecommendToExistingTeacher", { id: id, recommendData: recommendData });
         let tDal = new TeacherDal();
         let currentTeacher = await this.GetByID(id);
 
@@ -108,8 +89,6 @@ export class TeacherLogic {
     }
 
     public async GetListOfTeachersByID(listOfTeacherID) {
-        this.logger.debug("Enter Teacher", "Logic GetListOfTeachersByID", { list: listOfTeacherID });
-
         let teacherListToReturn: any = [];
         let tDal = new TeacherDal();
 
@@ -124,8 +103,6 @@ export class TeacherLogic {
 
     //#region Private Methods
     private BuildSearchQuery(searchData: any) {
-        this.logger.debug("Enter Teacher", "Logic BuildSearchQuery", { searchData: searchData });
-        
         return {
             gender: this.GetGenderQuery(searchData.gender),
             teachesInstitutions: this.GetIncludesArrayQuery(searchData.teachesInstitutions),
@@ -136,8 +113,6 @@ export class TeacherLogic {
     }
 
     private GetIncludesArrayQuery(data) {
-        this.logger.debug("Enter Teacher", "Logic GetIncludesArrayQuery", { data: data });
-
         if (data == null) {
             return { $gt: 0 }
         } else {
@@ -146,8 +121,6 @@ export class TeacherLogic {
     }
 
     private GetTeachesAtQuery(data) {
-        this.logger.debug("Enter Teacher", "Logic GetTeachesAtQuery", { data: data });
-
         if (data == null || data == TeachesAt.Both) {
             return { $gt: 0 }
         } else {
@@ -156,8 +129,6 @@ export class TeacherLogic {
     }
 
     private GetGenderQuery(data) {
-        this.logger.debug("Enter Teacher", "Logic GetGenderQuery", { data: data });
-
         if (data == null || data === 3) {
             return { $gt: 0 }
         } else {
@@ -166,8 +137,6 @@ export class TeacherLogic {
     }
 
     private async SendEmailToTeacher(teacherData: TeacherInterface, subject: string, emailToEnum: SendEmailTo) {
-        this.logger.debug("Enter Teacher", "Logic SendEmailToTeacher", { teacherData: teacherData, subject: subject, emailToEnum: emailToEnum });
-
         let eManager = new Emailer();
 
         let body = "";

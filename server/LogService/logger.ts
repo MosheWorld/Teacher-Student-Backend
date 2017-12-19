@@ -2,9 +2,9 @@ import * as winston from 'winston';
 
 export class Logger {
     //#region Members
-    private debugLogger;
     private infoLogger;
     private errorLogger;
+    private debugLogger;
     //#endregion
 
     //#region Constructor

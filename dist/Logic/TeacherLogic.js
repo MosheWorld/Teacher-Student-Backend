@@ -38,17 +38,12 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var SendEmailTo_Enum_1 = require("./../Enums/SendEmailTo.Enum");
 var mongodb_1 = require("mongodb");
 var ImageLogic_1 = require("./ImageLogic");
-var logger_1 = require("./../LogService/logger");
 var TeacherDAL_1 = require("./../DAL/TeacherDAL");
 var Emailer_1 = require("./../Integration/Emailer");
 var TeachesAt_Enum_1 = require("../Enums/TeachesAt.Enum");
 var TeacherLogic = /** @class */ (function () {
-    //#endregion
-    //#region Constructor
     function TeacherLogic() {
-        this.logger = new logger_1.Logger();
     }
-    //#endregion
     //#region Public Methods
     TeacherLogic.prototype.GetAll = function () {
         return __awaiter(this, void 0, void 0, function () {
@@ -56,7 +51,6 @@ var TeacherLogic = /** @class */ (function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        this.logger.debug("Enter Teacher", "Logic GetAll");
                         tDal = new TeacherDAL_1.TeacherDal();
                         return [4 /*yield*/, tDal.GetAll()];
                     case 1:
@@ -72,7 +66,6 @@ var TeacherLogic = /** @class */ (function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        this.logger.debug("Enter Teacher", "Logic GetByID", id);
                         tDal = new TeacherDAL_1.TeacherDal();
                         return [4 /*yield*/, tDal.GetByID(id)];
                     case 1:
@@ -88,7 +81,6 @@ var TeacherLogic = /** @class */ (function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        this.logger.debug("Enter Teacher", "Logic Create", teacherData);
                         tDal = new TeacherDAL_1.TeacherDal();
                         iManager = new ImageLogic_1.ImageLogic();
                         image = teacherData.image;
@@ -118,7 +110,6 @@ var TeacherLogic = /** @class */ (function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        this.logger.debug("Enter Teacher", "Logic DeleteByID", id);
                         tDal = new TeacherDAL_1.TeacherDal();
                         iManager = new ImageLogic_1.ImageLogic();
                         return [4 /*yield*/, this.GetByID(id)];
@@ -138,7 +129,6 @@ var TeacherLogic = /** @class */ (function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        this.logger.debug("Enter Teacher", "Logic SearchTeacher", searchData);
                         tDal = new TeacherDAL_1.TeacherDal();
                         return [4 /*yield*/, tDal.SearchTeacher(this.BuildSearchQuery(searchData))];
                     case 1: return [2 /*return*/, _a.sent()];
@@ -152,7 +142,6 @@ var TeacherLogic = /** @class */ (function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        this.logger.debug("Enter Teacher", "Logic AddRecommendToExistingTeacher", { id: id, recommendData: recommendData });
                         tDal = new TeacherDAL_1.TeacherDal();
                         return [4 /*yield*/, this.GetByID(id)];
                     case 1:
@@ -180,7 +169,6 @@ var TeacherLogic = /** @class */ (function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        this.logger.debug("Enter Teacher", "Logic GetListOfTeachersByID", { list: listOfTeacherID });
                         teacherListToReturn = [];
                         tDal = new TeacherDAL_1.TeacherDal();
                         _i = 0, listOfTeacherID_1 = listOfTeacherID;
@@ -204,7 +192,6 @@ var TeacherLogic = /** @class */ (function () {
     //#endregion
     //#region Private Methods
     TeacherLogic.prototype.BuildSearchQuery = function (searchData) {
-        this.logger.debug("Enter Teacher", "Logic BuildSearchQuery", { searchData: searchData });
         return {
             gender: this.GetGenderQuery(searchData.gender),
             teachesInstitutions: this.GetIncludesArrayQuery(searchData.teachesInstitutions),
@@ -214,7 +201,6 @@ var TeacherLogic = /** @class */ (function () {
         };
     };
     TeacherLogic.prototype.GetIncludesArrayQuery = function (data) {
-        this.logger.debug("Enter Teacher", "Logic GetIncludesArrayQuery", { data: data });
         if (data == null) {
             return { $gt: 0 };
         }
@@ -223,7 +209,6 @@ var TeacherLogic = /** @class */ (function () {
         }
     };
     TeacherLogic.prototype.GetTeachesAtQuery = function (data) {
-        this.logger.debug("Enter Teacher", "Logic GetTeachesAtQuery", { data: data });
         if (data == null || data == TeachesAt_Enum_1.TeachesAt.Both) {
             return { $gt: 0 };
         }
@@ -232,7 +217,6 @@ var TeacherLogic = /** @class */ (function () {
         }
     };
     TeacherLogic.prototype.GetGenderQuery = function (data) {
-        this.logger.debug("Enter Teacher", "Logic GetGenderQuery", { data: data });
         if (data == null || data === 3) {
             return { $gt: 0 };
         }
@@ -244,7 +228,6 @@ var TeacherLogic = /** @class */ (function () {
         return __awaiter(this, void 0, void 0, function () {
             var eManager, body, email;
             return __generator(this, function (_a) {
-                this.logger.debug("Enter Teacher", "Logic SendEmailToTeacher", { teacherData: teacherData, subject: subject, emailToEnum: emailToEnum });
                 eManager = new Emailer_1.Emailer();
                 body = "";
                 email = "";

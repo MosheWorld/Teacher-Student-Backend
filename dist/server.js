@@ -3,7 +3,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 require("./Config/Config");
 var express = require("express");
 var mongoose = require("mongoose");
-var passport = require("passport");
 var bodyParser = require("body-parser");
 var Auth_1 = require("./API/Auth");
 var Image_1 = require("./API/Image");
@@ -15,8 +14,6 @@ mongoose.connect(process.env.MONGODB_URI, { useMongoClient: true });
 var app = express();
 app.use(bodyParser.json({ limit: '1mb' }));
 app.use(bodyParser.urlencoded({ limit: '1mb', extended: true }));
-app.use(passport.initialize());
-app.use(passport.session());
 app.use(function (req, res, next) {
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');

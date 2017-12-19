@@ -36,14 +36,9 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var ImageDal_1 = require("./../DAL/ImageDal");
-var logger_1 = require("./../LogService/logger");
 var ImageLogic = /** @class */ (function () {
-    //#endregion
-    //#region Constructor
     function ImageLogic() {
-        this.logger = new logger_1.Logger();
     }
-    //#endregion
     //#region Public Methods
     ImageLogic.prototype.GetImageByID = function (imageID) {
         return __awaiter(this, void 0, void 0, function () {
@@ -51,7 +46,6 @@ var ImageLogic = /** @class */ (function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        this.logger.debug("Enter Image", "Logic GetImageByID", imageID);
                         iManager = new ImageDal_1.ImageDal();
                         return [4 /*yield*/, iManager.GetImageByID(imageID)];
                     case 1:
@@ -67,7 +61,6 @@ var ImageLogic = /** @class */ (function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        this.logger.debug("Enter Image", "Logic Create", TeacherIDImage);
                         iManager = new ImageDal_1.ImageDal();
                         return [4 /*yield*/, iManager.Create(TeacherIDImage)];
                     case 1: return [2 /*return*/, _a.sent()];
@@ -79,7 +72,6 @@ var ImageLogic = /** @class */ (function () {
         return __awaiter(this, void 0, void 0, function () {
             var iManager;
             return __generator(this, function (_a) {
-                this.logger.debug("Enter Image", "Logic DeleteByID", id);
                 iManager = new ImageDal_1.ImageDal();
                 iManager.DeleteByID(id);
                 return [2 /*return*/];

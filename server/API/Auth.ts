@@ -14,9 +14,7 @@ router.get('/facebook',
 );
 
 router.get('/facebook/callback', passport.authenticate('facebook',
-    { successRedirect: '/', failureRedirect: '/login' }), (req, res) => {
-        res.redirect('/')
-    }
+    { successRedirect: '/', failureRedirect: '/login' })
 );
 //#endregion
 
