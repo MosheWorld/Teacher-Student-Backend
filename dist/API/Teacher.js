@@ -179,7 +179,6 @@ router.delete('/deletebyid/:id', function (req, res) {
 //#endregion
 //#region Functions
 function IsModelCreateValid(model) {
-    logger.debug("Enter Teacher", "Router IsModelCreateValid", { model: model });
     if (model == null ||
         model.age == null || model.age < 0 || model.age > 120 ||
         model.rate == null || model.rate < 0 || model.rate > 5 ||
@@ -202,7 +201,6 @@ function IsModelCreateValid(model) {
     }
 }
 function IsModelSearchValid(model) {
-    logger.debug("Enter Teacher", "Router IsModelSearchValid", { model: model });
     if (model == null ||
         model.fromPrice == null || model.fromPrice < 0 ||
         model.toPrice == null || model.toPrice < 0 ||
@@ -214,7 +212,6 @@ function IsModelSearchValid(model) {
     }
 }
 function IsRecommendValid(model) {
-    logger.debug("Enter Teacher", "Router IsRecommendValid", { model: model });
     if (model == null ||
         model.rate == null || model.rate < 0 || model.rate > 5 ||
         IsStringNullOrEmpty(model.email) ||
@@ -227,7 +224,6 @@ function IsRecommendValid(model) {
     }
 }
 function IsStringNullOrEmpty(str) {
-    logger.debug("Enter Teacher", "Router IsStringNullOrEmpty", { data: str });
     if (str == null || str === "") {
         return true;
     }
@@ -236,7 +232,6 @@ function IsStringNullOrEmpty(str) {
     }
 }
 function IsListOfIDValid(listOfTeacherID) {
-    logger.debug("Enter Teacher", "Router IsListOfIDValid", { data: listOfTeacherID });
     if (listOfTeacherID == null || listOfTeacherID.length === 0) {
         return false;
     }

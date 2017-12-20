@@ -2,7 +2,6 @@ import { SendEmailTo } from './../Enums/SendEmailTo.Enum';
 
 import { ObjectID } from 'mongodb';
 import { ImageLogic } from './ImageLogic';
-import { Logger } from './../LogService/logger';
 import { TeacherDal } from './../DAL/TeacherDAL';
 import { Emailer } from './../Integration/Emailer';
 import { TeachesAt } from '../Enums/TeachesAt.Enum';

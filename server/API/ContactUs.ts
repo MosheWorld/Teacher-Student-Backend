@@ -64,8 +64,6 @@ router.post('/create', (req: Request, res: Response) => {
 
 //#region Functions
 function IsModelValid(model: any) {
-    logger.debug("Enter ContactUs", "Router IsModelValid", { model: model });
-
     if (model == null ||
         IsStringNullOrEmpty(model.email) ||
         IsStringNullOrEmpty(model.message) ||
@@ -78,8 +76,6 @@ function IsModelValid(model: any) {
 }
 
 function IsStringNullOrEmpty(str: string) {
-    logger.debug("Enter ContactUs", "Router IsStringNullOrEmpty", { data: str });
-
     if (str == null || str === "") {
         return true;
     } else {

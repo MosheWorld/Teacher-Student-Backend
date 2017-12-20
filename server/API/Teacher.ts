@@ -212,8 +212,6 @@ router.delete('/deletebyid/:id', (req: Request, res: Response) => {
 
 //#region Functions
 function IsModelCreateValid(model: any) {
-    logger.debug("Enter Teacher", "Router IsModelCreateValid", { model: model });
-
     if (model == null ||
         model.age == null || model.age < 0 || model.age > 120 ||
         model.rate == null || model.rate < 0 || model.rate > 5 ||
@@ -236,8 +234,6 @@ function IsModelCreateValid(model: any) {
 }
 
 function IsModelSearchValid(model: any) {
-    logger.debug("Enter Teacher", "Router IsModelSearchValid", { model: model });
-
     if (model == null ||
         model.fromPrice == null || model.fromPrice < 0 ||
         model.toPrice == null || model.toPrice < 0 ||
@@ -251,8 +247,6 @@ function IsModelSearchValid(model: any) {
 }
 
 function IsRecommendValid(model: any) {
-    logger.debug("Enter Teacher", "Router IsRecommendValid", { model: model });
-
     if (model == null ||
         model.rate == null || model.rate < 0 || model.rate > 5 ||
         IsStringNullOrEmpty(model.email) ||
@@ -265,8 +259,6 @@ function IsRecommendValid(model: any) {
 }
 
 function IsStringNullOrEmpty(str: string) {
-    logger.debug("Enter Teacher", "Router IsStringNullOrEmpty", { data: str });
-
     if (str == null || str === "") {
         return true;
     } else {
@@ -275,8 +267,6 @@ function IsStringNullOrEmpty(str: string) {
 }
 
 function IsListOfIDValid(listOfTeacherID) {
-    logger.debug("Enter Teacher", "Router IsListOfIDValid", { data: listOfTeacherID });
-
     if (listOfTeacherID == null || listOfTeacherID.length === 0) {
         return false;
     } else {

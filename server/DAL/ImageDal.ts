@@ -1,5 +1,4 @@
 import { ObjectID } from 'mongodb';
-import { Logger } from './../LogService/logger';
 import DataBaseConnector from '../Models/ImageModel';
 
 export class ImageDal {

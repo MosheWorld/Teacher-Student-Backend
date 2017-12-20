@@ -1,4 +1,3 @@
-import { Logger } from './../LogService/logger';
 import DataBaseConnector from '../Models/ContactUsModel';
 import { ContactUsInterface } from './../Interfaces/ContactUs.interface';
 

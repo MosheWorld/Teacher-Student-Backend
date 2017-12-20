@@ -1,4 +1,3 @@
-import { Logger } from './../LogService/logger';
 import { ContactUsDal } from './../DAL/ContactUsDal';
 import { ContactUsInterface } from './../Interfaces/ContactUs.interface';
 

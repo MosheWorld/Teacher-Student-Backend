@@ -1,5 +1,4 @@
 import { ImageDal } from './../DAL/ImageDal';
-import { Logger } from './../LogService/logger';
 
 export class ImageLogic {
     //#region Public Methods

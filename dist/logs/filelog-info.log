@@ -4,3 +4,14 @@
 {"level":"info","message":"Out teacher/getall","timestamp":"2017-12-20T18:45:06.115Z"}
 {"level":"info","message":"Out teacher/getall","timestamp":"2017-12-20T18:46:19.082Z"}
 {"level":"info","message":"Out teacher/getall","timestamp":"2017-12-20T18:50:06.993Z"}
+{"level":"info","message":"Out teacher/getall","timestamp":"2017-12-20T19:02:32.255Z"}
+{"level":"info","message":"Out image/getimagebyid","timestamp":"2017-12-20T19:02:33.138Z"}
+{"level":"info","message":"Out image/getimagebyid","timestamp":"2017-12-20T19:02:33.143Z"}
+{"level":"info","message":"Out image/getimagebyid","timestamp":"2017-12-20T19:02:33.144Z"}
+{"level":"info","message":"Out image/getimagebyid","timestamp":"2017-12-20T19:02:33.145Z"}
+{"level":"info","message":"Out image/getimagebyid","timestamp":"2017-12-20T19:02:33.146Z"}
+{"level":"info","message":"Out image/getimagebyid","timestamp":"2017-12-20T19:02:33.148Z"}
+{"level":"info","message":"Out image/getimagebyid","timestamp":"2017-12-20T19:02:33.287Z"}
+{"level":"info","message":"Enter auth/createfacebookuser","timestamp":"2017-12-20T19:27:25.678Z"}
+{"level":"info","message":"Enter auth/createfacebookuser","timestamp":"2017-12-20T19:32:07.996Z"}
+{"level":"info","message":"Enter auth/createfacebookuser","timestamp":"2017-12-20T19:32:35.433Z"}

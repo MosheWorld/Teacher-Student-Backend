@@ -1,6 +1,5 @@
 import { ObjectID } from 'mongodb';
 
-import { Logger } from './../LogService/logger';
 import DataBaseConnector from '../Models/TeacherModel';
 import { TeacherInterface } from './../Interfaces/Teacher.interface';
 
