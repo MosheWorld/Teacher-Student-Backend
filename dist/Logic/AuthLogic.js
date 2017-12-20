@@ -36,19 +36,31 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var AuthDal_1 = require("./../DAL/AuthDal");
+var FacebookVerifier_1 = require("../Integration/FacebookVerifier");
 var AuthLogic = /** @class */ (function () {
     function AuthLogic() {
     }
     //#region Public Methods
     AuthLogic.prototype.Create = function (user) {
         return __awaiter(this, void 0, void 0, function () {
-            var aDal;
+            var aDal, fVerifier, response, ex_1;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
                         aDal = new AuthDal_1.AuthDal();
-                        return [4 /*yield*/, aDal.Create(user)];
+                        _a.label = 1;
                     case 1:
+                        _a.trys.push([1, 3, , 4]);
+                        fVerifier = new FacebookVerifier_1.FacebookVerifier();
+                        return [4 /*yield*/, fVerifier.IsTokenValid(user.authToken)];
+                    case 2:
+                        response = _a.sent();
+                        return [3 /*break*/, 4];
+                    case 3:
+                        ex_1 = _a.sent();
+                        throw Error("Token received at model is not valid, aborting.");
+                    case 4: return [4 /*yield*/, aDal.Create(user)];
+                    case 5:
                         _a.sent();
                         return [2 /*return*/];
                 }
