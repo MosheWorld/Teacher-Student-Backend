@@ -1,5 +1,4 @@
 import { SendEmailTo } from './../Enums/SendEmailTo.Enum';
-import { _ } from 'lodash';
 
 import { ObjectID } from 'mongodb';
 import { ImageLogic } from './ImageLogic';

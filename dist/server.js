@@ -21,7 +21,6 @@ app.use(function (req, res, next) {
     res.setHeader('Access-Control-Allow-Credentials', true);
     next();
 });
-require("./Config/Passport");
 //#region Routers
 app.use('/auth', Auth_1.AuthController);
 app.use('/image', Image_1.ImageController);

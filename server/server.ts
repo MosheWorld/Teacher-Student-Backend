@@ -2,7 +2,6 @@ require("./Config/Config");
 
 import * as express from "express";
 import * as mongoose from "mongoose";
-import * as passport from 'passport';
 import * as bodyParser from "body-parser";
 
 import { AuthController } from "./API/Auth";
@@ -26,8 +25,6 @@ app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Credentials', true);
     next();
 });
-
-require("./Config/Passport");
 
 //#region Routers
 app.use('/auth', AuthController);
