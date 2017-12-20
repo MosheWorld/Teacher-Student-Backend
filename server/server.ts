@@ -35,5 +35,5 @@ app.use('/contactus', ContactUsController);
 
 // Serve the application at the given port.
 app.listen(process.env.PORT, () => {
-    console.log(`Listening at http://localhost:${process.env.PORT}/`);
+    console.log("Running on port: " + process.env.PORT + "");
 });

@@ -29,5 +29,5 @@ app.use('/contactus', ContactUs_1.ContactUsController);
 //#endregion
 // Serve the application at the given port.
 app.listen(process.env.PORT, function () {
-    console.log("Listening at http://localhost:" + process.env.PORT + "/");
+    console.log("Running on port: " + process.env.PORT + "");
 });
