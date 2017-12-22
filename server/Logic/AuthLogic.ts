@@ -4,7 +4,7 @@ import { FacebookUserInterface } from './../Interfaces/FacebookUser.interface';
 
 export class AuthLogic {
     //#region Public Methods
-    public async Create(user: FacebookUserInterface) {
+    public async CreateFacebookUser(user: FacebookUserInterface): Promise<void> {
         let aDal = new AuthDal();
 
         try {
@@ -15,7 +15,7 @@ export class AuthLogic {
             throw Error("Token received at model is not valid, aborting.");
         }
 
-        aDal.Create(user);
+        aDal.CreateFacebookUser(user);
     }
     //#endregion
 }

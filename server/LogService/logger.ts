@@ -42,15 +42,15 @@ export class Logger {
     //#endregion
 
     //#region Public Methods
-    public debug(title: any = null, message: any = null, data: any = null) {
+    public debug(title: any = null, message: any = null, data: any = null): void {
         this.debugLogger.debug(title, message, data);
     }
 
-    public info(title: any = null, message: any = null, data: any = null) {
+    public info(title: any = null, message: any = null, data: any = null): void {
         this.infoLogger.info(title, message, data);
     }
 
-    public error(title: any = null, message: any = null, data: any = null) {
+    public error(title: any = null, message: any = null, data: any = null): void {
         this.errorLogger.error(title, message, data);
     }
     //#endregion

@@ -22,7 +22,7 @@ router.post('/createfacebookuser', (req: Request, res: Response) => {
         let aManager = new AuthLogic();
         let user: FacebookUserInterface = ConvertModelToFacebookUserInterface(req.body);
 
-        aManager.Create(user)
+        aManager.CreateFacebookUser(user)
             .then((success) => {
                 res.send(success);
             })
@@ -39,7 +39,7 @@ router.post('/createfacebookuser', (req: Request, res: Response) => {
 //#endregion
 
 //#region Functions
-function IsCreateFacebookUserValid(model: any) {
+function IsCreateFacebookUserValid(model: any): boolean {
     if (model == null ||
         IsStringNullOrEmpty(model.id) ||
         IsStringNullOrEmpty(model.name) ||
@@ -55,7 +55,7 @@ function IsCreateFacebookUserValid(model: any) {
     }
 }
 
-function IsStringNullOrEmpty(str: string) {
+function IsStringNullOrEmpty(str: string): boolean {
     if (str == null || str === "") {
         return true;
     } else {
@@ -63,7 +63,7 @@ function IsStringNullOrEmpty(str: string) {
     }
 }
 
-function ConvertModelToFacebookUserInterface(model: any) {
+function ConvertModelToFacebookUserInterface(model: any): FacebookUserInterface {
     let user: FacebookUserInterface = {
         id: model.id,
         name: model.name,

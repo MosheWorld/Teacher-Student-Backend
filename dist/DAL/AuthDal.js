@@ -5,7 +5,7 @@ var AuthDal = /** @class */ (function () {
     function AuthDal() {
     }
     //#region Public Methods
-    AuthDal.prototype.Create = function (user) {
+    AuthDal.prototype.CreateFacebookUser = function (user) {
         return new Promise(function (resolve, reject) {
             // Search for the user.
             FacebookUserModel_1.default.findOne({ id: user.id }, function (error, foundUser) {

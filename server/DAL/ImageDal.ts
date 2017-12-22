@@ -14,7 +14,7 @@ export class ImageDal {
         });
     }
 
-    public Create(TeacherIDImage: any) {
+    public Create(TeacherIDImage: any): Promise<ObjectID> {
         return new Promise((resolve, reject) => {
             DataBaseConnector.collection.insert(TeacherIDImage, (error) => {
                 if (error) { reject("Error occurred when inserting to Teacher Create database."); }
@@ -23,7 +23,7 @@ export class ImageDal {
         });
     }
 
-    public DeleteByID(id) {
+    public DeleteByID(id: string): Promise<void> {
         return new Promise((resolve, reject) => {
             DataBaseConnector.deleteOne({ _id: new ObjectID(id) }, (error) => {
                 if (error) { reject("Error occurred when deleting image from database."); }

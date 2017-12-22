@@ -5,7 +5,7 @@ import { FacebookUserInterface } from './../Interfaces/FacebookUser.interface';
 
 export class AuthDal {
     //#region Public Methods
-    public Create(user: FacebookUserInterface) {
+    public CreateFacebookUser(user: FacebookUserInterface): Promise<void> {
         return new Promise((resolve, reject) => {
             // Search for the user.
             DataBaseConnector.findOne({ id: user.id }, (error, foundUser) => {
@@ -26,7 +26,6 @@ export class AuthDal {
                         resolve();
                     });
                 }
-
             });
         });
     }

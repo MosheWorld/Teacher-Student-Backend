@@ -35,7 +35,6 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var SendEmailTo_Enum_1 = require("./../Enums/SendEmailTo.Enum");
 var mongodb_1 = require("mongodb");
 var ImageLogic_1 = require("./ImageLogic");
 var TeacherDAL_1 = require("./../DAL/TeacherDAL");
@@ -89,15 +88,14 @@ var TeacherLogic = /** @class */ (function () {
                     case 1:
                         teacherObjectID = _a.sent();
                         newImageObject = {
-                            teacherID: new mongodb_1.ObjectID(teacherObjectID),
-                            image: image
+                            image: image,
+                            teacherID: new mongodb_1.ObjectID(teacherObjectID)
                         };
                         return [4 /*yield*/, iManager.Create(newImageObject)];
                     case 2:
                         imageObjectID = _a.sent();
                         // Those three functions runs in parallel to reduce performance.
-                        this.SendEmailToTeacher(teacherData, 'Welcome new teacher ✔', SendEmailTo_Enum_1.SendEmailTo.Teacher);
-                        this.SendEmailToTeacher(teacherData, 'New teacher has joined ✔', SendEmailTo_Enum_1.SendEmailTo.Owner);
+                        this.SendEmails(teacherData);
                         tDal.UpdateImage(teacherObjectID, imageObjectID.toString());
                         return [2 /*return*/];
                 }
@@ -123,14 +121,14 @@ var TeacherLogic = /** @class */ (function () {
             });
         });
     };
-    TeacherLogic.prototype.SearchTeacher = function (searchData) {
+    TeacherLogic.prototype.SearchTeacher = function (searchTeacherModel) {
         return __awaiter(this, void 0, void 0, function () {
             var tDal;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
                         tDal = new TeacherDAL_1.TeacherDal();
-                        return [4 /*yield*/, tDal.SearchTeacher(this.BuildSearchQuery(searchData))];
+                        return [4 /*yield*/, tDal.SearchTeacher(this.BuildSearchQuery(searchTeacherModel))];
                     case 1: return [2 /*return*/, _a.sent()];
                 }
             });
@@ -158,19 +156,20 @@ var TeacherLogic = /** @class */ (function () {
                         }
                         newRate = newRate / recommendCollection.length;
                         newRate = parseFloat((Math.round(newRate * 100) / 100).toFixed(2));
-                        return [2 /*return*/, tDal.UpdateRecommendations(currentTeacher._id, recommendCollection, newRate)];
+                        tDal.UpdateRecommendations(currentTeacher._id, recommendCollection, newRate);
+                        return [2 /*return*/];
                 }
             });
         });
     };
     TeacherLogic.prototype.GetListOfTeachersByID = function (listOfTeacherID) {
         return __awaiter(this, void 0, void 0, function () {
-            var teacherListToReturn, tDal, _i, listOfTeacherID_1, id, teacher;
+            var tDal, teacherListToReturn, _i, listOfTeacherID_1, id, teacher;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        teacherListToReturn = [];
                         tDal = new TeacherDAL_1.TeacherDal();
+                        teacherListToReturn = [];
                         _i = 0, listOfTeacherID_1 = listOfTeacherID;
                         _a.label = 1;
                     case 1:
@@ -191,16 +190,17 @@ var TeacherLogic = /** @class */ (function () {
     };
     //#endregion
     //#region Private Methods
-    TeacherLogic.prototype.BuildSearchQuery = function (searchData) {
-        return {
-            gender: this.GetGenderQuery(searchData.gender),
-            teachesInstitutions: this.GetIncludesArrayQuery(searchData.teachesInstitutions),
-            teachesSubjects: this.GetIncludesArrayQuery(searchData.teachesSubjects),
-            teachesAt: this.GetTeachesAtQuery(searchData.teachesAt),
-            priceFrom: { $lt: searchData.toPrice }
+    TeacherLogic.prototype.BuildSearchQuery = function (searchTeacherModel) {
+        var entityToDataBase = {
+            priceFrom: { $lt: searchTeacherModel.toPrice },
+            gender: this.GetGenderQuery(searchTeacherModel.gender),
+            teachesAt: this.GetTeachesAtQuery(searchTeacherModel.teachesAt),
+            teachesSubjects: this.GetIncludesArrayQuery(searchTeacherModel.teachesSubjects),
+            teachesInstitutions: this.GetIncludesArrayQuery(searchTeacherModel.teachesInstitutions)
         };
+        return entityToDataBase;
     };
-    TeacherLogic.prototype.GetIncludesArrayQuery = function (data) {
+    TeacherLogic.prototype.GetIncludesArrayQuery = function (data /* Should be TeachesSubjectsInterface or TeachesInstitutionsInterface */) {
         if (data == null) {
             return { $gt: 0 };
         }
@@ -224,22 +224,13 @@ var TeacherLogic = /** @class */ (function () {
             return data;
         }
     };
-    TeacherLogic.prototype.SendEmailToTeacher = function (teacherData, subject, emailToEnum) {
+    TeacherLogic.prototype.SendEmails = function (teacherModel) {
         return __awaiter(this, void 0, void 0, function () {
-            var eManager, body, email;
+            var eManager;
             return __generator(this, function (_a) {
                 eManager = new Emailer_1.Emailer();
-                body = "";
-                email = "";
-                if (emailToEnum == SendEmailTo_Enum_1.SendEmailTo.Teacher) {
-                    body = '<div dir="ltr"></div>Hello ' + teacherData.firstName + ' ' + teacherData.lastName + ' and welcome to StudyHub.<br/> We hope you will find students from out application, improve your personal details and it will be fine.<br/>.<br/>Enjoy from StudyHub team and especially Moshe Binieli.<br/></div>';
-                    email = teacherData.email;
-                }
-                else if (emailToEnum == SendEmailTo_Enum_1.SendEmailTo.Owner) {
-                    body = 'Hey Moshe Binieli, new teacher has joined to your application, his name is ' + teacherData.firstName + ' ' + teacherData.lastName + ', you may see him at databases for more information, have a good day.';
-                    email = "mmoshikoo@gmail.com";
-                }
-                eManager.SendEmailAsync(email, subject, body);
+                eManager.SendEmailToTeacherAsync('Welcome new teacher ✔', teacherModel);
+                eManager.SendEmailToOwnerAsync('New teacher has joined ✔', teacherModel);
                 return [2 /*return*/];
             });
         });

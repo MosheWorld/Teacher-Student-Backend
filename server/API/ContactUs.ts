@@ -10,26 +10,6 @@ const router: Router = Router();
 //#endregion
 
 //#region Routers
-router.get('/getall', (req: Request, res: Response) => {
-    try {
-        logger.debug("Enter ContactUs", "Router contactus/getall");
-
-        let cManager = new ContactUsLogic();
-
-        cManager.GetAll()
-            .then((contactusList) => {
-                res.json(contactusList);
-            }).catch((error) => {
-                res.status(400).send(error.message);
-            });
-
-        logger.info("Out", "contactus/getall");
-    } catch (ex) {
-        logger.error("Out", "contactus/getall", ex.message);
-        res.status(400).send(ex.message);
-    }
-});
-
 router.post('/create', (req: Request, res: Response) => {
     try {
         logger.debug("Enter ContactUs", "Router contactus/create");
@@ -40,11 +20,7 @@ router.post('/create', (req: Request, res: Response) => {
         }
 
         let cManager = new ContactUsLogic();
-        let contactUsData: ContactUsInterface = {
-            fullName: req.body.fullName,
-            email: req.body.email, contactReason: req.body.contactReason,
-            message: req.body.message
-        }
+        let contactUsData: ContactUsInterface = ConvertModelToContactUsInterface(req.body);
 
         cManager.Create(contactUsData)
             .then((success) => {
@@ -63,7 +39,7 @@ router.post('/create', (req: Request, res: Response) => {
 //#endregion
 
 //#region Functions
-function IsModelValid(model: any) {
+function IsModelValid(model: any): boolean {
     if (model == null ||
         IsStringNullOrEmpty(model.email) ||
         IsStringNullOrEmpty(model.message) ||
@@ -75,12 +51,23 @@ function IsModelValid(model: any) {
     }
 }
 
-function IsStringNullOrEmpty(str: string) {
+function IsStringNullOrEmpty(str: string): boolean {
     if (str == null || str === "") {
         return true;
     } else {
         return false;
     }
+}
+
+function ConvertModelToContactUsInterface(model: any): ContactUsInterface {
+    let contactUsModel: ContactUsInterface = {
+        email: model.email,
+        message: model.message,
+        fullName: model.fullName,
+        contactReason: model.contactReason
+    }
+
+    return contactUsModel;
 }
 //#endregion
 

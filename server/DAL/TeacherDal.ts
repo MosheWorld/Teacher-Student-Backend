@@ -27,7 +27,7 @@ export class TeacherDal {
         });
     }
 
-    public Create(teacherData: any) {
+    public Create(teacherData: any): Promise<ObjectID> {
         return new Promise((resolve, reject) => {
             DataBaseConnector.collection.insert(teacherData, (error) => {
                 if (error) { reject("Error occurred when inserting to Teacher Create database."); }
@@ -36,17 +36,16 @@ export class TeacherDal {
         });
     }
 
-    public DeleteByID(id: any) {
+    public DeleteByID(id: any): Promise<void> {
         return new Promise((resolve, reject) => {
             DataBaseConnector.collection.deleteOne({ _id: new ObjectID(id) }, (error) => {
                 if (error) { reject("Error occurred when deleteing teacher from database."); }
                 resolve();
             });
         });
-
     }
 
-    public UpdateRecommendations(id, recommendData, rateData) {
+    public UpdateRecommendations(id, recommendData, rateData): Promise<void> {
         return new Promise((resolve, reject) => {
             DataBaseConnector.collection.updateOne({ _id: id }, {
                 $set: { "recommendations": recommendData, "rate": rateData },
@@ -57,7 +56,7 @@ export class TeacherDal {
         });
     }
 
-    public UpdateImage(id, imagePath) {
+    public UpdateImage(id, imagePath): Promise<void> {
         return new Promise((resolve, reject) => {
             DataBaseConnector.collection.updateOne({ _id: id }, { $set: { "image": imagePath }, }
                 , (error) => {

@@ -68,7 +68,7 @@ var ImageLogic = /** @class */ (function () {
             });
         });
     };
-    ImageLogic.prototype.DeleteByID = function (id) {
+    ImageLogic.prototype.DeleteByID = function (id /* Nullable string */) {
         return __awaiter(this, void 0, void 0, function () {
             var iManager;
             return __generator(this, function (_a) {

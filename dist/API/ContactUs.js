@@ -8,23 +8,6 @@ var logger = new logger_1.Logger();
 var router = express_1.Router();
 //#endregion
 //#region Routers
-router.get('/getall', function (req, res) {
-    try {
-        logger.debug("Enter ContactUs", "Router contactus/getall");
-        var cManager = new ContactUsLogic_1.ContactUsLogic();
-        cManager.GetAll()
-            .then(function (contactusList) {
-            res.json(contactusList);
-        }).catch(function (error) {
-            res.status(400).send(error.message);
-        });
-        logger.info("Out", "contactus/getall");
-    }
-    catch (ex) {
-        logger.error("Out", "contactus/getall", ex.message);
-        res.status(400).send(ex.message);
-    }
-});
 router.post('/create', function (req, res) {
     try {
         logger.debug("Enter ContactUs", "Router contactus/create");
@@ -33,11 +16,7 @@ router.post('/create', function (req, res) {
             return res.status(400).send("Model is not valid.");
         }
         var cManager = new ContactUsLogic_1.ContactUsLogic();
-        var contactUsData = {
-            fullName: req.body.fullName,
-            email: req.body.email, contactReason: req.body.contactReason,
-            message: req.body.message
-        };
+        var contactUsData = ConvertModelToContactUsInterface(req.body);
         cManager.Create(contactUsData)
             .then(function (success) {
             res.send(success);
@@ -73,6 +52,15 @@ function IsStringNullOrEmpty(str) {
     else {
         return false;
     }
+}
+function ConvertModelToContactUsInterface(model) {
+    var contactUsModel = {
+        email: model.email,
+        message: model.message,
+        fullName: model.fullName,
+        contactReason: model.contactReason
+    };
+    return contactUsModel;
 }
 //#endregion
 exports.ContactUsController = router;

@@ -41,7 +41,7 @@ var AuthLogic = /** @class */ (function () {
     function AuthLogic() {
     }
     //#region Public Methods
-    AuthLogic.prototype.Create = function (user) {
+    AuthLogic.prototype.CreateFacebookUser = function (user) {
         return __awaiter(this, void 0, void 0, function () {
             var aDal, fVerifier, response, ex_1;
             return __generator(this, function (_a) {
@@ -60,7 +60,7 @@ var AuthLogic = /** @class */ (function () {
                         ex_1 = _a.sent();
                         throw Error("Token received at model is not valid, aborting.");
                     case 4:
-                        aDal.Create(user);
+                        aDal.CreateFacebookUser(user);
                         return [2 /*return*/];
                 }
             });

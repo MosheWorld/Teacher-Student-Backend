@@ -1,29 +1,29 @@
-import { SendEmailTo } from './../Enums/SendEmailTo.Enum';
-
 import { ObjectID } from 'mongodb';
 import { ImageLogic } from './ImageLogic';
 import { TeacherDal } from './../DAL/TeacherDAL';
 import { Emailer } from './../Integration/Emailer';
 import { TeachesAt } from '../Enums/TeachesAt.Enum';
 import { TeacherInterface } from './../Interfaces/Teacher.interface';
+import { SearchTeacherInterface } from '../Interfaces/SearchTeacher.interface';
+import { RecommendationsInterface } from './../Interfaces/Recommendations.interface';
 
 export class TeacherLogic {
     //#region Public Methods
-    public async GetAll() {
+    public async GetAll(): Promise<TeacherInterface[]> {
         let tDal = new TeacherDal();
 
         let teacherCollection = await tDal.GetAll();
         return teacherCollection;
     }
 
-    public async GetByID(id) {
+    public async GetByID(id): Promise<any> {
         let tDal = new TeacherDal();
 
-        let teacher = await tDal.GetByID(id);
+        let teacher: TeacherInterface = await tDal.GetByID(id);
         return teacher;
     }
 
-    public async Create(teacherData: TeacherInterface) {
+    public async Create(teacherData: TeacherInterface): Promise<void> {
         let tDal = new TeacherDal();
         let iManager = new ImageLogic();
 
@@ -33,20 +33,19 @@ export class TeacherLogic {
         const teacherObjectID = await tDal.Create(teacherData);
 
         let newImageObject = {
-            teacherID: new ObjectID(teacherObjectID),
-            image: image
+            image: image,
+            teacherID: new ObjectID(teacherObjectID)
         };
 
         const imageObjectID = await iManager.Create(newImageObject);
 
         // Those three functions runs in parallel to reduce performance.
-        this.SendEmailToTeacher(teacherData, 'Welcome new teacher ✔', SendEmailTo.Teacher);
-        this.SendEmailToTeacher(teacherData, 'New teacher has joined ✔', SendEmailTo.Owner);
+        this.SendEmails(teacherData);
 
         tDal.UpdateImage(teacherObjectID, imageObjectID.toString());
     }
 
-    public async DeleteByID(id) {
+    public async DeleteByID(id): Promise<void> {
         let tDal = new TeacherDal();
         let iManager = new ImageLogic();
 
@@ -57,13 +56,12 @@ export class TeacherLogic {
         iManager.DeleteByID(teacher.image);
     }
 
-    public async SearchTeacher(searchData: any) {
+    public async SearchTeacher(searchTeacherModel: SearchTeacherInterface): Promise<TeacherInterface[]> {
         let tDal = new TeacherDal();
-
-        return await tDal.SearchTeacher(this.BuildSearchQuery(searchData));
+        return await tDal.SearchTeacher(this.BuildSearchQuery(searchTeacherModel));
     }
 
-    public async AddRecommendToExistingTeacher(id, recommendData) {
+    public async AddRecommendToExistingTeacher(id, recommendData: RecommendationsInterface): Promise<void> {
         let tDal = new TeacherDal();
         let currentTeacher = await this.GetByID(id);
 
@@ -83,15 +81,16 @@ export class TeacherLogic {
         newRate = newRate / recommendCollection.length;
         newRate = parseFloat((Math.round(newRate * 100) / 100).toFixed(2));
 
-        return tDal.UpdateRecommendations(currentTeacher._id, recommendCollection, newRate);
+        tDal.UpdateRecommendations(currentTeacher._id, recommendCollection, newRate);
     }
 
-    public async GetListOfTeachersByID(listOfTeacherID) {
-        let teacherListToReturn: any = [];
+    public async GetListOfTeachersByID(listOfTeacherID: string[]): Promise<TeacherInterface[]> {
         let tDal = new TeacherDal();
 
+        let teacherListToReturn: TeacherInterface[] = [];
+
         for (let id of listOfTeacherID) {
-            let teacher = await tDal.GetByID(id);
+            let teacher: TeacherInterface = await tDal.GetByID(id);
             teacherListToReturn.push(teacher);
         }
 
@@ -100,17 +99,19 @@ export class TeacherLogic {
     //#endregion
 
     //#region Private Methods
-    private BuildSearchQuery(searchData: any) {
-        return {
-            gender: this.GetGenderQuery(searchData.gender),
-            teachesInstitutions: this.GetIncludesArrayQuery(searchData.teachesInstitutions),
-            teachesSubjects: this.GetIncludesArrayQuery(searchData.teachesSubjects),
-            teachesAt: this.GetTeachesAtQuery(searchData.teachesAt),
-            priceFrom: { $lt: searchData.toPrice }
+    private BuildSearchQuery(searchTeacherModel: SearchTeacherInterface): any {
+        let entityToDataBase = {
+            priceFrom: { $lt: searchTeacherModel.toPrice },
+            gender: this.GetGenderQuery(searchTeacherModel.gender),
+            teachesAt: this.GetTeachesAtQuery(searchTeacherModel.teachesAt),
+            teachesSubjects: this.GetIncludesArrayQuery(searchTeacherModel.teachesSubjects),
+            teachesInstitutions: this.GetIncludesArrayQuery(searchTeacherModel.teachesInstitutions)
         };
+
+        return entityToDataBase;
     }
 
-    private GetIncludesArrayQuery(data) {
+    private GetIncludesArrayQuery(data: any /* Should be TeachesSubjectsInterface or TeachesInstitutionsInterface */): any {
         if (data == null) {
             return { $gt: 0 }
         } else {
@@ -118,7 +119,7 @@ export class TeacherLogic {
         }
     }
 
-    private GetTeachesAtQuery(data) {
+    private GetTeachesAtQuery(data: TeachesAt): any {
         if (data == null || data == TeachesAt.Both) {
             return { $gt: 0 }
         } else {
@@ -126,7 +127,7 @@ export class TeacherLogic {
         }
     }
 
-    private GetGenderQuery(data) {
+    private GetGenderQuery(data: number): any {
         if (data == null || data === 3) {
             return { $gt: 0 }
         } else {
@@ -134,21 +135,11 @@ export class TeacherLogic {
         }
     }
 
-    private async SendEmailToTeacher(teacherData: TeacherInterface, subject: string, emailToEnum: SendEmailTo) {
+    private async SendEmails(teacherModel: TeacherInterface): Promise<any> {
         let eManager = new Emailer();
 
-        let body = "";
-        let email = "";
-
-        if (emailToEnum == SendEmailTo.Teacher) {
-            body = '<div dir="ltr"></div>Hello ' + teacherData.firstName + ' ' + teacherData.lastName + ' and welcome to StudyHub.<br/> We hope you will find students from out application, improve your personal details and it will be fine.<br/>.<br/>Enjoy from StudyHub team and especially Moshe Binieli.<br/></div>';
-            email = teacherData.email;
-        } else if (emailToEnum == SendEmailTo.Owner) {
-            body = 'Hey Moshe Binieli, new teacher has joined to your application, his name is ' + teacherData.firstName + ' ' + teacherData.lastName + ', you may see him at databases for more information, have a good day.';
-            email = "mmoshikoo@gmail.com";
-        }
-
-        eManager.SendEmailAsync(email, subject, body);
+        eManager.SendEmailToTeacherAsync('Welcome new teacher ✔', teacherModel);
+        eManager.SendEmailToOwnerAsync('New teacher has joined ✔', teacherModel);
     }
     //#endregion
 }

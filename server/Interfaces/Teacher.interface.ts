@@ -4,19 +4,19 @@ import { TeachesInstitutions } from './../Enums/TeachesInstitutions.Enum';
 import { RecommendationsInterface } from './Recommendations.interface';
 
 export interface TeacherInterface {
+    firstName: string;
+    lastName: string;
+    email: string;
+    phone: string;
     age: number;
     rate: number;
     gender: number;
     priceTo: number;
     priceFrom: number;
-    phone: string;
-    email: string;
     image?: String;
-    lastName: string;
-    firstName: string;
     personalMessage: string;
     teachesAt: TeachesAt;
-    teachesInstitutions: TeachesInstitutions[];
     teachesSubjects: TeachesSubjects[];
+    teachesInstitutions: TeachesInstitutions[];
     recommendations: RecommendationsInterface[];
 }

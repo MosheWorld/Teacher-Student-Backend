@@ -77,15 +77,8 @@ router.post('/search', function (req, res) {
             return res.status(400).send("Model is not valid.");
         }
         var tManager = new TeacherLogic_1.TeacherLogic();
-        var searchData = {
-            fromPrice: req.body.fromPrice,
-            toPrice: req.body.toPrice,
-            teachesAt: req.body.teachesAt,
-            teachesInstitutions: req.body.teachesInstitutions,
-            teachesSubjects: req.body.teachesSubjects,
-            gender: req.body.gender
-        };
-        tManager.SearchTeacher(searchData)
+        var searchTeacherModel = GetSearchDataModel(req.body);
+        tManager.SearchTeacher(searchTeacherModel)
             .then(function (success) {
             res.send(success);
         })
@@ -107,13 +100,7 @@ router.post('/create', function (req, res) {
             return res.status(400).send("Model is not valid.");
         }
         var tManager = new TeacherLogic_1.TeacherLogic();
-        var teacherData = {
-            firstName: req.body.firstName, lastName: req.body.lastName,
-            age: req.body.age, email: req.body.email, priceFrom: req.body.priceFrom, priceTo: req.body.priceTo,
-            phone: req.body.phone, personalMessage: req.body.personalMessage, teachesAt: req.body.teachesAt,
-            teachesInstitutions: req.body.teachesInstitutions, gender: req.body.gender, recommendations: [],
-            rate: req.body.rate, image: req.body.image, teachesSubjects: req.body.teachesSubjects
-        };
+        var teacherData = ConvertModelToTeacherInterface(req.body);
         tManager.Create(teacherData)
             .then(function (success) {
             res.send(success);
@@ -136,10 +123,7 @@ router.post('/addrecommend', function (req, res) {
             return res.status(400).send("Model is not valid.");
         }
         var tManager = new TeacherLogic_1.TeacherLogic();
-        var recommendData = {
-            fullName: req.body.recommendData.fullName, email: req.body.recommendData.email,
-            message: req.body.recommendData.message, rate: req.body.recommendData.rate
-        };
+        var recommendData = ConvertModelToRecommendationsInterface(req.body.recommendData);
         tManager.AddRecommendToExistingTeacher(req.body.id, req.body.recommendData)
             .then(function (success) {
             res.send(success);
@@ -151,7 +135,7 @@ router.post('/addrecommend', function (req, res) {
     }
     catch (ex) {
         logger.error("Out", "teacher/addrecommend", ex.message);
-        res.status(400).send(ex);
+        res.status(400).send(ex.message);
     }
 });
 router.delete('/deletebyid/:id', function (req, res) {
@@ -180,15 +164,25 @@ router.delete('/deletebyid/:id', function (req, res) {
 //#region Functions
 function IsModelCreateValid(model) {
     if (model == null ||
-        model.age == null || model.age < 0 || model.age > 120 ||
-        model.rate == null || model.rate < 0 || model.rate > 5 ||
-        model.priceFrom == null || model.priceFrom < 0 ||
-        model.priceTo == null || model.priceTo > 200 ||
+        model.age == null ||
+        model.age < 0 ||
+        model.age > 120 ||
+        model.rate == null ||
+        model.rate < 0 ||
+        model.rate > 5 ||
+        model.priceFrom == null ||
+        model.priceFrom < 0 ||
+        model.priceTo == null ||
+        model.priceTo > 200 ||
         model.priceFrom > model.priceTo ||
-        model.teachesAt == null || model.teachesAt < 1 ||
-        model.gender == null || model.gender < 0 ||
-        model.teachesInstitutions == null || model.teachesInstitutions.length === 0 ||
-        model.teachesSubjects == null || model.teachesSubjects.length === 0 ||
+        model.teachesAt == null ||
+        model.teachesAt < 1 ||
+        model.gender == null ||
+        model.gender < 0 ||
+        model.teachesInstitutions == null ||
+        model.teachesInstitutions.length === 0 ||
+        model.teachesSubjects == null ||
+        model.teachesSubjects.length === 0 ||
         IsStringNullOrEmpty(model.email) ||
         IsStringNullOrEmpty(model.phone) ||
         IsStringNullOrEmpty(model.lastName) ||
@@ -243,6 +237,45 @@ function IsListOfIDValid(listOfTeacherID) {
         });
         return true;
     }
+}
+function GetSearchDataModel(model) {
+    var searchTeacherModel = {
+        gender: model.gender,
+        toPrice: model.toPrice,
+        fromPrice: model.fromPrice,
+        teachesAt: model.teachesAt,
+        teachesSubjects: model.teachesSubjects,
+        teachesInstitutions: model.teachesInstitutions
+    };
+    return searchTeacherModel;
+}
+function ConvertModelToTeacherInterface(model) {
+    var teacherModel = {
+        age: model.age,
+        rate: model.rate,
+        phone: model.phone,
+        email: model.email,
+        image: model.image,
+        priceTo: model.priceTo,
+        lastName: model.lastName,
+        firstName: model.firstName,
+        priceFrom: model.priceFrom,
+        teachesAt: model.teachesAt,
+        teachesSubjects: model.teachesSubjects,
+        personalMessage: model.personalMessage,
+        gender: model.gender, recommendations: [],
+        teachesInstitutions: model.teachesInstitutions
+    };
+    return teacherModel;
+}
+function ConvertModelToRecommendationsInterface(model) {
+    var recommendationModel = {
+        rate: model.rate,
+        email: model.email,
+        message: model.message,
+        fullName: model.fullName
+    };
+    return recommendationModel;
 }
 //#endregion
 exports.TeacherController = router;

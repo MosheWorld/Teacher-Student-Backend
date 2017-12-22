@@ -17,7 +17,7 @@ router.post('/createfacebookuser', function (req, res) {
         }
         var aManager = new AuthLogic_1.AuthLogic();
         var user = ConvertModelToFacebookUserInterface(req.body);
-        aManager.Create(user)
+        aManager.CreateFacebookUser(user)
             .then(function (success) {
             res.send(success);
         })

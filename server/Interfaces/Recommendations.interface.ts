@@ -1,6 +1,6 @@
 export interface RecommendationsInterface {
-    fullName: string;
+    rate: number;
     email: string;
     message: string;
-    rate: number;
+    fullName: string;
 }

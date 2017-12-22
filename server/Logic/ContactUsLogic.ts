@@ -3,14 +3,9 @@ import { ContactUsInterface } from './../Interfaces/ContactUs.interface';
 
 export class ContactUsLogic {
     //#region Public Methods
-    public async GetAll() {
+    public async Create(contactUsData: ContactUsInterface): Promise<void> {
         let cDal = new ContactUsDal();
-        return await cDal.GetAll();
-    }
-
-    public async Create(contactUsData: ContactUsInterface) {
-        let cDal = new ContactUsDal();
-        await cDal.Create(contactUsData);
+        cDal.Create(contactUsData);
     }
     //#endregion
 }

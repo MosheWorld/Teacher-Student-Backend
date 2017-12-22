@@ -3,6 +3,7 @@ import { Router, Request, Response } from 'express';
 import { Logger } from './../LogService/logger';
 import { TeacherLogic } from './../Logic/TeacherLogic';
 import { TeacherInterface } from './../Interfaces/Teacher.interface';
+import { SearchTeacherInterface } from '../Interfaces/SearchTeacher.interface';
 import { RecommendationsInterface } from './../Interfaces/Recommendations.interface';
 
 //#region Members
@@ -94,16 +95,9 @@ router.post('/search', (req: Request, res: Response) => {
         }
 
         let tManager = new TeacherLogic();
-        let searchData = {
-            fromPrice: req.body.fromPrice,
-            toPrice: req.body.toPrice,
-            teachesAt: req.body.teachesAt,
-            teachesInstitutions: req.body.teachesInstitutions,
-            teachesSubjects: req.body.teachesSubjects,
-            gender: req.body.gender
-        };
+        let searchTeacherModel: SearchTeacherInterface = GetSearchDataModel(req.body);
 
-        tManager.SearchTeacher(searchData)
+        tManager.SearchTeacher(searchTeacherModel)
             .then((success) => {
                 res.send(success);
             })
@@ -128,13 +122,7 @@ router.post('/create', (req: Request, res: Response) => {
         }
 
         let tManager = new TeacherLogic();
-        let teacherData: TeacherInterface = {
-            firstName: req.body.firstName, lastName: req.body.lastName,
-            age: req.body.age, email: req.body.email, priceFrom: req.body.priceFrom, priceTo: req.body.priceTo,
-            phone: req.body.phone, personalMessage: req.body.personalMessage, teachesAt: req.body.teachesAt,
-            teachesInstitutions: req.body.teachesInstitutions, gender: req.body.gender, recommendations: [],
-            rate: req.body.rate, image: req.body.image, teachesSubjects: req.body.teachesSubjects
-        }
+        let teacherData: TeacherInterface = ConvertModelToTeacherInterface(req.body);
 
         tManager.Create(teacherData)
             .then((success) => {
@@ -161,10 +149,7 @@ router.post('/addrecommend', (req: Request, res: Response) => {
         }
 
         let tManager = new TeacherLogic();
-        let recommendData: RecommendationsInterface = {
-            fullName: req.body.recommendData.fullName, email: req.body.recommendData.email,
-            message: req.body.recommendData.message, rate: req.body.recommendData.rate
-        };
+        let recommendData: RecommendationsInterface = ConvertModelToRecommendationsInterface(req.body.recommendData);
 
         tManager.AddRecommendToExistingTeacher(req.body.id, req.body.recommendData)
             .then((success) => {
@@ -177,7 +162,7 @@ router.post('/addrecommend', (req: Request, res: Response) => {
         logger.info("Out", "teacher/addrecommend");
     } catch (ex) {
         logger.error("Out", "teacher/addrecommend", ex.message);
-        res.status(400).send(ex);
+        res.status(400).send(ex.message);
     }
 });
 
@@ -207,21 +192,30 @@ router.delete('/deletebyid/:id', (req: Request, res: Response) => {
         res.status(400).send(ex.message);
     }
 });
-
 //#endregion
 
 //#region Functions
-function IsModelCreateValid(model: any) {
+function IsModelCreateValid(model: any): boolean {
     if (model == null ||
-        model.age == null || model.age < 0 || model.age > 120 ||
-        model.rate == null || model.rate < 0 || model.rate > 5 ||
-        model.priceFrom == null || model.priceFrom < 0 ||
-        model.priceTo == null || model.priceTo > 200 ||
+        model.age == null ||
+        model.age < 0 ||
+        model.age > 120 ||
+        model.rate == null ||
+        model.rate < 0 ||
+        model.rate > 5 ||
+        model.priceFrom == null ||
+        model.priceFrom < 0 ||
+        model.priceTo == null ||
+        model.priceTo > 200 ||
         model.priceFrom > model.priceTo ||
-        model.teachesAt == null || model.teachesAt < 1 ||
-        model.gender == null || model.gender < 0 ||
-        model.teachesInstitutions == null || model.teachesInstitutions.length === 0 ||
-        model.teachesSubjects == null || model.teachesSubjects.length === 0 ||
+        model.teachesAt == null ||
+        model.teachesAt < 1 ||
+        model.gender == null ||
+        model.gender < 0 ||
+        model.teachesInstitutions == null ||
+        model.teachesInstitutions.length === 0 ||
+        model.teachesSubjects == null ||
+        model.teachesSubjects.length === 0 ||
         IsStringNullOrEmpty(model.email) ||
         IsStringNullOrEmpty(model.phone) ||
         IsStringNullOrEmpty(model.lastName) ||
@@ -233,7 +227,7 @@ function IsModelCreateValid(model: any) {
     }
 }
 
-function IsModelSearchValid(model: any) {
+function IsModelSearchValid(model: any): boolean {
     if (model == null ||
         model.fromPrice == null || model.fromPrice < 0 ||
         model.toPrice == null || model.toPrice < 0 ||
@@ -246,7 +240,7 @@ function IsModelSearchValid(model: any) {
     }
 }
 
-function IsRecommendValid(model: any) {
+function IsRecommendValid(model: any): boolean {
     if (model == null ||
         model.rate == null || model.rate < 0 || model.rate > 5 ||
         IsStringNullOrEmpty(model.email) ||
@@ -258,7 +252,7 @@ function IsRecommendValid(model: any) {
     }
 }
 
-function IsStringNullOrEmpty(str: string) {
+function IsStringNullOrEmpty(str: string): boolean {
     if (str == null || str === "") {
         return true;
     } else {
@@ -266,7 +260,7 @@ function IsStringNullOrEmpty(str: string) {
     }
 }
 
-function IsListOfIDValid(listOfTeacherID) {
+function IsListOfIDValid(listOfTeacherID): boolean {
     if (listOfTeacherID == null || listOfTeacherID.length === 0) {
         return false;
     } else {
@@ -277,6 +271,51 @@ function IsListOfIDValid(listOfTeacherID) {
         });
         return true;
     }
+}
+
+function GetSearchDataModel(model: any): SearchTeacherInterface {
+    let searchTeacherModel: SearchTeacherInterface = {
+        gender: model.gender,
+        toPrice: model.toPrice,
+        fromPrice: model.fromPrice,
+        teachesAt: model.teachesAt,
+        teachesSubjects: model.teachesSubjects,
+        teachesInstitutions: model.teachesInstitutions
+    };
+
+    return searchTeacherModel;
+}
+
+function ConvertModelToTeacherInterface(model: any): TeacherInterface {
+    let teacherModel: TeacherInterface = {
+        age: model.age,
+        rate: model.rate,
+        phone: model.phone,
+        email: model.email,
+        image: model.image,
+        priceTo: model.priceTo,
+        lastName: model.lastName,
+        firstName: model.firstName,
+        priceFrom: model.priceFrom,
+        teachesAt: model.teachesAt,
+        teachesSubjects: model.teachesSubjects,
+        personalMessage: model.personalMessage,
+        gender: model.gender, recommendations: [],
+        teachesInstitutions: model.teachesInstitutions
+    }
+
+    return teacherModel;
+}
+
+function ConvertModelToRecommendationsInterface(model: any): RecommendationsInterface {
+    let recommendationModel: RecommendationsInterface = {
+        rate: model.rate,
+        email: model.email,
+        message: model.message,
+        fullName: model.fullName
+    };
+
+    return recommendationModel;
 }
 //#endregion
 

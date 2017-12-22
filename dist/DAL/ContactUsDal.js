@@ -5,17 +5,6 @@ var ContactUsDal = /** @class */ (function () {
     function ContactUsDal() {
     }
     //#region Public Methods
-    ContactUsDal.prototype.GetAll = function () {
-        return new Promise(function (resolve, reject) {
-            var contactUsCollection = ContactUsModel_1.default.find({}, function (error, contactUs) {
-                if (error) {
-                    reject("Error occurred when gettings all contact us from database.");
-                }
-                return contactUs ? contactUs : null;
-            });
-            resolve(contactUsCollection);
-        });
-    };
     ContactUsDal.prototype.Create = function (contactUsData) {
         return new Promise(function (resolve, reject) {
             ContactUsModel_1.default.collection.insert(contactUsData, function (error) {
