@@ -59,9 +59,8 @@ var AuthLogic = /** @class */ (function () {
                     case 3:
                         ex_1 = _a.sent();
                         throw Error("Token received at model is not valid, aborting.");
-                    case 4: return [4 /*yield*/, aDal.Create(user)];
-                    case 5:
-                        _a.sent();
+                    case 4:
+                        aDal.Create(user);
                         return [2 /*return*/];
                 }
             });

@@ -15,7 +15,7 @@ export class AuthLogic {
             throw Error("Token received at model is not valid, aborting.");
         }
 
-        await aDal.Create(user);
+        aDal.Create(user);
     }
     //#endregion
 }
