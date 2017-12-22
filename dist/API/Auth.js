@@ -37,10 +37,10 @@ function IsCreateFacebookUserValid(model) {
     if (model == null ||
         IsStringNullOrEmpty(model.id) ||
         IsStringNullOrEmpty(model.name) ||
-        IsStringNullOrEmpty(model.email) ||
+        // IsStringNullOrEmpty(model.email) ||
         IsStringNullOrEmpty(model.lastName) ||
-        IsStringNullOrEmpty(model.provider) ||
-        IsStringNullOrEmpty(model.photoUrl) ||
+        // IsStringNullOrEmpty(model.provider) ||
+        // IsStringNullOrEmpty(model.photoUrl) ||
         IsStringNullOrEmpty(model.firstName) ||
         IsStringNullOrEmpty(model.authToken)) {
         return false;
