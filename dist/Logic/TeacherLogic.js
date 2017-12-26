@@ -123,12 +123,13 @@ var TeacherLogic = /** @class */ (function () {
     };
     TeacherLogic.prototype.SearchTeacher = function (searchTeacherModel) {
         return __awaiter(this, void 0, void 0, function () {
-            var tDal;
+            var tDal, query;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
                         tDal = new TeacherDAL_1.TeacherDal();
-                        return [4 /*yield*/, tDal.SearchTeacher(this.BuildSearchQuery(searchTeacherModel))];
+                        query = this.BuildSearchQuery(searchTeacherModel);
+                        return [4 /*yield*/, tDal.SearchTeacher(query)];
                     case 1: return [2 /*return*/, _a.sent()];
                 }
             });

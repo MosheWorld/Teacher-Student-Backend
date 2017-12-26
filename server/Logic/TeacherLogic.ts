@@ -58,7 +58,9 @@ export class TeacherLogic {
 
     public async SearchTeacher(searchTeacherModel: SearchTeacherInterface): Promise<TeacherInterface[]> {
         let tDal = new TeacherDal();
-        return await tDal.SearchTeacher(this.BuildSearchQuery(searchTeacherModel));
+
+        let query = this.BuildSearchQuery(searchTeacherModel);
+        return await tDal.SearchTeacher(query);
     }
 
     public async AddRecommendToExistingTeacher(id, recommendData: RecommendationsInterface): Promise<void> {
@@ -78,6 +80,7 @@ export class TeacherLogic {
         for (let recommend of recommendCollection) {
             newRate += recommend.rate;
         }
+        
         newRate = newRate / recommendCollection.length;
         newRate = parseFloat((Math.round(newRate * 100) / 100).toFixed(2));
 

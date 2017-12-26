@@ -118,13 +118,13 @@ router.post('/create', function (req, res) {
 router.post('/addrecommend', function (req, res) {
     try {
         logger.debug("Enter Teacher", "Router teacher/addrecommend");
-        if (req.body == null || IsStringNullOrEmpty(req.body.id) || !IsRecommendValid(req.body.recommendData)) {
+        if (req.body == null || IsStringNullOrEmpty(req.body.id) || !IsRecommendValid(req.body)) {
             logger.error("Model is not valid.", "teacher/addrecommend", req.body);
             return res.status(400).send("Model is not valid.");
         }
         var tManager = new TeacherLogic_1.TeacherLogic();
-        var recommendData = ConvertModelToRecommendationsInterface(req.body.recommendData);
-        tManager.AddRecommendToExistingTeacher(req.body.id, req.body.recommendData)
+        var recommendData = ConvertModelToRecommendationsInterface(req.body);
+        tManager.AddRecommendToExistingTeacher(req.body.id, recommendData)
             .then(function (success) {
             res.send(success);
         })
