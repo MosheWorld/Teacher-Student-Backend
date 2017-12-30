@@ -1,5 +1,5 @@
-# Teacher-Student-Backend
-Backend source code for StudyHub application, The application in NodeJS with MongoDB database connection and written in TS &amp; JS.
+# Back end
+Back end source code for StudyHub server, The server in NodeJS with MongoDB database connection and written in TS &amp; JS.
 
 Written in:
 - NodeJS.
