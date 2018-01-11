@@ -8,6 +8,9 @@ var logger = new logger_1.Logger();
 var router = express_1.Router();
 //#endregion
 //#region Routers
+/**
+ * Creates new 'contact us' request at database.
+ */
 router.post('/create', function (req, res) {
     try {
         logger.debug("Enter ContactUs", "Router contactus/create");
@@ -33,6 +36,12 @@ router.post('/create', function (req, res) {
 });
 //#endregion
 //#region Functions
+/**
+ * Receives model of 'contact us' request.
+ * Validates whether the model is valid or not.
+ * @param model Contains email, full name, message, contactReason.
+ * @returns {boolean} Returns false in case the model is not valid, otherwise returns true.
+ */
 function IsModelValid(model) {
     if (model == null ||
         IsStringNullOrEmpty(model.email) ||
