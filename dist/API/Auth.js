@@ -8,6 +8,10 @@ var logger = new logger_1.Logger();
 var router = express_1.Router();
 //#endregion
 //#region Routers
+/**
+ * Creates new facebook user.
+ * @prop {FacebookUserInterface} The model to create new facebook user.
+ */
 router.post('/createfacebookuser', function (req, res) {
     try {
         logger.debug("Enter Auth", "Router auth/createfacebookuser");
@@ -33,6 +37,11 @@ router.post('/createfacebookuser', function (req, res) {
 });
 //#endregion
 //#region Functions
+/**
+ * Validates whether the new request to create facebook user is valid.
+ * @param model New facebook model.
+ * @returns {boolean}
+ */
 function IsCreateFacebookUserValid(model) {
     if (model == null ||
         IsStringNullOrEmpty(model.id) ||
@@ -49,6 +58,11 @@ function IsCreateFacebookUserValid(model) {
         return true;
     }
 }
+/**
+ * Validates whether a string is null or empty.
+ * @param str String.
+ * @returns {boolean}
+ */
 function IsStringNullOrEmpty(str) {
     if (str == null || str === "") {
         return true;
@@ -57,6 +71,11 @@ function IsStringNullOrEmpty(str) {
         return false;
     }
 }
+/**
+ * Receives model and creates interface that contains the data to create new facebook user.
+ * @param model Facebook user details.
+ * @returns {FacebookUserInterface} Model to return.
+ */
 function ConvertModelToFacebookUserInterface(model) {
     var user = {
         id: model.id,

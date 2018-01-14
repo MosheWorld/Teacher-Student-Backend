@@ -9,6 +9,10 @@ import { RecommendationsInterface } from './../Interfaces/Recommendations.interf
 
 export class TeacherLogic {
     //#region Public Methods
+    /**
+     * Returns all teachers.
+     * @returns {Promise<TeacherInterface[]>} Teacher model.
+     */
     public async GetAll(): Promise<TeacherInterface[]> {
         let tDal = new TeacherDal();
 
@@ -16,6 +20,11 @@ export class TeacherLogic {
         return teacherCollection;
     }
 
+    /**
+     * Returns teacher by his ID.
+     * @param id Teacher ID.
+     * @returns {Promise<any>} Teacher Model.
+     */
     public async GetByID(id): Promise<any> {
         let tDal = new TeacherDal();
 
@@ -23,6 +32,12 @@ export class TeacherLogic {
         return teacher;
     }
 
+    // Add model inside this function.
+    /**
+     * Creates new teacher at database and new image at images database.
+     * Pass the responsibility to image logic to insert new image.
+     * @param {TeacherInterface} teacherData Teacher model.
+     */
     public async Create(teacherData: TeacherInterface): Promise<void> {
         let tDal = new TeacherDal();
         let iManager = new ImageLogic();
@@ -32,6 +47,7 @@ export class TeacherLogic {
 
         const teacherObjectID = await tDal.Create(teacherData);
 
+        // Add interface for this model.
         let newImageObject = {
             image: image,
             teacherID: new ObjectID(teacherObjectID)
@@ -39,12 +55,17 @@ export class TeacherLogic {
 
         const imageObjectID = await iManager.Create(newImageObject);
 
-        // Those three functions runs in parallel to reduce performance.
+        // Those three functions runs in parallel to increase performance.
         this.SendEmails(teacherData);
 
         tDal.UpdateImage(teacherObjectID, imageObjectID.toString());
     }
 
+    /**
+     * Removes teacher by his ID.
+     * Removes the teacher image from the database by transferring the responsibility to remove to image logic class.
+     * @param id Teacher ID.
+     */
     public async DeleteByID(id): Promise<void> {
         let tDal = new TeacherDal();
         let iManager = new ImageLogic();
@@ -56,6 +77,11 @@ export class TeacherLogic {
         iManager.DeleteByID(teacher.image);
     }
 
+    /**
+     * Searches for teachers by specific requirements of search model.
+     * @param {SearchTeacherInterface} searchTeacherModel Search model.
+     * @returns {Promise<TeacherInterface[]>} Teacher model.
+     */
     public async SearchTeacher(searchTeacherModel: SearchTeacherInterface): Promise<TeacherInterface[]> {
         let tDal = new TeacherDal();
 
@@ -63,7 +89,12 @@ export class TeacherLogic {
         return await tDal.SearchTeacher(query);
     }
 
-    public async AddRecommendToExistingTeacher(id, recommendData: RecommendationsInterface): Promise<void> {
+    /**
+     * Adds new recommendation to teacher.
+     * @param id Teacher ID.
+     * @param {RecommendationsInterface} recommendData Recommendation model.
+     */
+    public async AddRecommendToExistingTeacher(id: any, recommendData: RecommendationsInterface): Promise<void> {
         let tDal = new TeacherDal();
         let currentTeacher = await this.GetByID(id);
 
@@ -80,13 +111,18 @@ export class TeacherLogic {
         for (let recommend of recommendCollection) {
             newRate += recommend.rate;
         }
-        
+
         newRate = newRate / recommendCollection.length;
         newRate = parseFloat((Math.round(newRate * 100) / 100).toFixed(2));
 
         tDal.UpdateRecommendations(currentTeacher._id, recommendCollection, newRate);
     }
 
+    /**
+     * Receives list of teachers by their ID.
+     * @param {string[]} listOfTeacherID List of IDs.
+     * @returns {Promise<TeacherInterface[]>} Teacher model.
+     */
     public async GetListOfTeachersByID(listOfTeacherID: string[]): Promise<TeacherInterface[]> {
         let tDal = new TeacherDal();
 
@@ -102,6 +138,11 @@ export class TeacherLogic {
     //#endregion
 
     //#region Private Methods
+    /**
+     * Function to build search query, builder parameters for search dynamically.
+     * @param searchTeacherModel Search model.
+     * @returns Returns the json built for search query for Mongo database.
+     */
     private BuildSearchQuery(searchTeacherModel: SearchTeacherInterface): any {
         let entityToDataBase = {
             priceFrom: { $lt: searchTeacherModel.toPrice },
@@ -114,7 +155,12 @@ export class TeacherLogic {
         return entityToDataBase;
     }
 
-    private GetIncludesArrayQuery(data: any /* Should be TeachesSubjectsInterface or TeachesInstitutionsInterface */): any {
+    /**
+     * Receives data that MongoDB requires for query.
+     * @param data Should be TeachesSubjectsInterface or TeachesInstitutionsInterface.
+     * @returns Returns the json built for search query for Mongo database.
+     */
+    private GetIncludesArrayQuery(data: any): any {
         if (data == null) {
             return { $gt: 0 }
         } else {
@@ -122,6 +168,11 @@ export class TeacherLogic {
         }
     }
 
+    /**
+     * Receives data that MongoDB requires for query.
+     * @param {TeachesAt} data See interface for more information.
+     * @returns Returns the json built for search query for Mongo database.
+     */
     private GetTeachesAtQuery(data: TeachesAt): any {
         if (data == null || data == TeachesAt.Both) {
             return { $gt: 0 }
@@ -130,6 +181,11 @@ export class TeacherLogic {
         }
     }
 
+    /**
+     * Receives data that MongoDB requires for query.
+     * @param data Number for gender decision.
+     * @returns Returns the json built for search query for Mongo database.
+     */
     private GetGenderQuery(data: number): any {
         if (data == null || data === 3) {
             return { $gt: 0 }
@@ -138,6 +194,11 @@ export class TeacherLogic {
         }
     }
 
+    /**
+     * Sends email to teacher and the owner of the application when new teacher joines.
+     * @param teacherModel Teacher model.
+     * @prop {Emailer} Email Email class to send emails.
+     */
     private async SendEmails(teacherModel: TeacherInterface): Promise<any> {
         let eManager = new Emailer();
 

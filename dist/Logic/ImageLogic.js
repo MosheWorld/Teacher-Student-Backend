@@ -40,6 +40,11 @@ var ImageLogic = /** @class */ (function () {
     function ImageLogic() {
     }
     //#region Public Methods
+    /**
+     * Receives image by ID in database.
+     * @param imageID Image ID.
+     * @returns {Promise<any>} Image returned from database.
+     */
     ImageLogic.prototype.GetImageByID = function (imageID) {
         return __awaiter(this, void 0, void 0, function () {
             var iManager, image;
@@ -55,6 +60,11 @@ var ImageLogic = /** @class */ (function () {
             });
         });
     };
+    /**
+     * Create new image at database related to some teacher.
+     * @param TeacherIDImage Teacher model ( Will be added as interface in future ).
+     * @returns {Promise<ObjectID>} Returns image ID of new image from database.
+     */
     ImageLogic.prototype.Create = function (TeacherIDImage) {
         return __awaiter(this, void 0, void 0, function () {
             var iManager;
@@ -68,7 +78,11 @@ var ImageLogic = /** @class */ (function () {
             });
         });
     };
-    ImageLogic.prototype.DeleteByID = function (id /* Nullable string */) {
+    /**
+     * Remove image from database.
+     * @param id ID to remove, Nullable string.
+     */
+    ImageLogic.prototype.DeleteByID = function (id) {
         return __awaiter(this, void 0, void 0, function () {
             var iManager;
             return __generator(this, function (_a) {

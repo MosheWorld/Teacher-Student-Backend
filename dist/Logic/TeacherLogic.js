@@ -44,6 +44,10 @@ var TeacherLogic = /** @class */ (function () {
     function TeacherLogic() {
     }
     //#region Public Methods
+    /**
+     * Returns all teachers.
+     * @returns {Promise<TeacherInterface[]>} Teacher model.
+     */
     TeacherLogic.prototype.GetAll = function () {
         return __awaiter(this, void 0, void 0, function () {
             var tDal, teacherCollection;
@@ -59,6 +63,11 @@ var TeacherLogic = /** @class */ (function () {
             });
         });
     };
+    /**
+     * Returns teacher by his ID.
+     * @param id Teacher ID.
+     * @returns {Promise<any>} Teacher Model.
+     */
     TeacherLogic.prototype.GetByID = function (id) {
         return __awaiter(this, void 0, void 0, function () {
             var tDal, teacher;
@@ -74,6 +83,12 @@ var TeacherLogic = /** @class */ (function () {
             });
         });
     };
+    // Add model inside this function.
+    /**
+     * Creates new teacher at database and new image at images database.
+     * Pass the responsibility to image logic to insert new image.
+     * @param {TeacherInterface} teacherData Teacher model.
+     */
     TeacherLogic.prototype.Create = function (teacherData) {
         return __awaiter(this, void 0, void 0, function () {
             var tDal, iManager, image, teacherObjectID, newImageObject, imageObjectID;
@@ -94,7 +109,7 @@ var TeacherLogic = /** @class */ (function () {
                         return [4 /*yield*/, iManager.Create(newImageObject)];
                     case 2:
                         imageObjectID = _a.sent();
-                        // Those three functions runs in parallel to reduce performance.
+                        // Those three functions runs in parallel to increase performance.
                         this.SendEmails(teacherData);
                         tDal.UpdateImage(teacherObjectID, imageObjectID.toString());
                         return [2 /*return*/];
@@ -102,6 +117,11 @@ var TeacherLogic = /** @class */ (function () {
             });
         });
     };
+    /**
+     * Removes teacher by his ID.
+     * Removes the teacher image from the database by transferring the responsibility to remove to image logic class.
+     * @param id Teacher ID.
+     */
     TeacherLogic.prototype.DeleteByID = function (id) {
         return __awaiter(this, void 0, void 0, function () {
             var tDal, iManager, teacher;
@@ -121,6 +141,11 @@ var TeacherLogic = /** @class */ (function () {
             });
         });
     };
+    /**
+     * Searches for teachers by specific requirements of search model.
+     * @param {SearchTeacherInterface} searchTeacherModel Search model.
+     * @returns {Promise<TeacherInterface[]>} Teacher model.
+     */
     TeacherLogic.prototype.SearchTeacher = function (searchTeacherModel) {
         return __awaiter(this, void 0, void 0, function () {
             var tDal, query;
@@ -135,6 +160,11 @@ var TeacherLogic = /** @class */ (function () {
             });
         });
     };
+    /**
+     * Adds new recommendation to teacher.
+     * @param id Teacher ID.
+     * @param {RecommendationsInterface} recommendData Recommendation model.
+     */
     TeacherLogic.prototype.AddRecommendToExistingTeacher = function (id, recommendData) {
         return __awaiter(this, void 0, void 0, function () {
             var tDal, currentTeacher, recommendCollection, newRate, _i, recommendCollection_1, recommend;
@@ -163,6 +193,11 @@ var TeacherLogic = /** @class */ (function () {
             });
         });
     };
+    /**
+     * Receives list of teachers by their ID.
+     * @param {string[]} listOfTeacherID List of IDs.
+     * @returns {Promise<TeacherInterface[]>} Teacher model.
+     */
     TeacherLogic.prototype.GetListOfTeachersByID = function (listOfTeacherID) {
         return __awaiter(this, void 0, void 0, function () {
             var tDal, teacherListToReturn, _i, listOfTeacherID_1, id, teacher;
@@ -191,6 +226,11 @@ var TeacherLogic = /** @class */ (function () {
     };
     //#endregion
     //#region Private Methods
+    /**
+     * Function to build search query, builder parameters for search dynamically.
+     * @param searchTeacherModel Search model.
+     * @returns Returns the json built for search query for Mongo database.
+     */
     TeacherLogic.prototype.BuildSearchQuery = function (searchTeacherModel) {
         var entityToDataBase = {
             priceFrom: { $lt: searchTeacherModel.toPrice },
@@ -201,7 +241,12 @@ var TeacherLogic = /** @class */ (function () {
         };
         return entityToDataBase;
     };
-    TeacherLogic.prototype.GetIncludesArrayQuery = function (data /* Should be TeachesSubjectsInterface or TeachesInstitutionsInterface */) {
+    /**
+     * Receives data that MongoDB requires for query.
+     * @param data Should be TeachesSubjectsInterface or TeachesInstitutionsInterface.
+     * @returns Returns the json built for search query for Mongo database.
+     */
+    TeacherLogic.prototype.GetIncludesArrayQuery = function (data) {
         if (data == null) {
             return { $gt: 0 };
         }
@@ -209,6 +254,11 @@ var TeacherLogic = /** @class */ (function () {
             return data;
         }
     };
+    /**
+     * Receives data that MongoDB requires for query.
+     * @param {TeachesAt} data See interface for more information.
+     * @returns Returns the json built for search query for Mongo database.
+     */
     TeacherLogic.prototype.GetTeachesAtQuery = function (data) {
         if (data == null || data == TeachesAt_Enum_1.TeachesAt.Both) {
             return { $gt: 0 };
@@ -217,6 +267,11 @@ var TeacherLogic = /** @class */ (function () {
             return { $in: [data, 3] };
         }
     };
+    /**
+     * Receives data that MongoDB requires for query.
+     * @param data Number for gender decision.
+     * @returns Returns the json built for search query for Mongo database.
+     */
     TeacherLogic.prototype.GetGenderQuery = function (data) {
         if (data == null || data === 3) {
             return { $gt: 0 };
@@ -225,6 +280,11 @@ var TeacherLogic = /** @class */ (function () {
             return data;
         }
     };
+    /**
+     * Sends email to teacher and the owner of the application when new teacher joines.
+     * @param teacherModel Teacher model.
+     * @prop {Emailer} Email Email class to send emails.
+     */
     TeacherLogic.prototype.SendEmails = function (teacherModel) {
         return __awaiter(this, void 0, void 0, function () {
             var eManager;

@@ -9,6 +9,9 @@ const router: Router = Router();
 //#endregion
 
 //#region Routers
+/**
+ * Receives image ID to database and receives the image from the database.
+ */
 router.get('/getimagebyid/:imagePath', (req: Request, res: Response) => {
     try {
         logger.debug("Enter Image", "Router image/getimagebyid");

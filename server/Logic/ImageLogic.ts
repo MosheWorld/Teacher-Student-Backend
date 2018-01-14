@@ -3,6 +3,11 @@ import { ImageDal } from './../DAL/ImageDal';
 
 export class ImageLogic {
     //#region Public Methods
+    /**
+     * Receives image by ID in database.
+     * @param imageID Image ID.
+     * @returns {Promise<any>} Image returned from database.
+     */
     public async GetImageByID(imageID: string): Promise<any> {
         let iManager = new ImageDal();
 
@@ -10,12 +15,21 @@ export class ImageLogic {
         return image;
     }
 
+    /**
+     * Create new image at database related to some teacher.
+     * @param TeacherIDImage Teacher model ( Will be added as interface in future ).
+     * @returns {Promise<ObjectID>} Returns image ID of new image from database. 
+     */
     public async Create(TeacherIDImage: any): Promise<ObjectID> {
         let iManager = new ImageDal();
         return await iManager.Create(TeacherIDImage);
     }
 
-    public async DeleteByID(id: any /* Nullable string */): Promise<void> {
+    /**
+     * Remove image from database.
+     * @param id ID to remove, Nullable string.
+     */
+    public async DeleteByID(id: any): Promise<void> {
         let iManager = new ImageDal();
         iManager.DeleteByID(id);
     }

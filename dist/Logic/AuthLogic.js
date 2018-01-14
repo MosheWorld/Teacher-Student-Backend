@@ -41,6 +41,10 @@ var AuthLogic = /** @class */ (function () {
     function AuthLogic() {
     }
     //#region Public Methods
+    /**
+     * Creates new facebook user and validates whether the token is valid.
+     * @param {FacebookUserInterface} user Facebook model.
+     */
     AuthLogic.prototype.CreateFacebookUser = function (user) {
         return __awaiter(this, void 0, void 0, function () {
             var aDal, fVerifier, response, ex_1;

@@ -10,6 +10,10 @@ const router: Router = Router();
 //#endregion
 
 //#region Routers
+/**
+ * Creates new facebook user.
+ * @prop {FacebookUserInterface} The model to create new facebook user.
+ */
 router.post('/createfacebookuser', (req: Request, res: Response) => {
     try {
         logger.debug("Enter Auth", "Router auth/createfacebookuser");
@@ -39,6 +43,11 @@ router.post('/createfacebookuser', (req: Request, res: Response) => {
 //#endregion
 
 //#region Functions
+/**
+ * Validates whether the new request to create facebook user is valid.
+ * @param model New facebook model.
+ * @returns {boolean}
+ */
 function IsCreateFacebookUserValid(model: any): boolean {
     if (model == null ||
         IsStringNullOrEmpty(model.id) ||
@@ -55,6 +64,11 @@ function IsCreateFacebookUserValid(model: any): boolean {
     }
 }
 
+/**
+ * Validates whether a string is null or empty.
+ * @param str String.
+ * @returns {boolean}
+ */
 function IsStringNullOrEmpty(str: string): boolean {
     if (str == null || str === "") {
         return true;
@@ -63,6 +77,11 @@ function IsStringNullOrEmpty(str: string): boolean {
     }
 }
 
+/**
+ * Receives model and creates interface that contains the data to create new facebook user.
+ * @param model Facebook user details.
+ * @returns {FacebookUserInterface} Model to return.
+ */
 function ConvertModelToFacebookUserInterface(model: any): FacebookUserInterface {
     let user: FacebookUserInterface = {
         id: model.id,

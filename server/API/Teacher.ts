@@ -12,6 +12,9 @@ const router: Router = Router();
 //#endregion
 
 //#region Routers
+/**
+ * Returns all teachers that exists.
+ */
 router.get('/getall', (req: Request, res: Response) => {
     try {
         logger.debug("Enter Teacher", "Router teacher/getall");
@@ -32,6 +35,9 @@ router.get('/getall', (req: Request, res: Response) => {
     }
 });
 
+/**
+ * Returns specific teacher by his ID at database.
+ */
 router.get('/getbyid/:id', (req: Request, res: Response) => {
     try {
         logger.debug("Enter Teacher", "Router teacher/getbyid" + req.params.id);
@@ -59,6 +65,9 @@ router.get('/getbyid/:id', (req: Request, res: Response) => {
     }
 });
 
+/**
+ * Returns list of teachers according to their IDs.
+ */
 router.post('/getlistofteachersbyid', (req: Request, res: Response) => {
     try {
         logger.debug("Enter Teacher", "Router teacher/getlistofteachersbyid");
@@ -85,6 +94,10 @@ router.post('/getlistofteachersbyid', (req: Request, res: Response) => {
     }
 });
 
+/**
+ * Searches for teachers according to search model.
+ * @prop {SearchTeacherInterface} Model The model of the search.
+ */
 router.post('/search', (req: Request, res: Response) => {
     try {
         logger.debug("Enter Teacher", "Router teacher/search");
@@ -112,6 +125,10 @@ router.post('/search', (req: Request, res: Response) => {
     }
 });
 
+/**
+ * Creates new teacher according to create model.
+ * @prop {TeacherInterface} Model The create model.
+ */
 router.post('/create', (req: Request, res: Response) => {
     try {
         logger.debug("Enter Teacher", "Router teacher/create");
@@ -139,6 +156,10 @@ router.post('/create', (req: Request, res: Response) => {
     }
 });
 
+/**
+ * Adds recommendation to teacher according to teachers ID.
+ * @prop {RecommendationsInterface} Model The new recommendation interface.
+ */
 router.post('/addrecommend', (req: Request, res: Response) => {
     try {
         logger.debug("Enter Teacher", "Router teacher/addrecommend");
@@ -166,6 +187,9 @@ router.post('/addrecommend', (req: Request, res: Response) => {
     }
 });
 
+/**
+ * Delete teacher from the database according to his ID.
+ */
 router.delete('/deletebyid/:id', (req: Request, res: Response) => {
     try {
         logger.debug("Enter Teacher", "Router teacher/deletebyid/" + req.params.id);
@@ -195,6 +219,11 @@ router.delete('/deletebyid/:id', (req: Request, res: Response) => {
 //#endregion
 
 //#region Functions
+/**
+ * Validates whether the new request to create teacher is valid.
+ * @param model New teacher model.
+ * @returns {boolean}
+ */
 function IsModelCreateValid(model: any): boolean {
     if (model == null ||
         model.age == null ||
@@ -227,6 +256,11 @@ function IsModelCreateValid(model: any): boolean {
     }
 }
 
+/**
+ * Validates whether the new request to search teacher is valid.
+ * @param model New search model.
+ * @returns {boolean}
+ */
 function IsModelSearchValid(model: any): boolean {
     if (model == null ||
         model.fromPrice == null || model.fromPrice < 0 ||
@@ -240,6 +274,11 @@ function IsModelSearchValid(model: any): boolean {
     }
 }
 
+/**
+ * Validates whether the new request to recommend a teacher is valid.
+ * @param model New recommendation model.
+ * @returns {boolean}
+ */
 function IsRecommendValid(model: any): boolean {
     if (model == null ||
         model.rate == null || model.rate < 0 || model.rate > 5 ||
@@ -252,6 +291,11 @@ function IsRecommendValid(model: any): boolean {
     }
 }
 
+/**
+ * Validates whether a string is null or empty.
+ * @param str String.
+ * @returns {boolean}
+ */
 function IsStringNullOrEmpty(str: string): boolean {
     if (str == null || str === "") {
         return true;
@@ -260,7 +304,12 @@ function IsStringNullOrEmpty(str: string): boolean {
     }
 }
 
-function IsListOfIDValid(listOfTeacherID): boolean {
+/**
+ * Validates whether the array of IDs are valid.
+ * @param listOfTeacherID Array of IDs from database.
+ * @returns {boolean}
+ */
+function IsListOfIDValid(listOfTeacherID: any): boolean {
     if (listOfTeacherID == null || listOfTeacherID.length === 0) {
         return false;
     } else {
@@ -273,6 +322,11 @@ function IsListOfIDValid(listOfTeacherID): boolean {
     }
 }
 
+/**
+ * Receives model and creates interface that contains the data to search.
+ * @param model Search details.
+ * @returns {SearchTeacherInterface} Model to return.
+ */
 function GetSearchDataModel(model: any): SearchTeacherInterface {
     let searchTeacherModel: SearchTeacherInterface = {
         gender: model.gender,
@@ -286,6 +340,11 @@ function GetSearchDataModel(model: any): SearchTeacherInterface {
     return searchTeacherModel;
 }
 
+/**
+ * Receives model and creates interface that contains the data to create new teacher.
+ * @param model Teacher details.
+ * @returns {TeacherInterface} Model to return.
+ */
 function ConvertModelToTeacherInterface(model: any): TeacherInterface {
     let teacherModel: TeacherInterface = {
         age: model.age,
@@ -307,6 +366,11 @@ function ConvertModelToTeacherInterface(model: any): TeacherInterface {
     return teacherModel;
 }
 
+/**
+ * Receives model and creates interface that contains the data to create new recommendation for teacher.
+ * @param model Recommendation details.
+ * @returns {RecommendationsInterface} Model to return.
+ */
 function ConvertModelToRecommendationsInterface(model: any): RecommendationsInterface {
     let recommendationModel: RecommendationsInterface = {
         rate: model.rate,

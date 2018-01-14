@@ -8,6 +8,9 @@ var logger = new logger_1.Logger();
 var router = express_1.Router();
 //#endregion
 //#region Routers
+/**
+ * Receives image ID to database and receives the image from the database.
+ */
 router.get('/getimagebyid/:imagePath', function (req, res) {
     try {
         logger.debug("Enter Image", "Router image/getimagebyid");

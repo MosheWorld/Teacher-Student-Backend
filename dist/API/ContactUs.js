@@ -10,6 +10,7 @@ var router = express_1.Router();
 //#region Routers
 /**
  * Creates new 'contact us' request at database.
+ * @prop {ContactUsInterface} Model The model of new contact us.
  */
 router.post('/create', function (req, res) {
     try {
@@ -37,10 +38,9 @@ router.post('/create', function (req, res) {
 //#endregion
 //#region Functions
 /**
- * Receives model of 'contact us' request.
- * Validates whether the model is valid or not.
- * @param model Contains email, full name, message, contactReason.
- * @returns {boolean} Returns false in case the model is not valid, otherwise returns true.
+ * Receives model of 'contact us' request, Validates whether the model is valid or not.
+ * @param model New contact us model.
+ * @returns {boolean}
  */
 function IsModelValid(model) {
     if (model == null ||
@@ -54,6 +54,11 @@ function IsModelValid(model) {
         return true;
     }
 }
+/**
+ * Validates whether a string is null or empty.
+ * @param str String.
+ * @returns {boolean}
+ */
 function IsStringNullOrEmpty(str) {
     if (str == null || str === "") {
         return true;
@@ -62,6 +67,11 @@ function IsStringNullOrEmpty(str) {
         return false;
     }
 }
+/**
+ * Receives model and creates interface that contains the data to create new contact us request.
+ * @param model Contact us details.
+ * @returns {ContactUsInterface} Model to return.
+ */
 function ConvertModelToContactUsInterface(model) {
     var contactUsModel = {
         email: model.email,

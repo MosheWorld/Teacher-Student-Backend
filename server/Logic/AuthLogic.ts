@@ -4,6 +4,10 @@ import { FacebookUserInterface } from './../Interfaces/FacebookUser.interface';
 
 export class AuthLogic {
     //#region Public Methods
+    /**
+     * Creates new facebook user and validates whether the token is valid.
+     * @param {FacebookUserInterface} user Facebook model.
+     */
     public async CreateFacebookUser(user: FacebookUserInterface): Promise<void> {
         let aDal = new AuthDal();
 
