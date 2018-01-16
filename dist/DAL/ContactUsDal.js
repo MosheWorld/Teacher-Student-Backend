@@ -5,6 +5,10 @@ var ContactUsDal = /** @class */ (function () {
     function ContactUsDal() {
     }
     //#region Public Methods
+    /**
+     * Creates new contact us request at database.
+     * @param {ContactUsInterface} contactUsData Contact us model.
+     */
     ContactUsDal.prototype.Create = function (contactUsData) {
         return new Promise(function (resolve, reject) {
             ContactUsModel_1.default.collection.insert(contactUsData, function (error) {

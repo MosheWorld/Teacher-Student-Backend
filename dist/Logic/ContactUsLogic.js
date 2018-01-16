@@ -40,6 +40,10 @@ var ContactUsLogic = /** @class */ (function () {
     function ContactUsLogic() {
     }
     //#region Public Methods
+    /**
+     * Creates new contact us request.
+     * @param {ContactUsInterface} contactUsData Contact us model.
+     */
     ContactUsLogic.prototype.Create = function (contactUsData) {
         return __awaiter(this, void 0, void 0, function () {
             var cDal;
