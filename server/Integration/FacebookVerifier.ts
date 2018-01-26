@@ -14,4 +14,11 @@ export class FacebookVerifier {
         });
     }
     //#endregion
+
+    // Comments for app developer to implement new token authentication with facebook.
+
+    // https://stackoverflow.com/questions/3845151/is-there-a-way-to-check-if-facebook-access-token-is-still-valid/48453014#48453014
+    // graph.facebook.com/debug_token?
+    // input_token = { token-to - inspect }
+    // & access_token={ app_id }| { app_secret }
 }
