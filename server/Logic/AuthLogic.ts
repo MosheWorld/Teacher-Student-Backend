@@ -13,13 +13,15 @@ export class AuthLogic {
 
         try {
             let fVerifier = new FacebookVerifier();
-            let response = await fVerifier.IsTokenValid(user.authToken);
+            let isValid = await fVerifier.IsTokenValid(user.authToken);
+
+            if (isValid === true) {
+                aDal.CreateFacebookUser(user);
+            }
         }
         catch (ex) {
-            throw Error("Token received at model is not valid, aborting.");
+            throw Error(ex);
         }
-
-        aDal.CreateFacebookUser(user);
     }
     //#endregion
 }

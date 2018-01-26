@@ -7,9 +7,24 @@ var FacebookVerifier = /** @class */ (function () {
     //#region Public Methods
     FacebookVerifier.prototype.IsTokenValid = function (token) {
         return new Promise(function (resolve, reject) {
-            axios.get('https://graph.facebook.com/oauth/access_token_info?client_id=' + process.env.FACEBOOK_CLIENT_ID + '&access_token=' + token)
+            var endPoint = "https://graph.facebook.com/debug_token?input_token=" + token;
+            endPoint += "&access_token=" + process.env.FACEBOOK_APP_ID + "|" + process.env.FACEBOOK_APP_SECRET_ID;
+            axios.get(endPoint)
                 .then(function (response) {
-                resolve(response.data);
+                if (response && response.data && response.data.data && response.data.data.is_valid === true) {
+                    resolve(true);
+                }
+                else if (response && response.data && response.data.data && response.data.data.is_valid === false) {
+                    if (response.data.data.error) {
+                        reject(response.data.data.error.message);
+                    }
+                    else {
+                        reject("User is not authenticated.");
+                    }
+                }
+                else {
+                    reject("Something went wrong when validating facebook token.");
+                }
             })
                 .catch(function (error) {
                 reject(error.response.data.error);

@@ -8,3 +8,4 @@
 {"level":"error","message":"Out teacher/addrecommend Cannot read property 'rate' of undefined","timestamp":"2017-12-22T14:50:59.300Z"}
 {"level":"error","message":"Out teacher/addrecommend Cannot read property 'rate' of undefined","timestamp":"2017-12-22T14:51:54.396Z"}
 {"level":"error","message":"Out teacher/addrecommend Cannot read property 'rate' of undefined","timestamp":"2017-12-22T14:52:14.547Z"}
+{"photoUrl":"https://graph.facebook.com/undefined/picture?type=normal","authToken":"EAAC2htLrJo4BAA8jeBasqJMD9ttBJSOxpoQX4DleO6dDZAMHtFfoVe6bC3jy4bnu1qrE01cZB0sS3kqatpZBcOfD2XzftOdU6ZCj2peiIa8jIUGMHzDdtxdZBdBxDVEZATSZChM7AItoUZBjxf7j5cbZAXKFpTEliuh7CCkoWRXQV6BCCgsYLb8hlQLVM5Dm22oUFk0cFlleLKgZDZD","provider":"FACEBOOK","level":"error","message":"Model is not valid. auth/createfacebookuser","timestamp":"2018-01-26T22:59:47.459Z"}

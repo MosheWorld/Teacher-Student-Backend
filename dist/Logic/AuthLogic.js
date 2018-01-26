@@ -47,7 +47,7 @@ var AuthLogic = /** @class */ (function () {
      */
     AuthLogic.prototype.CreateFacebookUser = function (user) {
         return __awaiter(this, void 0, void 0, function () {
-            var aDal, fVerifier, response, ex_1;
+            var aDal, fVerifier, isValid, ex_1;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
@@ -58,14 +58,15 @@ var AuthLogic = /** @class */ (function () {
                         fVerifier = new FacebookVerifier_1.FacebookVerifier();
                         return [4 /*yield*/, fVerifier.IsTokenValid(user.authToken)];
                     case 2:
-                        response = _a.sent();
+                        isValid = _a.sent();
+                        if (isValid === true) {
+                            aDal.CreateFacebookUser(user);
+                        }
                         return [3 /*break*/, 4];
                     case 3:
                         ex_1 = _a.sent();
-                        throw Error("Token received at model is not valid, aborting.");
-                    case 4:
-                        aDal.CreateFacebookUser(user);
-                        return [2 /*return*/];
+                        throw Error(ex_1);
+                    case 4: return [2 /*return*/];
                 }
             });
         });

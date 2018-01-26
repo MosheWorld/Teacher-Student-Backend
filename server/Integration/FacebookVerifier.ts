@@ -4,9 +4,26 @@ export class FacebookVerifier {
     //#region Public Methods
     public IsTokenValid(token: string): Promise<any> {
         return new Promise((resolve, reject) => {
-            axios.get('https://graph.facebook.com/oauth/access_token_info?client_id=' + process.env.FACEBOOK_CLIENT_ID + '&access_token=' + token)
+
+            let endPoint = "https://graph.facebook.com/debug_token?input_token=" + token;
+            endPoint += "&access_token=" + process.env.FACEBOOK_APP_ID + "|" + process.env.FACEBOOK_APP_SECRET_ID;
+
+            axios.get(endPoint)
                 .then(function (response) {
-                    resolve(response.data);
+
+                    if (response && response.data && response.data.data && response.data.data.is_valid === true) {
+                        resolve(true);
+                    }
+                    else if (response && response.data && response.data.data && response.data.data.is_valid === false) {
+                        if (response.data.data.error) {
+                            reject(response.data.data.error.message);
+                        } else {
+                            reject("User is not authenticated.");
+                        }
+                    } else {
+                        reject("Something went wrong when validating facebook token.");
+                    }
+
                 })
                 .catch(function (error) {
                     reject(error.response.data.error);
@@ -14,11 +31,4 @@ export class FacebookVerifier {
         });
     }
     //#endregion
-
-    // Comments for app developer to implement new token authentication with facebook.
-
-    // https://stackoverflow.com/questions/3845151/is-there-a-way-to-check-if-facebook-access-token-is-still-valid/48453014#48453014
-    // graph.facebook.com/debug_token?
-    // input_token = { token-to - inspect }
-    // & access_token={ app_id }| { app_secret }
 }
