@@ -2,6 +2,11 @@ const axios = require('axios');
 
 export class FacebookVerifier {
     //#region Public Methods
+    /**
+     * Validates whether a token is valid from facebook.
+     * @param token Facebook token.
+     * @returns {boolean | string} In case it's valid we'll return 'true' otherwise we'll reject and throw exception.
+     */
     public IsTokenValid(token: string): Promise<any> {
         return new Promise((resolve, reject) => {
 
