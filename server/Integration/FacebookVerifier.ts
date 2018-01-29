@@ -1,4 +1,5 @@
-const axios = require('axios');
+// const axios = require('axios');
+import * as axios from 'axios';
 
 export class FacebookVerifier {
     //#region Public Methods
