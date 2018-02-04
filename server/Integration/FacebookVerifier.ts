@@ -1,7 +1,7 @@
 const axios = require('axios');
 
 export class FacebookVerifier {
-    //#region Public Methods
+    //#region Public Methods.
     /**
      * Validates whether a token is valid from facebook.
      * @param token Facebook token.
