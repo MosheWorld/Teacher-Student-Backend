@@ -42,14 +42,32 @@ export class Logger {
     //#endregion
 
     //#region Public Methods
+    /**
+     * Creates debug log.
+     * @param title Title of the log.
+     * @param message Message of the log.
+     * @param data Data of the log.
+     */
     public debug(title: any = null, message: any = null, data: any = null): void {
         this.debugLogger.debug(title, message, data);
     }
 
+    /**
+     * Creates info log.
+     * @param title Title of the log.
+     * @param message Message of the log.
+     * @param data Data of the log.
+     */
     public info(title: any = null, message: any = null, data: any = null): void {
         this.infoLogger.info(title, message, data);
     }
 
+    /**
+     * Creates error log.
+     * @param title Title of the log.
+     * @param message Message of the log.
+     * @param data Data of the log.
+     */
     public error(title: any = null, message: any = null, data: any = null): void {
         this.errorLogger.error(title, message, data);
     }

@@ -69,7 +69,7 @@ var TeacherDal = /** @class */ (function () {
     /**
      * Updates recommendation of teacher.
      * @param id Teacher ID.
-     * @param recommendData
+     * @param recommendData Recommendation data.
      * @param rateData New teacher rate.
      */
     TeacherDal.prototype.UpdateRecommendations = function (id, recommendData, rateData) {

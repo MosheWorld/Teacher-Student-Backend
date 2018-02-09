@@ -40,6 +40,11 @@ var Emailer = /** @class */ (function () {
     function Emailer() {
     }
     //#region Public Methods
+    /**
+     * Sending Email to teacher given Email - Async.
+     * @param subject Subject of the Email.
+     * @param teacherModel Teacher model to export the details to build message.
+     */
     Emailer.prototype.SendEmailToTeacherAsync = function (subject, teacherModel) {
         return __awaiter(this, void 0, void 0, function () {
             var body;
@@ -50,6 +55,11 @@ var Emailer = /** @class */ (function () {
             });
         });
     };
+    /**
+     * Sending Email to owner of app - Async.
+     * @param subject Subject of the Email.
+     * @param teacherModel Teacher model to export the details to build message.
+     */
     Emailer.prototype.SendEmailToOwnerAsync = function (subject, teacherModel) {
         return __awaiter(this, void 0, void 0, function () {
             var email, body;
@@ -63,6 +73,12 @@ var Emailer = /** @class */ (function () {
     };
     //#endregion
     //#region Private Methods
+    /**
+     * Function extues the email sending code - Async.
+     * @param {string} to Email as string.
+     * @param {string} subject Subject of the Email.
+     * @param {string} body Content of the Email.
+     */
     Emailer.prototype.SendEmailAsync = function (to, subject, body) {
         var _this = this;
         return new Promise(function (resolve, reject) {
@@ -76,6 +92,10 @@ var Emailer = /** @class */ (function () {
             });
         });
     };
+    /**
+     * Builds the object with the data of the email sending from, classified details.
+     * @return Object with data.
+     */
     Emailer.prototype.CreateTransport = function () {
         return nodemailer.createTransport({
             service: 'Gmail',
@@ -85,6 +105,13 @@ var Emailer = /** @class */ (function () {
             }
         });
     };
+    /**
+     * Builds mail options.
+     * @param {string} to Email as string.
+     * @param {string} subject Subject of the Email.
+     * @param {string} body Content of the Email.
+     * @return Mail options.
+     */
     Emailer.prototype.MailOptions = function (to, subject, body) {
         return {
             from: '"StudyHub 👻" <studyhubemail@gmail.com>',

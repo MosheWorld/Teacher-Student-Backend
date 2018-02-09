@@ -35,18 +35,36 @@ var Logger = /** @class */ (function () {
     }
     //#endregion
     //#region Public Methods
+    /**
+     * Creates debug log.
+     * @param title Title of the log.
+     * @param message Message of the log.
+     * @param data Data of the log.
+     */
     Logger.prototype.debug = function (title, message, data) {
         if (title === void 0) { title = null; }
         if (message === void 0) { message = null; }
         if (data === void 0) { data = null; }
         this.debugLogger.debug(title, message, data);
     };
+    /**
+     * Creates info log.
+     * @param title Title of the log.
+     * @param message Message of the log.
+     * @param data Data of the log.
+     */
     Logger.prototype.info = function (title, message, data) {
         if (title === void 0) { title = null; }
         if (message === void 0) { message = null; }
         if (data === void 0) { data = null; }
         this.infoLogger.info(title, message, data);
     };
+    /**
+     * Creates error log.
+     * @param title Title of the log.
+     * @param message Message of the log.
+     * @param data Data of the log.
+     */
     Logger.prototype.error = function (title, message, data) {
         if (title === void 0) { title = null; }
         if (message === void 0) { message = null; }
