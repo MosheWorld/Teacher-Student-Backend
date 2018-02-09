@@ -4,7 +4,12 @@ var axios = require('axios');
 var FacebookVerifier = /** @class */ (function () {
     function FacebookVerifier() {
     }
-    //#region Public Methods
+    //#region Public Methods.
+    /**
+     * Validates whether a token is valid from facebook.
+     * @param token Facebook token.
+     * @returns {boolean | string} In case it's valid we'll return 'true' otherwise we'll reject and throw exception.
+     */
     FacebookVerifier.prototype.IsTokenValid = function (token) {
         return new Promise(function (resolve, reject) {
             var endPoint = "https://graph.facebook.com/debug_token?input_token=" + token;

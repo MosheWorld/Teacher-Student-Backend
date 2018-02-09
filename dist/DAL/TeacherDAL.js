@@ -6,6 +6,10 @@ var TeacherDal = /** @class */ (function () {
     function TeacherDal() {
     }
     //#region Public Methods
+    /**
+     * Receives all teachers from database.
+     * @returns Array of teachers.
+     */
     TeacherDal.prototype.GetAll = function () {
         return new Promise(function (resolve, reject) {
             var teachersCollection = TeacherModel_1.default.find({}, function (error, teachers) {
@@ -17,6 +21,11 @@ var TeacherDal = /** @class */ (function () {
             resolve(teachersCollection);
         });
     };
+    /**
+     * Receives teacher by his ID.
+     * @param id Teacher ID.
+     * @returns Single teacher.
+     */
     TeacherDal.prototype.GetByID = function (id) {
         return new Promise(function (resolve, reject) {
             var teacher = TeacherModel_1.default.findOne({ _id: new mongodb_1.ObjectID(id) }, function (error, teacher) {
@@ -28,6 +37,11 @@ var TeacherDal = /** @class */ (function () {
             resolve(teacher);
         });
     };
+    /**
+     * Creates new teacher at database.
+     * @param teacherData Teacher data.
+     * @returns Returns new teacher ID as ObjectID.
+     */
     TeacherDal.prototype.Create = function (teacherData) {
         return new Promise(function (resolve, reject) {
             TeacherModel_1.default.collection.insert(teacherData, function (error) {
@@ -38,6 +52,10 @@ var TeacherDal = /** @class */ (function () {
             });
         });
     };
+    /**
+     * Remove teacher from database by his ID.
+     * @param id Teacher ID.
+     */
     TeacherDal.prototype.DeleteByID = function (id) {
         return new Promise(function (resolve, reject) {
             TeacherModel_1.default.collection.deleteOne({ _id: new mongodb_1.ObjectID(id) }, function (error) {
@@ -48,6 +66,12 @@ var TeacherDal = /** @class */ (function () {
             });
         });
     };
+    /**
+     * Updates recommendation of teacher.
+     * @param id Teacher ID.
+     * @param recommendData
+     * @param rateData New teacher rate.
+     */
     TeacherDal.prototype.UpdateRecommendations = function (id, recommendData, rateData) {
         return new Promise(function (resolve, reject) {
             TeacherModel_1.default.collection.updateOne({ _id: id }, {
@@ -60,6 +84,11 @@ var TeacherDal = /** @class */ (function () {
             });
         });
     };
+    /**
+     * Updates teacher image at database.
+     * @param id Teacher ID.
+     * @param imagePathNew image ID from image database.
+     */
     TeacherDal.prototype.UpdateImage = function (id, imagePath) {
         return new Promise(function (resolve, reject) {
             TeacherModel_1.default.collection.updateOne({ _id: id }, { $set: { "image": imagePath }, }, function (error) {
@@ -70,6 +99,11 @@ var TeacherDal = /** @class */ (function () {
             });
         });
     };
+    /**
+     * Searches for teacher according to given query.
+     * @param query MongoDB query.
+     * @return Teacher.
+     */
     TeacherDal.prototype.SearchTeacher = function (query) {
         return new Promise(function (resolve, reject) {
             var teachers = TeacherModel_1.default.find(query, function (error, teachers) {

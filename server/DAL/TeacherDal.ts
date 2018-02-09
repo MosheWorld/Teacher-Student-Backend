@@ -5,6 +5,10 @@ import { TeacherInterface } from './../Interfaces/Teacher.interface';
 
 export class TeacherDal {
     //#region Public Methods
+    /**
+     * Receives all teachers from database.
+     * @returns Array of teachers.
+     */
     public GetAll(): Promise<any[]> {
         return new Promise((resolve, reject) => {
             let teachersCollection = DataBaseConnector.find({}, (error, teachers) => {
@@ -16,6 +20,11 @@ export class TeacherDal {
         });
     }
 
+    /**
+     * Receives teacher by his ID.
+     * @param id Teacher ID.
+     * @returns Single teacher.
+     */
     public GetByID(id: any): Promise<any> {
         return new Promise((resolve, reject) => {
             let teacher = DataBaseConnector.findOne({ _id: new ObjectID(id) }, (error, teacher) => {
@@ -27,6 +36,11 @@ export class TeacherDal {
         });
     }
 
+    /**
+     * Creates new teacher at database.
+     * @param teacherData Teacher data.
+     * @returns Returns new teacher ID as ObjectID.
+     */
     public Create(teacherData: any): Promise<ObjectID> {
         return new Promise((resolve, reject) => {
             DataBaseConnector.collection.insert(teacherData, (error) => {
@@ -36,6 +50,10 @@ export class TeacherDal {
         });
     }
 
+    /**
+     * Remove teacher from database by his ID.
+     * @param id Teacher ID.
+     */
     public DeleteByID(id: any): Promise<void> {
         return new Promise((resolve, reject) => {
             DataBaseConnector.collection.deleteOne({ _id: new ObjectID(id) }, (error) => {
@@ -45,6 +63,12 @@ export class TeacherDal {
         });
     }
 
+    /**
+     * Updates recommendation of teacher.
+     * @param id Teacher ID.
+     * @param recommendData Recommendation data.
+     * @param rateData New teacher rate.
+     */
     public UpdateRecommendations(id, recommendData, rateData): Promise<void> {
         return new Promise((resolve, reject) => {
             DataBaseConnector.collection.updateOne({ _id: id }, {
@@ -56,6 +80,11 @@ export class TeacherDal {
         });
     }
 
+    /**
+     * Updates teacher image at database.
+     * @param id Teacher ID.
+     * @param imagePathNew image ID from image database.
+     */
     public UpdateImage(id, imagePath): Promise<void> {
         return new Promise((resolve, reject) => {
             DataBaseConnector.collection.updateOne({ _id: id }, { $set: { "image": imagePath }, }
@@ -66,6 +95,11 @@ export class TeacherDal {
         });
     }
 
+    /**
+     * Searches for teacher according to given query.
+     * @param query MongoDB query.
+     * @return Teacher.
+     */
     public SearchTeacher(query: any): Promise<any> {
         return new Promise((resolve, reject) => {
             let teachers = DataBaseConnector.find(query, (error, teachers) => {
