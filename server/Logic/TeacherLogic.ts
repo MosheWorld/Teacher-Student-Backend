@@ -90,35 +90,6 @@ export class TeacherLogic {
     }
 
     /**
-     * Adds new recommendation to teacher.
-     * @param id Teacher ID.
-     * @param {RecommendationsInterface} recommendData Recommendation model.
-     */
-    public async AddRecommendToExistingTeacher(id: any, recommendData: RecommendationsInterface): Promise<void> {
-        let tDal = new TeacherDal();
-        let currentTeacher = await this.GetByID(id);
-
-        if (currentTeacher == null || currentTeacher._id == null) {
-            throw new Error("User not found.");
-        }
-
-        // Adding new recommendation to the recommendation list for specific teacher.
-        let recommendCollection: any[] = currentTeacher.recommendations;
-        recommendCollection.push(recommendData);
-
-        // Calculates new rate for the teacher.
-        let newRate: number = 0;
-        for (let recommend of recommendCollection) {
-            newRate += recommend.rate;
-        }
-
-        newRate = newRate / recommendCollection.length;
-        newRate = parseFloat((Math.round(newRate * 100) / 100).toFixed(2));
-
-        tDal.UpdateRecommendations(currentTeacher._id, recommendCollection, newRate);
-    }
-
-    /**
      * Receives list of teachers by their ID.
      * @param {string[]} listOfTeacherID List of IDs.
      * @returns {Promise<TeacherInterface[]>} Teacher model.

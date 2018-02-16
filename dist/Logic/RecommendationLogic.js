@@ -66,7 +66,7 @@ var RecommendationLogic = /** @class */ (function () {
      */
     RecommendationLogic.prototype.Create = function (model) {
         return __awaiter(this, void 0, void 0, function () {
-            var rMDal, createdRecommendationID, tManager;
+            var rMDal, createdRecommendationID, tDal;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
@@ -74,8 +74,41 @@ var RecommendationLogic = /** @class */ (function () {
                         return [4 /*yield*/, rMDal.Create(model)];
                     case 1:
                         createdRecommendationID = _a.sent();
-                        tManager = new TeacherDal_1.TeacherDal();
-                        tManager.AddRecommendationID(model.teacherID, createdRecommendationID);
+                        tDal = new TeacherDal_1.TeacherDal();
+                        return [4 /*yield*/, tDal.AddRecommendationID(model.teacherID, createdRecommendationID)];
+                    case 2:
+                        _a.sent();
+                        this.UpdateTeacherRate(model.teacherID);
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
+    //#endregion
+    //#region Private Methods
+    /**
+     * Updates rate for teacher at database.
+     * @param teacherID Teacher ID as string.
+     */
+    RecommendationLogic.prototype.UpdateTeacherRate = function (teacherID) {
+        return __awaiter(this, void 0, void 0, function () {
+            var recommendationsList, newRate, _i, recommendationsList_1, recommend, tDal;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.GetRecommendationsByID(teacherID)];
+                    case 1:
+                        recommendationsList = _a.sent();
+                        newRate = 0;
+                        for (_i = 0, recommendationsList_1 = recommendationsList; _i < recommendationsList_1.length; _i++) {
+                            recommend = recommendationsList_1[_i];
+                            newRate += recommend.rate;
+                        }
+                        newRate = newRate / recommendationsList.length;
+                        newRate = parseFloat((Math.round(newRate * 100) / 100).toFixed(2));
+                        tDal = new TeacherDal_1.TeacherDal();
+                        return [4 /*yield*/, tDal.UpdateRate(teacherID, newRate)];
+                    case 2:
+                        _a.sent();
                         return [2 /*return*/];
                 }
             });

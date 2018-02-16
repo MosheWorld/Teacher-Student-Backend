@@ -10,14 +10,18 @@ export class RecommendationDal {
      */
     public GetRecommendationsByID(teacherID: string): Promise<any> {
         return new Promise((resolve, reject) => {
-            let recommendationList = DataBaseConnector.find({}, (error, teachers) => {
+            let recommendationList = DataBaseConnector.find({"teacherID" : teacherID}, (error, teachers) => {
                 if (error) { reject("Error occurred when gettings all recommendation from database."); }
             });
 
             resolve(recommendationList);
         });
     }
-    // RecommendationsInterface
+
+    /**
+     * Creates new recommendation at database and returns the ObjectD.
+     * @param {RecommendationsInterface} model This is the type of this model.
+     */
     public Create(model: any): Promise<ObjectID> {
         return new Promise((resolve, reject) => {
             DataBaseConnector.collection.insert(model, (error) => {

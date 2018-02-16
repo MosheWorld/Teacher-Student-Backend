@@ -157,37 +157,6 @@ router.post('/create', (req: Request, res: Response) => {
 });
 
 /**
- * Adds recommendation to teacher according to teachers ID.
- * @prop {RecommendationsInterface} Model The new recommendation interface.
- */
-router.post('/addrecommend', (req: Request, res: Response) => {
-    try {
-        logger.debug("Enter Teacher", "Router teacher/addrecommend");
-
-        if (req.body == null || IsStringNullOrEmpty(req.body.id) || !IsRecommendValid(req.body)) {
-            logger.error("Model is not valid.", "teacher/addrecommend", req.body);
-            return res.status(400).send("Model is not valid.");
-        }
-
-        let tManager = new TeacherLogic();
-        let recommendData: RecommendationsInterface = ConvertModelToRecommendationsInterface(req.body);
-
-        tManager.AddRecommendToExistingTeacher(req.body.id, recommendData)
-            .then((success) => {
-                res.send(success);
-            })
-            .catch((error) => {
-                res.status(400).send(error.message);
-            });
-
-        logger.info("Out", "teacher/addrecommend");
-    } catch (ex) {
-        logger.error("Out", "teacher/addrecommend", ex.message);
-        res.status(400).send(ex.message);
-    }
-});
-
-/**
  * Delete teacher from the database according to his ID.
  */
 router.delete('/deletebyid/:id', (req: Request, res: Response) => {
@@ -364,22 +333,6 @@ function ConvertModelToTeacherInterface(model: any): TeacherInterface {
     }
 
     return teacherModel;
-}
-
-/**
- * Receives model and creates interface that contains the data to create new recommendation for teacher.
- * @param model Recommendation details.
- * @returns {RecommendationsInterface} Model to return.
- */
-function ConvertModelToRecommendationsInterface(model: any): RecommendationsInterface {
-    let recommendationModel: RecommendationsInterface = {
-        rate: model.rate,
-        email: model.email,
-        message: model.message,
-        fullName: model.fullName
-    };
-
-    return recommendationModel;
 }
 //#endregion
 

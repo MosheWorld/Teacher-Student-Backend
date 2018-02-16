@@ -11,7 +11,7 @@ var RecommendationDal = /** @class */ (function () {
      */
     RecommendationDal.prototype.GetRecommendationsByID = function (teacherID) {
         return new Promise(function (resolve, reject) {
-            var recommendationList = RecommendationModel_1.default.find({}, function (error, teachers) {
+            var recommendationList = RecommendationModel_1.default.find({ "teacherID": teacherID }, function (error, teachers) {
                 if (error) {
                     reject("Error occurred when gettings all recommendation from database.");
                 }
@@ -19,7 +19,10 @@ var RecommendationDal = /** @class */ (function () {
             resolve(recommendationList);
         });
     };
-    // RecommendationsInterface
+    /**
+     * Creates new recommendation at database and returns the ObjectD.
+     * @param {RecommendationsInterface} model This is the type of this model.
+     */
     RecommendationDal.prototype.Create = function (model) {
         return new Promise(function (resolve, reject) {
             RecommendationModel_1.default.collection.insert(model, function (error) {

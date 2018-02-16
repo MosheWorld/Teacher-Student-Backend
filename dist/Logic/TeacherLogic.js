@@ -161,39 +161,6 @@ var TeacherLogic = /** @class */ (function () {
         });
     };
     /**
-     * Adds new recommendation to teacher.
-     * @param id Teacher ID.
-     * @param {RecommendationsInterface} recommendData Recommendation model.
-     */
-    TeacherLogic.prototype.AddRecommendToExistingTeacher = function (id, recommendData) {
-        return __awaiter(this, void 0, void 0, function () {
-            var tDal, currentTeacher, recommendCollection, newRate, _i, recommendCollection_1, recommend;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        tDal = new TeacherDAL_1.TeacherDal();
-                        return [4 /*yield*/, this.GetByID(id)];
-                    case 1:
-                        currentTeacher = _a.sent();
-                        if (currentTeacher == null || currentTeacher._id == null) {
-                            throw new Error("User not found.");
-                        }
-                        recommendCollection = currentTeacher.recommendations;
-                        recommendCollection.push(recommendData);
-                        newRate = 0;
-                        for (_i = 0, recommendCollection_1 = recommendCollection; _i < recommendCollection_1.length; _i++) {
-                            recommend = recommendCollection_1[_i];
-                            newRate += recommend.rate;
-                        }
-                        newRate = newRate / recommendCollection.length;
-                        newRate = parseFloat((Math.round(newRate * 100) / 100).toFixed(2));
-                        tDal.UpdateRecommendations(currentTeacher._id, recommendCollection, newRate);
-                        return [2 /*return*/];
-                }
-            });
-        });
-    };
-    /**
      * Receives list of teachers by their ID.
      * @param {string[]} listOfTeacherID List of IDs.
      * @returns {Promise<TeacherInterface[]>} Teacher model.

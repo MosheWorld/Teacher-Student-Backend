@@ -22,7 +22,7 @@ export class TeacherDal {
 
     /**
      * Receives teacher by his ID.
-     * @param id Teacher ID.
+     * @param id Teacher ID as string.
      * @returns Single teacher.
      */
     public GetByID(id: any): Promise<any> {
@@ -64,23 +64,6 @@ export class TeacherDal {
     }
 
     /**
-     * Updates recommendation of teacher.
-     * @param id Teacher ID.
-     * @param recommendData Recommendation data.
-     * @param rateData New teacher rate.
-     */
-    public UpdateRecommendations(id, recommendData, rateData): Promise<void> {
-        return new Promise((resolve, reject) => {
-            DataBaseConnector.collection.updateOne({ _id: id }, {
-                $set: { "recommendations": recommendData, "rate": rateData },
-            }, (error) => {
-                if (error) { reject("Error occurred when updating recommendation at database."); }
-                resolve();
-            });
-        });
-    }
-
-    /**
      * Updates teacher image at database.
      * @param id Teacher ID.
      * @param imagePathNew image ID from image database.
@@ -112,11 +95,27 @@ export class TeacherDal {
     }
 
     /**
+     * Updates rate for the teacher.
+     * @param teacherID string.
+     * @param newRate number.
+     */
+    public UpdateRate(teacherID: string, newRate: Number): Promise<void> {
+        return new Promise((resolve, reject) => {
+            DataBaseConnector.collection.updateOne({ _id: new ObjectID(teacherID) },
+            { $set: { "rate": newRate }, }
+            , (error) => {
+                if (error) { reject("Error occurred when updating rate for teacher at database."); }
+                resolve();
+            });
+        });
+    }
+
+    /**
      * Receives ID of teacher and ID of new recommendations and adds it to teacher recommendations list.
      * @param teacherID String.
      * @param newRecommendationID ObjectID.
      */
-    public AddRecommendationID(teacherID: string, newRecommendationID: any) {
+    public AddRecommendationID(teacherID: string, newRecommendationID: any): Promise<void> {
         return new Promise((resolve, reject) => {
             DataBaseConnector.findOne({ _id: new ObjectID(teacherID) }, (error, teacher) => {
                 if (error) { reject("Error occurred when gettings teacher from database."); }
@@ -129,7 +128,7 @@ export class TeacherDal {
                     , (error) => {
                         if (error) { reject("Error occurred when updating recommendations for teacher at database."); }
                         resolve();
-                    }); 
+                    });
             });
         });
     }

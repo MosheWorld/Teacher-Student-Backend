@@ -24,8 +24,32 @@ export class RecommendationLogic {
 
         let createdRecommendationID = await rMDal.Create(model);
 
-        let tManager = new TeacherDal();
-        tManager.AddRecommendationID(model.teacherID, createdRecommendationID);
+        let tDal = new TeacherDal();
+        await tDal.AddRecommendationID(model.teacherID, createdRecommendationID);
+
+        this.UpdateTeacherRate(model.teacherID);
+    }
+    //#endregion
+
+    //#region Private Methods
+    /**
+     * Updates rate for teacher at database.
+     * @param teacherID Teacher ID as string.
+     */
+    private async UpdateTeacherRate(teacherID: string): Promise<void> {
+        let recommendationsList = await this.GetRecommendationsByID(teacherID);
+
+        let newRate: number = 0;
+
+        for (let recommend of recommendationsList) {
+            newRate += recommend.rate;
+        }
+
+        newRate = newRate / recommendationsList.length;
+        newRate = parseFloat((Math.round(newRate * 100) / 100).toFixed(2));
+
+        let tDal = new TeacherDal();
+        await tDal.UpdateRate(teacherID, newRate);
     }
     //#endregion
 }

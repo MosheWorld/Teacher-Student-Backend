@@ -23,7 +23,7 @@ var TeacherDal = /** @class */ (function () {
     };
     /**
      * Receives teacher by his ID.
-     * @param id Teacher ID.
+     * @param id Teacher ID as string.
      * @returns Single teacher.
      */
     TeacherDal.prototype.GetByID = function (id) {
@@ -67,24 +67,6 @@ var TeacherDal = /** @class */ (function () {
         });
     };
     /**
-     * Updates recommendation of teacher.
-     * @param id Teacher ID.
-     * @param recommendData Recommendation data.
-     * @param rateData New teacher rate.
-     */
-    TeacherDal.prototype.UpdateRecommendations = function (id, recommendData, rateData) {
-        return new Promise(function (resolve, reject) {
-            TeacherModel_1.default.collection.updateOne({ _id: id }, {
-                $set: { "recommendations": recommendData, "rate": rateData },
-            }, function (error) {
-                if (error) {
-                    reject("Error occurred when updating recommendation at database.");
-                }
-                resolve();
-            });
-        });
-    };
-    /**
      * Updates teacher image at database.
      * @param id Teacher ID.
      * @param imagePathNew image ID from image database.
@@ -113,6 +95,21 @@ var TeacherDal = /** @class */ (function () {
                 return teachers ? teachers : null;
             });
             resolve(teachers);
+        });
+    };
+    /**
+     * Updates rate for the teacher.
+     * @param teacherID string.
+     * @param newRate number.
+     */
+    TeacherDal.prototype.UpdateRate = function (teacherID, newRate) {
+        return new Promise(function (resolve, reject) {
+            TeacherModel_1.default.collection.updateOne({ _id: new mongodb_1.ObjectID(teacherID) }, { $set: { "rate": newRate }, }, function (error) {
+                if (error) {
+                    reject("Error occurred when updating rate for teacher at database.");
+                }
+                resolve();
+            });
         });
     };
     /**
