@@ -35,7 +35,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var TeacherDal_1 = require("./../DAL/TeacherDal");
+var TeacherDal_1 = require("./../DAL/TeacherDAL");
 var RecommendationDal_1 = require("./../DAL/RecommendationDal");
 var RecommendationLogic = /** @class */ (function () {
     function RecommendationLogic() {
