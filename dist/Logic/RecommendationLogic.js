@@ -35,63 +35,52 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var ImageDal_1 = require("./../DAL/ImageDal");
-var ImageLogic = /** @class */ (function () {
-    function ImageLogic() {
+var TeacherDal_1 = require("./../DAL/TeacherDal");
+var RecommendationDal_1 = require("./../DAL/RecommendationDal");
+var RecommendationLogic = /** @class */ (function () {
+    function RecommendationLogic() {
     }
     //#region Public Methods
     /**
-     * Receives image by ID in database.
-     * @param imageID Image ID.
-     * @returns {Promise<any>} Image returned from database.
+     * Returns list of all recommendations by given teacher ID.
+     * @param teacherID Teacher ID.
      */
-    ImageLogic.prototype.GetImageByID = function (imageID) {
+    RecommendationLogic.prototype.GetRecommendationsByID = function (teacherID) {
         return __awaiter(this, void 0, void 0, function () {
-            var iManager, image;
+            var rMDal, recommendationsList;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        iManager = new ImageDal_1.ImageDal();
-                        return [4 /*yield*/, iManager.GetImageByID(imageID)];
+                        rMDal = new RecommendationDal_1.RecommendationDal();
+                        return [4 /*yield*/, rMDal.GetRecommendationsByID(teacherID)];
                     case 1:
-                        image = _a.sent();
-                        return [2 /*return*/, image];
+                        recommendationsList = _a.sent();
+                        return [2 /*return*/, recommendationsList];
                 }
             });
         });
     };
     /**
-     * Create new image at database related to some teacher.
-     * @param TeacherIDImage Teacher model ( Will be added as interface in future ).
-     * @returns {Promise<ObjectID>} Returns image ID of new image from database.
+     * Creates new recommendation at database.
+     * @param model
      */
-    ImageLogic.prototype.Create = function (teacherIDImage) {
+    RecommendationLogic.prototype.Create = function (model) {
         return __awaiter(this, void 0, void 0, function () {
-            var iManager;
+            var rMDal, createdRecommendationID, tManager;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        iManager = new ImageDal_1.ImageDal();
-                        return [4 /*yield*/, iManager.Create(teacherIDImage)];
-                    case 1: return [2 /*return*/, _a.sent()];
+                        rMDal = new RecommendationDal_1.RecommendationDal();
+                        return [4 /*yield*/, rMDal.Create(model)];
+                    case 1:
+                        createdRecommendationID = _a.sent();
+                        tManager = new TeacherDal_1.TeacherDal();
+                        tManager.AddRecommendationID(model.teacherID, createdRecommendationID);
+                        return [2 /*return*/];
                 }
             });
         });
     };
-    /**
-     * Remove image from database.
-     * @param id ID to remove, Nullable string.
-     */
-    ImageLogic.prototype.DeleteByID = function (id) {
-        return __awaiter(this, void 0, void 0, function () {
-            var iManager;
-            return __generator(this, function (_a) {
-                iManager = new ImageDal_1.ImageDal();
-                iManager.DeleteByID(id);
-                return [2 /*return*/];
-            });
-        });
-    };
-    return ImageLogic;
+    return RecommendationLogic;
 }());
-exports.ImageLogic = ImageLogic;
+exports.RecommendationLogic = RecommendationLogic;

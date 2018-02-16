@@ -20,9 +20,9 @@ export class ImageLogic {
      * @param TeacherIDImage Teacher model ( Will be added as interface in future ).
      * @returns {Promise<ObjectID>} Returns image ID of new image from database. 
      */
-    public async Create(TeacherIDImage: any): Promise<ObjectID> {
+    public async Create(teacherIDImage: any): Promise<ObjectID> {
         let iManager = new ImageDal();
-        return await iManager.Create(TeacherIDImage);
+        return await iManager.Create(teacherIDImage);
     }
 
     /**

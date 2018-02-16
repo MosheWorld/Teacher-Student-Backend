@@ -110,5 +110,28 @@ export class TeacherDal {
             resolve(teachers);
         });
     }
+
+    /**
+     * Receives ID of teacher and ID of new recommendations and adds it to teacher recommendations list.
+     * @param teacherID String.
+     * @param newRecommendationID ObjectID.
+     */
+    public AddRecommendationID(teacherID: string, newRecommendationID: any) {
+        return new Promise((resolve, reject) => {
+            DataBaseConnector.findOne({ _id: new ObjectID(teacherID) }, (error, teacher) => {
+                if (error) { reject("Error occurred when gettings teacher from database."); }
+
+                let recommendationsList = teacher.recommendations;
+                recommendationsList.push(newRecommendationID.toString());
+
+                DataBaseConnector.collection.updateOne({ _id: new ObjectID(teacherID) },
+                    { $set: { "recommendations": recommendationsList }, }
+                    , (error) => {
+                        if (error) { reject("Error occurred when updating recommendations for teacher at database."); }
+                        resolve();
+                    }); 
+            });
+        });
+    }
     //#endregion
 }

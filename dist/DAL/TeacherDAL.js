@@ -115,6 +115,28 @@ var TeacherDal = /** @class */ (function () {
             resolve(teachers);
         });
     };
+    /**
+     * Receives ID of teacher and ID of new recommendations and adds it to teacher recommendations list.
+     * @param teacherID String.
+     * @param newRecommendationID ObjectID.
+     */
+    TeacherDal.prototype.AddRecommendationID = function (teacherID, newRecommendationID) {
+        return new Promise(function (resolve, reject) {
+            TeacherModel_1.default.findOne({ _id: new mongodb_1.ObjectID(teacherID) }, function (error, teacher) {
+                if (error) {
+                    reject("Error occurred when gettings teacher from database.");
+                }
+                var recommendationsList = teacher.recommendations;
+                recommendationsList.push(newRecommendationID.toString());
+                TeacherModel_1.default.collection.updateOne({ _id: new mongodb_1.ObjectID(teacherID) }, { $set: { "recommendations": recommendationsList }, }, function (error) {
+                    if (error) {
+                        reject("Error occurred when updating recommendations for teacher at database.");
+                    }
+                    resolve();
+                });
+            });
+        });
+    };
     return TeacherDal;
 }());
 exports.TeacherDal = TeacherDal;

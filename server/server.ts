@@ -8,6 +8,7 @@ import { AuthController } from "./API/Auth";
 import { ImageController } from './API/Image';
 import { TeacherController } from './API/Teacher';
 import { ContactUsController } from './API/ContactUs';
+import { RecommendationController } from "./API/Recommendation";
 
 mongoose.Promise = global.Promise;
 mongoose.connect(process.env.MONGODB_URI, { useMongoClient: true });
@@ -31,6 +32,7 @@ app.use('/auth', AuthController);
 app.use('/image', ImageController);
 app.use('/teacher', TeacherController);
 app.use('/contactus', ContactUsController);
+app.use('/recommendation', RecommendationController);
 //#endregion
 
 // Serve the application at the given port.
