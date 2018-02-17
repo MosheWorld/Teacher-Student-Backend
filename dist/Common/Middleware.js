@@ -37,6 +37,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 var _this = this;
 Object.defineProperty(exports, "__esModule", { value: true });
 var express_1 = require("express");
+var Role_Enum_1 = require("./../Enums/Role.Enum");
 var AuthLogic_1 = require("../Logic/AuthLogic");
 var logger_1 = require("./../LogService/logger");
 //#region Members
@@ -113,7 +114,7 @@ var AdminMiddleware = function (req, res, next) { return __awaiter(_this, void 0
                 return [4 /*yield*/, GetUserByTokenAndProvider(token, provider)];
             case 2:
                 currentUser = _a.sent();
-                if (currentUser.role !== 2) {
+                if (currentUser.role !== Role_Enum_1.Role.Admin) {
                     logger.error("Non Admin token tried to access security zone.", "", { token: token, provider: provider });
                     res.status(401).send("You're not admin, access denied.");
                 }

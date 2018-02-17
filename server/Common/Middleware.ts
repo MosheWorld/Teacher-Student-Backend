@@ -1,5 +1,6 @@
 import { Router, Request, Response } from 'express';
 
+import { Role } from './../Enums/Role.Enum';
 import { AuthLogic } from '../Logic/AuthLogic';
 import { Logger } from './../LogService/logger';
 
@@ -65,7 +66,7 @@ const AdminMiddleware = async (req: Request, res: Response, next) => {
         try {
             let currentUser = await GetUserByTokenAndProvider(token, provider);
 
-            if (currentUser.role !== 2) {
+            if (currentUser.role !== Role.Admin) {
                 logger.error("Non Admin token tried to access security zone.", "", { token: token, provider: provider });
                 res.status(401).send("You're not admin, access denied.");
             }
