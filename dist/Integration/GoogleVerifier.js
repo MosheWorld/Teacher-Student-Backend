@@ -27,6 +27,27 @@ var GoogleVerifier = /** @class */ (function () {
             });
         });
     };
+    /**
+     * Returns model received from google API by given token.
+     * @param token User token.
+     */
+    GoogleVerifier.prototype.GetUserIDByToken = function (token) {
+        return new Promise(function (resolve, reject) {
+            var endPoint = "https://www.googleapis.com/oauth2/v3/tokeninfo?access_token=" + token;
+            axios.get(endPoint)
+                .then(function (response) {
+                if (response && response.data) {
+                    resolve(response.data);
+                }
+                else {
+                    reject("User is not authenticated.");
+                }
+            })
+                .catch(function (error) {
+                reject(error.response.data.error_description);
+            });
+        });
+    };
     return GoogleVerifier;
 }());
 exports.GoogleVerifier = GoogleVerifier;

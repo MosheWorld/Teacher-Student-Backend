@@ -1,8 +1,8 @@
-import { DoesUserExists } from './../Interfaces/DoesUserExists.interface';
 import { AuthDal } from './../DAL/AuthDal';
 import { UserInterface } from './../Interfaces/User.interface';
 import { GoogleVerifier } from './../Integration/GoogleVerifier';
 import { FacebookVerifier } from '../Integration/FacebookVerifier';
+import { DoesUserExists } from './../Interfaces/DoesUserExists.interface';
 
 export class AuthLogic {
     //#region Public Methods
@@ -55,11 +55,33 @@ export class AuthLogic {
             return prepairModelToReturn;
         }
     }
+
+    /**
+     * Receives model from prodiver API as given on token and returns the specific ID of user.
+     * @param token Given token.
+     * @param provider Provider of the token.
+     */
+    public async GetUserIDByTokenFromProvider(token: string, provider: string): Promise<any> {
+        switch (provider) {
+            case "FACEBOOK":
+                let fVerifier = new FacebookVerifier();
+                let userDataByFacebook = await fVerifier.GetUserIDByToken(token);
+                return userDataByFacebook.data.user_id;
+            case "GOOGLE":
+                let gVerifier = new GoogleVerifier();
+                let userDataByGoogle = await gVerifier.GetUserIDByToken(token);
+                return userDataByGoogle.sub;
+            default:
+                throw new Error("No provider found.");
+        }
+    }
     //#endregion
 
     //#region Private Methods
     /**
      * Validates whether the token is valid according to provider and token given.
+     * @param provider Provider of the token.
+     * @param token Given token.
      */
     private async IsTokenValid(provider: string, token: string): Promise<boolean> {
         let isValid: boolean = false;

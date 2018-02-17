@@ -108,10 +108,46 @@ var AuthLogic = /** @class */ (function () {
             });
         });
     };
+    /**
+     * Receives model from prodiver API as given on token and returns the specific ID of user.
+     * @param token Given token.
+     * @param provider Provider of the token.
+     */
+    AuthLogic.prototype.GetUserIDByTokenFromProvider = function (token, provider) {
+        return __awaiter(this, void 0, void 0, function () {
+            var _a, fVerifier, userDataByFacebook, gVerifier, userDataByGoogle;
+            return __generator(this, function (_b) {
+                switch (_b.label) {
+                    case 0:
+                        _a = provider;
+                        switch (_a) {
+                            case "FACEBOOK": return [3 /*break*/, 1];
+                            case "GOOGLE": return [3 /*break*/, 3];
+                        }
+                        return [3 /*break*/, 5];
+                    case 1:
+                        fVerifier = new FacebookVerifier_1.FacebookVerifier();
+                        return [4 /*yield*/, fVerifier.GetUserIDByToken(token)];
+                    case 2:
+                        userDataByFacebook = _b.sent();
+                        return [2 /*return*/, userDataByFacebook.data.user_id];
+                    case 3:
+                        gVerifier = new GoogleVerifier_1.GoogleVerifier();
+                        return [4 /*yield*/, gVerifier.GetUserIDByToken(token)];
+                    case 4:
+                        userDataByGoogle = _b.sent();
+                        return [2 /*return*/, userDataByGoogle.sub];
+                    case 5: throw new Error("No provider found.");
+                }
+            });
+        });
+    };
     //#endregion
     //#region Private Methods
     /**
      * Validates whether the token is valid according to provider and token given.
+     * @param provider Provider of the token.
+     * @param token Given token.
      */
     AuthLogic.prototype.IsTokenValid = function (provider, token) {
         return __awaiter(this, void 0, void 0, function () {

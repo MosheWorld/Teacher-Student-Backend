@@ -35,5 +35,30 @@ export class FacebookVerifier {
                 });
         });
     }
+
+    /**
+     * Returns model received from facebook API by given token.
+     * @param token User token.
+     */
+    public GetUserIDByToken(token: string): Promise<any> {
+        return new Promise((resolve, reject) => {
+
+            let endPoint = "https://graph.facebook.com/debug_token?input_token=" + token;
+            endPoint += "&access_token=" + process.env.FACEBOOK_APP_ID + "|" + process.env.FACEBOOK_APP_SECRET_ID;
+
+            axios.get(endPoint)
+                .then((response) => {
+                    if (response && response.data && response.data.data && response.data.data.is_valid === true) {
+                        resolve(response.data);
+                    }
+                    else {
+                        reject("User is not authenticated.");
+                    }
+                })
+                .catch((error) => {
+                    reject(error.response.data.error);
+                });
+        });
+    }
     //#endregion
 }

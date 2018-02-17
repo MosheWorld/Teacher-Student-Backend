@@ -36,6 +36,28 @@ var FacebookVerifier = /** @class */ (function () {
             });
         });
     };
+    /**
+     * Returns model received from facebook API by given token.
+     * @param token User token.
+     */
+    FacebookVerifier.prototype.GetUserIDByToken = function (token) {
+        return new Promise(function (resolve, reject) {
+            var endPoint = "https://graph.facebook.com/debug_token?input_token=" + token;
+            endPoint += "&access_token=" + process.env.FACEBOOK_APP_ID + "|" + process.env.FACEBOOK_APP_SECRET_ID;
+            axios.get(endPoint)
+                .then(function (response) {
+                if (response && response.data && response.data.data && response.data.data.is_valid === true) {
+                    resolve(response.data);
+                }
+                else {
+                    reject("User is not authenticated.");
+                }
+            })
+                .catch(function (error) {
+                reject(error.response.data.error);
+            });
+        });
+    };
     return FacebookVerifier;
 }());
 exports.FacebookVerifier = FacebookVerifier;
