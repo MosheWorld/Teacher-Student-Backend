@@ -14,7 +14,7 @@ export class FacebookVerifier {
             endPoint += "&access_token=" + process.env.FACEBOOK_APP_ID + "|" + process.env.FACEBOOK_APP_SECRET_ID;
 
             axios.get(endPoint)
-                .then(function (response) {
+                .then((response) => {
 
                     if (response && response.data && response.data.data && response.data.data.is_valid === true) {
                         resolve(true);
@@ -30,7 +30,7 @@ export class FacebookVerifier {
                     }
 
                 })
-                .catch(function (error) {
+                .catch((error) => {
                     reject(error.response.data.error);
                 });
         });

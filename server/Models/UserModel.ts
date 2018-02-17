@@ -1,7 +1,7 @@
 import { ObjectID } from 'mongodb';
 import * as mongoose from "mongoose";
 
-const FacebookUserSchema = new mongoose.Schema({
+const UserSchema = new mongoose.Schema({
     id: { type: String },
     name: { type: String },
     email: { type: String },
@@ -9,8 +9,9 @@ const FacebookUserSchema = new mongoose.Schema({
     provider: { type: String },
     photoUrl: { type: String },
     firstName: { type: String },
-    authToken: { type: String }
+    authToken: { type: String },
+    role: { type: Number }
 }, { timestamps: true });
 
-const FacebookUserModel = mongoose.model("FacebookUser", FacebookUserSchema);
-export default FacebookUserModel;
+const UserModel = mongoose.model("User", UserSchema);
+export default UserModel;

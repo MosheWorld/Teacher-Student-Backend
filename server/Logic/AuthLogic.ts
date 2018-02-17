@@ -1,11 +1,14 @@
-import { GoogleVerifier } from './../Integration/GoogleVerifier';
 import { AuthDal } from './../DAL/AuthDal';
-import { FacebookVerifier } from '../Integration/FacebookVerifier';
 import { UserInterface } from './../Interfaces/User.interface';
-
+import { GoogleVerifier } from './../Integration/GoogleVerifier';
+import { FacebookVerifier } from '../Integration/FacebookVerifier';
 
 export class AuthLogic {
     //#region Public Methods
+    /**
+     * Creates new user at database, also verify the token and validate provider to get the right details.
+     * @param user User Model.
+     */
     public async CreateNewUser(user: UserInterface): Promise<void> {
         let aDal = new AuthDal();
         let isValid: boolean = false;
@@ -24,7 +27,6 @@ export class AuthLogic {
         }
 
         if (isValid === true) {
-            console.log("Token is valid, going to DAL.");
             aDal.CreateNewUser(user);
         } else {
             throw new Error("Given token is not valid, aborting.");

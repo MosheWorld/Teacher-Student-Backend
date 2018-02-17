@@ -10,7 +10,7 @@ var router = express_1.Router();
 //#region Routers
 /**
  * Creates new user.
- * @prop {FacebookUserInterface} The model to create new user.
+ * @prop {UserInterface} None The model to create new user.
  */
 router.post('/createnewuser', function (req, res) {
     try {

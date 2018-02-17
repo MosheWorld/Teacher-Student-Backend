@@ -13,7 +13,7 @@ const router: Router = Router();
 //#region Routers
 /**
  * Creates new user.
- * @prop {FacebookUserInterface} The model to create new user.
+ * @prop {UserInterface} None The model to create new user.
  */
 router.post('/createnewuser', (req: Request, res: Response) => {
     try {

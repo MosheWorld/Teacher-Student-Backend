@@ -35,13 +35,17 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var GoogleVerifier_1 = require("./../Integration/GoogleVerifier");
 var AuthDal_1 = require("./../DAL/AuthDal");
+var GoogleVerifier_1 = require("./../Integration/GoogleVerifier");
 var FacebookVerifier_1 = require("../Integration/FacebookVerifier");
 var AuthLogic = /** @class */ (function () {
     function AuthLogic() {
     }
     //#region Public Methods
+    /**
+     * Creates new user at database, also verify the token and validate provider to get the right details.
+     * @param user User Model.
+     */
     AuthLogic.prototype.CreateNewUser = function (user) {
         return __awaiter(this, void 0, void 0, function () {
             var aDal, isValid, _a, fVerifier, gVerifier;
@@ -71,7 +75,6 @@ var AuthLogic = /** @class */ (function () {
                     case 5: throw new Error("No provider found.");
                     case 6:
                         if (isValid === true) {
-                            console.log("Token is valid, going to DAL.");
                             aDal.CreateNewUser(user);
                         }
                         else {
