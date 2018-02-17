@@ -115,4 +115,5 @@ function StringNullOrEmpty(str: string): boolean {
         return false;
 }
 //#endregion
+
 export const RecommendationController: Router = router;

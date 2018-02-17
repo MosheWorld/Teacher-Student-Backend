@@ -3,6 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var express_1 = require("express");
 var logger_1 = require("./../LogService/logger");
 var TeacherLogic_1 = require("./../Logic/TeacherLogic");
+var UserMiddleware = require('../Common/Middleware').UserMiddleware;
 //#region Members
 var logger = new logger_1.Logger();
 var router = express_1.Router();
@@ -135,11 +136,11 @@ router.post('/create', function (req, res) {
 /**
  * Delete teacher from the database according to his ID.
  */
-router.delete('/deletebyid/:id', function (req, res) {
+router.delete('/deletebyid/:id', UserMiddleware, function (req, res) {
     try {
         logger.debug("Enter Teacher", "Router teacher/deletebyid/" + req.params.id);
         var id = req.params.id;
-        if (id == null) {
+        if (id === null || id === undefined) {
             logger.error("Model is not valid.", "teacher/delete/");
             res.status(400).send("Model is not valid.");
         }

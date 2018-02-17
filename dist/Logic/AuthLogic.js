@@ -142,6 +142,23 @@ var AuthLogic = /** @class */ (function () {
             });
         });
     };
+    /**
+     * Gets the current user by given ID ( NOT UUID ).
+     * @param id
+     */
+    AuthLogic.prototype.GetUserByID = function (id) {
+        return __awaiter(this, void 0, void 0, function () {
+            var aDal;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        aDal = new AuthDal_1.AuthDal();
+                        return [4 /*yield*/, aDal.GetUserByID(id)];
+                    case 1: return [2 /*return*/, _a.sent()];
+                }
+            });
+        });
+    };
     //#endregion
     //#region Private Methods
     /**

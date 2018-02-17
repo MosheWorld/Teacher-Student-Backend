@@ -6,6 +6,8 @@ import { TeacherInterface } from './../Interfaces/Teacher.interface';
 import { SearchTeacherInterface } from '../Interfaces/SearchTeacher.interface';
 import { RecommendationsInterface } from './../Interfaces/Recommendations.interface';
 
+const { UserMiddleware } = require('../Common/Middleware');
+
 //#region Members
 let logger = new Logger();
 const router: Router = Router();
@@ -159,13 +161,13 @@ router.post('/create', (req: Request, res: Response) => {
 /**
  * Delete teacher from the database according to his ID.
  */
-router.delete('/deletebyid/:id', (req: Request, res: Response) => {
+router.delete('/deletebyid/:id', UserMiddleware, (req: Request, res: Response) => {
     try {
         logger.debug("Enter Teacher", "Router teacher/deletebyid/" + req.params.id);
 
         let id = req.params.id;
 
-        if (id == null) {
+        if (id === null || id === undefined) {
             logger.error("Model is not valid.", "teacher/delete/");
             res.status(400).send("Model is not valid.");
         }

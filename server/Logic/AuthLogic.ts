@@ -75,6 +75,16 @@ export class AuthLogic {
                 throw new Error("No provider found.");
         }
     }
+
+    /**
+     * Gets the current user by given ID ( NOT UUID ).
+     * @param id 
+     */
+    public async GetUserByID(id: string): Promise<any> {
+        let aDal = new AuthDal();
+
+        return await aDal.GetUserByID(id);
+    }
     //#endregion
 
     //#region Private Methods

@@ -1,0 +1,20 @@
+{"level":"error","message":"Middleware found bad token or provider. Token is not valid or provider is not valid.","timestamp":"2018-02-17T20:05:52.482Z"}
+{"level":"error","message":"Something went wrong at middleware, aborting.","timestamp":"2018-02-17T20:05:52.484Z"}
+{"level":"error","message":"Middleware found bad token or provider. Token is not valid or provider is not valid.","timestamp":"2018-02-17T20:10:16.110Z"}
+{"level":"error","message":"Something went wrong at middleware, aborting.","timestamp":"2018-02-17T20:10:16.111Z"}
+{"level":"error","message":"Middleware found bad token or provider. Token is not valid or provider is not valid.","timestamp":"2018-02-17T20:12:16.121Z"}
+{"level":"error","message":"Something went wrong at middleware, aborting.","timestamp":"2018-02-17T20:12:16.121Z"}
+{"level":"error","message":"Middleware found bad token or provider. Token is not valid or provider is not valid.","timestamp":"2018-02-17T20:13:52.985Z"}
+{"level":"error","message":"Something went wrong at middleware, aborting.","timestamp":"2018-02-17T20:13:52.986Z"}
+{"level":"error","message":"Middleware found bad token or provider. Token is not valid or provider is not valid.","timestamp":"2018-02-17T20:13:56.543Z"}
+{"level":"error","message":"Something went wrong at middleware, aborting.","timestamp":"2018-02-17T20:13:56.543Z"}
+{"level":"error","message":"Middleware found bad token or provider. Token is not valid or provider is not valid.","timestamp":"2018-02-17T20:14:10.627Z"}
+{"level":"error","message":"Something went wrong at middleware, aborting.","timestamp":"2018-02-17T20:14:10.627Z"}
+{"level":"error","message":"Middleware found bad token or provider. Token is not valid or provider is not valid.","timestamp":"2018-02-17T20:14:30.291Z"}
+{"level":"error","message":"Something went wrong at middleware, aborting.","timestamp":"2018-02-17T20:14:30.296Z"}
+{"level":"error","message":"Middleware found bad token or provider. Token is not valid or provider is not valid.","timestamp":"2018-02-17T20:27:54.716Z"}
+{"level":"error","message":"Something went wrong at middleware, aborting.","timestamp":"2018-02-17T20:27:54.718Z"}
+{"level":"error","message":"Middleware found bad token or provider. Token is not valid or provider is not valid.","timestamp":"2018-02-17T20:32:13.270Z"}
+{"level":"error","message":"Something went wrong at middleware, aborting.","timestamp":"2018-02-17T20:32:13.272Z"}
+{"token":"EAAC2htLrJo4BAPVZBThkG8oiVhjjrtUsPr5sdLmsDlmKlMpY4NWHkVC2DCxVw28sXZCOlPP1S26YJVudZAbcuZB3WRRq3my3ZCR02m3F9BKI5b21acb2NVLaZCZCC88Sn4HX55HjH5ZBQ1d435ZB1VhyKhvKy0ZBdR8N7TIBbeCzXRZAhJIGHUWip1ZBDcuxZA1q5ZBX7LpyrUgKTvrAZDZD","provider":"FACEBOOK","level":"error","message":"Non Admin token tried to access security zone. ","timestamp":"2018-02-17T20:35:26.589Z"}
+{"token":"EAAC2htLrJo4BAPVZBThkG8oiVhjjrtUsPr5sdLmsDlmKlMpY4NWHkVC2DCxVw28sXZCOlPP1S26YJVudZAbcuZB3WRRq3my3ZCR02m3F9BKI5b21acb2NVLaZCZCC88Sn4HX55HjH5ZBQ1d435ZB1VhyKhvKy0ZBdR8N7TIBbeCzXRZAhJIGHUWip1ZBDcuxZA1q5ZBX7LpyrUgKTvrAZDZD","provider":"FACEBOOK","level":"error","message":"Non Admin token tried to access security zone. ","timestamp":"2018-02-17T20:35:30.937Z"}

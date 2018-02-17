@@ -1,1 +1,28 @@
-﻿
+﻿{"level":"debug","message":"Enter Auth Router auth/doesuserexistbyid","timestamp":"2018-02-17T19:55:44.905Z"}
+{"level":"debug","message":"Enter Middleware","timestamp":"2018-02-17T20:05:52.481Z"}
+{"level":"debug","message":"Enter Middleware","timestamp":"2018-02-17T20:10:16.109Z"}
+{"level":"debug","message":"Enter Middleware","timestamp":"2018-02-17T20:12:16.120Z"}
+{"level":"debug","message":"Enter Middleware","timestamp":"2018-02-17T20:13:52.985Z"}
+{"level":"debug","message":"Enter Middleware","timestamp":"2018-02-17T20:13:56.543Z"}
+{"level":"debug","message":"Enter Middleware","timestamp":"2018-02-17T20:14:10.627Z"}
+{"level":"debug","message":"Enter Middleware","timestamp":"2018-02-17T20:14:30.289Z"}
+{"level":"debug","message":"Enter Auth Router auth/doesuserexistbyid","timestamp":"2018-02-17T20:14:37.601Z"}
+{"level":"debug","message":"Enter Middleware","timestamp":"2018-02-17T20:14:41.001Z"}
+{"level":"debug","message":"Enter Middleware","timestamp":"2018-02-17T20:15:42.518Z"}
+{"level":"debug","message":"Enter Middleware","timestamp":"2018-02-17T20:16:05.585Z"}
+{"level":"debug","message":"Enter Middleware","timestamp":"2018-02-17T20:25:05.835Z"}
+{"level":"debug","message":"Enter Middleware","timestamp":"2018-02-17T20:27:33.714Z"}
+{"level":"debug","message":"Enter Middleware","timestamp":"2018-02-17T20:27:54.716Z"}
+{"level":"debug","message":"Enter User Middleware","timestamp":"2018-02-17T20:32:13.269Z"}
+{"level":"debug","message":"Enter Auth Router auth/doesuserexistbyid","timestamp":"2018-02-17T20:32:43.380Z"}
+{"level":"debug","message":"Enter User Middleware","timestamp":"2018-02-17T20:32:49.082Z"}
+{"level":"debug","message":"Enter User Middleware","timestamp":"2018-02-17T20:35:04.314Z"}
+{"level":"debug","message":"Enter User Middleware","timestamp":"2018-02-17T20:35:25.974Z"}
+{"level":"debug","message":"Enter User Middleware","timestamp":"2018-02-17T20:35:30.468Z"}
+{"level":"debug","message":"Enter Teacher Router teacher/getall","timestamp":"2018-02-17T20:40:47.156Z"}
+{"level":"debug","message":"Enter User Middleware","timestamp":"2018-02-17T20:41:16.425Z"}
+{"level":"debug","message":"Enter Auth Router auth/doesuserexistbyid","timestamp":"2018-02-17T20:45:47.984Z"}
+{"level":"debug","message":"Enter Auth Router auth/doesuserexistbyid","timestamp":"2018-02-17T20:50:32.131Z"}
+{"level":"debug","message":"Enter Auth Router auth/doesuserexistbyid","timestamp":"2018-02-17T20:52:02.796Z"}
+{"level":"debug","message":"Enter Auth Router auth/doesuserexistbyid","timestamp":"2018-02-17T20:58:36.709Z"}
+{"level":"debug","message":"Enter Auth Router auth/doesuserexistbyid","timestamp":"2018-02-17T21:01:16.758Z"}
