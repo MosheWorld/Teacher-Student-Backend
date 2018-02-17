@@ -35,38 +35,49 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+var GoogleVerifier_1 = require("./../Integration/GoogleVerifier");
 var AuthDal_1 = require("./../DAL/AuthDal");
 var FacebookVerifier_1 = require("../Integration/FacebookVerifier");
 var AuthLogic = /** @class */ (function () {
     function AuthLogic() {
     }
     //#region Public Methods
-    /**
-     * Creates new facebook user and validates whether the token is valid.
-     * @param {FacebookUserInterface} user Facebook model.
-     */
-    AuthLogic.prototype.CreateFacebookUser = function (user) {
+    AuthLogic.prototype.CreateNewUser = function (user) {
         return __awaiter(this, void 0, void 0, function () {
-            var aDal, fVerifier, isValid, ex_1;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
+            var aDal, isValid, _a, fVerifier, gVerifier;
+            return __generator(this, function (_b) {
+                switch (_b.label) {
                     case 0:
                         aDal = new AuthDal_1.AuthDal();
-                        _a.label = 1;
+                        isValid = false;
+                        _a = user.provider;
+                        switch (_a) {
+                            case "FACEBOOK": return [3 /*break*/, 1];
+                            case "GOOGLE": return [3 /*break*/, 3];
+                        }
+                        return [3 /*break*/, 5];
                     case 1:
-                        _a.trys.push([1, 3, , 4]);
                         fVerifier = new FacebookVerifier_1.FacebookVerifier();
                         return [4 /*yield*/, fVerifier.IsTokenValid(user.authToken)];
                     case 2:
-                        isValid = _a.sent();
-                        if (isValid === true) {
-                            aDal.CreateFacebookUser(user);
-                        }
-                        return [3 /*break*/, 4];
+                        isValid = _b.sent();
+                        return [3 /*break*/, 6];
                     case 3:
-                        ex_1 = _a.sent();
-                        throw Error(ex_1);
-                    case 4: return [2 /*return*/];
+                        gVerifier = new GoogleVerifier_1.GoogleVerifier();
+                        return [4 /*yield*/, gVerifier.IsTokenValid(user.authToken)];
+                    case 4:
+                        isValid = _b.sent();
+                        return [3 /*break*/, 6];
+                    case 5: throw new Error("No provider found.");
+                    case 6:
+                        if (isValid === true) {
+                            console.log("Token is valid, going to DAL.");
+                            aDal.CreateNewUser(user);
+                        }
+                        else {
+                            throw new Error("Given token is not valid, aborting.");
+                        }
+                        return [2 /*return*/];
                 }
             });
         });

@@ -49,7 +49,7 @@ router.post('/create', (req: Request, res: Response) => {
             return res.status(400).send("Model is not valid.");
         }
 
-        let convertedModel = ConvertModelToRecommendationsInterface(req.body);
+        let convertedModel: RecommendationsInterface = ConvertModelToRecommendationsInterface(req.body);
 
         let rManager = new RecommendationLogic();
 

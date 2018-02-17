@@ -1,5 +1,6 @@
-export interface FacebookUserInterface {
+export interface UserInterface {
     id: string;
+    role: Number;
     name: string;
     email: string;
     lastName: string;

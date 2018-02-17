@@ -9,49 +9,47 @@ var router = express_1.Router();
 //#endregion
 //#region Routers
 /**
- * Creates new facebook user.
- * @prop {FacebookUserInterface} The model to create new facebook user.
+ * Creates new user.
+ * @prop {FacebookUserInterface} The model to create new user.
  */
-router.post('/createfacebookuser', function (req, res) {
+router.post('/createnewuser', function (req, res) {
     try {
-        logger.debug("Enter Auth", "Router auth/createfacebookuser");
-        if (req.body == null || !IsCreateFacebookUserValid(req.body)) {
-            logger.error("Model is not valid.", "auth/createfacebookuser", req.body);
+        logger.debug("Enter Auth", "Router auth/createnewuser");
+        if (req.body == null || !IsCreateNewUserValid(req.body)) {
+            logger.error("Model is not valid.", "auth/createnewuser", req.body);
             return res.status(400).send("Model is not valid.");
         }
         var aManager = new AuthLogic_1.AuthLogic();
-        var user = ConvertModelToFacebookUserInterface(req.body);
-        aManager.CreateFacebookUser(user)
+        var user = ConvertModelToCreateNewUserInterface(req.body);
+        aManager.CreateNewUser(user)
             .then(function (success) {
             res.send(success);
         })
             .catch(function (error) {
             res.status(400).send(error.message);
         });
-        logger.info("Enter", "auth/createfacebookuser");
+        logger.info("Enter", "auth/createnewuser");
     }
     catch (ex) {
-        logger.error("Out", "auth/createfacebookuser", ex.message);
+        logger.error("Out", "auth/createnewuser", ex.message);
         res.status(400).send(ex.message);
     }
 });
 //#endregion
 //#region Functions
 /**
- * Validates whether the new request to create facebook user is valid.
+ * Validates whether the new request to create user is valid.
  * @param model New facebook model.
  * @returns {boolean}
  */
-function IsCreateFacebookUserValid(model) {
-    if (model == null ||
-        IsStringNullOrEmpty(model.id) ||
-        IsStringNullOrEmpty(model.name) ||
-        // IsStringNullOrEmpty(model.email) ||
-        IsStringNullOrEmpty(model.lastName) ||
-        // IsStringNullOrEmpty(model.provider) ||
-        // IsStringNullOrEmpty(model.photoUrl) ||
-        IsStringNullOrEmpty(model.firstName) ||
-        IsStringNullOrEmpty(model.authToken)) {
+function IsCreateNewUserValid(model) {
+    if (model == null
+        || IsStringNullOrEmpty(model.id)
+        || IsStringNullOrEmpty(model.name)
+        // || IsStringNullOrEmpty(model.lastName)
+        || IsStringNullOrEmpty(model.provider)
+        // || IsStringNullOrEmpty(model.firstName)
+        || IsStringNullOrEmpty(model.authToken)) {
         return false;
     }
     else {
@@ -64,7 +62,7 @@ function IsCreateFacebookUserValid(model) {
  * @returns {boolean}
  */
 function IsStringNullOrEmpty(str) {
-    if (str == null || str === "") {
+    if (str === null || str === undefined || str === "") {
         return true;
     }
     else {
@@ -72,13 +70,14 @@ function IsStringNullOrEmpty(str) {
     }
 }
 /**
- * Receives model and creates interface that contains the data to create new facebook user.
+ * Receives model and creates interface that contains the data to create new user.
  * @param model Facebook user details.
- * @returns {FacebookUserInterface} Model to return.
+ * @returns {UserInterface} Model to return.
  */
-function ConvertModelToFacebookUserInterface(model) {
+function ConvertModelToCreateNewUserInterface(model) {
     var user = {
         id: model.id,
+        role: model.role,
         name: model.name,
         email: model.email,
         lastName: model.lastName,
