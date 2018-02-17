@@ -48,32 +48,14 @@ var AuthLogic = /** @class */ (function () {
      */
     AuthLogic.prototype.CreateNewUser = function (user) {
         return __awaiter(this, void 0, void 0, function () {
-            var aDal, isValid, _a, fVerifier, gVerifier;
-            return __generator(this, function (_b) {
-                switch (_b.label) {
+            var aDal, isValid;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
                     case 0:
                         aDal = new AuthDal_1.AuthDal();
-                        isValid = false;
-                        _a = user.provider;
-                        switch (_a) {
-                            case "FACEBOOK": return [3 /*break*/, 1];
-                            case "GOOGLE": return [3 /*break*/, 3];
-                        }
-                        return [3 /*break*/, 5];
+                        return [4 /*yield*/, this.IsTokenValid(user.provider, user.authToken)];
                     case 1:
-                        fVerifier = new FacebookVerifier_1.FacebookVerifier();
-                        return [4 /*yield*/, fVerifier.IsTokenValid(user.authToken)];
-                    case 2:
-                        isValid = _b.sent();
-                        return [3 /*break*/, 6];
-                    case 3:
-                        gVerifier = new GoogleVerifier_1.GoogleVerifier();
-                        return [4 /*yield*/, gVerifier.IsTokenValid(user.authToken)];
-                    case 4:
-                        isValid = _b.sent();
-                        return [3 /*break*/, 6];
-                    case 5: throw new Error("No provider found.");
-                    case 6:
+                        isValid = _a.sent();
                         if (isValid === true) {
                             aDal.CreateNewUser(user);
                         }
@@ -81,6 +63,83 @@ var AuthLogic = /** @class */ (function () {
                             throw new Error("Given token is not valid, aborting.");
                         }
                         return [2 /*return*/];
+                }
+            });
+        });
+    };
+    /**
+     * Validates whether user exists in database.
+     * If the user exists, we will return json with data:
+     * exist: {boolean} , role: {His role from database}
+     * @param userExists User details to check.
+     */
+    AuthLogic.prototype.DoesUserExistsByID = function (userExistsModel) {
+        return __awaiter(this, void 0, void 0, function () {
+            var aDal, isValid, prepairModelToReturn, userFromDatabase;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        aDal = new AuthDal_1.AuthDal();
+                        return [4 /*yield*/, this.IsTokenValid(userExistsModel.provider, userExistsModel.token)];
+                    case 1:
+                        isValid = _a.sent();
+                        if (isValid === false) {
+                            throw new Error("Given token is not valid, aborting.");
+                        }
+                        prepairModelToReturn = {
+                            exist: false,
+                            role: 1
+                        };
+                        return [4 /*yield*/, aDal.GetUserByID(userExistsModel.id)];
+                    case 2:
+                        userFromDatabase = _a.sent();
+                        if (userFromDatabase === null) {
+                            return [2 /*return*/, prepairModelToReturn];
+                        }
+                        else {
+                            // We found the user.
+                            prepairModelToReturn.exist = true;
+                            prepairModelToReturn.role = userFromDatabase.role;
+                            aDal.UpdateTokenToUserByID(userExistsModel.id, userExistsModel.token);
+                            return [2 /*return*/, prepairModelToReturn];
+                        }
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
+    //#endregion
+    //#region Private Methods
+    /**
+     * Validates whether the token is valid according to provider and token given.
+     */
+    AuthLogic.prototype.IsTokenValid = function (provider, token) {
+        return __awaiter(this, void 0, void 0, function () {
+            var isValid, _a, fVerifier, gVerifier;
+            return __generator(this, function (_b) {
+                switch (_b.label) {
+                    case 0:
+                        isValid = false;
+                        _a = provider;
+                        switch (_a) {
+                            case "FACEBOOK": return [3 /*break*/, 1];
+                            case "GOOGLE": return [3 /*break*/, 3];
+                        }
+                        return [3 /*break*/, 5];
+                    case 1:
+                        fVerifier = new FacebookVerifier_1.FacebookVerifier();
+                        return [4 /*yield*/, fVerifier.IsTokenValid(token)];
+                    case 2:
+                        isValid = _b.sent();
+                        return [3 /*break*/, 6];
+                    case 3:
+                        gVerifier = new GoogleVerifier_1.GoogleVerifier();
+                        return [4 /*yield*/, gVerifier.IsTokenValid(token)];
+                    case 4:
+                        isValid = _b.sent();
+                        return [3 /*break*/, 6];
+                    case 5: throw new Error("No provider found.");
+                    case 6: return [2 /*return*/, isValid];
                 }
             });
         });

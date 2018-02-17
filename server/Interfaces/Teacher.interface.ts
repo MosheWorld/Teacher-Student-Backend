@@ -4,6 +4,7 @@ import { TeachesInstitutions } from './../Enums/TeachesInstitutions.Enum';
 import { RecommendationsInterface } from './Recommendations.interface';
 
 export interface TeacherInterface {
+    userID: string;
     firstName: string;
     lastName: string;
     email: string;

@@ -9,6 +9,7 @@ var TeacherSchema = new mongoose.Schema({
     age: { type: Number, required: true, min: 0, max: 120 },
     priceFrom: { type: Number, required: true, min: 0, max: 200 },
     image: { type: String },
+    userID: { type: String, required: true },
     email: { type: String, required: true },
     lastName: { type: String, required: true },
     firstName: { type: String, required: true },

@@ -165,31 +165,33 @@ router.delete('/deletebyid/:id', function (req, res) {
  * @returns {boolean}
  */
 function IsModelCreateValid(model) {
-    if (model == null ||
-        model.age == null ||
-        model.age < 0 ||
-        model.age > 120 ||
-        model.rate == null ||
-        model.rate < 0 ||
-        model.rate > 5 ||
-        model.priceFrom == null ||
-        model.priceFrom < 0 ||
-        model.priceTo == null ||
-        model.priceTo > 200 ||
-        model.priceFrom > model.priceTo ||
-        model.teachesAt == null ||
-        model.teachesAt < 1 ||
-        model.gender == null ||
-        model.gender < 0 ||
-        model.teachesInstitutions == null ||
-        model.teachesInstitutions.length === 0 ||
-        model.teachesSubjects == null ||
-        model.teachesSubjects.length === 0 ||
-        IsStringNullOrEmpty(model.email) ||
-        IsStringNullOrEmpty(model.phone) ||
-        IsStringNullOrEmpty(model.lastName) ||
-        IsStringNullOrEmpty(model.firstName) ||
-        IsStringNullOrEmpty(model.personalMessage)) {
+    if (model === null
+        || model === undefined
+        || model.age == null
+        || model.age < 0
+        || model.age > 120
+        || model.rate == null
+        || model.rate < 0
+        || model.rate > 5
+        || model.priceFrom == null
+        || model.priceFrom < 0
+        || model.priceTo == null
+        || model.priceTo > 200
+        || model.priceFrom > model.priceTo
+        || model.teachesAt == null
+        || model.teachesAt < 1
+        || model.gender == null
+        || model.gender < 0
+        || model.teachesInstitutions == null
+        || model.teachesInstitutions.length === 0
+        || model.teachesSubjects == null
+        || model.teachesSubjects.length === 0
+        || IsStringNullOrEmpty(model.email)
+        || IsStringNullOrEmpty(model.phone)
+        || IsStringNullOrEmpty(model.lastName)
+        || IsStringNullOrEmpty(model.firstName)
+        || IsStringNullOrEmpty(model.personalMessage)
+        || IsStringNullOrEmpty(model.userID)) {
         return false;
     }
     else {
@@ -288,6 +290,7 @@ function ConvertModelToTeacherInterface(model) {
         phone: model.phone,
         email: model.email,
         image: model.image,
+        userID: model.userID,
         priceTo: model.priceTo,
         lastName: model.lastName,
         firstName: model.firstName,

@@ -1,3 +1,4 @@
+import { DoesUserExists } from './../Interfaces/DoesUserExists.interface';
 import { AuthDal } from './../DAL/AuthDal';
 import { UserInterface } from './../Interfaces/User.interface';
 import { GoogleVerifier } from './../Integration/GoogleVerifier';
@@ -11,26 +12,72 @@ export class AuthLogic {
      */
     public async CreateNewUser(user: UserInterface): Promise<void> {
         let aDal = new AuthDal();
-        let isValid: boolean = false;
 
-        switch (user.provider) {
-            case "FACEBOOK":
-                let fVerifier = new FacebookVerifier();
-                isValid = await fVerifier.IsTokenValid(user.authToken);
-                break;
-            case "GOOGLE":
-                let gVerifier = new GoogleVerifier();
-                isValid = await gVerifier.IsTokenValid(user.authToken);
-                break;
-            default:
-                throw new Error("No provider found.");
-        }
+        let isValid: boolean = await this.IsTokenValid(user.provider, user.authToken);
 
         if (isValid === true) {
             aDal.CreateNewUser(user);
         } else {
             throw new Error("Given token is not valid, aborting.");
         }
+    }
+
+    /**
+     * Validates whether user exists in database.
+     * If the user exists, we will return json with data:
+     * exist: {boolean} , role: {His role from database}
+     * @param userExists User details to check.
+     */
+    public async DoesUserExistsByID(userExistsModel: DoesUserExists): Promise<any> {
+        let aDal = new AuthDal();
+        let isValid: boolean = await this.IsTokenValid(userExistsModel.provider, userExistsModel.token);
+
+        if (isValid === false) {
+            throw new Error("Given token is not valid, aborting.");
+        }
+
+        let prepairModelToReturn: any = {
+            exist: false,
+            role: 1
+        }
+
+        let userFromDatabase: any = await aDal.GetUserByID(userExistsModel.id);
+
+        if (userFromDatabase === null) {
+            return prepairModelToReturn;
+        } else {
+            // We found the user.
+            prepairModelToReturn.exist = true;
+            prepairModelToReturn.role = userFromDatabase.role;
+
+            aDal.UpdateTokenToUserByID(userExistsModel.id, userExistsModel.token);
+
+            return prepairModelToReturn;
+        }
+    }
+    //#endregion
+
+    //#region Private Methods
+    /**
+     * Validates whether the token is valid according to provider and token given.
+     */
+    private async IsTokenValid(provider: string, token: string): Promise<boolean> {
+        let isValid: boolean = false;
+
+        switch (provider) {
+            case "FACEBOOK":
+                let fVerifier = new FacebookVerifier();
+                isValid = await fVerifier.IsTokenValid(token);
+                break;
+            case "GOOGLE":
+                let gVerifier = new GoogleVerifier();
+                isValid = await gVerifier.IsTokenValid(token);
+                break;
+            default:
+                throw new Error("No provider found.");
+        }
+
+        return isValid;
     }
     //#endregion
 }

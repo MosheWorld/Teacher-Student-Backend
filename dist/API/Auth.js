@@ -26,12 +26,40 @@ router.post('/createnewuser', function (req, res) {
             res.send(success);
         })
             .catch(function (error) {
-            res.status(400).send(error.message);
+            res.status(400).send(error);
         });
-        logger.info("Enter", "auth/createnewuser");
+        logger.info("Finished", "auth/createnewuser");
     }
     catch (ex) {
         logger.error("Out", "auth/createnewuser", ex.message);
+        res.status(400).send(ex.message);
+    }
+});
+/**
+ * Validates whether user exists in database.
+ * If the user exists, we will return json with data:
+ * exist: {boolean} , role: {His role from database}
+ */
+router.post('/doesuserexistbyid', function (req, res) {
+    try {
+        logger.debug("Enter Auth", "Router auth/doesuserexistbyid");
+        if (req.body === null || req.body === undefined || !IsUserExistModelValid(req.body)) {
+            logger.error("Model is not valid.", "auth/doesuserexistbyid", req.body);
+            return res.status(400).send("Model is not valid.");
+        }
+        var aManager = new AuthLogic_1.AuthLogic();
+        var userExistModel = ConvertUserExistModelToInterface(req.body);
+        aManager.DoesUserExistsByID(userExistModel)
+            .then(function (success) {
+            res.send(success);
+        })
+            .catch(function (error) {
+            res.status(400).send(error);
+        });
+        logger.info("Finished", "auth/doesuserexistbyid");
+    }
+    catch (ex) {
+        logger.error("Out", "auth/doesuserexistbyid", ex.message);
         res.status(400).send(ex.message);
     }
 });
@@ -57,6 +85,20 @@ function IsCreateNewUserValid(model) {
     }
 }
 /**
+ * Validates whether the mode is valid or not.
+ * @param model
+ */
+function IsUserExistModelValid(model) {
+    if (model === null
+        || model === undefined
+        || IsStringNullOrEmpty(model.id)
+        || IsStringNullOrEmpty(model.token)
+        || IsStringNullOrEmpty(model.provider))
+        return false;
+    else
+        return true;
+}
+/**
  * Validates whether a string is null or empty.
  * @param str String.
  * @returns {boolean}
@@ -68,6 +110,18 @@ function IsStringNullOrEmpty(str) {
     else {
         return false;
     }
+}
+/**
+ * Receives model and creates interface that contains the data to check if user exists.
+ * @param model
+ */
+function ConvertUserExistModelToInterface(model) {
+    var userExist = {
+        id: model.id,
+        token: model.token,
+        provider: model.provider
+    };
+    return userExist;
 }
 /**
  * Receives model and creates interface that contains the data to create new user.

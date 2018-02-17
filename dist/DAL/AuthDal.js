@@ -14,7 +14,7 @@ var AuthDal = /** @class */ (function () {
             // Search for the user.
             UserModel_1.default.findOne({ id: user.id }, function (error, foundUser) {
                 if (error) {
-                    reject("Error occurred when getting facebook teacher from database.");
+                    reject("Error occurred when getting user from database.");
                 }
                 if (foundUser === null || foundUser === undefined) {
                     // User was not found and we will create new one.
@@ -36,6 +36,42 @@ var AuthDal = /** @class */ (function () {
                         resolve();
                     });
                 }
+            });
+        });
+    };
+    /**
+     * Returns user from database according to given ID ( NOT UUID ).
+     * @param id User ID ( NOT UUID ).
+     */
+    AuthDal.prototype.GetUserByID = function (id) {
+        return new Promise(function (resolve, reject) {
+            UserModel_1.default.findOne({ id: id }, function (error, foundUser) {
+                if (error) {
+                    reject("Error occurred when getting user from database.");
+                }
+                if (foundUser === null || foundUser === undefined) {
+                    resolve(null);
+                }
+                else {
+                    resolve(foundUser);
+                }
+            });
+        });
+    };
+    /**
+     * Updates token for user by his id and new token.
+     * @param id ID of user ( NOT UUID ).
+     * @param token New token.
+     */
+    AuthDal.prototype.UpdateTokenToUserByID = function (id, token) {
+        return new Promise(function (resolve, reject) {
+            UserModel_1.default.collection.updateOne({ id: id }, {
+                $set: { "authToken": token },
+            }, function (error) {
+                if (error) {
+                    reject("Error occurred when updating authentication token for user at database.");
+                }
+                resolve();
             });
         });
     };
