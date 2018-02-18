@@ -21,8 +21,8 @@ export class TeacherDal {
     }
 
     /**
-     * Receives teacher by his ID.
-     * @param id Teacher ID as string.
+     * Receives teacher by his object ID.
+     * @param id Teacher object ID as string.
      * @returns Single teacher.
      */
     public GetByID(id: any): Promise<any> {
@@ -102,11 +102,11 @@ export class TeacherDal {
     public UpdateRate(teacherID: string, newRate: Number): Promise<void> {
         return new Promise((resolve, reject) => {
             DataBaseConnector.collection.updateOne({ _id: new ObjectID(teacherID) },
-            { $set: { "rate": newRate }, }
-            , (error) => {
-                if (error) { reject("Error occurred when updating rate for teacher at database."); }
-                resolve();
-            });
+                { $set: { "rate": newRate }, }
+                , (error) => {
+                    if (error) { reject("Error occurred when updating rate for teacher at database."); }
+                    resolve();
+                });
         });
     }
 
@@ -130,6 +130,25 @@ export class TeacherDal {
                         resolve();
                     });
             });
+        });
+    }
+
+    /**
+     * Searches teacher by given user ID.
+     * @param id User ID in teacher database model.
+     */
+    public GetTeacherByUserID(id: string): Promise<any> {
+        return new Promise((resolve, reject) => {
+            DataBaseConnector.findOne({ userID: id }, (error, teacher) => {
+                if (error) { reject("Error occurred when gettings teacher from database by user ID."); }
+
+                if (teacher === null || teacher === undefined) {
+                    resolve(null);
+                } else {
+                    resolve(teacher);
+                }
+            });
+
         });
     }
     //#endregion

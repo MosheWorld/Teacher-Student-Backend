@@ -1,3 +1,4 @@
+import { TeacherDal } from './../DAL/TeacherDal';
 import { AuthDal } from './../DAL/AuthDal';
 import { UserInterface } from './../Interfaces/User.interface';
 import { GoogleVerifier } from './../Integration/GoogleVerifier';
@@ -46,7 +47,15 @@ export class AuthLogic {
         if (userFromDatabase === null) {
             return prepairModelToReturn;
         } else {
-            // We found the user.
+            // We found the user, we'll check if he created teacher details in database.
+            let tDal = new TeacherDal();
+            let userExistInDataBase: any = await tDal.GetTeacherByUserID(userExistsModel.id);
+
+            if (userExistInDataBase === null || userExistInDataBase === undefined) {
+                return prepairModelToReturn;
+            }
+
+            // User exist and his details in database as teacher exist, we will take him to details page.
             prepairModelToReturn.exist = true;
             prepairModelToReturn.role = userFromDatabase.role;
 

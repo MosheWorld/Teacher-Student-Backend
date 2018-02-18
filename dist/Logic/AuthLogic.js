@@ -35,6 +35,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+var TeacherDal_1 = require("./../DAL/TeacherDal");
 var AuthDal_1 = require("./../DAL/AuthDal");
 var GoogleVerifier_1 = require("./../Integration/GoogleVerifier");
 var FacebookVerifier_1 = require("../Integration/FacebookVerifier");
@@ -75,7 +76,7 @@ var AuthLogic = /** @class */ (function () {
      */
     AuthLogic.prototype.DoesUserExistsByID = function (userExistsModel) {
         return __awaiter(this, void 0, void 0, function () {
-            var aDal, isValid, prepairModelToReturn, userFromDatabase;
+            var aDal, isValid, prepairModelToReturn, userFromDatabase, tDal, userExistInDataBase;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
@@ -93,17 +94,21 @@ var AuthLogic = /** @class */ (function () {
                         return [4 /*yield*/, aDal.GetUserByID(userExistsModel.id)];
                     case 2:
                         userFromDatabase = _a.sent();
-                        if (userFromDatabase === null) {
+                        if (!(userFromDatabase === null)) return [3 /*break*/, 3];
+                        return [2 /*return*/, prepairModelToReturn];
+                    case 3:
+                        tDal = new TeacherDal_1.TeacherDal();
+                        return [4 /*yield*/, tDal.GetTeacherByUserID(userExistsModel.id)];
+                    case 4:
+                        userExistInDataBase = _a.sent();
+                        if (userExistInDataBase === null || userExistInDataBase === undefined) {
                             return [2 /*return*/, prepairModelToReturn];
                         }
-                        else {
-                            // We found the user.
-                            prepairModelToReturn.exist = true;
-                            prepairModelToReturn.role = userFromDatabase.role;
-                            aDal.UpdateTokenToUserByID(userExistsModel.id, userExistsModel.token);
-                            return [2 /*return*/, prepairModelToReturn];
-                        }
-                        return [2 /*return*/];
+                        // User exist and his details in database as teacher exist, we will take him to details page.
+                        prepairModelToReturn.exist = true;
+                        prepairModelToReturn.role = userFromDatabase.role;
+                        aDal.UpdateTokenToUserByID(userExistsModel.id, userExistsModel.token);
+                        return [2 /*return*/, prepairModelToReturn];
                 }
             });
         });

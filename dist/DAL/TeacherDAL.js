@@ -22,8 +22,8 @@ var TeacherDal = /** @class */ (function () {
         });
     };
     /**
-     * Receives teacher by his ID.
-     * @param id Teacher ID as string.
+     * Receives teacher by his object ID.
+     * @param id Teacher object ID as string.
      * @returns Single teacher.
      */
     TeacherDal.prototype.GetByID = function (id) {
@@ -131,6 +131,25 @@ var TeacherDal = /** @class */ (function () {
                     }
                     resolve();
                 });
+            });
+        });
+    };
+    /**
+     * Searches teacher by given user ID.
+     * @param id User ID in teacher database model.
+     */
+    TeacherDal.prototype.GetTeacherByUserID = function (id) {
+        return new Promise(function (resolve, reject) {
+            TeacherModel_1.default.findOne({ userID: id }, function (error, teacher) {
+                if (error) {
+                    reject("Error occurred when gettings teacher from database by user ID.");
+                }
+                if (teacher === null || teacher === undefined) {
+                    resolve(null);
+                }
+                else {
+                    resolve(teacher);
+                }
             });
         });
     };
