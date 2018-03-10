@@ -106,6 +106,16 @@ export class TeacherLogic {
 
         return teacherListToReturn;
     }
+
+    public async GetTeacherByUserID(id: string) {
+        if (id === null || id === undefined) {
+            throw new Error("Given ID is not valid.");
+        }
+
+        let tDal = new TeacherDal();
+
+        return await tDal.GetTeacherByUserID(id);
+    }
     //#endregion
 
     //#region Private Methods

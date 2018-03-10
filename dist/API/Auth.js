@@ -48,7 +48,7 @@ router.post('/doesuserexistbyid', function (req, res) {
             return res.status(400).send("Model is not valid.");
         }
         var aManager = new AuthLogic_1.AuthLogic();
-        var userExistModel = ConvertUserExistModelToInterface(req.body);
+        var userExistModel = ConvertExistUserModelToInterface(req.body);
         aManager.DoesUserExistsByID(userExistModel)
             .then(function (success) {
             res.send(success);
@@ -115,7 +115,7 @@ function IsStringNullOrEmpty(str) {
  * Receives model and creates interface that contains the data to check if user exists.
  * @param model
  */
-function ConvertUserExistModelToInterface(model) {
+function ConvertExistUserModelToInterface(model) {
     var userExist = {
         id: model.id,
         token: model.token,

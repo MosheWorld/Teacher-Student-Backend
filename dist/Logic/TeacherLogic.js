@@ -191,6 +191,22 @@ var TeacherLogic = /** @class */ (function () {
             });
         });
     };
+    TeacherLogic.prototype.GetTeacherByUserID = function (id) {
+        return __awaiter(this, void 0, void 0, function () {
+            var tDal;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        if (id === null || id === undefined) {
+                            throw new Error("Given ID is not valid.");
+                        }
+                        tDal = new TeacherDAL_1.TeacherDal();
+                        return [4 /*yield*/, tDal.GetTeacherByUserID(id)];
+                    case 1: return [2 /*return*/, _a.sent()];
+                }
+            });
+        });
+    };
     //#endregion
     //#region Private Methods
     /**

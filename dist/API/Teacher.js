@@ -34,9 +34,9 @@ router.get('/getall', function (req, res) {
  */
 router.get('/getbyid/:id', function (req, res) {
     try {
-        logger.debug("Enter Teacher", "Router teacher/getbyid" + req.params.id);
+        logger.debug("Enter Teacher", "Router teacher/getbyid " + req.params.id);
         var id = req.params.id;
-        if (id == null) {
+        if (id === null || id === undefined) {
             logger.error("Model is not valid.", "teacher/getbyid/");
             res.status(400).send("Model is not valid.");
         }
@@ -51,6 +51,32 @@ router.get('/getbyid/:id', function (req, res) {
     }
     catch (ex) {
         logger.error("Out", "teacher/getbyid" + req.params.id, ex.message);
+        res.status(400).send(ex.message);
+    }
+});
+/**
+ * Returns teacher by given token at headers.
+ */
+router.get('/getteacherbytoken', UserMiddleware, function (req, res) {
+    try {
+        logger.debug("Enter Teacher", "Router teacher/getteacherbytoken");
+        var userInfo = process["currentUser"];
+        if (userInfo === null || userInfo === undefined || userInfo.id === null || userInfo.id === undefined) {
+            logger.error("Model is not valid.", "teacher/getteacherbytoken");
+            res.status(400).send("Model is not valid.");
+        }
+        var id = userInfo.id;
+        var tManager = new TeacherLogic_1.TeacherLogic();
+        tManager.GetTeacherByUserID(id)
+            .then(function (teacher) {
+            res.json(teacher);
+        }).catch(function (error) {
+            res.status(400).send(error.message);
+        });
+        logger.info("Out", "teacher/getteacherbytoken");
+    }
+    catch (ex) {
+        logger.error("Out", "teacher/getteacherbytoken", ex.message);
         res.status(400).send(ex.message);
     }
 });

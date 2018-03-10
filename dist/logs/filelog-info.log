@@ -22,3 +22,34 @@
 {"level":"info","message":"Finished auth/createnewuser","timestamp":"2018-02-18T14:51:41.553Z"}
 {"level":"info","message":"Out teacher/create","timestamp":"2018-02-18T14:52:07.701Z"}
 {"level":"info","message":"Finished auth/doesuserexistbyid","timestamp":"2018-02-18T14:52:22.453Z"}
+{"level":"info","message":"Finished auth/doesuserexistbyid","timestamp":"2018-03-10T19:43:15.937Z"}
+{"level":"info","message":"Out teacher/getbyuserid 1","timestamp":"2018-03-10T20:00:04.545Z"}
+{"level":"info","message":"Out teacher/getbyuserid 1957366814278979","timestamp":"2018-03-10T20:00:21.145Z"}
+{"level":"info","message":"Out teacher/getbyuserid undefined","timestamp":"2018-03-10T20:06:29.060Z"}
+{"level":"info","message":"Out teacher/getbyuserid undefined","timestamp":"2018-03-10T20:07:24.409Z"}
+{"level":"info","message":"Out teacher/getteacherbytoken","timestamp":"2018-03-10T20:09:43.571Z"}
+{"level":"info","message":"Finished auth/doesuserexistbyid","timestamp":"2018-03-10T20:10:22.401Z"}
+{"level":"info","message":"Out teacher/getteacherbytoken","timestamp":"2018-03-10T20:10:23.383Z"}
+{"level":"info","message":"Out teacher/getteacherbytoken","timestamp":"2018-03-10T20:11:02.501Z"}
+{"level":"info","message":"Finished auth/doesuserexistbyid","timestamp":"2018-03-10T20:14:43.590Z"}
+{"level":"info","message":"Out teacher/getteacherbytoken","timestamp":"2018-03-10T20:14:44.643Z"}
+{"level":"info","message":"Finished auth/doesuserexistbyid","timestamp":"2018-03-10T20:22:36.927Z"}
+{"level":"info","message":"Out teacher/getteacherbytoken","timestamp":"2018-03-10T20:22:37.876Z"}
+{"level":"info","message":"Finished auth/doesuserexistbyid","timestamp":"2018-03-10T20:27:36.657Z"}
+{"level":"info","message":"Out teacher/getteacherbytoken","timestamp":"2018-03-10T20:27:37.687Z"}
+{"level":"info","message":"Finished auth/doesuserexistbyid","timestamp":"2018-03-10T20:28:14.206Z"}
+{"level":"info","message":"Out teacher/getteacherbytoken","timestamp":"2018-03-10T20:28:15.405Z"}
+{"level":"info","message":"Finished auth/doesuserexistbyid","timestamp":"2018-03-10T20:29:12.767Z"}
+{"level":"info","message":"Out teacher/getteacherbytoken","timestamp":"2018-03-10T20:29:13.765Z"}
+{"level":"info","message":"Finished auth/doesuserexistbyid","timestamp":"2018-03-10T20:29:37.818Z"}
+{"level":"info","message":"Finished auth/doesuserexistbyid","timestamp":"2018-03-10T20:30:48.334Z"}
+{"level":"info","message":"Out teacher/getteacherbytoken","timestamp":"2018-03-10T20:30:49.247Z"}
+{"level":"info","message":"Finished auth/doesuserexistbyid","timestamp":"2018-03-10T20:31:03.099Z"}
+{"level":"info","message":"Out teacher/getteacherbytoken","timestamp":"2018-03-10T20:31:04.007Z"}
+{"level":"info","message":"Out teacher/getteacherbytoken","timestamp":"2018-03-10T20:31:19.312Z"}
+{"level":"info","message":"Finished auth/doesuserexistbyid","timestamp":"2018-03-10T20:42:10.043Z"}
+{"level":"info","message":"Out teacher/getteacherbytoken","timestamp":"2018-03-10T20:42:10.992Z"}
+{"level":"info","message":"Finished auth/doesuserexistbyid","timestamp":"2018-03-10T20:42:36.359Z"}
+{"level":"info","message":"Out teacher/getteacherbytoken","timestamp":"2018-03-10T20:42:37.314Z"}
+{"level":"info","message":"Finished auth/doesuserexistbyid","timestamp":"2018-03-10T20:43:30.254Z"}
+{"level":"info","message":"Out teacher/getteacherbytoken","timestamp":"2018-03-10T20:43:31.193Z"}

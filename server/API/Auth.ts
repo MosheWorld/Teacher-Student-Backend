@@ -58,7 +58,7 @@ router.post('/doesuserexistbyid', (req: Request, res: Response) => {
         }
 
         let aManager = new AuthLogic();
-        let userExistModel: DoesUserExists = ConvertUserExistModelToInterface(req.body);
+        let userExistModel: DoesUserExists = ConvertExistUserModelToInterface(req.body);
 
         aManager.DoesUserExistsByID(userExistModel)
             .then((success) => {
@@ -129,7 +129,7 @@ function IsStringNullOrEmpty(str: string): boolean {
  * Receives model and creates interface that contains the data to check if user exists.
  * @param model 
  */
-function ConvertUserExistModelToInterface(model: any): DoesUserExists {
+function ConvertExistUserModelToInterface(model: any): DoesUserExists {
     let userExist: DoesUserExists = {
         id: model.id,
         token: model.token,
