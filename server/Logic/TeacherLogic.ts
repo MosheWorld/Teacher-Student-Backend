@@ -7,6 +7,7 @@ import { TeachesAt } from '../Enums/TeachesAt.Enum';
 import { TeacherInterface } from './../Interfaces/Teacher.interface';
 import { SearchTeacherInterface } from '../Interfaces/SearchTeacher.interface';
 import { RecommendationsInterface } from './../Interfaces/Recommendations.interface';
+import { AuthDal } from '../DAL/AuthDal';
 
 export class TeacherLogic {
     //#region Public Methods
@@ -37,16 +38,17 @@ export class TeacherLogic {
     /**
      * Creates new teacher at database and new image at images database.
      * Pass the responsibility to image logic to insert new image.
-     * @param {TeacherInterface} teacherData Teacher model.
+     * @param {TeacherInterface} teacherModel Teacher model.
      */
-    public async Create(teacherData: TeacherInterface): Promise<void> {
+    public async Create(teacherModel: TeacherInterface): Promise<void> {
         let tDal = new TeacherDal();
         let iManager = new ImageLogic();
+        let aDal = new AuthDal();
 
-        let image = teacherData.image;
-        teacherData.image = undefined;
+        let image = teacherModel.image;
+        teacherModel.image = undefined;
 
-        const teacherObjectID = await tDal.Create(teacherData);
+        const teacherObjectID = await tDal.Create(teacherModel);
 
         // Add interface for this model.
         let newImageObject = {
@@ -57,9 +59,9 @@ export class TeacherLogic {
         const imageObjectID = await iManager.Create(newImageObject);
 
         // Those three functions runs in parallel to increase performance.
-        this.SendEmails(teacherData);
-
+        this.SendEmails(teacherModel);
         tDal.UpdateImage(teacherObjectID, imageObjectID.toString());
+        aDal.UpdateFilledFormVarbile(teacherModel.userID, true);
     }
 
     /**
@@ -108,6 +110,10 @@ export class TeacherLogic {
         return teacherListToReturn;
     }
 
+    /**
+     * Receives teacher by given UserID.
+     * @param id 
+     */
     public async GetTeacherByUserID(id: string) {
         if (id === null || id === undefined) {
             throw new Error("Given ID is not valid.");

@@ -89,7 +89,8 @@ var AuthLogic = /** @class */ (function () {
                         }
                         prepairModelToReturn = {
                             exist: false,
-                            role: 1
+                            role: 1,
+                            filledTeacherForm: false
                         };
                         return [4 /*yield*/, aDal.GetUserByID(userExistsModel.id)];
                     case 2:

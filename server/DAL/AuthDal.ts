@@ -99,5 +99,29 @@ export class AuthDal {
             });
         });
     }
+
+    /**
+     * Changes the 'filledTeacherForm' variable for User database by given inputs.
+     */
+    public UpdateFilledFormVarbile(userID: string, newFilledBoolean: Boolean): Promise<void> {
+        return new Promise((resolve, reject) => {
+            DataBaseConnector.findOne({ id: userID }, (error, foundUser) => {
+                if (error) { reject("Error occurred when update user at database while getting his info."); }
+
+                // User was not found, aborting.
+                if (foundUser === null || foundUser === undefined) {
+                    reject("User doesn't exist at database, aborting.");
+                }
+
+                // Found the user, we will update the necessary fields.
+                DataBaseConnector.collection.updateOne({ id: userID }, {
+                    $set: { "filledTeacherForm": newFilledBoolean }
+                }, (error) => {
+                    if (error) { reject("Error occurred when updating user at database."); }
+                    resolve();
+                });
+            });
+        });
+    }
     //#endregion
 }

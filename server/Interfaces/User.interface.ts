@@ -1,6 +1,5 @@
 export interface UserInterface {
     id: string;
-    role: Number;
     name: string;
     email: string;
     lastName: string;
@@ -8,4 +7,6 @@ export interface UserInterface {
     photoUrl: string;
     firstName: string;
     authToken: string;
+    role: Number;
+    filledTeacherForm: Boolean;
 }

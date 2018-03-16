@@ -10,7 +10,8 @@ const UserSchema = new mongoose.Schema({
     photoUrl: { type: String },
     firstName: { type: String },
     authToken: { type: String },
-    role: { type: Number }
+    role: { type: Number },
+    filledTeacherForm: { type: Boolean }
 }, { timestamps: true });
 
 const UserModel = mongoose.model("User", UserSchema);

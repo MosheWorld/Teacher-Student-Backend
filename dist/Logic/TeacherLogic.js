@@ -40,6 +40,7 @@ var ImageLogic_1 = require("./ImageLogic");
 var TeacherDAL_1 = require("./../DAL/TeacherDAL");
 var Emailer_1 = require("./../Integration/Emailer");
 var TeachesAt_Enum_1 = require("../Enums/TeachesAt.Enum");
+var AuthDal_1 = require("../DAL/AuthDal");
 var TeacherLogic = /** @class */ (function () {
     function TeacherLogic() {
     }
@@ -87,19 +88,20 @@ var TeacherLogic = /** @class */ (function () {
     /**
      * Creates new teacher at database and new image at images database.
      * Pass the responsibility to image logic to insert new image.
-     * @param {TeacherInterface} teacherData Teacher model.
+     * @param {TeacherInterface} teacherModel Teacher model.
      */
-    TeacherLogic.prototype.Create = function (teacherData) {
+    TeacherLogic.prototype.Create = function (teacherModel) {
         return __awaiter(this, void 0, void 0, function () {
-            var tDal, iManager, image, teacherObjectID, newImageObject, imageObjectID;
+            var tDal, iManager, aDal, image, teacherObjectID, newImageObject, imageObjectID;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
                         tDal = new TeacherDAL_1.TeacherDal();
                         iManager = new ImageLogic_1.ImageLogic();
-                        image = teacherData.image;
-                        teacherData.image = undefined;
-                        return [4 /*yield*/, tDal.Create(teacherData)];
+                        aDal = new AuthDal_1.AuthDal();
+                        image = teacherModel.image;
+                        teacherModel.image = undefined;
+                        return [4 /*yield*/, tDal.Create(teacherModel)];
                     case 1:
                         teacherObjectID = _a.sent();
                         newImageObject = {
@@ -110,8 +112,9 @@ var TeacherLogic = /** @class */ (function () {
                     case 2:
                         imageObjectID = _a.sent();
                         // Those three functions runs in parallel to increase performance.
-                        this.SendEmails(teacherData);
+                        this.SendEmails(teacherModel);
                         tDal.UpdateImage(teacherObjectID, imageObjectID.toString());
+                        aDal.UpdateFilledFormVarbile(teacherModel.userID, true);
                         return [2 /*return*/];
                 }
             });
@@ -191,6 +194,10 @@ var TeacherLogic = /** @class */ (function () {
             });
         });
     };
+    /**
+     * Receives teacher by given UserID.
+     * @param id
+     */
     TeacherLogic.prototype.GetTeacherByUserID = function (id) {
         return __awaiter(this, void 0, void 0, function () {
             var tDal;

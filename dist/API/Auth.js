@@ -181,7 +181,8 @@ function ConvertModelToCreateNewUserInterface(model) {
         provider: model.provider,
         photoUrl: model.photoUrl,
         firstName: model.firstName,
-        authToken: model.authToken
+        authToken: model.authToken,
+        filledTeacherForm: false
     };
     return user;
 }

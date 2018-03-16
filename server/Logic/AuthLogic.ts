@@ -40,7 +40,8 @@ export class AuthLogic {
 
         let prepairModelToReturn: any = {
             exist: false,
-            role: 1
+            role: 1,
+            filledTeacherForm: false
         }
 
         let userFromDatabase: any = await aDal.GetUserByID(userExistsModel.id);
