@@ -1,3 +1,4 @@
+import { UserUpdateModel } from './../Interfaces/UserUpdateModel.interface';
 import { DoesUserExists } from './../Interfaces/DoesUserExists.interface';
 import { Router, Request, Response } from 'express';
 import { Logger } from '../LogService/logger';
@@ -75,6 +76,37 @@ router.post('/doesuserexistbyid', (req: Request, res: Response) => {
         res.status(400).send(ex.message);
     }
 });
+
+/**
+ * Updates user information at database.
+ */
+router.put('/update', (req: Request, res: Response) => {
+    try {
+        logger.debug("Enter Auth", "Router auth/update");
+
+        if (req.body === null || req.body === undefined || !IsUserUpdateModelValid(req.body)) {
+            logger.error("Model is not valid.", "auth/update", req.body);
+            return res.status(400).send("Model is not valid.");
+        }
+
+        let aManager = new AuthLogic();
+        let userUpdateModel: UserUpdateModel = ConvertUpdateUserModelToInterface(req.body);
+
+        aManager.UpdateUser(userUpdateModel)
+            .then((success) => {
+                res.send(success);
+            })
+            .catch((error) => {
+                res.status(400).send(error);
+            });
+
+        logger.info("Finished", "auth/update");
+
+    } catch (ex) {
+        logger.error("Out", "auth/update", ex.message);
+        res.status(400).send(ex.message);
+    }
+});
 //#endregion
 
 //#region Functions
@@ -110,6 +142,22 @@ function IsUserExistModelValid(model: any): boolean {
         return false;
     else
         return true;
+}
+
+/**
+ * Validates whether the model is valid or not.
+ */
+function IsUserUpdateModelValid(model: any): boolean {
+    if (model === null
+        || model === undefined
+        || IsStringNullOrEmpty(model.id)
+        || IsStringNullOrEmpty(model.email)
+        || IsStringNullOrEmpty(model.lastName)
+        || IsStringNullOrEmpty(model.firstName)) {
+        return false;
+    } else {
+        return true;
+    }
 }
 
 /**
@@ -155,6 +203,21 @@ function ConvertModelToCreateNewUserInterface(model: any): UserInterface {
         photoUrl: model.photoUrl,
         firstName: model.firstName,
         authToken: model.authToken
+    }
+
+    return user;
+}
+
+/**
+ * Receives model and create interface that contains the data to update user.
+ * @param model 
+ */
+function ConvertUpdateUserModelToInterface(model: any): UserUpdateModel {
+    let user: UserUpdateModel = {
+        id: model.id,
+        email: model.email,
+        lastName: model.lastName,
+        firstName: model.firstName
     }
 
     return user;

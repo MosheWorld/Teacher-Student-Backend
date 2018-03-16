@@ -1,3 +1,4 @@
+import { TeacherUpdateModel } from './../Interfaces/TeacherUpdateModel.interface';
 import { Router, Request, Response } from 'express';
 
 import { Logger } from './../LogService/logger';
@@ -136,7 +137,7 @@ router.post('/search', (req: Request, res: Response) => {
     try {
         logger.debug("Enter Teacher", "Router teacher/search");
 
-        if (req.body == null || !IsModelSearchValid(req.body)) {
+        if (req.body == null || !IsTeacherSearchModelValid(req.body)) {
             logger.error("Model is not valid.", "teacher/search", req.body);
             return res.status(400).send("Model is not valid.");
         }
@@ -167,13 +168,13 @@ router.post('/create', (req: Request, res: Response) => {
     try {
         logger.debug("Enter Teacher", "Router teacher/create");
 
-        if (req.body == null || !IsModelCreateValid(req.body)) {
+        if (req.body == null || req.body === undefined || !IsCreateModelValid(req.body)) {
             logger.error("Model is not valid.", "teacher/create", req.body);
             return res.status(400).send("Model is not valid.");
         }
 
         let tManager = new TeacherLogic();
-        let teacherData: TeacherInterface = ConvertModelToTeacherInterface(req.body);
+        let teacherData: TeacherInterface = ConvertCreateModelToTeacherInterface(req.body);
 
         tManager.Create(teacherData)
             .then((success) => {
@@ -186,6 +187,36 @@ router.post('/create', (req: Request, res: Response) => {
         logger.info("Out", "teacher/create");
     } catch (ex) {
         logger.error("Out", "teacher/create", ex.message);
+        res.status(400).send(ex.message);
+    }
+});
+
+/**
+ * Updates teacher model at database.
+ */
+router.put('/update', (req: Request, res: Response) => {
+    try {
+        logger.debug("Enter Teacher", "Router teacher/update");
+
+        if (req.body == null || req.body === undefined || !IsTeacherUpdateModelValid(req.body)) {
+            logger.error("Model is not valid.", "teacher/update", req.body);
+            return res.status(400).send("Model is not valid.");
+        }
+
+        let tManager = new TeacherLogic();
+        let teacherUpdateModel: TeacherUpdateModel = ConvertUpdateModelToTeacherInterface(req.body);
+
+        tManager.UpdateTeacherByUserID(teacherUpdateModel)
+            .then((success) => {
+                res.send(success);
+            })
+            .catch((error) => {
+                res.status(400).send(error.message);
+            });
+
+        logger.info("Out", "teacher/update");
+    } catch (ex) {
+        logger.error("Out", "teacher/update", ex.message);
         res.status(400).send(ex.message);
     }
 });
@@ -227,7 +258,7 @@ router.delete('/deletebyid/:id', UserMiddleware, (req: Request, res: Response) =
  * @param model New teacher model.
  * @returns {boolean}
  */
-function IsModelCreateValid(model: any): boolean {
+function IsCreateModelValid(model: any): boolean {
     if (model === null
         || model === undefined
         || model.age == null
@@ -266,7 +297,7 @@ function IsModelCreateValid(model: any): boolean {
  * @param model New search model.
  * @returns {boolean}
  */
-function IsModelSearchValid(model: any): boolean {
+function IsTeacherSearchModelValid(model: any): boolean {
     if (model == null ||
         model.fromPrice == null || model.fromPrice < 0 ||
         model.toPrice == null || model.toPrice < 0 ||
@@ -275,6 +306,30 @@ function IsModelSearchValid(model: any): boolean {
         return false;
     }
     else {
+        return true;
+    }
+}
+
+/**
+ * Validates whether the model is valid.
+ * @param model 
+ */
+function IsTeacherUpdateModelValid(model: any): boolean {
+    if (model === null
+        || model === undefined
+        || model.age < 18
+        || model.age > 120
+        || model.priceTo < 0 || model.priceTo > 200
+        || model.priceFrom < 0 || model.priceFrom > 200
+        || model.priceFrom > model.priceTo
+        || IsStringNullOrEmpty(model.email)
+        || IsStringNullOrEmpty(model.userID)
+        || IsStringNullOrEmpty(model.lastName)
+        || IsStringNullOrEmpty(model.phoneNumber)
+        || IsStringNullOrEmpty(model.firstName)
+        || IsStringNullOrEmpty(model.personalMessage)) {
+        return false;
+    } else {
         return true;
     }
 }
@@ -328,6 +383,26 @@ function IsListOfIDValid(listOfTeacherID: any): boolean {
 }
 
 /**
+ * Converts update model to interface.
+ * @param model 
+ */
+function ConvertUpdateModelToTeacherInterface(model: any): TeacherUpdateModel {
+    let teacher: TeacherUpdateModel = {
+        age: model.age,
+        email: model.email,
+        userID: model.userID,
+        priceTo: model.priceTo,
+        lastName: model.lastName,
+        priceFrom: model.priceFrom,
+        firstName: model.firstName,
+        phoneNumber: model.phoneNumberm,
+        personalMessage: model.personalMessage
+    };
+
+    return teacher;
+}
+
+/**
  * Receives model and creates interface that contains the data to search.
  * @param model Search details.
  * @returns {SearchTeacherInterface} Model to return.
@@ -350,7 +425,7 @@ function GetSearchDataModel(model: any): SearchTeacherInterface {
  * @param model Teacher details.
  * @returns {TeacherInterface} Model to return.
  */
-function ConvertModelToTeacherInterface(model: any): TeacherInterface {
+function ConvertCreateModelToTeacherInterface(model: any): TeacherInterface {
     let teacherModel: TeacherInterface = {
         age: model.age,
         rate: model.rate,

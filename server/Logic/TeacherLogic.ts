@@ -1,3 +1,4 @@
+import { TeacherUpdateModel } from './../Interfaces/TeacherUpdateModel.interface';
 import { ObjectID } from 'mongodb';
 import { ImageLogic } from './ImageLogic';
 import { TeacherDal } from './../DAL/TeacherDAL';
@@ -115,6 +116,16 @@ export class TeacherLogic {
         let tDal = new TeacherDal();
 
         return await tDal.GetTeacherByUserID(id);
+    }
+
+    /**
+     * Updates teacher model at database.
+     * @param model 
+     */
+    public async UpdateTeacherByUserID(model: TeacherUpdateModel): Promise<void> {
+        let tDal = new TeacherDal();
+
+        tDal.UpdateTeacherByUserID(model);
     }
     //#endregion
 

@@ -35,7 +35,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var TeacherDal_1 = require("./../DAL/TeacherDAL");
+var TeacherDal_1 = require("./../DAL/TeacherDal");
 var AuthDal_1 = require("./../DAL/AuthDal");
 var GoogleVerifier_1 = require("./../Integration/GoogleVerifier");
 var FacebookVerifier_1 = require("../Integration/FacebookVerifier");
@@ -161,6 +161,20 @@ var AuthLogic = /** @class */ (function () {
                         return [4 /*yield*/, aDal.GetUserByID(id)];
                     case 1: return [2 /*return*/, _a.sent()];
                 }
+            });
+        });
+    };
+    /**
+     * Updates user information at database.
+     * @param model
+     */
+    AuthLogic.prototype.UpdateUser = function (model) {
+        return __awaiter(this, void 0, void 0, function () {
+            var aDal;
+            return __generator(this, function (_a) {
+                aDal = new AuthDal_1.AuthDal();
+                aDal.UpdateUser(model);
+                return [2 /*return*/];
             });
         });
     };

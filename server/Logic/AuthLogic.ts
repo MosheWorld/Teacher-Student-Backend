@@ -1,3 +1,4 @@
+import { UserUpdateModel } from './../Interfaces/UserUpdateModel.interface';
 import { TeacherDal } from './../DAL/TeacherDal';
 import { AuthDal } from './../DAL/AuthDal';
 import { UserInterface } from './../Interfaces/User.interface';
@@ -93,6 +94,16 @@ export class AuthLogic {
         let aDal = new AuthDal();
 
         return await aDal.GetUserByID(id);
+    }
+
+    /**
+     * Updates user information at database.
+     * @param model 
+     */
+    public async UpdateUser(model: UserUpdateModel): Promise<void> {
+        let aDal = new AuthDal();
+
+        aDal.UpdateUser(model);
     }
     //#endregion
 

@@ -1,3 +1,4 @@
+import { TeacherUpdateModel } from './../Interfaces/TeacherUpdateModel.interface';
 import { ObjectID } from 'mongodb';
 
 import DataBaseConnector from '../Models/TeacherModel';
@@ -149,6 +150,42 @@ export class TeacherDal {
                 }
             });
 
+        });
+    }
+
+    /**
+     * Updates teacher model at database.
+     * @param model 
+     */
+    public UpdateTeacherByUserID(model: TeacherUpdateModel): Promise<void> {
+        return new Promise((resolve, reject) => {
+            DataBaseConnector.findOne({ userID: model.userID }, (error, teacher) => {
+                if (error) { reject("Error occurred when gettings teacher from database by user ID."); }
+
+                // Not found teacher by given user ID.
+                if (teacher === null || teacher === undefined) {
+                    reject("No teacher exist by given user ID, aborting.");
+                }
+
+                // Found user, we will update the relevant fields.
+                DataBaseConnector.collection.updateOne({ userID: model.userID },
+                    {
+                        $set: {
+                            "age": model.age,
+                            "phone": model.phoneNumber,
+                            "email": model.email,
+                            "priceTo": model.priceTo,
+                            "priceFrom": model.priceFrom,
+                            "lastName": model.lastName,
+                            "firstName": model.firstName,
+                            "personalMessage": model.personalMessage
+                        },
+                    }
+                    , (error) => {
+                        if (error) { reject("Error occurred when updating teacher at database."); }
+                        resolve();
+                    });
+            });
         });
     }
     //#endregion

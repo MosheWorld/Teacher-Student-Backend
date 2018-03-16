@@ -153,6 +153,41 @@ var TeacherDal = /** @class */ (function () {
             });
         });
     };
+    /**
+     * Updates teacher model at database.
+     * @param model
+     */
+    TeacherDal.prototype.UpdateTeacherByUserID = function (model) {
+        return new Promise(function (resolve, reject) {
+            TeacherModel_1.default.findOne({ userID: model.userID }, function (error, teacher) {
+                if (error) {
+                    reject("Error occurred when gettings teacher from database by user ID.");
+                }
+                // Not found teacher by given user ID.
+                if (teacher === null || teacher === undefined) {
+                    reject("No teacher exist by given user ID, aborting.");
+                }
+                // Found user, we will update the relevant fields.
+                TeacherModel_1.default.collection.updateOne({ userID: model.userID }, {
+                    $set: {
+                        "age": model.age,
+                        "phone": model.phoneNumber,
+                        "email": model.email,
+                        "priceTo": model.priceTo,
+                        "priceFrom": model.priceFrom,
+                        "lastName": model.lastName,
+                        "firstName": model.firstName,
+                        "personalMessage": model.personalMessage
+                    },
+                }, function (error) {
+                    if (error) {
+                        reject("Error occurred when updating teacher at database.");
+                    }
+                    resolve();
+                });
+            });
+        });
+    };
     return TeacherDal;
 }());
 exports.TeacherDal = TeacherDal;

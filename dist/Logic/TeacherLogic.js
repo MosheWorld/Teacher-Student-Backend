@@ -207,6 +207,20 @@ var TeacherLogic = /** @class */ (function () {
             });
         });
     };
+    /**
+     * Updates teacher model at database.
+     * @param model
+     */
+    TeacherLogic.prototype.UpdateTeacherByUserID = function (model) {
+        return __awaiter(this, void 0, void 0, function () {
+            var tDal;
+            return __generator(this, function (_a) {
+                tDal = new TeacherDAL_1.TeacherDal();
+                tDal.UpdateTeacherByUserID(model);
+                return [2 /*return*/];
+            });
+        });
+    };
     //#endregion
     //#region Private Methods
     /**

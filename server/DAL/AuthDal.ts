@@ -1,3 +1,4 @@
+import { UserUpdateModel } from './../Interfaces/UserUpdateModel.interface';
 import { ObjectID } from 'mongodb';
 
 import DataBaseConnector from '../Models/UserModel';
@@ -65,6 +66,36 @@ export class AuthDal {
             }, (error) => {
                 if (error) { reject("Error occurred when updating authentication token for user at database."); }
                 resolve();
+            });
+        });
+    }
+
+    /**
+     * Updates user information at database.
+     * @param model 
+     */
+    public UpdateUser(model: UserUpdateModel): Promise<void> {
+        return new Promise((resolve, reject) => {
+            DataBaseConnector.findOne({ id: model.id }, (error, foundUser) => {
+                if (error) { reject("Error occurred when update user at database while getting his info."); }
+
+                // User was not found, aborting.
+                if (foundUser === null || foundUser === undefined) {
+                    reject("User doesn't exist at database, aborting.");
+                }
+
+                // Found the user, we will update the necessary fields.
+                DataBaseConnector.collection.updateOne({ id: model.id }, {
+                    $set: {
+                        "email": model.email,
+                        "lastName": model.lastName,
+                        "firstName": model.firstName,
+                        "name": model.firstName + " " + model.lastName
+                    }
+                }, (error) => {
+                    if (error) { reject("Error occurred when updating user at database."); }
+                    resolve();
+                });
             });
         });
     }

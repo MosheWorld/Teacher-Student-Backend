@@ -75,6 +75,37 @@ var AuthDal = /** @class */ (function () {
             });
         });
     };
+    /**
+     * Updates user information at database.
+     * @param model
+     */
+    AuthDal.prototype.UpdateUser = function (model) {
+        return new Promise(function (resolve, reject) {
+            UserModel_1.default.findOne({ id: model.id }, function (error, foundUser) {
+                if (error) {
+                    reject("Error occurred when update user at database while getting his info.");
+                }
+                // User was not found, aborting.
+                if (foundUser === null || foundUser === undefined) {
+                    reject("User doesn't exist at database, aborting.");
+                }
+                // Found the user, we will update the necessary fields.
+                UserModel_1.default.collection.updateOne({ id: model.id }, {
+                    $set: {
+                        "email": model.email,
+                        "lastName": model.lastName,
+                        "firstName": model.firstName,
+                        "name": model.firstName + " " + model.lastName
+                    }
+                }, function (error) {
+                    if (error) {
+                        reject("Error occurred when updating user at database.");
+                    }
+                    resolve();
+                });
+            });
+        });
+    };
     return AuthDal;
 }());
 exports.AuthDal = AuthDal;
