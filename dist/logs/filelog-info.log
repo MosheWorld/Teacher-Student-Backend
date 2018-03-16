@@ -118,3 +118,9 @@
 {"level":"info","message":"Out teacher/update","timestamp":"2018-03-16T13:32:43.175Z"}
 {"level":"info","message":"Finished auth/doesuserexistbyid","timestamp":"2018-03-16T13:33:02.475Z"}
 {"level":"info","message":"Out teacher/getteacherbytoken","timestamp":"2018-03-16T13:33:03.552Z"}
+{"level":"info","message":"Finished auth/doesuserexistbyid","timestamp":"2018-03-16T19:03:48.344Z"}
+{"level":"info","message":"Out teacher/getteacherbytoken","timestamp":"2018-03-16T19:03:49.876Z"}
+{"level":"info","message":"Finished auth/doesuserexistbyid","timestamp":"2018-03-16T19:04:22.152Z"}
+{"level":"info","message":"Out teacher/getteacherbytoken","timestamp":"2018-03-16T19:04:23.194Z"}
+{"level":"info","message":"Out teacher/update","timestamp":"2018-03-16T19:05:07.503Z"}
+{"level":"info","message":"Out teacher/update","timestamp":"2018-03-16T19:07:28.969Z"}

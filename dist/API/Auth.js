@@ -3,6 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var express_1 = require("express");
 var logger_1 = require("../LogService/logger");
 var AuthLogic_1 = require("./../Logic/AuthLogic");
+var UserMiddleware = require('../Common/Middleware').UserMiddleware;
 //#region Members
 var logger = new logger_1.Logger();
 var router = express_1.Router();
@@ -66,7 +67,7 @@ router.post('/doesuserexistbyid', function (req, res) {
 /**
  * Updates user information at database.
  */
-router.put('/update', function (req, res) {
+router.put('/update', UserMiddleware, function (req, res) {
     try {
         logger.debug("Enter Auth", "Router auth/update");
         if (req.body === null || req.body === undefined || !IsUserUpdateModelValid(req.body)) {

@@ -171,7 +171,7 @@ var TeacherDal = /** @class */ (function () {
                 TeacherModel_1.default.collection.updateOne({ userID: model.userID }, {
                     $set: {
                         "age": model.age,
-                        "phone": model.phoneNumber,
+                        "phone": model.phone,
                         "email": model.email,
                         "priceTo": model.priceTo,
                         "priceFrom": model.priceFrom,

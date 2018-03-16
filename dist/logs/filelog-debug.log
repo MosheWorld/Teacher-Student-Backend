@@ -183,3 +183,13 @@
 {"level":"debug","message":"Enter Auth Router auth/doesuserexistbyid","timestamp":"2018-03-16T13:33:02.475Z"}
 {"level":"debug","message":"Enter User Middleware","timestamp":"2018-03-16T13:33:03.165Z"}
 {"level":"debug","message":"Enter Teacher Router teacher/getteacherbytoken","timestamp":"2018-03-16T13:33:03.551Z"}
+{"level":"debug","message":"Enter Auth Router auth/doesuserexistbyid","timestamp":"2018-03-16T19:03:48.340Z"}
+{"level":"debug","message":"Enter User Middleware","timestamp":"2018-03-16T19:03:49.376Z"}
+{"level":"debug","message":"Enter Teacher Router teacher/getteacherbytoken","timestamp":"2018-03-16T19:03:49.873Z"}
+{"level":"debug","message":"Enter Auth Router auth/doesuserexistbyid","timestamp":"2018-03-16T19:04:22.150Z"}
+{"level":"debug","message":"Enter User Middleware","timestamp":"2018-03-16T19:04:22.763Z"}
+{"level":"debug","message":"Enter Teacher Router teacher/getteacherbytoken","timestamp":"2018-03-16T19:04:23.193Z"}
+{"level":"debug","message":"Enter Teacher Router teacher/update","timestamp":"2018-03-16T19:04:29.860Z"}
+{"level":"debug","message":"Enter Teacher Router teacher/update","timestamp":"2018-03-16T19:05:07.493Z"}
+{"level":"debug","message":"Enter User Middleware","timestamp":"2018-03-16T19:07:28.318Z"}
+{"level":"debug","message":"Enter Teacher Router teacher/update","timestamp":"2018-03-16T19:07:28.963Z"}

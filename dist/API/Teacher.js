@@ -162,7 +162,7 @@ router.post('/create', function (req, res) {
 /**
  * Updates teacher model at database.
  */
-router.put('/update', function (req, res) {
+router.put('/update', UserMiddleware, function (req, res) {
     try {
         logger.debug("Enter Teacher", "Router teacher/update");
         if (req.body == null || req.body === undefined || !IsTeacherUpdateModelValid(req.body)) {
@@ -282,7 +282,7 @@ function IsTeacherUpdateModelValid(model) {
         || IsStringNullOrEmpty(model.email)
         || IsStringNullOrEmpty(model.userID)
         || IsStringNullOrEmpty(model.lastName)
-        || IsStringNullOrEmpty(model.phoneNumber)
+        || IsStringNullOrEmpty(model.phone)
         || IsStringNullOrEmpty(model.firstName)
         || IsStringNullOrEmpty(model.personalMessage)) {
         return false;
@@ -347,12 +347,12 @@ function ConvertUpdateModelToTeacherInterface(model) {
     var teacher = {
         age: model.age,
         email: model.email,
+        phone: model.phone,
         userID: model.userID,
         priceTo: model.priceTo,
         lastName: model.lastName,
         priceFrom: model.priceFrom,
         firstName: model.firstName,
-        phoneNumber: model.phoneNumberm,
         personalMessage: model.personalMessage
     };
     return teacher;

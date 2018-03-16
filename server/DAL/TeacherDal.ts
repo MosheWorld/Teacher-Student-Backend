@@ -172,7 +172,7 @@ export class TeacherDal {
                     {
                         $set: {
                             "age": model.age,
-                            "phone": model.phoneNumber,
+                            "phone": model.phone,
                             "email": model.email,
                             "priceTo": model.priceTo,
                             "priceFrom": model.priceFrom,

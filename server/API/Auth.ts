@@ -6,6 +6,7 @@ import { Logger } from '../LogService/logger';
 import { AuthLogic } from './../Logic/AuthLogic';
 import { UserInterface } from './../Interfaces/User.interface';
 
+const { UserMiddleware } = require('../Common/Middleware');
 
 //#region Members
 let logger = new Logger();
@@ -80,7 +81,7 @@ router.post('/doesuserexistbyid', (req: Request, res: Response) => {
 /**
  * Updates user information at database.
  */
-router.put('/update', (req: Request, res: Response) => {
+router.put('/update', UserMiddleware, (req: Request, res: Response) => {
     try {
         logger.debug("Enter Auth", "Router auth/update");
 
