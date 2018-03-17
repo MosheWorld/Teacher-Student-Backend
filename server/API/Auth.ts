@@ -6,7 +6,7 @@ import { Logger } from '../LogService/logger';
 import { AuthLogic } from './../Logic/AuthLogic';
 import { UserInterface } from './../Interfaces/User.interface';
 
-const { UserMiddleware } = require('../Common/Middleware');
+const { UserMiddleware, AdminMiddleware } = require('../Common/Middleware');
 
 //#region Members
 let logger = new Logger();
@@ -108,6 +108,36 @@ router.put('/update', UserMiddleware, (req: Request, res: Response) => {
         res.status(400).send(ex.message);
     }
 });
+
+/**
+ * Delete user from the database according to his ID.
+ */
+router.delete('/deletebyuserid/:userid', AdminMiddleware, (req: Request, res: Response) => {
+    try {
+        logger.debug("Enter Teacher", "Router auth/deletebyuserid/" + req.params.id);
+
+        let userid = req.params.userid;
+
+        if (userid === null || userid === undefined) {
+            logger.error("Model is not valid.", "auth/deletebyuserid/");
+            res.status(400).send("Model is not valid.");
+        }
+
+        let aManager = new AuthLogic();
+
+        aManager.DeleteByUserID(userid)
+            .then((response) => {
+                res.json(response);
+            }).catch((error) => {
+                res.status(400).send(error.message);
+            });
+
+        logger.info("Out", "auth/deletebyuserid/" + req.params.id);
+    } catch (ex) {
+        logger.error("Out", "auth/deletebyuserid/" + req.params.id, ex.message);
+        res.status(400).send(ex.message);
+    }
+});
 //#endregion
 
 //#region Functions
@@ -120,9 +150,7 @@ function IsCreateNewUserValid(model: any): boolean {
     if (model == null
         || IsStringNullOrEmpty(model.id)
         || IsStringNullOrEmpty(model.name)
-        // || IsStringNullOrEmpty(model.lastName)
         || IsStringNullOrEmpty(model.provider)
-        // || IsStringNullOrEmpty(model.firstName)
         || IsStringNullOrEmpty(model.authToken)) {
         return false;
     } else {
@@ -203,8 +231,7 @@ function ConvertModelToCreateNewUserInterface(model: any): UserInterface {
         provider: model.provider,
         photoUrl: model.photoUrl,
         firstName: model.firstName,
-        authToken: model.authToken,
-        filledTeacherForm: false
+        authToken: model.authToken
     }
 
     return user;

@@ -61,7 +61,6 @@ export class TeacherLogic {
         // Those three functions runs in parallel to increase performance.
         this.SendEmails(teacherModel);
         tDal.UpdateImage(teacherObjectID, imageObjectID.toString());
-        aDal.UpdateFilledFormVarbile(teacherModel.userID, true);
     }
 
     /**
@@ -69,14 +68,14 @@ export class TeacherLogic {
      * Removes the teacher image from the database by transferring the responsibility to remove to image logic class.
      * @param id Teacher ID.
      */
-    public async DeleteByID(id): Promise<void> {
+    public async DeleteByUserID(userID: string): Promise<void> {
         let tDal = new TeacherDal();
         let iManager = new ImageLogic();
 
-        let teacher = await this.GetByID(id);
+        let teacher = await tDal.GetByUserID(userID);
 
         // Run in parallel, no dependency between functions.
-        tDal.DeleteByID(id);
+        tDal.DeleteByUserID(userID);
         iManager.DeleteByID(teacher.image);
     }
 

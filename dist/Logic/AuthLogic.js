@@ -179,6 +179,20 @@ var AuthLogic = /** @class */ (function () {
             });
         });
     };
+    /**
+     * Removes user by userID.
+     * @param userID
+     */
+    AuthLogic.prototype.DeleteByUserID = function (userID) {
+        return __awaiter(this, void 0, void 0, function () {
+            var aDal;
+            return __generator(this, function (_a) {
+                aDal = new AuthDal_1.AuthDal();
+                aDal.DeleteByUserID(userID);
+                return [2 /*return*/];
+            });
+        });
+    };
     //#endregion
     //#region Private Methods
     /**

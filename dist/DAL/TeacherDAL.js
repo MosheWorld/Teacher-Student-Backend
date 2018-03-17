@@ -38,6 +38,21 @@ var TeacherDal = /** @class */ (function () {
         });
     };
     /**
+     * Returns user by his userID.
+     * @param id userID variable.
+     */
+    TeacherDal.prototype.GetByUserID = function (userID) {
+        return new Promise(function (resolve, reject) {
+            var teacher = TeacherModel_1.default.findOne({ userID: userID }, function (error, teacher) {
+                if (error) {
+                    reject("Error occurred when gettings teacher from database.");
+                }
+                return teacher ? teacher : null;
+            });
+            resolve(teacher);
+        });
+    };
+    /**
      * Creates new teacher at database.
      * @param teacherData Teacher data.
      * @returns Returns new teacher ID as ObjectID.
@@ -53,12 +68,12 @@ var TeacherDal = /** @class */ (function () {
         });
     };
     /**
-     * Remove teacher from database by his ID.
+     * Remove teacher from database by his user ID.
      * @param id Teacher ID.
      */
-    TeacherDal.prototype.DeleteByID = function (id) {
+    TeacherDal.prototype.DeleteByUserID = function (userID) {
         return new Promise(function (resolve, reject) {
-            TeacherModel_1.default.collection.deleteOne({ _id: new mongodb_1.ObjectID(id) }, function (error) {
+            TeacherModel_1.default.collection.deleteOne({ userID: userID }, function (error) {
                 if (error) {
                     reject("Error occurred when deleteing teacher from database.");
                 }

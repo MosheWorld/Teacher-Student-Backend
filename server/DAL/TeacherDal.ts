@@ -38,6 +38,21 @@ export class TeacherDal {
     }
 
     /**
+     * Returns user by his userID.
+     * @param id userID variable.
+     */
+    public GetByUserID(userID: string): Promise<any> {
+        return new Promise((resolve, reject) => {
+            let teacher = DataBaseConnector.findOne({ userID: userID }, (error, teacher) => {
+                if (error) { reject("Error occurred when gettings teacher from database."); }
+                return teacher ? teacher : null;
+            });
+
+            resolve(teacher);
+        });
+    }
+
+    /**
      * Creates new teacher at database.
      * @param teacherData Teacher data.
      * @returns Returns new teacher ID as ObjectID.
@@ -52,12 +67,12 @@ export class TeacherDal {
     }
 
     /**
-     * Remove teacher from database by his ID.
+     * Remove teacher from database by his user ID.
      * @param id Teacher ID.
      */
-    public DeleteByID(id: any): Promise<void> {
+    public DeleteByUserID(userID: string): Promise<void> {
         return new Promise((resolve, reject) => {
-            DataBaseConnector.collection.deleteOne({ _id: new ObjectID(id) }, (error) => {
+            DataBaseConnector.collection.deleteOne({ userID: userID }, (error) => {
                 if (error) { reject("Error occurred when deleteing teacher from database."); }
                 resolve();
             });

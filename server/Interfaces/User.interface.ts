@@ -8,5 +8,4 @@ export interface UserInterface {
     firstName: string;
     authToken: string;
     role: Number;
-    filledTeacherForm: Boolean;
 }

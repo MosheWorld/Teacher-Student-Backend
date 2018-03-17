@@ -7,7 +7,7 @@ import { TeacherInterface } from './../Interfaces/Teacher.interface';
 import { SearchTeacherInterface } from '../Interfaces/SearchTeacher.interface';
 import { RecommendationsInterface } from './../Interfaces/Recommendations.interface';
 
-const { UserMiddleware } = require('../Common/Middleware');
+const { UserMiddleware, AdminMiddleware } = require('../Common/Middleware');
 
 //#region Members
 let logger = new Logger();
@@ -224,29 +224,29 @@ router.put('/update', UserMiddleware, (req: Request, res: Response) => {
 /**
  * Delete teacher from the database according to his ID.
  */
-router.delete('/deletebyid/:id', UserMiddleware, (req: Request, res: Response) => {
+router.delete('/deletebyuserid/:userid', AdminMiddleware, (req: Request, res: Response) => {
     try {
-        logger.debug("Enter Teacher", "Router teacher/deletebyid/" + req.params.id);
+        logger.debug("Enter Teacher", "Router teacher/deletebyuserid/" + req.params.id);
 
-        let id = req.params.id;
+        let userid = req.params.userid;
 
-        if (id === null || id === undefined) {
-            logger.error("Model is not valid.", "teacher/delete/");
+        if (userid === null || userid === undefined) {
+            logger.error("Model is not valid.", "teacher/deletebyuserid/");
             res.status(400).send("Model is not valid.");
         }
 
         let tManager = new TeacherLogic();
 
-        tManager.DeleteByID(id)
+        tManager.DeleteByUserID(userid)
             .then((response) => {
                 res.json(response);
             }).catch((error) => {
                 res.status(400).send(error.message);
             });
 
-        logger.info("Out", "teacher/deletebyid/" + req.params.id);
+        logger.info("Out", "teacher/deletebyuserid/" + req.params.id);
     } catch (ex) {
-        logger.error("Out", "teacher/deletebyid/" + req.params.id, ex.message);
+        logger.error("Out", "teacher/deletebyuserid/" + req.params.id, ex.message);
         res.status(400).send(ex.message);
     }
 });

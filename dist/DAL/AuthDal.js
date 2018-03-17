@@ -107,27 +107,16 @@ var AuthDal = /** @class */ (function () {
         });
     };
     /**
-     * Changes the 'filledTeacherForm' variable for User database by given inputs.
+     * Removes user by userID.
+     * @param userID
      */
-    AuthDal.prototype.UpdateFilledFormVarbile = function (userID, newFilledBoolean) {
+    AuthDal.prototype.DeleteByUserID = function (userID) {
         return new Promise(function (resolve, reject) {
-            UserModel_1.default.findOne({ id: userID }, function (error, foundUser) {
+            UserModel_1.default.collection.deleteOne({ id: userID }, function (error) {
                 if (error) {
-                    reject("Error occurred when update user at database while getting his info.");
+                    reject("Error occurred when deleteing teacher from database.");
                 }
-                // User was not found, aborting.
-                if (foundUser === null || foundUser === undefined) {
-                    reject("User doesn't exist at database, aborting.");
-                }
-                // Found the user, we will update the necessary fields.
-                UserModel_1.default.collection.updateOne({ id: userID }, {
-                    $set: { "filledTeacherForm": newFilledBoolean }
-                }, function (error) {
-                    if (error) {
-                        reject("Error occurred when updating user at database.");
-                    }
-                    resolve();
-                });
+                resolve();
             });
         });
     };

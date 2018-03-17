@@ -250,3 +250,101 @@
 {"level":"debug","message":"Enter Auth Router auth/doesuserexistbyid","timestamp":"2018-03-16T19:44:08.757Z"}
 {"level":"debug","message":"Enter User Middleware","timestamp":"2018-03-16T19:44:09.442Z"}
 {"level":"debug","message":"Enter Teacher Router teacher/getteacherbytoken","timestamp":"2018-03-16T19:44:09.993Z"}
+{"level":"debug","message":"Enter Auth Router auth/doesuserexistbyid","timestamp":"2018-03-17T11:51:00.607Z"}
+{"level":"debug","message":"Enter User Middleware","timestamp":"2018-03-17T11:51:01.337Z"}
+{"level":"debug","message":"Enter Teacher Router teacher/getteacherbytoken","timestamp":"2018-03-17T11:51:01.730Z"}
+{"level":"debug","message":"Enter Auth Router auth/doesuserexistbyid","timestamp":"2018-03-17T12:31:20.165Z"}
+{"level":"debug","message":"Enter User Middleware","timestamp":"2018-03-17T12:31:21.491Z"}
+{"level":"debug","message":"Enter Teacher Router teacher/getteacherbytoken","timestamp":"2018-03-17T12:31:21.909Z"}
+{"level":"debug","message":"Enter Teacher Router teacher/getall","timestamp":"2018-03-17T12:31:25.361Z"}
+{"level":"debug","message":"Enter Image Router image/getimagebyid","timestamp":"2018-03-17T12:31:25.514Z"}
+{"level":"debug","message":"Enter Image Router image/getimagebyid","timestamp":"2018-03-17T12:31:25.519Z"}
+{"level":"debug","message":"Enter Recommendation Router recommendation/getrecommendationbyid","timestamp":"2018-03-17T12:31:26.281Z"}
+{"level":"debug","message":"Enter Auth Router auth/doesuserexistbyid","timestamp":"2018-03-17T12:32:59.595Z"}
+{"level":"debug","message":"Enter User Middleware","timestamp":"2018-03-17T12:33:00.225Z"}
+{"level":"debug","message":"Enter Teacher Router teacher/getteacherbytoken","timestamp":"2018-03-17T12:33:00.681Z"}
+{"level":"debug","message":"Enter Teacher Router teacher/getall","timestamp":"2018-03-17T12:33:03.746Z"}
+{"level":"debug","message":"Enter Image Router image/getimagebyid","timestamp":"2018-03-17T12:33:03.905Z"}
+{"level":"debug","message":"Enter Image Router image/getimagebyid","timestamp":"2018-03-17T12:33:03.908Z"}
+{"level":"debug","message":"Enter Recommendation Router recommendation/getrecommendationbyid","timestamp":"2018-03-17T12:33:04.841Z"}
+{"level":"debug","message":"Enter Auth Router auth/doesuserexistbyid","timestamp":"2018-03-17T12:33:31.232Z"}
+{"level":"debug","message":"Enter User Middleware","timestamp":"2018-03-17T12:33:31.978Z"}
+{"level":"debug","message":"Enter Teacher Router teacher/getteacherbytoken","timestamp":"2018-03-17T12:33:32.433Z"}
+{"level":"debug","message":"Enter Teacher Router teacher/getall","timestamp":"2018-03-17T12:33:34.896Z"}
+{"level":"debug","message":"Enter Image Router image/getimagebyid","timestamp":"2018-03-17T12:33:35.055Z"}
+{"level":"debug","message":"Enter Image Router image/getimagebyid","timestamp":"2018-03-17T12:33:35.057Z"}
+{"level":"debug","message":"Enter Recommendation Router recommendation/getrecommendationbyid","timestamp":"2018-03-17T12:33:36.000Z"}
+{"level":"debug","message":"Enter User Middleware","timestamp":"2018-03-17T12:33:37.398Z"}
+{"level":"debug","message":"Enter Teacher Router teacher/deletebyuserid/undefined","timestamp":"2018-03-17T12:33:37.789Z"}
+{"level":"debug","message":"Enter Auth Router auth/doesuserexistbyid","timestamp":"2018-03-17T12:34:49.992Z"}
+{"level":"debug","message":"Enter User Middleware","timestamp":"2018-03-17T12:34:50.685Z"}
+{"level":"debug","message":"Enter Teacher Router teacher/getteacherbytoken","timestamp":"2018-03-17T12:34:51.086Z"}
+{"level":"debug","message":"Enter Teacher Router teacher/getall","timestamp":"2018-03-17T12:34:55.544Z"}
+{"level":"debug","message":"Enter Image Router image/getimagebyid","timestamp":"2018-03-17T12:34:56.154Z"}
+{"level":"debug","message":"Enter Image Router image/getimagebyid","timestamp":"2018-03-17T12:34:56.160Z"}
+{"level":"debug","message":"Enter Recommendation Router recommendation/getrecommendationbyid","timestamp":"2018-03-17T12:35:06.434Z"}
+{"level":"debug","message":"Enter User Middleware","timestamp":"2018-03-17T12:35:08.497Z"}
+{"level":"debug","message":"Enter Teacher Router teacher/deletebyuserid/undefined","timestamp":"2018-03-17T12:35:08.997Z"}
+{"level":"debug","message":"Enter Auth Router auth/doesuserexistbyid","timestamp":"2018-03-17T12:41:05.685Z"}
+{"level":"debug","message":"Enter User Middleware","timestamp":"2018-03-17T12:41:06.569Z"}
+{"level":"debug","message":"Enter Teacher Router teacher/getteacherbytoken","timestamp":"2018-03-17T12:41:06.992Z"}
+{"level":"debug","message":"Enter Teacher Router teacher/getall","timestamp":"2018-03-17T12:41:08.907Z"}
+{"level":"debug","message":"Enter Image Router image/getimagebyid","timestamp":"2018-03-17T12:41:09.678Z"}
+{"level":"debug","message":"Enter Recommendation Router recommendation/getrecommendationbyid","timestamp":"2018-03-17T12:41:11.115Z"}
+{"level":"debug","message":"Enter Auth Router auth/doesuserexistbyid","timestamp":"2018-03-17T12:41:21.506Z"}
+{"level":"debug","message":"Enter Auth Router auth/createnewuser","timestamp":"2018-03-17T12:41:22.273Z"}
+{"level":"debug","message":"Enter Teacher Router teacher/create","timestamp":"2018-03-17T12:41:47.180Z"}
+{"level":"debug","message":"Enter User Middleware","timestamp":"2018-03-17T12:41:47.568Z"}
+{"level":"debug","message":"Enter Teacher Router teacher/getteacherbytoken","timestamp":"2018-03-17T12:41:48.016Z"}
+{"level":"debug","message":"Enter Auth Router auth/doesuserexistbyid","timestamp":"2018-03-17T12:42:09.183Z"}
+{"level":"debug","message":"Enter User Middleware","timestamp":"2018-03-17T12:42:09.883Z"}
+{"level":"debug","message":"Enter Teacher Router teacher/getteacherbytoken","timestamp":"2018-03-17T12:42:10.372Z"}
+{"level":"debug","message":"Enter Teacher Router teacher/getall","timestamp":"2018-03-17T12:42:12.983Z"}
+{"level":"debug","message":"Enter Image Router image/getimagebyid","timestamp":"2018-03-17T12:42:13.138Z"}
+{"level":"debug","message":"Enter Image Router image/getimagebyid","timestamp":"2018-03-17T12:42:13.140Z"}
+{"level":"debug","message":"Enter Recommendation Router recommendation/getrecommendationbyid","timestamp":"2018-03-17T12:42:15.172Z"}
+{"level":"debug","message":"Enter User Middleware","timestamp":"2018-03-17T12:42:17.780Z"}
+{"level":"debug","message":"Enter User Middleware","timestamp":"2018-03-17T12:42:17.782Z"}
+{"level":"debug","message":"Enter Teacher Router auth/deletebyuserid/undefined","timestamp":"2018-03-17T12:42:18.263Z"}
+{"level":"debug","message":"Enter Teacher Router teacher/deletebyuserid/undefined","timestamp":"2018-03-17T12:42:18.269Z"}
+{"level":"debug","message":"Enter Auth Router auth/doesuserexistbyid","timestamp":"2018-03-17T12:46:06.393Z"}
+{"level":"debug","message":"Enter Auth Router auth/createnewuser","timestamp":"2018-03-17T12:46:06.884Z"}
+{"level":"debug","message":"Enter Teacher Router teacher/create","timestamp":"2018-03-17T12:46:32.837Z"}
+{"level":"debug","message":"Enter User Middleware","timestamp":"2018-03-17T12:46:33.157Z"}
+{"level":"debug","message":"Enter Teacher Router teacher/getteacherbytoken","timestamp":"2018-03-17T12:46:33.607Z"}
+{"level":"debug","message":"Enter Teacher Router teacher/getall","timestamp":"2018-03-17T12:46:36.949Z"}
+{"level":"debug","message":"Enter Image Router image/getimagebyid","timestamp":"2018-03-17T12:46:37.142Z"}
+{"level":"debug","message":"Enter Image Router image/getimagebyid","timestamp":"2018-03-17T12:46:37.144Z"}
+{"level":"debug","message":"Enter Recommendation Router recommendation/getrecommendationbyid","timestamp":"2018-03-17T12:46:37.967Z"}
+{"level":"debug","message":"Enter Auth Router auth/doesuserexistbyid","timestamp":"2018-03-17T12:46:46.476Z"}
+{"level":"debug","message":"Enter User Middleware","timestamp":"2018-03-17T12:46:47.172Z"}
+{"level":"debug","message":"Enter Teacher Router teacher/getteacherbytoken","timestamp":"2018-03-17T12:46:47.567Z"}
+{"level":"debug","message":"Enter Teacher Router teacher/getall","timestamp":"2018-03-17T12:46:51.770Z"}
+{"level":"debug","message":"Enter Image Router image/getimagebyid","timestamp":"2018-03-17T12:46:52.030Z"}
+{"level":"debug","message":"Enter Image Router image/getimagebyid","timestamp":"2018-03-17T12:46:52.032Z"}
+{"level":"debug","message":"Enter Recommendation Router recommendation/getrecommendationbyid","timestamp":"2018-03-17T12:46:54.546Z"}
+{"level":"debug","message":"Enter User Middleware","timestamp":"2018-03-17T12:46:58.333Z"}
+{"level":"debug","message":"Enter Teacher Router teacher/deletebyuserid/undefined","timestamp":"2018-03-17T12:46:58.839Z"}
+{"level":"debug","message":"Enter Auth Router auth/doesuserexistbyid","timestamp":"2018-03-17T12:47:19.632Z"}
+{"level":"debug","message":"Enter User Middleware","timestamp":"2018-03-17T12:47:20.190Z"}
+{"level":"debug","message":"Enter Teacher Router teacher/getteacherbytoken","timestamp":"2018-03-17T12:47:20.652Z"}
+{"level":"debug","message":"Enter Teacher Router teacher/getall","timestamp":"2018-03-17T12:47:22.396Z"}
+{"level":"debug","message":"Enter Image Router image/getimagebyid","timestamp":"2018-03-17T12:47:22.611Z"}
+{"level":"debug","message":"Enter Auth Router auth/doesuserexistbyid","timestamp":"2018-03-17T12:49:14.059Z"}
+{"level":"debug","message":"Enter Auth Router auth/createnewuser","timestamp":"2018-03-17T12:49:14.646Z"}
+{"level":"debug","message":"Enter Teacher Router teacher/create","timestamp":"2018-03-17T12:49:38.522Z"}
+{"level":"debug","message":"Enter User Middleware","timestamp":"2018-03-17T12:49:38.868Z"}
+{"level":"debug","message":"Enter Teacher Router teacher/getteacherbytoken","timestamp":"2018-03-17T12:49:39.482Z"}
+{"level":"debug","message":"Enter Auth Router auth/doesuserexistbyid","timestamp":"2018-03-17T12:49:50.931Z"}
+{"level":"debug","message":"Enter User Middleware","timestamp":"2018-03-17T12:49:51.503Z"}
+{"level":"debug","message":"Enter Teacher Router teacher/getteacherbytoken","timestamp":"2018-03-17T12:49:51.883Z"}
+{"level":"debug","message":"Enter Teacher Router teacher/getall","timestamp":"2018-03-17T12:49:54.663Z"}
+{"level":"debug","message":"Enter Image Router image/getimagebyid","timestamp":"2018-03-17T12:49:54.806Z"}
+{"level":"debug","message":"Enter Image Router image/getimagebyid","timestamp":"2018-03-17T12:49:54.807Z"}
+{"level":"debug","message":"Enter Recommendation Router recommendation/getrecommendationbyid","timestamp":"2018-03-17T12:49:55.758Z"}
+{"level":"debug","message":"Enter User Middleware","timestamp":"2018-03-17T12:49:57.927Z"}
+{"level":"debug","message":"Enter Teacher Router teacher/deletebyuserid/undefined","timestamp":"2018-03-17T12:49:58.346Z"}
+{"level":"debug","message":"Enter User Middleware","timestamp":"2018-03-17T12:50:03.176Z"}
+{"level":"debug","message":"Enter User Middleware","timestamp":"2018-03-17T12:50:03.178Z"}
+{"level":"debug","message":"Enter Teacher Router teacher/deletebyuserid/undefined","timestamp":"2018-03-17T12:50:03.754Z"}
+{"level":"debug","message":"Enter Teacher Router auth/deletebyuserid/undefined","timestamp":"2018-03-17T12:50:03.756Z"}

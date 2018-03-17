@@ -114,7 +114,6 @@ var TeacherLogic = /** @class */ (function () {
                         // Those three functions runs in parallel to increase performance.
                         this.SendEmails(teacherModel);
                         tDal.UpdateImage(teacherObjectID, imageObjectID.toString());
-                        aDal.UpdateFilledFormVarbile(teacherModel.userID, true);
                         return [2 /*return*/];
                 }
             });
@@ -125,7 +124,7 @@ var TeacherLogic = /** @class */ (function () {
      * Removes the teacher image from the database by transferring the responsibility to remove to image logic class.
      * @param id Teacher ID.
      */
-    TeacherLogic.prototype.DeleteByID = function (id) {
+    TeacherLogic.prototype.DeleteByUserID = function (userID) {
         return __awaiter(this, void 0, void 0, function () {
             var tDal, iManager, teacher;
             return __generator(this, function (_a) {
@@ -133,11 +132,11 @@ var TeacherLogic = /** @class */ (function () {
                     case 0:
                         tDal = new TeacherDAL_1.TeacherDal();
                         iManager = new ImageLogic_1.ImageLogic();
-                        return [4 /*yield*/, this.GetByID(id)];
+                        return [4 /*yield*/, tDal.GetByUserID(userID)];
                     case 1:
                         teacher = _a.sent();
                         // Run in parallel, no dependency between functions.
-                        tDal.DeleteByID(id);
+                        tDal.DeleteByUserID(userID);
                         iManager.DeleteByID(teacher.image);
                         return [2 /*return*/];
                 }

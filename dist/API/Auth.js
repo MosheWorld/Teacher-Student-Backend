@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var express_1 = require("express");
 var logger_1 = require("../LogService/logger");
 var AuthLogic_1 = require("./../Logic/AuthLogic");
-var UserMiddleware = require('../Common/Middleware').UserMiddleware;
+var _a = require('../Common/Middleware'), UserMiddleware = _a.UserMiddleware, AdminMiddleware = _a.AdminMiddleware;
 //#region Members
 var logger = new logger_1.Logger();
 var router = express_1.Router();
@@ -90,6 +90,31 @@ router.put('/update', UserMiddleware, function (req, res) {
         res.status(400).send(ex.message);
     }
 });
+/**
+ * Delete user from the database according to his ID.
+ */
+router.delete('/deletebyuserid/:userid', AdminMiddleware, function (req, res) {
+    try {
+        logger.debug("Enter Teacher", "Router auth/deletebyuserid/" + req.params.id);
+        var userid = req.params.userid;
+        if (userid === null || userid === undefined) {
+            logger.error("Model is not valid.", "auth/deletebyuserid/");
+            res.status(400).send("Model is not valid.");
+        }
+        var aManager = new AuthLogic_1.AuthLogic();
+        aManager.DeleteByUserID(userid)
+            .then(function (response) {
+            res.json(response);
+        }).catch(function (error) {
+            res.status(400).send(error.message);
+        });
+        logger.info("Out", "auth/deletebyuserid/" + req.params.id);
+    }
+    catch (ex) {
+        logger.error("Out", "auth/deletebyuserid/" + req.params.id, ex.message);
+        res.status(400).send(ex.message);
+    }
+});
 //#endregion
 //#region Functions
 /**
@@ -101,9 +126,7 @@ function IsCreateNewUserValid(model) {
     if (model == null
         || IsStringNullOrEmpty(model.id)
         || IsStringNullOrEmpty(model.name)
-        // || IsStringNullOrEmpty(model.lastName)
         || IsStringNullOrEmpty(model.provider)
-        // || IsStringNullOrEmpty(model.firstName)
         || IsStringNullOrEmpty(model.authToken)) {
         return false;
     }
@@ -181,8 +204,7 @@ function ConvertModelToCreateNewUserInterface(model) {
         provider: model.provider,
         photoUrl: model.photoUrl,
         firstName: model.firstName,
-        authToken: model.authToken,
-        filledTeacherForm: false
+        authToken: model.authToken
     };
     return user;
 }

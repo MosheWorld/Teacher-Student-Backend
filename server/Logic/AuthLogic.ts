@@ -106,6 +106,16 @@ export class AuthLogic {
 
         aDal.UpdateUser(model);
     }
+
+    /**
+     * Removes user by userID.
+     * @param userID 
+     */
+    public async DeleteByUserID(userID: string): Promise<void> {
+        let aDal = new AuthDal();
+
+        aDal.DeleteByUserID(userID);
+    }
     //#endregion
 
     //#region Private Methods

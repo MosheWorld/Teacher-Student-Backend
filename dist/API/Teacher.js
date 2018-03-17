@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var express_1 = require("express");
 var logger_1 = require("./../LogService/logger");
 var TeacherLogic_1 = require("./../Logic/TeacherLogic");
-var UserMiddleware = require('../Common/Middleware').UserMiddleware;
+var _a = require('../Common/Middleware'), UserMiddleware = _a.UserMiddleware, AdminMiddleware = _a.AdminMiddleware;
 //#region Members
 var logger = new logger_1.Logger();
 var router = express_1.Router();
@@ -188,25 +188,25 @@ router.put('/update', UserMiddleware, function (req, res) {
 /**
  * Delete teacher from the database according to his ID.
  */
-router.delete('/deletebyid/:id', UserMiddleware, function (req, res) {
+router.delete('/deletebyuserid/:userid', AdminMiddleware, function (req, res) {
     try {
-        logger.debug("Enter Teacher", "Router teacher/deletebyid/" + req.params.id);
-        var id = req.params.id;
-        if (id === null || id === undefined) {
-            logger.error("Model is not valid.", "teacher/delete/");
+        logger.debug("Enter Teacher", "Router teacher/deletebyuserid/" + req.params.id);
+        var userid = req.params.userid;
+        if (userid === null || userid === undefined) {
+            logger.error("Model is not valid.", "teacher/deletebyuserid/");
             res.status(400).send("Model is not valid.");
         }
         var tManager = new TeacherLogic_1.TeacherLogic();
-        tManager.DeleteByID(id)
+        tManager.DeleteByUserID(userid)
             .then(function (response) {
             res.json(response);
         }).catch(function (error) {
             res.status(400).send(error.message);
         });
-        logger.info("Out", "teacher/deletebyid/" + req.params.id);
+        logger.info("Out", "teacher/deletebyuserid/" + req.params.id);
     }
     catch (ex) {
-        logger.error("Out", "teacher/deletebyid/" + req.params.id, ex.message);
+        logger.error("Out", "teacher/deletebyuserid/" + req.params.id, ex.message);
         res.status(400).send(ex.message);
     }
 });
