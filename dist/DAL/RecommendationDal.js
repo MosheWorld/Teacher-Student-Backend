@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var RecommendationModel_1 = require("../Models/RecommendationModel");
+var RecommendationModel_1 = require("../DatabaseModels/RecommendationModel");
 var RecommendationDal = /** @class */ (function () {
     function RecommendationDal() {
     }

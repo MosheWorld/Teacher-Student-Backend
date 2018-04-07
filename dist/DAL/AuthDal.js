@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var UserModel_1 = require("../Models/UserModel");
+var UserModel_1 = require("../DatabaseModels/UserModel");
 var AuthDal = /** @class */ (function () {
     function AuthDal() {
     }

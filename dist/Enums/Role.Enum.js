@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var Role;
-(function (Role) {
-    Role[Role["User"] = 1] = "User";
-    Role[Role["Admin"] = 2] = "Admin";
-})(Role = exports.Role || (exports.Role = {}));
+var RoleEnum;
+(function (RoleEnum) {
+    RoleEnum[RoleEnum["User"] = 1] = "User";
+    RoleEnum[RoleEnum["Admin"] = 2] = "Admin";
+})(RoleEnum = exports.RoleEnum || (exports.RoleEnum = {}));

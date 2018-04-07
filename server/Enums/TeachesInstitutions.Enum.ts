@@ -1,4 +1,4 @@
-export enum TeachesInstitutions {
+export enum TeachesInstitutionsEnum {
     HolonInstituteOfTechnology = 1,
     Technion = 2,
     ArielUniversity = 3,

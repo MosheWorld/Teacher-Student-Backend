@@ -1,8 +1,8 @@
-import { TeacherUpdateModel } from './../Interfaces/TeacherUpdateModel.interface';
 import { ObjectID } from 'mongodb';
 
-import DataBaseConnector from '../Models/TeacherModel';
+import DataBaseConnector from '../DatabaseModels/TeacherModel';
 import { TeacherInterface } from './../Interfaces/Teacher.interface';
+import { TeacherUpdateInterface } from './../Interfaces/TeacherUpdate.interface';
 
 export class TeacherDal {
     //#region Public Methods
@@ -172,7 +172,7 @@ export class TeacherDal {
      * Updates teacher model at database.
      * @param model 
      */
-    public UpdateTeacherByUserID(model: TeacherUpdateModel): Promise<void> {
+    public UpdateTeacherByUserID(model: TeacherUpdateInterface): Promise<void> {
         return new Promise((resolve, reject) => {
             DataBaseConnector.findOne({ userID: model.userID }, (error, teacher) => {
                 if (error) { reject("Error occurred when gettings teacher from database by user ID."); }

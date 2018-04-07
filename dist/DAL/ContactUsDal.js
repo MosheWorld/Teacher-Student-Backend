@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var ContactUsModel_1 = require("../Models/ContactUsModel");
+var ContactUsModel_1 = require("../DatabaseModels/ContactUsModel");
 var ContactUsDal = /** @class */ (function () {
     function ContactUsDal() {
     }

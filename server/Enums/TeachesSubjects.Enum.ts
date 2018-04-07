@@ -1,4 +1,4 @@
-export enum TeachesSubjects {
+export enum TeachesSubjectsEnum {
     AdvancedControlTheory = 1,
     AdvancedProgrammingWorkshop = 2,
     AlgorithminOptimization = 3,

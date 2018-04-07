@@ -111,7 +111,7 @@ router.post('/getlistofteachersbyid', function (req, res) {
  */
 router.post('/search', function (req, res) {
     try {
-        logger.debug("Enter Teacher", "Router teacher/search");
+        logger.debug("Enter Teacher", "Router teacher/search", req.body);
         if (req.body == null || !IsTeacherSearchModelValid(req.body)) {
             logger.error("Model is not valid.", "teacher/search", req.body);
             return res.status(400).send("Model is not valid.");

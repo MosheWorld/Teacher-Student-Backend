@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var mongodb_1 = require("mongodb");
-var TeacherModel_1 = require("../Models/TeacherModel");
+var TeacherModel_1 = require("../DatabaseModels/TeacherModel");
 var TeacherDal = /** @class */ (function () {
     function TeacherDal() {
     }

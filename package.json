@@ -17,7 +17,6 @@
     "body-parser": "^1.18.2",
     "express": "^4.16.2",
     "mongoose": "^4.12.3",
-    "nodemailer": "^4.4.0",
-    "winston": "^2.4.0"
+    "nodemailer": "^4.4.0"
   }
 }

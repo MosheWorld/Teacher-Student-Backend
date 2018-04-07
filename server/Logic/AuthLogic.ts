@@ -1,10 +1,10 @@
-import { UserUpdateModel } from './../Interfaces/UserUpdateModel.interface';
-import { TeacherDal } from './../DAL/TeacherDal';
 import { AuthDal } from './../DAL/AuthDal';
+import { TeacherDal } from './../DAL/TeacherDal';
 import { UserInterface } from './../Interfaces/User.interface';
 import { GoogleVerifier } from './../Integration/GoogleVerifier';
 import { FacebookVerifier } from '../Integration/FacebookVerifier';
-import { DoesUserExists } from './../Interfaces/DoesUserExists.interface';
+import { DoesUserExistsInterface } from './../Interfaces/DoesUserExists.interface';
+import { UserUpdateInterface } from './../Interfaces/UserUpdate.interface';
 
 export class AuthLogic {
     //#region Public Methods
@@ -30,7 +30,7 @@ export class AuthLogic {
      * exist: {boolean} , role: {His role from database}
      * @param userExists User details to check.
      */
-    public async DoesUserExistsByID(userExistsModel: DoesUserExists): Promise<any> {
+    public async DoesUserExistsByID(userExistsModel: DoesUserExistsInterface): Promise<any> {
         let aDal = new AuthDal();
         let isValid: boolean = await this.IsTokenValid(userExistsModel.provider, userExistsModel.token);
 
@@ -101,7 +101,7 @@ export class AuthLogic {
      * Updates user information at database.
      * @param model 
      */
-    public async UpdateUser(model: UserUpdateModel): Promise<void> {
+    public async UpdateUser(model: UserUpdateInterface): Promise<void> {
         let aDal = new AuthDal();
 
         aDal.UpdateUser(model);

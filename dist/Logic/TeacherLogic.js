@@ -36,11 +36,11 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var mongodb_1 = require("mongodb");
+var AuthDal_1 = require("../DAL/AuthDal");
 var ImageLogic_1 = require("./ImageLogic");
 var TeacherDAL_1 = require("./../DAL/TeacherDAL");
 var Emailer_1 = require("./../Integration/Emailer");
 var TeachesAt_Enum_1 = require("../Enums/TeachesAt.Enum");
-var AuthDal_1 = require("../DAL/AuthDal");
 var TeacherLogic = /** @class */ (function () {
     function TeacherLogic() {
     }
@@ -259,11 +259,11 @@ var TeacherLogic = /** @class */ (function () {
     };
     /**
      * Receives data that MongoDB requires for query.
-     * @param {TeachesAt} data See interface for more information.
+     * @param {TeachesAtEnum} data See interface for more information.
      * @returns Returns the json built for search query for Mongo database.
      */
     TeacherLogic.prototype.GetTeachesAtQuery = function (data) {
-        if (data == null || data == TeachesAt_Enum_1.TeachesAt.Both) {
+        if (data == null || data == TeachesAt_Enum_1.TeachesAtEnum.Both) {
             return { $gt: 0 };
         }
         else {

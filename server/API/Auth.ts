@@ -1,10 +1,10 @@
-import { UserUpdateModel } from './../Interfaces/UserUpdateModel.interface';
-import { DoesUserExists } from './../Interfaces/DoesUserExists.interface';
 import { Router, Request, Response } from 'express';
-import { Logger } from '../LogService/logger';
 
+import { Logger } from '../LogService/logger';
 import { AuthLogic } from './../Logic/AuthLogic';
 import { UserInterface } from './../Interfaces/User.interface';
+import { DoesUserExistsInterface } from './../Interfaces/DoesUserExists.interface';
+import { UserUpdateInterface } from './../Interfaces/UserUpdate.interface';
 
 const { UserMiddleware, AdminMiddleware } = require('../Common/Middleware');
 
@@ -60,7 +60,7 @@ router.post('/doesuserexistbyid', (req: Request, res: Response) => {
         }
 
         let aManager = new AuthLogic();
-        let userExistModel: DoesUserExists = ConvertExistUserModelToInterface(req.body);
+        let userExistModel: DoesUserExistsInterface = ConvertExistUserModelToInterface(req.body);
 
         aManager.DoesUserExistsByID(userExistModel)
             .then((success) => {
@@ -91,7 +91,7 @@ router.put('/update', UserMiddleware, (req: Request, res: Response) => {
         }
 
         let aManager = new AuthLogic();
-        let userUpdateModel: UserUpdateModel = ConvertUpdateUserModelToInterface(req.body);
+        let userUpdateModel: UserUpdateInterface = ConvertUpdateUserModelToInterface(req.body);
 
         aManager.UpdateUser(userUpdateModel)
             .then((success) => {
@@ -206,8 +206,8 @@ function IsStringNullOrEmpty(str: string): boolean {
  * Receives model and creates interface that contains the data to check if user exists.
  * @param model 
  */
-function ConvertExistUserModelToInterface(model: any): DoesUserExists {
-    let userExist: DoesUserExists = {
+function ConvertExistUserModelToInterface(model: any): DoesUserExistsInterface {
+    let userExist: DoesUserExistsInterface = {
         id: model.id,
         token: model.token,
         provider: model.provider
@@ -241,8 +241,8 @@ function ConvertModelToCreateNewUserInterface(model: any): UserInterface {
  * Receives model and create interface that contains the data to update user.
  * @param model 
  */
-function ConvertUpdateUserModelToInterface(model: any): UserUpdateModel {
-    let user: UserUpdateModel = {
+function ConvertUpdateUserModelToInterface(model: any): UserUpdateInterface {
+    let user: UserUpdateInterface = {
         id: model.id,
         email: model.email,
         lastName: model.lastName,

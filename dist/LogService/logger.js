@@ -1,37 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var winston = require("winston");
+var LoggerModel_1 = require("../DatabaseModels/LoggerModel");
 var Logger = /** @class */ (function () {
-    //#endregion
     //#region Constructor
     function Logger() {
-        this.debugLogger = new (winston.Logger)({
-            transports: [
-                new (winston.transports.File)({
-                    name: 'debug-file-log',
-                    filename: process.cwd() + '//logs//filelog-debug.log',
-                    level: 'debug'
-                })
-            ]
-        });
-        this.infoLogger = new (winston.Logger)({
-            transports: [
-                new (winston.transports.File)({
-                    name: 'info-file-log',
-                    filename: process.cwd() + '//logs//filelog-info.log',
-                    level: 'info'
-                })
-            ]
-        });
-        this.errorLogger = new (winston.Logger)({
-            transports: [
-                new (winston.transports.File)({
-                    name: 'error-file-log',
-                    filename: process.cwd() + '//logs//filelog-error.log',
-                    level: 'error'
-                })
-            ]
-        });
     }
     //#endregion
     //#region Public Methods
@@ -45,7 +17,14 @@ var Logger = /** @class */ (function () {
         if (title === void 0) { title = null; }
         if (message === void 0) { message = null; }
         if (data === void 0) { data = null; }
-        this.debugLogger.debug(title, message, data);
+        var log = {
+            title: title,
+            message: message,
+            type: 'Debug',
+            data: data,
+            time: new Date()
+        };
+        this.insertToDatabase(log);
     };
     /**
      * Creates info log.
@@ -57,7 +36,14 @@ var Logger = /** @class */ (function () {
         if (title === void 0) { title = null; }
         if (message === void 0) { message = null; }
         if (data === void 0) { data = null; }
-        this.infoLogger.info(title, message, data);
+        var log = {
+            title: title,
+            message: message,
+            type: 'Info',
+            data: data,
+            time: new Date()
+        };
+        this.insertToDatabase(log);
     };
     /**
      * Creates error log.
@@ -69,7 +55,23 @@ var Logger = /** @class */ (function () {
         if (title === void 0) { title = null; }
         if (message === void 0) { message = null; }
         if (data === void 0) { data = null; }
-        this.errorLogger.error(title, message, data);
+        var log = {
+            title: title,
+            message: message,
+            type: 'Error',
+            data: data,
+            time: new Date()
+        };
+        this.insertToDatabase(log);
+    };
+    //#endregion
+    //#region Private Methods
+    Logger.prototype.insertToDatabase = function (log) {
+        LoggerModel_1.default.collection.insert(log, function (error) {
+            if (error) {
+                console.log(error);
+            }
+        });
     };
     return Logger;
 }());

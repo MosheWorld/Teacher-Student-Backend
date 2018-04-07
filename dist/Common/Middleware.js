@@ -114,7 +114,7 @@ var AdminMiddleware = function (req, res, next) { return __awaiter(_this, void 0
                 return [4 /*yield*/, GetUserByTokenAndProvider(token, provider)];
             case 2:
                 currentUser = _a.sent();
-                if (currentUser.role !== Role_Enum_1.Role.Admin) {
+                if (currentUser.role !== Role_Enum_1.RoleEnum.Admin) {
                     logger.error("Non Admin token tried to access security zone.", "", { token: token, provider: provider });
                     res.status(401).send("You're not admin, access denied.");
                 }

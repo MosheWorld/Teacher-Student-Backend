@@ -1,4 +1,4 @@
-export interface TeacherUpdateModel {
+export interface TeacherUpdateInterface {
     age: number;
     priceTo: number;
     priceFrom: number;

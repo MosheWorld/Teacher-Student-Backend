@@ -1,7 +1,7 @@
-import { UserUpdateModel } from './../Interfaces/UserUpdateModel.interface';
 import { ObjectID } from 'mongodb';
+import { UserUpdateInterface } from './../Interfaces/UserUpdate.interface';
 
-import DataBaseConnector from '../Models/UserModel';
+import DataBaseConnector from '../DatabaseModels/UserModel';
 import { UserInterface } from './../Interfaces/User.interface';
 
 export class AuthDal {
@@ -74,7 +74,7 @@ export class AuthDal {
      * Updates user information at database.
      * @param model 
      */
-    public UpdateUser(model: UserUpdateModel): Promise<void> {
+    public UpdateUser(model: UserUpdateInterface): Promise<void> {
         return new Promise((resolve, reject) => {
             DataBaseConnector.findOne({ id: model.id }, (error, foundUser) => {
                 if (error) { reject("Error occurred when update user at database while getting his info."); }

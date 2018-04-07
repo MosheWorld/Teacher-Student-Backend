@@ -1,8 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var TeachesAt;
-(function (TeachesAt) {
-    TeachesAt[TeachesAt["Home"] = 1] = "Home";
-    TeachesAt[TeachesAt["AcademicInstitution"] = 2] = "AcademicInstitution";
-    TeachesAt[TeachesAt["Both"] = 3] = "Both";
-})(TeachesAt = exports.TeachesAt || (exports.TeachesAt = {}));
+var TeachesAtEnum;
+(function (TeachesAtEnum) {
+    TeachesAtEnum[TeachesAtEnum["Home"] = 1] = "Home";
+    TeachesAtEnum[TeachesAtEnum["AcademicInstitution"] = 2] = "AcademicInstitution";
+    TeachesAtEnum[TeachesAtEnum["Both"] = 3] = "Both";
+})(TeachesAtEnum = exports.TeachesAtEnum || (exports.TeachesAtEnum = {}));

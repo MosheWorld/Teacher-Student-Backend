@@ -1,6 +1,7 @@
-import { RecommendationsInterface } from './../Interfaces/Recommendations.interface';
+import DataBaseConnector from "../DatabaseModels/RecommendationModel";
+
 import { ObjectID } from 'mongodb';
-import DataBaseConnector from "../Models/RecommendationModel";
+import { RecommendationsInterface } from './../Interfaces/Recommendations.interface';
 
 export class RecommendationDal {
     //#region Public Methods
@@ -10,7 +11,7 @@ export class RecommendationDal {
      */
     public GetRecommendationsByID(teacherID: string): Promise<any> {
         return new Promise((resolve, reject) => {
-            let recommendationList = DataBaseConnector.find({"teacherID" : teacherID}, (error, teachers) => {
+            let recommendationList = DataBaseConnector.find({ "teacherID": teacherID }, (error, teachers) => {
                 if (error) { reject("Error occurred when gettings all recommendation from database."); }
             });
 

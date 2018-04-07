@@ -1,6 +1,6 @@
-import { TeachesAt } from '../Enums/TeachesAt.Enum';
-import { TeachesSubjects } from './../Enums/TeachesSubjects.Enum';
-import { TeachesInstitutions } from './../Enums/TeachesInstitutions.Enum';
+import { TeachesAtEnum } from '../Enums/TeachesAt.Enum';
+import { TeachesSubjectsEnum } from './../Enums/TeachesSubjects.Enum';
+import { TeachesInstitutionsEnum } from './../Enums/TeachesInstitutions.Enum';
 import { RecommendationsInterface } from './Recommendations.interface';
 
 export interface TeacherInterface {
@@ -16,8 +16,8 @@ export interface TeacherInterface {
     priceFrom: number;
     image?: String;
     personalMessage: string;
-    teachesAt: TeachesAt;
-    teachesSubjects: TeachesSubjects[];
-    teachesInstitutions: TeachesInstitutions[];
+    teachesAt: TeachesAtEnum;
+    teachesSubjects: TeachesSubjectsEnum[];
+    teachesInstitutions: TeachesInstitutionsEnum[];
     recommendations: RecommendationsInterface[];
 }

@@ -1,5 +1,5 @@
 import { ObjectID } from 'mongodb';
-import DataBaseConnector from '../Models/ImageModel';
+import DataBaseConnector from '../DatabaseModels/ImageModel';
 
 export class ImageDal {
     //#region Public Methods

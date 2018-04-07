@@ -1,13 +1,14 @@
-import { TeacherUpdateModel } from './../Interfaces/TeacherUpdateModel.interface';
 import { ObjectID } from 'mongodb';
+
+import { AuthDal } from '../DAL/AuthDal';
 import { ImageLogic } from './ImageLogic';
 import { TeacherDal } from './../DAL/TeacherDAL';
 import { Emailer } from './../Integration/Emailer';
-import { TeachesAt } from '../Enums/TeachesAt.Enum';
+import { TeachesAtEnum } from '../Enums/TeachesAt.Enum';
 import { TeacherInterface } from './../Interfaces/Teacher.interface';
+import { TeacherUpdateInterface } from './../Interfaces/TeacherUpdate.interface';
 import { SearchTeacherInterface } from '../Interfaces/SearchTeacher.interface';
 import { RecommendationsInterface } from './../Interfaces/Recommendations.interface';
-import { AuthDal } from '../DAL/AuthDal';
 
 export class TeacherLogic {
     //#region Public Methods
@@ -127,7 +128,7 @@ export class TeacherLogic {
      * Updates teacher model at database.
      * @param model 
      */
-    public async UpdateTeacherByUserID(model: TeacherUpdateModel): Promise<void> {
+    public async UpdateTeacherByUserID(model: TeacherUpdateInterface): Promise<void> {
         let tDal = new TeacherDal();
 
         tDal.UpdateTeacherByUserID(model);
@@ -167,11 +168,11 @@ export class TeacherLogic {
 
     /**
      * Receives data that MongoDB requires for query.
-     * @param {TeachesAt} data See interface for more information.
+     * @param {TeachesAtEnum} data See interface for more information.
      * @returns Returns the json built for search query for Mongo database.
      */
-    private GetTeachesAtQuery(data: TeachesAt): any {
-        if (data == null || data == TeachesAt.Both) {
+    private GetTeachesAtQuery(data: TeachesAtEnum): any {
+        if (data == null || data == TeachesAtEnum.Both) {
             return { $gt: 0 }
         } else {
             return { $in: [data, 3] }

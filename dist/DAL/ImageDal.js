@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var mongodb_1 = require("mongodb");
-var ImageModel_1 = require("../Models/ImageModel");
+var ImageModel_1 = require("../DatabaseModels/ImageModel");
 var ImageDal = /** @class */ (function () {
     function ImageDal() {
     }

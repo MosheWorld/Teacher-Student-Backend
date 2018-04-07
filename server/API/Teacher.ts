@@ -1,9 +1,9 @@
-import { TeacherUpdateModel } from './../Interfaces/TeacherUpdateModel.interface';
 import { Router, Request, Response } from 'express';
 
 import { Logger } from './../LogService/logger';
 import { TeacherLogic } from './../Logic/TeacherLogic';
 import { TeacherInterface } from './../Interfaces/Teacher.interface';
+import { TeacherUpdateInterface } from './../Interfaces/TeacherUpdate.interface';
 import { SearchTeacherInterface } from '../Interfaces/SearchTeacher.interface';
 import { RecommendationsInterface } from './../Interfaces/Recommendations.interface';
 
@@ -135,7 +135,7 @@ router.post('/getlistofteachersbyid', (req: Request, res: Response) => {
  */
 router.post('/search', (req: Request, res: Response) => {
     try {
-        logger.debug("Enter Teacher", "Router teacher/search");
+        logger.debug("Enter Teacher", "Router teacher/search", req.body);
 
         if (req.body == null || !IsTeacherSearchModelValid(req.body)) {
             logger.error("Model is not valid.", "teacher/search", req.body);
@@ -204,7 +204,7 @@ router.put('/update', UserMiddleware, (req: Request, res: Response) => {
         }
 
         let tManager = new TeacherLogic();
-        let teacherUpdateModel: TeacherUpdateModel = ConvertUpdateModelToTeacherInterface(req.body);
+        let teacherUpdateModel: TeacherUpdateInterface = ConvertUpdateModelToTeacherInterface(req.body);
 
         tManager.UpdateTeacherByUserID(teacherUpdateModel)
             .then((success) => {
@@ -386,8 +386,8 @@ function IsListOfIDValid(listOfTeacherID: any): boolean {
  * Converts update model to interface.
  * @param model 
  */
-function ConvertUpdateModelToTeacherInterface(model: any): TeacherUpdateModel {
-    let teacher: TeacherUpdateModel = {
+function ConvertUpdateModelToTeacherInterface(model: any): TeacherUpdateInterface {
+    let teacher: TeacherUpdateInterface = {
         age: model.age,
         email: model.email,
         phone: model.phone,
