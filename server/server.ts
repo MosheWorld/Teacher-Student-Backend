@@ -4,6 +4,7 @@ import * as express from "express";
 import * as mongoose from "mongoose";
 import * as bodyParser from "body-parser";
 
+import { LogController } from './API/Log';
 import { AuthController } from "./API/Auth";
 import { ImageController } from './API/Image';
 import { TeacherController } from './API/Teacher';
@@ -28,6 +29,7 @@ app.use((req, res, next) => {
 });
 
 //#region Routers
+app.use('/log', LogController);
 app.use('/auth', AuthController);
 app.use('/image', ImageController);
 app.use('/teacher', TeacherController);

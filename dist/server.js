@@ -4,6 +4,7 @@ require("./Config/Config");
 var express = require("express");
 var mongoose = require("mongoose");
 var bodyParser = require("body-parser");
+var Log_1 = require("./API/Log");
 var Auth_1 = require("./API/Auth");
 var Image_1 = require("./API/Image");
 var Teacher_1 = require("./API/Teacher");
@@ -23,6 +24,7 @@ app.use(function (req, res, next) {
     next();
 });
 //#region Routers
+app.use('/log', Log_1.LogController);
 app.use('/auth', Auth_1.AuthController);
 app.use('/image', Image_1.ImageController);
 app.use('/teacher', Teacher_1.TeacherController);

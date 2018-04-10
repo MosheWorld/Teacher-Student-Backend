@@ -50,7 +50,7 @@ router.get('/getbyid/:id', function (req, res) {
         logger.info("Out", "teacher/getbyid" + req.params.id);
     }
     catch (ex) {
-        logger.error("Out", "teacher/getbyid" + req.params.id, ex.message);
+        logger.error("Out", "teacher/getbyid/" + req.params.id, ex.message);
         res.status(400).send(ex.message);
     }
 });
