@@ -9,9 +9,13 @@ var LogDal = /** @class */ (function () {
      * @param amount
      * @param page
      */
-    LogDal.prototype.GetLogsByAmountAndPageNumber = function (amount, page) {
+    LogDal.prototype.GetLogsByAmountAndPageNumber = function (query, logSearchModel) {
         return new Promise(function (resolve, reject) {
-            var logCollection = LoggerModel_1.default.find({}, null, { skip: (amount * page), limit: amount }, function (error, logs) {
+            var logCollection = LoggerModel_1.default
+                .find(query, null, {
+                skip: (logSearchModel.amount * logSearchModel.page),
+                limit: logSearchModel.amount
+            }, function (error, logs) {
                 if (error) {
                     reject("Error occurred when gettings all Logs from database.");
                 }

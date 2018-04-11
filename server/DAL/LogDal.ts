@@ -1,5 +1,6 @@
 import DataBaseConnector from '../DatabaseModels/LoggerModel';
 import { LoggerInterface } from './../Interfaces/Logger.interface';
+import { LogSearchInterface } from '../Interfaces/LogSearch.interface';
 
 export class LogDal {
     /**
@@ -7,12 +8,17 @@ export class LogDal {
      * @param amount 
      * @param page 
      */
-    public GetLogsByAmountAndPageNumber(amount: number, page: number): Promise<any[]> {
+    public GetLogsByAmountAndPageNumber(query: any, logSearchModel: LogSearchInterface): Promise<any[]> {
         return new Promise((resolve, reject) => {
-            let logCollection = DataBaseConnector.find({}, null, { skip: (amount * page), limit: amount }, (error, logs) => {
-                if (error) { reject("Error occurred when gettings all Logs from database."); }
-                return logs ? logs : null;
-            });
+            let logCollection = DataBaseConnector
+                .find(query, null, {
+                    skip: (logSearchModel.amount * logSearchModel.page),
+                    limit: logSearchModel.amount
+                },
+                    (error, logs) => {
+                        if (error) { reject("Error occurred when gettings all Logs from database."); }
+                        return logs ? logs : null;
+                    });
 
             resolve(logCollection);
         });

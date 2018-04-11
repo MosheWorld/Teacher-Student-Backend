@@ -72,6 +72,7 @@ var UserMiddleware = function (req, res, next) { return __awaiter(_this, void 0,
             case 2:
                 currentUser = _a.sent();
                 process["currentUser"] = currentUser;
+                logger.info("User logged in.", "User logged in.", currentUser);
                 next();
                 return [3 /*break*/, 4];
             case 3:
@@ -119,6 +120,7 @@ var AdminMiddleware = function (req, res, next) { return __awaiter(_this, void 0
                     res.status(401).send("You're not admin, access denied.");
                 }
                 process["currentUser"] = currentUser;
+                logger.info("Admin logged in.", "Admin logged in.", currentUser);
                 next();
                 return [3 /*break*/, 4];
             case 3:

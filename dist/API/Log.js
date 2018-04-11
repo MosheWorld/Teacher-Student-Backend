@@ -12,25 +12,21 @@ var router = express_1.Router();
 /**
  * Received logs list from database by amount given and page number given.
  */
-router.get('/getbyamountandpage/:amount/:page', function (req, res) {
+router.get('/getbyamountandpage/:amount/:page/:debug/:info/:error', function (req, res) {
     try {
         logger.debug("Enter Teacher", "Router log/getbyamountandpage/" + req.params.amount + "/" + req.params.page);
         var amount = req.params.amount;
         var page = req.params.page;
-        if (amount === null || amount === undefined) {
-            amount = 50;
-        }
-        else {
-            amount = parseInt(amount);
-        }
-        if (page === null || page === undefined) {
-            page = 1;
-        }
-        else {
-            page = parseInt(page);
+        var debug = GetLogTypeByString(req.params.debug, "Debug");
+        var info = GetLogTypeByString(req.params.info, "Info");
+        var error = GetLogTypeByString(req.params.error, "Error");
+        var logSearchModel = ConvertModelToLogSearchInterface(amount, page, debug, info, error);
+        if (!IsLogSearchModelValid(logSearchModel)) {
+            logger.error("Model is not valid.", "Router log/getbyamountandpage", logSearchModel);
+            return res.status(400).send("Model is not valid.");
         }
         var lManager = new LogLogic_1.LogLogic();
-        lManager.GetLogsByAmountAndPageNumber(amount, page)
+        lManager.GetLogsByAmountAndPageNumber(logSearchModel)
             .then(function (success) {
             res.send(success);
         })
@@ -56,7 +52,6 @@ router.get('/getlogscount', function (req, res) {
             res.send(success);
         })
             .catch(function (error) {
-            console.log(error);
             res.sendStatus(400).send(error);
         });
         logger.info("Finished", "log/getlogscount");
@@ -66,5 +61,68 @@ router.get('/getlogscount', function (req, res) {
         res.status(400).send(ex.message);
     }
 });
+//#endregion
+//#region Functions
+/**
+ * Validates whether the parameters are valid.
+ * @param logSearchModel
+ */
+function IsLogSearchModelValid(logSearchModel) {
+    if (logSearchModel === null
+        || logSearchModel === undefined
+        || logSearchModel.amount === null
+        || logSearchModel.amount === undefined
+        || logSearchModel.page === null
+        || logSearchModel.page === undefined
+        || logSearchModel.amount < 1
+        || logSearchModel.page < 0
+        || (logSearchModel.debug === "" && logSearchModel.info === "" && logSearchModel.error === "")) {
+        return false;
+    }
+    else {
+        return true;
+    }
+}
+/**
+ * Receive type by given input.
+ * @param type
+ */
+function GetLogTypeByString(type, convertType) {
+    if (type === null || type === undefined || type === "false") {
+        return "";
+    }
+    else if (type === "true") {
+        return convertType;
+    }
+    else {
+        throw new Error("Invalid log type, aborting.");
+    }
+}
+/**
+ * Converts model to interface.
+ * @param model
+ */
+function ConvertModelToLogSearchInterface(amount, page, debug, info, error) {
+    if (amount === null || amount === undefined) {
+        amount = 50;
+    }
+    else {
+        amount = parseInt(amount);
+    }
+    if (page === null || page === undefined) {
+        page = 1;
+    }
+    else {
+        page = parseInt(page);
+    }
+    var newModel = {
+        amount: amount,
+        page: page,
+        debug: debug,
+        info: info,
+        error: error,
+    };
+    return newModel;
+}
 //#endregion
 exports.LogController = router;

@@ -45,14 +45,27 @@ var LogLogic = /** @class */ (function () {
      * @param amount
      * @param page
      */
-    LogLogic.prototype.GetLogsByAmountAndPageNumber = function (amount, page) {
+    LogLogic.prototype.GetLogsByAmountAndPageNumber = function (logSearchModel) {
         return __awaiter(this, void 0, void 0, function () {
-            var lDal;
+            var queryArray, query, lDal;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
+                        queryArray = [];
+                        if (logSearchModel.debug === "Debug") {
+                            queryArray.push({ 'type': logSearchModel.debug });
+                        }
+                        if (logSearchModel.info === "Info") {
+                            queryArray.push({ 'type': logSearchModel.info });
+                        }
+                        if (logSearchModel.error === "Error") {
+                            queryArray.push({ 'type': logSearchModel.error });
+                        }
+                        query = {
+                            $or: queryArray
+                        };
                         lDal = new LogDal_1.LogDal();
-                        return [4 /*yield*/, lDal.GetLogsByAmountAndPageNumber(amount, page)];
+                        return [4 /*yield*/, lDal.GetLogsByAmountAndPageNumber(query, logSearchModel)];
                     case 1: return [2 /*return*/, _a.sent()];
                 }
             });

@@ -33,6 +33,8 @@ const UserMiddleware = async (req: Request, res: Response, next) => {
             let currentUser = await GetUserByTokenAndProvider(token, provider);
             process["currentUser"] = currentUser;
 
+            logger.info("User logged in.", "User logged in.", currentUser);
+
             next();
         } catch (error) {
             res.status(401).json(error);
@@ -72,6 +74,8 @@ const AdminMiddleware = async (req: Request, res: Response, next) => {
             }
 
             process["currentUser"] = currentUser;
+
+            logger.info("Admin logged in.", "Admin logged in.", currentUser);
 
             next();
         } catch (error) {

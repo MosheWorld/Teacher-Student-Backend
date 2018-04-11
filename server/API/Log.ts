@@ -2,6 +2,7 @@ import { Router, Request, Response } from 'express';
 
 import { LogLogic } from '../Logic/LogLogic';
 import { Logger } from '../LogService/logger';
+import { LogSearchInterface } from '../Interfaces/LogSearch.interface';
 
 const { AdminMiddleware } = require('../Common/Middleware');
 
@@ -14,28 +15,27 @@ const router: Router = Router();
 /**
  * Received logs list from database by amount given and page number given.
  */
-router.get('/getbyamountandpage/:amount/:page', (req: Request, res: Response) => {
+router.get('/getbyamountandpage/:amount/:page/:debug/:info/:error', (req: Request, res: Response) => {
     try {
         logger.debug("Enter Teacher", "Router log/getbyamountandpage/" + req.params.amount + "/" + req.params.page);
 
         let amount = req.params.amount;
         let page = req.params.page;
 
-        if (amount === null || amount === undefined) {
-            amount = 50;
-        } else {
-            amount = parseInt(amount);
-        }
+        let debug = GetLogTypeByString(req.params.debug, "Debug");
+        let info = GetLogTypeByString(req.params.info, "Info");
+        let error = GetLogTypeByString(req.params.error, "Error");
 
-        if (page === null || page === undefined) {
-            page = 1;
-        } else {
-            page = parseInt(page);
+        let logSearchModel: LogSearchInterface = ConvertModelToLogSearchInterface(amount, page, debug, info, error);
+
+        if (!IsLogSearchModelValid(logSearchModel)) {
+            logger.error("Model is not valid.", "Router log/getbyamountandpage", logSearchModel);
+            return res.status(400).send("Model is not valid.");
         }
 
         let lManager = new LogLogic();
 
-        lManager.GetLogsByAmountAndPageNumber(amount, page)
+        lManager.GetLogsByAmountAndPageNumber(logSearchModel)
             .then((success) => {
                 res.send(success);
             })
@@ -64,7 +64,6 @@ router.get('/getlogscount', (req: Request, res: Response) => {
                 res.send(success);
             })
             .catch((error) => {
-                console.log(error);
                 res.sendStatus(400).send(error);
             });
 
@@ -74,6 +73,71 @@ router.get('/getlogscount', (req: Request, res: Response) => {
         res.status(400).send(ex.message);
     }
 });
+//#endregion
+
+//#region Functions
+/**
+ * Validates whether the parameters are valid.
+ * @param logSearchModel 
+ */
+function IsLogSearchModelValid(logSearchModel: LogSearchInterface): boolean {
+    if (logSearchModel === null
+        || logSearchModel === undefined
+        || logSearchModel.amount === null
+        || logSearchModel.amount === undefined
+        || logSearchModel.page === null
+        || logSearchModel.page === undefined
+        || logSearchModel.amount < 1
+        || logSearchModel.page < 0
+        || (logSearchModel.debug === "" && logSearchModel.info === "" && logSearchModel.error === "")) {
+        return false;
+    } else {
+        return true;
+    }
+}
+
+/**
+ * Receive type by given input.
+ * @param type 
+ */
+function GetLogTypeByString(type: string, convertType: string): string {
+    if (type === null || type === undefined || type === "false") {
+        return "";
+    } else if (type === "true") {
+        return convertType;
+    } else {
+        throw new Error("Invalid log type, aborting.");
+    }
+}
+
+/**
+ * Converts model to interface.
+ * @param model 
+ */
+function ConvertModelToLogSearchInterface(amount: any, page: any, debug: any, info: any, error: any): LogSearchInterface {
+
+    if (amount === null || amount === undefined) {
+        amount = 50;
+    } else {
+        amount = parseInt(amount);
+    }
+
+    if (page === null || page === undefined) {
+        page = 1;
+    } else {
+        page = parseInt(page);
+    }
+
+    let newModel: LogSearchInterface = {
+        amount: amount,
+        page: page,
+        debug: debug,
+        info: info,
+        error: error,
+    };
+
+    return newModel;
+}
 //#endregion
 
 export const LogController: Router = router;
