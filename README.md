@@ -14,6 +14,4 @@ More information:
 * Added TypeScript packages to write the code more efficiently and to stay in the best technologies nowadays.
 
 
-Development tools versions:
-NodeJS 8.9.1
-NPM 5.5.1
+Development tools versions: { NodeJS 8.9.1, NPM 5.5.1 }.
