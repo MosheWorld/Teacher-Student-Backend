@@ -1,4 +1,4 @@
-# Back end
+# Backend
 BackEnd source code for StudyHub server, The server in NodeJS with MongoDB database connection and written in TS &amp; JS.
 
 Written in:
