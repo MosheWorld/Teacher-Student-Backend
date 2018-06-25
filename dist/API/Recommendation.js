@@ -1,11 +1,11 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var RecommendationLogic_1 = require("./../Logic/RecommendationLogic");
 var express_1 = require("express");
 var logger_1 = require("./../LogService/logger");
+var RecommendationLogic_1 = require("./../Logic/RecommendationLogic");
 //#region Members
-var logger = new logger_1.Logger();
 var router = express_1.Router();
+var logger = new logger_1.Logger();
 //#endregion
 //#region Routers
 /**
@@ -33,6 +33,9 @@ router.get('/getrecommendationbyid/:id', function (req, res) {
         res.status(400).send(ex.message);
     }
 });
+/**
+ * Creates recommendation at database by given arguments.
+ */
 router.post('/create', function (req, res) {
     try {
         logger.debug("Enter Recommendation", "Router recommendation/create");

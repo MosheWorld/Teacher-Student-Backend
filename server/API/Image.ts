@@ -4,8 +4,8 @@ import { Logger } from './../LogService/logger';
 import { ImageLogic } from '../Logic/ImageLogic';
 
 //#region Members
-let logger = new Logger();
 const router: Router = Router();
+const logger: Logger = new Logger();
 //#endregion
 
 //#region Routers

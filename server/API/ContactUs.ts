@@ -5,11 +5,35 @@ import { ContactUsLogic } from './../Logic/ContactUsLogic';
 import { ContactUsInterface } from './../Interfaces/ContactUs.interface';
 
 //#region Members
-let logger = new Logger();
 const router: Router = Router();
+const logger: Logger = new Logger();
 //#endregion
 
 //#region Routers
+/**
+ * Receives all contact us data from database.
+ */
+router.get('/getall', (req: Request, res: Response) => {
+    try {
+        logger.debug("Enter ContactUs", "Router contactus/getall");
+
+        let cManager = new ContactUsLogic();
+
+        cManager.GetAll()
+            .then((success) => {
+                res.send(success);
+            })
+            .catch((error) => {
+                res.status(400).send(error.message);
+            });
+
+        logger.info("Enter", "contactus/getall");
+    } catch (ex) {
+        logger.error("Out", "contactus/getall", ex.message);
+        res.status(400).send(ex.message);
+    }
+});
+
 /**
  * Creates new 'contact us' request at database.
  * @prop {ContactUsInterface} Model The model of new contact us.

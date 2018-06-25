@@ -3,16 +3,16 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var express_1 = require("express");
 var LogLogic_1 = require("../Logic/LogLogic");
 var logger_1 = require("../LogService/logger");
-var AdminMiddleware = require('../Common/Middleware').AdminMiddleware;
+var Middleware_1 = require("../Common/Middleware");
 //#region Members
-var logger = new logger_1.Logger();
 var router = express_1.Router();
+var logger = new logger_1.Logger();
 //#endregion
 //#region Routers
 /**
  * Received logs list from database by amount given and page number given.
  */
-router.get('/getbyamountandpage/:amount/:page/:debug/:info/:error', function (req, res) {
+router.get('/getbyamountandpage/:amount/:page/:debug/:info/:error', Middleware_1.AdminMiddleware, function (req, res) {
     try {
         logger.debug("Enter Teacher", "Router log/getbyamountandpage/" + req.params.amount + "/" + req.params.page);
         var amount = req.params.amount;
@@ -43,7 +43,7 @@ router.get('/getbyamountandpage/:amount/:page/:debug/:info/:error', function (re
 /**
  * Receives amount of entities from database.
  */
-router.get('/getlogscount', function (req, res) {
+router.get('/getlogscount', Middleware_1.AdminMiddleware, function (req, res) {
     try {
         logger.debug("Enter Teacher", "Router log/getlogscount/");
         var lManager = new LogLogic_1.LogLogic();

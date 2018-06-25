@@ -4,10 +4,31 @@ var express_1 = require("express");
 var logger_1 = require("./../LogService/logger");
 var ContactUsLogic_1 = require("./../Logic/ContactUsLogic");
 //#region Members
-var logger = new logger_1.Logger();
 var router = express_1.Router();
+var logger = new logger_1.Logger();
 //#endregion
 //#region Routers
+/**
+ * Receives all contact us data from database.
+ */
+router.get('/getall', function (req, res) {
+    try {
+        logger.debug("Enter ContactUs", "Router contactus/getall");
+        var cManager = new ContactUsLogic_1.ContactUsLogic();
+        cManager.GetAll()
+            .then(function (success) {
+            res.send(success);
+        })
+            .catch(function (error) {
+            res.status(400).send(error.message);
+        });
+        logger.info("Enter", "contactus/getall");
+    }
+    catch (ex) {
+        logger.error("Out", "contactus/getall", ex.message);
+        res.status(400).send(ex.message);
+    }
+});
 /**
  * Creates new 'contact us' request at database.
  * @prop {ContactUsInterface} Model The model of new contact us.

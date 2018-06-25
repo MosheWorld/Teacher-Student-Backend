@@ -6,6 +6,20 @@ var ContactUsDal = /** @class */ (function () {
     }
     //#region Public Methods
     /**
+     * Receives all contact us data from database.
+     */
+    ContactUsDal.prototype.GetAll = function () {
+        return new Promise(function (resolve, reject) {
+            var contactUsCollection = ContactUsModel_1.default.find({}, function (error, contactUsList) {
+                if (error) {
+                    reject("Error occurred when gettings all Contact Us list from database.");
+                }
+                return contactUsList ? contactUsList : null;
+            });
+            resolve(contactUsCollection);
+        });
+    };
+    /**
      * Creates new contact us request at database.
      * @param {ContactUsInterface} contactUsData Contact us model.
      */

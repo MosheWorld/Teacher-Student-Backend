@@ -1,7 +1,6 @@
 import { ObjectID } from 'mongodb';
 
 import DataBaseConnector from '../DatabaseModels/TeacherModel';
-import { TeacherInterface } from './../Interfaces/Teacher.interface';
 import { TeacherUpdateInterface } from './../Interfaces/TeacherUpdate.interface';
 
 export class TeacherDal {

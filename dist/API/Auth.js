@@ -3,10 +3,10 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var express_1 = require("express");
 var logger_1 = require("../LogService/logger");
 var AuthLogic_1 = require("./../Logic/AuthLogic");
-var _a = require('../Common/Middleware'), UserMiddleware = _a.UserMiddleware, AdminMiddleware = _a.AdminMiddleware;
+var Middleware_1 = require("../Common/Middleware");
 //#region Members
-var logger = new logger_1.Logger();
 var router = express_1.Router();
+var logger = new logger_1.Logger();
 //#endregion
 //#region Routers
 /**
@@ -67,7 +67,7 @@ router.post('/doesuserexistbyid', function (req, res) {
 /**
  * Updates user information at database.
  */
-router.put('/update', UserMiddleware, function (req, res) {
+router.put('/update', Middleware_1.UserMiddleware, function (req, res) {
     try {
         logger.debug("Enter Auth", "Router auth/update");
         if (req.body === null || req.body === undefined || !IsUserUpdateModelValid(req.body)) {
@@ -93,7 +93,7 @@ router.put('/update', UserMiddleware, function (req, res) {
 /**
  * Delete user from the database according to his ID.
  */
-router.delete('/deletebyuserid/:userid', AdminMiddleware, function (req, res) {
+router.delete('/deletebyuserid/:userid', Middleware_1.AdminMiddleware, function (req, res) {
     try {
         logger.debug("Enter Teacher", "Router auth/deletebyuserid/" + req.params.id);
         var userid = req.params.userid;

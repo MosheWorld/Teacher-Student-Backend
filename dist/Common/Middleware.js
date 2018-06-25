@@ -36,13 +36,11 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 var _this = this;
 Object.defineProperty(exports, "__esModule", { value: true });
-var express_1 = require("express");
-var Role_Enum_1 = require("./../Enums/Role.Enum");
 var AuthLogic_1 = require("../Logic/AuthLogic");
 var logger_1 = require("./../LogService/logger");
+var Role_Enum_1 = require("./../Enums/Role.Enum");
 //#region Members
 var logger = new logger_1.Logger();
-var router = express_1.Router();
 //#endregion
 //#region Middleware
 /**
@@ -89,6 +87,7 @@ var UserMiddleware = function (req, res, next) { return __awaiter(_this, void 0,
         }
     });
 }); };
+exports.UserMiddleware = UserMiddleware;
 /**
  * Middleware for functions that require to get authenticated users.
  * Returns 401 ( unauthorized) if user token is not valid or role is does not fit to requirements.
@@ -137,6 +136,7 @@ var AdminMiddleware = function (req, res, next) { return __awaiter(_this, void 0
         }
     });
 }); };
+exports.AdminMiddleware = AdminMiddleware;
 /**
  * Receives user ID from token and provider by taking to their API.
  * Receives the user from database and returns his details.
@@ -159,6 +159,3 @@ var GetUserByTokenAndProvider = function (token, provider) { return __awaiter(_t
         }
     });
 }); };
-//#endregion
-exports.UserMiddleware = UserMiddleware;
-exports.AdminMiddleware = AdminMiddleware;

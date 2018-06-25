@@ -1,12 +1,12 @@
-import { RecommendationsInterface } from './../Interfaces/Recommendations.interface';
-import { RecommendationLogic } from './../Logic/RecommendationLogic';
 import { Router, Request, Response } from 'express';
 
 import { Logger } from './../LogService/logger';
+import { RecommendationLogic } from './../Logic/RecommendationLogic';
+import { RecommendationsInterface } from './../Interfaces/Recommendations.interface';
 
 //#region Members
-let logger = new Logger();
 const router: Router = Router();
+const logger: Logger = new Logger();
 //#endregion
 
 //#region Routers
@@ -40,6 +40,9 @@ router.get('/getrecommendationbyid/:id', (req: Request, res: Response) => {
     }
 });
 
+/**
+ * Creates recommendation at database by given arguments.
+ */
 router.post('/create', (req: Request, res: Response) => {
     try {
         logger.debug("Enter Recommendation", "Router recommendation/create");

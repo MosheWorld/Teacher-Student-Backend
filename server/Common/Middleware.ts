@@ -1,12 +1,11 @@
-import { Router, Request, Response } from 'express';
+import { Request, Response } from 'express';
 
-import { RoleEnum } from './../Enums/Role.Enum';
 import { AuthLogic } from '../Logic/AuthLogic';
 import { Logger } from './../LogService/logger';
+import { RoleEnum } from './../Enums/Role.Enum';
 
 //#region Members
-let logger = new Logger();
-const router: Router = Router();
+const logger: Logger = new Logger();
 //#endregion
 
 //#region Middleware
@@ -104,5 +103,4 @@ const GetUserByTokenAndProvider = async (token: string, provider: string) => {
 };
 //#endregion
 
-exports.UserMiddleware = UserMiddleware;
-exports.AdminMiddleware = AdminMiddleware;
+export { UserMiddleware, AdminMiddleware };

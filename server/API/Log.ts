@@ -2,20 +2,19 @@ import { Router, Request, Response } from 'express';
 
 import { LogLogic } from '../Logic/LogLogic';
 import { Logger } from '../LogService/logger';
+import { AdminMiddleware } from '../Common/Middleware';
 import { LogSearchInterface } from '../Interfaces/LogSearch.interface';
 
-const { AdminMiddleware } = require('../Common/Middleware');
-
 //#region Members
-let logger = new Logger();
 const router: Router = Router();
+const logger: Logger = new Logger();
 //#endregion
 
 //#region Routers
 /**
  * Received logs list from database by amount given and page number given.
  */
-router.get('/getbyamountandpage/:amount/:page/:debug/:info/:error', (req: Request, res: Response) => {
+router.get('/getbyamountandpage/:amount/:page/:debug/:info/:error', AdminMiddleware, (req: Request, res: Response) => {
     try {
         logger.debug("Enter Teacher", "Router log/getbyamountandpage/" + req.params.amount + "/" + req.params.page);
 
@@ -53,7 +52,7 @@ router.get('/getbyamountandpage/:amount/:page/:debug/:info/:error', (req: Reques
 /**
  * Receives amount of entities from database.
  */
-router.get('/getlogscount', (req: Request, res: Response) => {
+router.get('/getlogscount', AdminMiddleware, (req: Request, res: Response) => {
     try {
         logger.debug("Enter Teacher", "Router log/getlogscount/");
 

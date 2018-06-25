@@ -3,15 +3,13 @@ import { Router, Request, Response } from 'express';
 import { Logger } from './../LogService/logger';
 import { TeacherLogic } from './../Logic/TeacherLogic';
 import { TeacherInterface } from './../Interfaces/Teacher.interface';
-import { TeacherUpdateInterface } from './../Interfaces/TeacherUpdate.interface';
+import { UserMiddleware, AdminMiddleware } from '../Common/Middleware';
 import { SearchTeacherInterface } from '../Interfaces/SearchTeacher.interface';
-import { RecommendationsInterface } from './../Interfaces/Recommendations.interface';
-
-const { UserMiddleware, AdminMiddleware } = require('../Common/Middleware');
+import { TeacherUpdateInterface } from './../Interfaces/TeacherUpdate.interface';
 
 //#region Members
-let logger = new Logger();
 const router: Router = Router();
+const logger: Logger = new Logger();
 //#endregion
 
 //#region Routers

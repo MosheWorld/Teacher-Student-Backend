@@ -36,7 +36,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var AuthDal_1 = require("./../DAL/AuthDal");
-var TeacherDal_1 = require("./../DAL/TeacherDAL");
+var TeacherDal_1 = require("./../DAL/TeacherDal");
 var GoogleVerifier_1 = require("./../Integration/GoogleVerifier");
 var FacebookVerifier_1 = require("../Integration/FacebookVerifier");
 var AuthLogic = /** @class */ (function () {

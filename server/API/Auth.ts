@@ -3,14 +3,13 @@ import { Router, Request, Response } from 'express';
 import { Logger } from '../LogService/logger';
 import { AuthLogic } from './../Logic/AuthLogic';
 import { UserInterface } from './../Interfaces/User.interface';
-import { DoesUserExistsInterface } from './../Interfaces/DoesUserExists.interface';
+import { UserMiddleware, AdminMiddleware } from '../Common/Middleware';
 import { UserUpdateInterface } from './../Interfaces/UserUpdate.interface';
-
-const { UserMiddleware, AdminMiddleware } = require('../Common/Middleware');
+import { DoesUserExistsInterface } from './../Interfaces/DoesUserExists.interface';
 
 //#region Members
-let logger = new Logger();
 const router: Router = Router();
+const logger: Logger = new Logger();
 //#endregion
 
 //#region Routers

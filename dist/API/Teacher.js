@@ -3,10 +3,10 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var express_1 = require("express");
 var logger_1 = require("./../LogService/logger");
 var TeacherLogic_1 = require("./../Logic/TeacherLogic");
-var _a = require('../Common/Middleware'), UserMiddleware = _a.UserMiddleware, AdminMiddleware = _a.AdminMiddleware;
+var Middleware_1 = require("../Common/Middleware");
 //#region Members
-var logger = new logger_1.Logger();
 var router = express_1.Router();
+var logger = new logger_1.Logger();
 //#endregion
 //#region Routers
 /**
@@ -57,7 +57,7 @@ router.get('/getbyid/:id', function (req, res) {
 /**
  * Returns teacher by given token at headers.
  */
-router.get('/getteacherbytoken', UserMiddleware, function (req, res) {
+router.get('/getteacherbytoken', Middleware_1.UserMiddleware, function (req, res) {
     try {
         logger.debug("Enter Teacher", "Router teacher/getteacherbytoken");
         var userInfo = process["currentUser"];
@@ -162,7 +162,7 @@ router.post('/create', function (req, res) {
 /**
  * Updates teacher model at database.
  */
-router.put('/update', UserMiddleware, function (req, res) {
+router.put('/update', Middleware_1.UserMiddleware, function (req, res) {
     try {
         logger.debug("Enter Teacher", "Router teacher/update");
         if (req.body == null || req.body === undefined || !IsTeacherUpdateModelValid(req.body)) {
@@ -188,7 +188,7 @@ router.put('/update', UserMiddleware, function (req, res) {
 /**
  * Delete teacher from the database according to his ID.
  */
-router.delete('/deletebyuserid/:userid', AdminMiddleware, function (req, res) {
+router.delete('/deletebyuserid/:userid', Middleware_1.AdminMiddleware, function (req, res) {
     try {
         logger.debug("Enter Teacher", "Router teacher/deletebyuserid/" + req.params.id);
         var userid = req.params.userid;

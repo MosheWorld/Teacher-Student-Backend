@@ -41,6 +41,22 @@ var ContactUsLogic = /** @class */ (function () {
     }
     //#region Public Methods
     /**
+     * Receives all contact us data from database.
+     */
+    ContactUsLogic.prototype.GetAll = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var cDal;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        cDal = new ContactUsDal_1.ContactUsDal();
+                        return [4 /*yield*/, cDal.GetAll()];
+                    case 1: return [2 /*return*/, _a.sent()];
+                }
+            });
+        });
+    };
+    /**
      * Creates new contact us request.
      * @param {ContactUsInterface} contactUsData Contact us model.
      */
