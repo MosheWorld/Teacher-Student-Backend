@@ -6,10 +6,6 @@
   "scripts": {
     "start": "node dist/server.js"
   },
-  "engines": {
-    "node": "10.5.0",
-    "npm": "6.1.0"
-  },
   "author": "",
   "license": "ISC",
   "dependencies": {
@@ -18,5 +14,9 @@
     "express": "^4.16.2",
     "mongoose": "^4.12.3",
     "nodemailer": "^4.4.0"
+  },
+  "engines": {
+    "node": "10.5.0",
+    "npm": "6.1.0"
   }
 }
