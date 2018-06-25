@@ -38,7 +38,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var mongodb_1 = require("mongodb");
 var AuthDal_1 = require("../DAL/AuthDal");
 var ImageLogic_1 = require("./ImageLogic");
-var TeacherDAL_1 = require("./../DAL/TeacherDAL");
+var TeacherDAL_1 = require("./../DAL/TeacherDal");
 var Emailer_1 = require("./../Integration/Emailer");
 var TeachesAt_Enum_1 = require("../Enums/TeachesAt.Enum");
 var TeacherLogic = /** @class */ (function () {
