@@ -185,31 +185,6 @@ router.put('/update', Middleware_1.UserMiddleware, function (req, res) {
         res.status(400).send(ex.message);
     }
 });
-/**
- * Delete teacher from the database according to his ID.
- */
-router.delete('/deletebyuserid/:userid', Middleware_1.AdminMiddleware, function (req, res) {
-    try {
-        logger.debug("Enter Teacher", "Router teacher/deletebyuserid/" + req.params.id);
-        var userid = req.params.userid;
-        if (userid === null || userid === undefined) {
-            logger.error("Model is not valid.", "teacher/deletebyuserid/");
-            res.status(400).send("Model is not valid.");
-        }
-        var tManager = new TeacherLogic_1.TeacherLogic();
-        tManager.DeleteByUserID(userid)
-            .then(function (response) {
-            res.json(response);
-        }).catch(function (error) {
-            res.status(400).send(error.message);
-        });
-        logger.info("Out", "teacher/deletebyuserid/" + req.params.id);
-    }
-    catch (ex) {
-        logger.error("Out", "teacher/deletebyuserid/" + req.params.id, ex.message);
-        res.status(400).send(ex.message);
-    }
-});
 //#endregion
 //#region Functions
 /**

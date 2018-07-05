@@ -1,4 +1,5 @@
 import { AuthDal } from './../DAL/AuthDal';
+import { TeacherLogic } from './TeacherLogic';
 import { TeacherDal } from './../DAL/TeacherDal';
 import { UserInterface } from './../Interfaces/User.interface';
 import { GoogleVerifier } from './../Integration/GoogleVerifier';
@@ -113,8 +114,10 @@ export class AuthLogic {
      */
     public async DeleteByUserID(userID: string): Promise<void> {
         let aDal = new AuthDal();
+        let tLogic = new TeacherLogic();
 
         aDal.DeleteByUserID(userID);
+        tLogic.DeleteByUserID(userID);
     }
     //#endregion
 

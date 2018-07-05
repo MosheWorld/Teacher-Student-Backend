@@ -36,6 +36,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var AuthDal_1 = require("./../DAL/AuthDal");
+var TeacherLogic_1 = require("./TeacherLogic");
 var TeacherDal_1 = require("./../DAL/TeacherDAL");
 var GoogleVerifier_1 = require("./../Integration/GoogleVerifier");
 var FacebookVerifier_1 = require("../Integration/FacebookVerifier");
@@ -185,10 +186,12 @@ var AuthLogic = /** @class */ (function () {
      */
     AuthLogic.prototype.DeleteByUserID = function (userID) {
         return __awaiter(this, void 0, void 0, function () {
-            var aDal;
+            var aDal, tLogic;
             return __generator(this, function (_a) {
                 aDal = new AuthDal_1.AuthDal();
+                tLogic = new TeacherLogic_1.TeacherLogic();
                 aDal.DeleteByUserID(userID);
+                tLogic.DeleteByUserID(userID);
                 return [2 /*return*/];
             });
         });

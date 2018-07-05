@@ -8,7 +8,6 @@ import { TeachesAtEnum } from '../Enums/TeachesAt.Enum';
 import { TeacherInterface } from './../Interfaces/Teacher.interface';
 import { TeacherUpdateInterface } from './../Interfaces/TeacherUpdate.interface';
 import { SearchTeacherInterface } from '../Interfaces/SearchTeacher.interface';
-import { RecommendationsInterface } from './../Interfaces/Recommendations.interface';
 
 export class TeacherLogic {
     //#region Public Methods
