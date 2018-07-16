@@ -38,7 +38,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var mongodb_1 = require("mongodb");
 var AuthDal_1 = require("../DAL/AuthDal");
 var ImageLogic_1 = require("./ImageLogic");
-var TeacherDAL_1 = require("./../DAL/TeacherDal");
+var TeacherDal_1 = require("./../DAL/TeacherDal");
 var Emailer_1 = require("./../Integration/Emailer");
 var TeachesAt_Enum_1 = require("../Enums/TeachesAt.Enum");
 var ValidationAbstract_1 = require("../Abstracts/ValidationAbstract");
@@ -56,7 +56,7 @@ var TeacherLogic = /** @class */ (function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        tDal = new TeacherDAL_1.TeacherDal();
+                        tDal = new TeacherDal_1.TeacherDal();
                         return [4 /*yield*/, tDal.GetAll()];
                     case 1:
                         teacherCollection = _a.sent();
@@ -76,7 +76,7 @@ var TeacherLogic = /** @class */ (function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        tDal = new TeacherDAL_1.TeacherDal();
+                        tDal = new TeacherDal_1.TeacherDal();
                         return [4 /*yield*/, tDal.GetByID(id)];
                     case 1:
                         teacher = _a.sent();
@@ -97,7 +97,7 @@ var TeacherLogic = /** @class */ (function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        tDal = new TeacherDAL_1.TeacherDal();
+                        tDal = new TeacherDal_1.TeacherDal();
                         iManager = new ImageLogic_1.ImageLogic();
                         aDal = new AuthDal_1.AuthDal();
                         image = teacherModel.image;
@@ -131,7 +131,7 @@ var TeacherLogic = /** @class */ (function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        tDal = new TeacherDAL_1.TeacherDal();
+                        tDal = new TeacherDal_1.TeacherDal();
                         iManager = new ImageLogic_1.ImageLogic();
                         return [4 /*yield*/, tDal.GetByUserID(userID)];
                     case 1:
@@ -155,7 +155,7 @@ var TeacherLogic = /** @class */ (function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        tDal = new TeacherDAL_1.TeacherDal();
+                        tDal = new TeacherDal_1.TeacherDal();
                         query = this.BuildSearchQuery(searchTeacherModel);
                         return [4 /*yield*/, tDal.SearchTeacher(query)];
                     case 1: return [2 /*return*/, _a.sent()];
@@ -174,7 +174,7 @@ var TeacherLogic = /** @class */ (function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        tDal = new TeacherDAL_1.TeacherDal();
+                        tDal = new TeacherDal_1.TeacherDal();
                         teacherListToReturn = [];
                         _i = 0, listOfTeacherID_1 = listOfTeacherID;
                         _a.label = 1;
@@ -207,7 +207,7 @@ var TeacherLogic = /** @class */ (function () {
                         if (ValidationAbstract_1.IsObjectNullOrUndefined(id)) {
                             throw new Error("Given ID is not valid.");
                         }
-                        tDal = new TeacherDAL_1.TeacherDal();
+                        tDal = new TeacherDal_1.TeacherDal();
                         return [4 /*yield*/, tDal.GetTeacherByUserID(id)];
                     case 1: return [2 /*return*/, _a.sent()];
                 }
@@ -222,7 +222,7 @@ var TeacherLogic = /** @class */ (function () {
         return __awaiter(this, void 0, void 0, function () {
             var tDal;
             return __generator(this, function (_a) {
-                tDal = new TeacherDAL_1.TeacherDal();
+                tDal = new TeacherDal_1.TeacherDal();
                 tDal.UpdateTeacherByUserID(model);
                 return [2 /*return*/];
             });

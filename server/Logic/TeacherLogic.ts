@@ -2,7 +2,7 @@ import { ObjectID } from 'mongodb';
 
 import { AuthDal } from '../DAL/AuthDal';
 import { ImageLogic } from './ImageLogic';
-import { TeacherDal } from './../DAL/TeacherDAL';
+import { TeacherDal } from './../DAL/TeacherDal';
 import { Emailer } from './../Integration/Emailer';
 import { TeachesAtEnum } from '../Enums/TeachesAt.Enum';
 import { TeacherInterface } from './../Interfaces/Teacher.interface';
