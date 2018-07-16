@@ -38,9 +38,10 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var mongodb_1 = require("mongodb");
 var AuthDal_1 = require("../DAL/AuthDal");
 var ImageLogic_1 = require("./ImageLogic");
-var TeacherDAL_1 = require("./../DAL/TeacherDAL");
+var TeacherDAL_1 = require("./../DAL/TeacherDal");
 var Emailer_1 = require("./../Integration/Emailer");
 var TeachesAt_Enum_1 = require("../Enums/TeachesAt.Enum");
+var ValidationAbstract_1 = require("../Abstracts/ValidationAbstract");
 var TeacherLogic = /** @class */ (function () {
     function TeacherLogic() {
     }
@@ -203,7 +204,7 @@ var TeacherLogic = /** @class */ (function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        if (id === null || id === undefined) {
+                        if (ValidationAbstract_1.IsObjectNullOrUndefined(id)) {
                             throw new Error("Given ID is not valid.");
                         }
                         tDal = new TeacherDAL_1.TeacherDal();
@@ -250,7 +251,7 @@ var TeacherLogic = /** @class */ (function () {
      * @returns Returns the json built for search query for Mongo database.
      */
     TeacherLogic.prototype.GetIncludesArrayQuery = function (data) {
-        if (data == null) {
+        if (ValidationAbstract_1.IsObjectNullOrUndefined(data)) {
             return { $gt: 0 };
         }
         else {
@@ -263,7 +264,7 @@ var TeacherLogic = /** @class */ (function () {
      * @returns Returns the json built for search query for Mongo database.
      */
     TeacherLogic.prototype.GetTeachesAtQuery = function (data) {
-        if (data == null || data == TeachesAt_Enum_1.TeachesAtEnum.Both) {
+        if (ValidationAbstract_1.IsObjectNullOrUndefined(data) || data === TeachesAt_Enum_1.TeachesAtEnum.Both) {
             return { $gt: 0 };
         }
         else {
@@ -276,7 +277,7 @@ var TeacherLogic = /** @class */ (function () {
      * @returns Returns the json built for search query for Mongo database.
      */
     TeacherLogic.prototype.GetGenderQuery = function (data) {
-        if (data == null || data === 3) {
+        if (ValidationAbstract_1.IsObjectNullOrUndefined(data) || data === 3) {
             return { $gt: 0 };
         }
         else {

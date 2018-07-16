@@ -3,6 +3,7 @@ import { Router, Request, Response } from 'express';
 import { Logger } from './../LogService/logger';
 import { ContactUsLogic } from './../Logic/ContactUsLogic';
 import { ContactUsInterface } from './../Interfaces/ContactUs.interface';
+import { IsObjectNullOrUndefined, IsStringNullOrEmpty } from '../Abstracts/ValidationAbstract';
 
 //#region Members
 const router: Router = Router();
@@ -42,7 +43,7 @@ router.post('/create', (req: Request, res: Response) => {
     try {
         logger.debug("Enter ContactUs", "Router contactus/create");
 
-        if (req.body == null || !IsModelValid(req.body)) {
+        if (!IsModelValid(req.body)) {
             logger.error("Model is not valid.", "contactus/create", req.body);
             return res.status(400).send("Model is not valid.");
         }
@@ -73,27 +74,14 @@ router.post('/create', (req: Request, res: Response) => {
  * @returns {boolean}
  */
 function IsModelValid(model: any): boolean {
-    if (model == null ||
-        IsStringNullOrEmpty(model.email) ||
-        IsStringNullOrEmpty(model.message) ||
-        IsStringNullOrEmpty(model.fullName) ||
-        IsStringNullOrEmpty(model.contactReason)) {
+    if (IsObjectNullOrUndefined(model)
+        || IsStringNullOrEmpty(model.email)
+        || IsStringNullOrEmpty(model.message)
+        || IsStringNullOrEmpty(model.fullName)
+        || IsStringNullOrEmpty(model.contactReason)) {
         return false;
     } else {
         return true;
-    }
-}
-
-/**
- * Validates whether a string is null or empty.
- * @param str String.
- * @returns {boolean}
- */
-function IsStringNullOrEmpty(str: string): boolean {
-    if (str == null || str === "") {
-        return true;
-    } else {
-        return false;
     }
 }
 

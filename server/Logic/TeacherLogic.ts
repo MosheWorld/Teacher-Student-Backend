@@ -6,8 +6,9 @@ import { TeacherDal } from './../DAL/TeacherDAL';
 import { Emailer } from './../Integration/Emailer';
 import { TeachesAtEnum } from '../Enums/TeachesAt.Enum';
 import { TeacherInterface } from './../Interfaces/Teacher.interface';
-import { TeacherUpdateInterface } from './../Interfaces/TeacherUpdate.interface';
+import { IsObjectNullOrUndefined } from '../Abstracts/ValidationAbstract';
 import { SearchTeacherInterface } from '../Interfaces/SearchTeacher.interface';
+import { TeacherUpdateInterface } from './../Interfaces/TeacherUpdate.interface';
 
 export class TeacherLogic {
     //#region Public Methods
@@ -114,7 +115,7 @@ export class TeacherLogic {
      * @param id 
      */
     public async GetTeacherByUserID(id: string) {
-        if (id === null || id === undefined) {
+        if (IsObjectNullOrUndefined(id)) {
             throw new Error("Given ID is not valid.");
         }
 
@@ -158,7 +159,7 @@ export class TeacherLogic {
      * @returns Returns the json built for search query for Mongo database.
      */
     private GetIncludesArrayQuery(data: any): any {
-        if (data == null) {
+        if (IsObjectNullOrUndefined(data)) {
             return { $gt: 0 }
         } else {
             return data;
@@ -171,7 +172,7 @@ export class TeacherLogic {
      * @returns Returns the json built for search query for Mongo database.
      */
     private GetTeachesAtQuery(data: TeachesAtEnum): any {
-        if (data == null || data == TeachesAtEnum.Both) {
+        if (IsObjectNullOrUndefined(data) || data === TeachesAtEnum.Both) {
             return { $gt: 0 }
         } else {
             return { $in: [data, 3] }
@@ -184,7 +185,7 @@ export class TeacherLogic {
      * @returns Returns the json built for search query for Mongo database.
      */
     private GetGenderQuery(data: number): any {
-        if (data == null || data === 3) {
+        if (IsObjectNullOrUndefined(data) || data === 3) {
             return { $gt: 0 }
         } else {
             return data;

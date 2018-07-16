@@ -2,6 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 var mongodb_1 = require("mongodb");
 var TeacherModel_1 = require("../DatabaseModels/TeacherModel");
+var ValidationAbstract_1 = require("../Abstracts/ValidationAbstract");
 var TeacherDal = /** @class */ (function () {
     function TeacherDal() {
     }
@@ -159,7 +160,7 @@ var TeacherDal = /** @class */ (function () {
                 if (error) {
                     reject("Error occurred when gettings teacher from database by user ID.");
                 }
-                if (teacher === null || teacher === undefined) {
+                if (ValidationAbstract_1.IsObjectNullOrUndefined(teacher)) {
                     resolve(null);
                 }
                 else {
@@ -179,7 +180,7 @@ var TeacherDal = /** @class */ (function () {
                     reject("Error occurred when gettings teacher from database by user ID.");
                 }
                 // Not found teacher by given user ID.
-                if (teacher === null || teacher === undefined) {
+                if (ValidationAbstract_1.IsObjectNullOrUndefined(teacher)) {
                     reject("No teacher exist by given user ID, aborting.");
                 }
                 // Found user, we will update the relevant fields.

@@ -4,6 +4,7 @@ import { LogLogic } from '../Logic/LogLogic';
 import { Logger } from '../LogService/logger';
 import { AdminMiddleware } from '../Common/Middleware';
 import { LogSearchInterface } from '../Interfaces/LogSearch.interface';
+import { IsObjectNullOrUndefined } from '../Abstracts/ValidationAbstract';
 
 //#region Members
 const router: Router = Router();
@@ -80,15 +81,12 @@ router.get('/getlogscount', AdminMiddleware, (req: Request, res: Response) => {
  * @param logSearchModel 
  */
 function IsLogSearchModelValid(logSearchModel: LogSearchInterface): boolean {
-    if (logSearchModel === null
-        || logSearchModel === undefined
-        || logSearchModel.amount === null
-        || logSearchModel.amount === undefined
-        || logSearchModel.page === null
-        || logSearchModel.page === undefined
+    if (IsObjectNullOrUndefined(logSearchModel)
+        || IsObjectNullOrUndefined(logSearchModel.amount)
+        || IsObjectNullOrUndefined(logSearchModel.page)
         || logSearchModel.amount < 1
         || logSearchModel.page < 0
-        || (logSearchModel.debug === "" && logSearchModel.info === "" && logSearchModel.error === "")) {
+        || (logSearchModel.debug === '' && logSearchModel.info === '' && logSearchModel.error === '')) {
         return false;
     } else {
         return true;
@@ -100,9 +98,9 @@ function IsLogSearchModelValid(logSearchModel: LogSearchInterface): boolean {
  * @param type 
  */
 function GetLogTypeByString(type: string, convertType: string): string {
-    if (type === null || type === undefined || type === "false") {
+    if (IsObjectNullOrUndefined(type) || type === 'false') {
         return "";
-    } else if (type === "true") {
+    } else if (type === 'true') {
         return convertType;
     } else {
         throw new Error("Invalid log type, aborting.");
@@ -115,13 +113,13 @@ function GetLogTypeByString(type: string, convertType: string): string {
  */
 function ConvertModelToLogSearchInterface(amount: any, page: any, debug: any, info: any, error: any): LogSearchInterface {
 
-    if (amount === null || amount === undefined) {
+    if (IsObjectNullOrUndefined(amount)) {
         amount = 50;
     } else {
         amount = parseInt(amount);
     }
 
-    if (page === null || page === undefined) {
+    if (IsObjectNullOrUndefined(page)) {
         page = 1;
     } else {
         page = parseInt(page);

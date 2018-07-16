@@ -2,6 +2,7 @@ import { Router, Request, Response } from 'express';
 
 import { Logger } from './../LogService/logger';
 import { ImageLogic } from '../Logic/ImageLogic';
+import { IsStringNullOrEmpty } from '../Abstracts/ValidationAbstract';
 
 //#region Members
 const router: Router = Router();
@@ -18,7 +19,7 @@ router.get('/getimagebyid/:imagePath', (req: Request, res: Response) => {
 
         let imageID = req.params.imagePath;
 
-        if (imageID == null || imageID == "") {
+        if (IsStringNullOrEmpty(imageID)) {
             logger.error("Model is not valid.", "image/getimagebyid");
             res.status(400).send("Model is not valid.");
         }

@@ -3,6 +3,7 @@ import { Router, Request, Response } from 'express';
 import { Logger } from './../LogService/logger';
 import { RecommendationLogic } from './../Logic/RecommendationLogic';
 import { RecommendationsInterface } from './../Interfaces/Recommendations.interface';
+import { IsObjectNullOrUndefined, IsStringNullOrEmpty } from '../Abstracts/ValidationAbstract';
 
 //#region Members
 const router: Router = Router();
@@ -19,7 +20,7 @@ router.get('/getrecommendationbyid/:id', (req: Request, res: Response) => {
 
         let teacherID = req.params.id;
 
-        if (teacherID == null || teacherID === "") {
+        if (IsStringNullOrEmpty(teacherID)) {
             logger.error("ID is not valid.", "recommendation/getrecommendationbyid");
             res.status(400).send("Model is not valid.");
         }
@@ -47,7 +48,7 @@ router.post('/create', (req: Request, res: Response) => {
     try {
         logger.debug("Enter Recommendation", "Router recommendation/create");
 
-        if (req.body == null || !IsModelCreateValid(req.body)) {
+        if (!IsModelCreateValid(req.body)) {
             logger.error("Model is not valid.", "recommendation/create", req.body);
             return res.status(400).send("Model is not valid.");
         }
@@ -94,28 +95,15 @@ function ConvertModelToRecommendationsInterface(model: any): RecommendationsInte
  * @param model 
  */
 function IsModelCreateValid(model: any): boolean {
-    if (model === null
-        || model === undefined
-        || model.rate === null
-        || model.rate === undefined
-        || StringNullOrEmpty(model.email)
-        || StringNullOrEmpty(model.message)
-        || StringNullOrEmpty(model.fullName)
-        || StringNullOrEmpty(model.teacherID))
+    if (IsObjectNullOrUndefined(model)
+        || IsObjectNullOrUndefined(model.rate)
+        || IsStringNullOrEmpty(model.email)
+        || IsStringNullOrEmpty(model.message)
+        || IsStringNullOrEmpty(model.fullName)
+        || IsStringNullOrEmpty(model.teacherID))
         return false;
     else
         return true;
-}
-
-/**
- * Validates whether the string is null or empty.
- * @param str String to check.
- */
-function StringNullOrEmpty(str: string): boolean {
-    if (str === null || str === undefined || str === "")
-        return true;
-    else
-        return false;
 }
 //#endregion
 

@@ -3,6 +3,7 @@ import { Request, Response } from 'express';
 import { AuthLogic } from '../Logic/AuthLogic';
 import { Logger } from './../LogService/logger';
 import { RoleEnum } from './../Enums/Role.Enum';
+import { IsObjectNullOrUndefined } from '../Abstracts/ValidationAbstract';
 
 //#region Members
 const logger: Logger = new Logger();
@@ -23,7 +24,7 @@ const UserMiddleware = async (req: Request, res: Response, next) => {
         let token = req.header('x-auth');
         let provider = req.header('provider');
 
-        if (token === null || token === undefined || provider === null || provider === undefined) {
+        if (IsObjectNullOrUndefined(token) || IsObjectNullOrUndefined(provider)) {
             logger.error("Middleware found bad token or provider.", "Token is not valid or provider is not valid.", { token: token, provider: provider });
             res.status(401).send("Given token or provider is not valid.");
         }
@@ -59,7 +60,7 @@ const AdminMiddleware = async (req: Request, res: Response, next) => {
         let token = req.header('x-auth');
         let provider = req.header('provider');
 
-        if (token === null || token === undefined || provider === null || provider === undefined) {
+        if (IsObjectNullOrUndefined(token) || IsObjectNullOrUndefined(provider)) {
             logger.error("Middleware found bad token or provider.", "Token is not valid or provider is not valid.", { token: token, provider: provider });
             res.status(401).send("Given token or provider is not valid.");
         }

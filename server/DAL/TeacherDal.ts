@@ -1,6 +1,7 @@
 import { ObjectID } from 'mongodb';
 
 import DataBaseConnector from '../DatabaseModels/TeacherModel';
+import { IsObjectNullOrUndefined } from '../Abstracts/ValidationAbstract';
 import { TeacherUpdateInterface } from './../Interfaces/TeacherUpdate.interface';
 
 export class TeacherDal {
@@ -157,7 +158,7 @@ export class TeacherDal {
             DataBaseConnector.findOne({ userID: id }, (error, teacher) => {
                 if (error) { reject("Error occurred when gettings teacher from database by user ID."); }
 
-                if (teacher === null || teacher === undefined) {
+                if (IsObjectNullOrUndefined(teacher)) {
                     resolve(null);
                 } else {
                     resolve(teacher);
@@ -177,7 +178,7 @@ export class TeacherDal {
                 if (error) { reject("Error occurred when gettings teacher from database by user ID."); }
 
                 // Not found teacher by given user ID.
-                if (teacher === null || teacher === undefined) {
+                if (IsObjectNullOrUndefined(teacher)) {
                     reject("No teacher exist by given user ID, aborting.");
                 }
 

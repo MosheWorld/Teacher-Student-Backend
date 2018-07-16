@@ -37,9 +37,10 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var AuthDal_1 = require("./../DAL/AuthDal");
 var TeacherLogic_1 = require("./TeacherLogic");
-var TeacherDal_1 = require("./../DAL/TeacherDAL");
+var TeacherDal_1 = require("./../DAL/TeacherDal");
 var GoogleVerifier_1 = require("./../Integration/GoogleVerifier");
 var FacebookVerifier_1 = require("../Integration/FacebookVerifier");
+var ValidationAbstract_1 = require("../Abstracts/ValidationAbstract");
 var AuthLogic = /** @class */ (function () {
     function AuthLogic() {
     }
@@ -96,14 +97,14 @@ var AuthLogic = /** @class */ (function () {
                         return [4 /*yield*/, aDal.GetUserByID(userExistsModel.id)];
                     case 2:
                         userFromDatabase = _a.sent();
-                        if (!(userFromDatabase === null)) return [3 /*break*/, 3];
+                        if (!ValidationAbstract_1.IsObjectNullOrUndefined(userFromDatabase)) return [3 /*break*/, 3];
                         return [2 /*return*/, prepairModelToReturn];
                     case 3:
                         tDal = new TeacherDal_1.TeacherDal();
                         return [4 /*yield*/, tDal.GetTeacherByUserID(userExistsModel.id)];
                     case 4:
                         userExistInDataBase = _a.sent();
-                        if (userExistInDataBase === null || userExistInDataBase === undefined) {
+                        if (ValidationAbstract_1.IsObjectNullOrUndefined(userExistInDataBase)) {
                             return [2 /*return*/, prepairModelToReturn];
                         }
                         // User exist and his details in database as teacher exist, we will take him to details page.

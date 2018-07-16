@@ -3,6 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var express_1 = require("express");
 var logger_1 = require("./../LogService/logger");
 var ContactUsLogic_1 = require("./../Logic/ContactUsLogic");
+var ValidationAbstract_1 = require("../Abstracts/ValidationAbstract");
 //#region Members
 var router = express_1.Router();
 var logger = new logger_1.Logger();
@@ -36,7 +37,7 @@ router.get('/getall', function (req, res) {
 router.post('/create', function (req, res) {
     try {
         logger.debug("Enter ContactUs", "Router contactus/create");
-        if (req.body == null || !IsModelValid(req.body)) {
+        if (!IsModelValid(req.body)) {
             logger.error("Model is not valid.", "contactus/create", req.body);
             return res.status(400).send("Model is not valid.");
         }
@@ -64,28 +65,15 @@ router.post('/create', function (req, res) {
  * @returns {boolean}
  */
 function IsModelValid(model) {
-    if (model == null ||
-        IsStringNullOrEmpty(model.email) ||
-        IsStringNullOrEmpty(model.message) ||
-        IsStringNullOrEmpty(model.fullName) ||
-        IsStringNullOrEmpty(model.contactReason)) {
+    if (ValidationAbstract_1.IsObjectNullOrUndefined(model)
+        || ValidationAbstract_1.IsStringNullOrEmpty(model.email)
+        || ValidationAbstract_1.IsStringNullOrEmpty(model.message)
+        || ValidationAbstract_1.IsStringNullOrEmpty(model.fullName)
+        || ValidationAbstract_1.IsStringNullOrEmpty(model.contactReason)) {
         return false;
     }
     else {
         return true;
-    }
-}
-/**
- * Validates whether a string is null or empty.
- * @param str String.
- * @returns {boolean}
- */
-function IsStringNullOrEmpty(str) {
-    if (str == null || str === "") {
-        return true;
-    }
-    else {
-        return false;
     }
 }
 /**

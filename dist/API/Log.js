@@ -4,6 +4,7 @@ var express_1 = require("express");
 var LogLogic_1 = require("../Logic/LogLogic");
 var logger_1 = require("../LogService/logger");
 var Middleware_1 = require("../Common/Middleware");
+var ValidationAbstract_1 = require("../Abstracts/ValidationAbstract");
 //#region Members
 var router = express_1.Router();
 var logger = new logger_1.Logger();
@@ -68,15 +69,12 @@ router.get('/getlogscount', Middleware_1.AdminMiddleware, function (req, res) {
  * @param logSearchModel
  */
 function IsLogSearchModelValid(logSearchModel) {
-    if (logSearchModel === null
-        || logSearchModel === undefined
-        || logSearchModel.amount === null
-        || logSearchModel.amount === undefined
-        || logSearchModel.page === null
-        || logSearchModel.page === undefined
+    if (ValidationAbstract_1.IsObjectNullOrUndefined(logSearchModel)
+        || ValidationAbstract_1.IsObjectNullOrUndefined(logSearchModel.amount)
+        || ValidationAbstract_1.IsObjectNullOrUndefined(logSearchModel.page)
         || logSearchModel.amount < 1
         || logSearchModel.page < 0
-        || (logSearchModel.debug === "" && logSearchModel.info === "" && logSearchModel.error === "")) {
+        || (logSearchModel.debug === '' && logSearchModel.info === '' && logSearchModel.error === '')) {
         return false;
     }
     else {
@@ -88,10 +86,10 @@ function IsLogSearchModelValid(logSearchModel) {
  * @param type
  */
 function GetLogTypeByString(type, convertType) {
-    if (type === null || type === undefined || type === "false") {
+    if (ValidationAbstract_1.IsObjectNullOrUndefined(type) || type === 'false') {
         return "";
     }
-    else if (type === "true") {
+    else if (type === 'true') {
         return convertType;
     }
     else {
@@ -103,13 +101,13 @@ function GetLogTypeByString(type, convertType) {
  * @param model
  */
 function ConvertModelToLogSearchInterface(amount, page, debug, info, error) {
-    if (amount === null || amount === undefined) {
+    if (ValidationAbstract_1.IsObjectNullOrUndefined(amount)) {
         amount = 50;
     }
     else {
         amount = parseInt(amount);
     }
-    if (page === null || page === undefined) {
+    if (ValidationAbstract_1.IsObjectNullOrUndefined(page)) {
         page = 1;
     }
     else {

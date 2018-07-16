@@ -1,7 +1,6 @@
 import DataBaseConnector from "../DatabaseModels/RecommendationModel";
 
 import { ObjectID } from 'mongodb';
-import { RecommendationsInterface } from './../Interfaces/Recommendations.interface';
 
 export class RecommendationDal {
     //#region Public Methods

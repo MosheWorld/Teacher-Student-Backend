@@ -4,8 +4,9 @@ import { TeacherDal } from './../DAL/TeacherDal';
 import { UserInterface } from './../Interfaces/User.interface';
 import { GoogleVerifier } from './../Integration/GoogleVerifier';
 import { FacebookVerifier } from '../Integration/FacebookVerifier';
-import { DoesUserExistsInterface } from './../Interfaces/DoesUserExists.interface';
+import { IsObjectNullOrUndefined } from '../Abstracts/ValidationAbstract';
 import { UserUpdateInterface } from './../Interfaces/UserUpdate.interface';
+import { DoesUserExistsInterface } from './../Interfaces/DoesUserExists.interface';
 
 export class AuthLogic {
     //#region Public Methods
@@ -47,14 +48,14 @@ export class AuthLogic {
 
         let userFromDatabase: any = await aDal.GetUserByID(userExistsModel.id);
 
-        if (userFromDatabase === null) {
+        if (IsObjectNullOrUndefined(userFromDatabase)) {
             return prepairModelToReturn;
         } else {
             // We found the user, we'll check if he created teacher details in database.
             let tDal = new TeacherDal();
             let userExistInDataBase: any = await tDal.GetTeacherByUserID(userExistsModel.id);
 
-            if (userExistInDataBase === null || userExistInDataBase === undefined) {
+            if (IsObjectNullOrUndefined(userExistInDataBase)) {
                 return prepairModelToReturn;
             }
 

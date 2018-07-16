@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var UserModel_1 = require("../DatabaseModels/UserModel");
+var ValidationAbstract_1 = require("../Abstracts/ValidationAbstract");
 var AuthDal = /** @class */ (function () {
     function AuthDal() {
     }
@@ -12,11 +13,11 @@ var AuthDal = /** @class */ (function () {
     AuthDal.prototype.CreateNewUser = function (user) {
         return new Promise(function (resolve, reject) {
             // Search for the user.
-            UserModel_1.default.findOne({ id: user.id }, function (error, foundUser) {
+            UserModel_1.default.findOne({ id: user.id }, function (error, user) {
                 if (error) {
                     reject("Error occurred when getting user from database.");
                 }
-                if (foundUser === null || foundUser === undefined) {
+                if (ValidationAbstract_1.IsObjectNullOrUndefined(user)) {
                     // User was not found and we will create new one.
                     UserModel_1.default.collection.insert(user, function (error) {
                         if (error) {
@@ -45,15 +46,15 @@ var AuthDal = /** @class */ (function () {
      */
     AuthDal.prototype.GetUserByID = function (id) {
         return new Promise(function (resolve, reject) {
-            UserModel_1.default.findOne({ id: id }, function (error, foundUser) {
+            UserModel_1.default.findOne({ id: id }, function (error, user) {
                 if (error) {
                     reject("Error occurred when getting user from database.");
                 }
-                if (foundUser === null || foundUser === undefined) {
+                if (ValidationAbstract_1.IsObjectNullOrUndefined(user)) {
                     resolve(null);
                 }
                 else {
-                    resolve(foundUser);
+                    resolve(user);
                 }
             });
         });
@@ -66,7 +67,7 @@ var AuthDal = /** @class */ (function () {
     AuthDal.prototype.UpdateTokenToUserByID = function (id, token) {
         return new Promise(function (resolve, reject) {
             UserModel_1.default.collection.updateOne({ id: id }, {
-                $set: { "authToken": token },
+                $set: { 'authToken': token },
             }, function (error) {
                 if (error) {
                     reject("Error occurred when updating authentication token for user at database.");
@@ -81,12 +82,12 @@ var AuthDal = /** @class */ (function () {
      */
     AuthDal.prototype.UpdateUser = function (model) {
         return new Promise(function (resolve, reject) {
-            UserModel_1.default.findOne({ id: model.id }, function (error, foundUser) {
+            UserModel_1.default.findOne({ id: model.id }, function (error, user) {
                 if (error) {
                     reject("Error occurred when update user at database while getting his info.");
                 }
                 // User was not found, aborting.
-                if (foundUser === null || foundUser === undefined) {
+                if (ValidationAbstract_1.IsObjectNullOrUndefined(user)) {
                     reject("User doesn't exist at database, aborting.");
                 }
                 // Found the user, we will update the necessary fields.

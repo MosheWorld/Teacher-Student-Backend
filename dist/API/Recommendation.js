@@ -3,6 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var express_1 = require("express");
 var logger_1 = require("./../LogService/logger");
 var RecommendationLogic_1 = require("./../Logic/RecommendationLogic");
+var ValidationAbstract_1 = require("../Abstracts/ValidationAbstract");
 //#region Members
 var router = express_1.Router();
 var logger = new logger_1.Logger();
@@ -15,7 +16,7 @@ router.get('/getrecommendationbyid/:id', function (req, res) {
     try {
         logger.debug("Enter Recommendation", "Router recommendation/getrecommendationbyid");
         var teacherID = req.params.id;
-        if (teacherID == null || teacherID === "") {
+        if (ValidationAbstract_1.IsStringNullOrEmpty(teacherID)) {
             logger.error("ID is not valid.", "recommendation/getrecommendationbyid");
             res.status(400).send("Model is not valid.");
         }
@@ -39,7 +40,7 @@ router.get('/getrecommendationbyid/:id', function (req, res) {
 router.post('/create', function (req, res) {
     try {
         logger.debug("Enter Recommendation", "Router recommendation/create");
-        if (req.body == null || !IsModelCreateValid(req.body)) {
+        if (!IsModelCreateValid(req.body)) {
             logger.error("Model is not valid.", "recommendation/create", req.body);
             return res.status(400).send("Model is not valid.");
         }
@@ -80,27 +81,15 @@ function ConvertModelToRecommendationsInterface(model) {
  * @param model
  */
 function IsModelCreateValid(model) {
-    if (model === null
-        || model === undefined
-        || model.rate === null
-        || model.rate === undefined
-        || StringNullOrEmpty(model.email)
-        || StringNullOrEmpty(model.message)
-        || StringNullOrEmpty(model.fullName)
-        || StringNullOrEmpty(model.teacherID))
+    if (ValidationAbstract_1.IsObjectNullOrUndefined(model)
+        || ValidationAbstract_1.IsObjectNullOrUndefined(model.rate)
+        || ValidationAbstract_1.IsStringNullOrEmpty(model.email)
+        || ValidationAbstract_1.IsStringNullOrEmpty(model.message)
+        || ValidationAbstract_1.IsStringNullOrEmpty(model.fullName)
+        || ValidationAbstract_1.IsStringNullOrEmpty(model.teacherID))
         return false;
     else
         return true;
-}
-/**
- * Validates whether the string is null or empty.
- * @param str String to check.
- */
-function StringNullOrEmpty(str) {
-    if (str === null || str === undefined || str === "")
-        return true;
-    else
-        return false;
 }
 //#endregion
 exports.RecommendationController = router;

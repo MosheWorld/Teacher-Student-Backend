@@ -4,6 +4,7 @@ var express_1 = require("express");
 var logger_1 = require("../LogService/logger");
 var AuthLogic_1 = require("./../Logic/AuthLogic");
 var Middleware_1 = require("../Common/Middleware");
+var ValidationAbstract_1 = require("../Abstracts/ValidationAbstract");
 //#region Members
 var router = express_1.Router();
 var logger = new logger_1.Logger();
@@ -16,7 +17,7 @@ var logger = new logger_1.Logger();
 router.post('/createnewuser', function (req, res) {
     try {
         logger.debug("Enter Auth", "Router auth/createnewuser");
-        if (req.body == null || !IsCreateNewUserValid(req.body)) {
+        if (!IsCreateNewUserValid(req.body)) {
             logger.error("Model is not valid.", "auth/createnewuser", req.body);
             return res.status(400).send("Model is not valid.");
         }
@@ -44,7 +45,7 @@ router.post('/createnewuser', function (req, res) {
 router.post('/doesuserexistbyid', function (req, res) {
     try {
         logger.debug("Enter Auth", "Router auth/doesuserexistbyid");
-        if (req.body === null || req.body === undefined || !IsUserExistModelValid(req.body)) {
+        if (!IsUserExistModelValid(req.body)) {
             logger.error("Model is not valid.", "auth/doesuserexistbyid", req.body);
             return res.status(400).send("Model is not valid.");
         }
@@ -70,7 +71,7 @@ router.post('/doesuserexistbyid', function (req, res) {
 router.put('/update', Middleware_1.UserMiddleware, function (req, res) {
     try {
         logger.debug("Enter Auth", "Router auth/update");
-        if (req.body === null || req.body === undefined || !IsUserUpdateModelValid(req.body)) {
+        if (!IsUserUpdateModelValid(req.body)) {
             logger.error("Model is not valid.", "auth/update", req.body);
             return res.status(400).send("Model is not valid.");
         }
@@ -97,7 +98,7 @@ router.delete('/deletebyuserid/:userid', Middleware_1.AdminMiddleware, function 
     try {
         logger.debug("Enter Teacher", "Router auth/deletebyuserid/" + req.params.id);
         var userid = req.params.userid;
-        if (userid === null || userid === undefined) {
+        if (ValidationAbstract_1.IsObjectNullOrUndefined(userid)) {
             logger.error("Model is not valid.", "auth/deletebyuserid/");
             res.status(400).send("Model is not valid.");
         }
@@ -123,11 +124,11 @@ router.delete('/deletebyuserid/:userid', Middleware_1.AdminMiddleware, function 
  * @returns {boolean}
  */
 function IsCreateNewUserValid(model) {
-    if (model == null
-        || IsStringNullOrEmpty(model.id)
-        || IsStringNullOrEmpty(model.name)
-        || IsStringNullOrEmpty(model.provider)
-        || IsStringNullOrEmpty(model.authToken)) {
+    if (ValidationAbstract_1.IsObjectNullOrUndefined(model)
+        || ValidationAbstract_1.IsStringNullOrEmpty(model.id)
+        || ValidationAbstract_1.IsStringNullOrEmpty(model.name)
+        || ValidationAbstract_1.IsStringNullOrEmpty(model.provider)
+        || ValidationAbstract_1.IsStringNullOrEmpty(model.authToken)) {
         return false;
     }
     else {
@@ -139,11 +140,10 @@ function IsCreateNewUserValid(model) {
  * @param model
  */
 function IsUserExistModelValid(model) {
-    if (model === null
-        || model === undefined
-        || IsStringNullOrEmpty(model.id)
-        || IsStringNullOrEmpty(model.token)
-        || IsStringNullOrEmpty(model.provider))
+    if (ValidationAbstract_1.IsObjectNullOrUndefined(model)
+        || ValidationAbstract_1.IsStringNullOrEmpty(model.id)
+        || ValidationAbstract_1.IsStringNullOrEmpty(model.token)
+        || ValidationAbstract_1.IsStringNullOrEmpty(model.provider))
         return false;
     else
         return true;
@@ -152,29 +152,15 @@ function IsUserExistModelValid(model) {
  * Validates whether the model is valid or not.
  */
 function IsUserUpdateModelValid(model) {
-    if (model === null
-        || model === undefined
-        || IsStringNullOrEmpty(model.id)
-        || IsStringNullOrEmpty(model.email)
-        || IsStringNullOrEmpty(model.lastName)
-        || IsStringNullOrEmpty(model.firstName)) {
+    if (ValidationAbstract_1.IsObjectNullOrUndefined(model)
+        || ValidationAbstract_1.IsStringNullOrEmpty(model.id)
+        || ValidationAbstract_1.IsStringNullOrEmpty(model.email)
+        || ValidationAbstract_1.IsStringNullOrEmpty(model.lastName)
+        || ValidationAbstract_1.IsStringNullOrEmpty(model.firstName)) {
         return false;
     }
     else {
         return true;
-    }
-}
-/**
- * Validates whether a string is null or empty.
- * @param str String.
- * @returns {boolean}
- */
-function IsStringNullOrEmpty(str) {
-    if (str === null || str === undefined || str === "") {
-        return true;
-    }
-    else {
-        return false;
     }
 }
 /**

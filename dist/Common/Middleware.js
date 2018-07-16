@@ -39,6 +39,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var AuthLogic_1 = require("../Logic/AuthLogic");
 var logger_1 = require("./../LogService/logger");
 var Role_Enum_1 = require("./../Enums/Role.Enum");
+var ValidationAbstract_1 = require("../Abstracts/ValidationAbstract");
 //#region Members
 var logger = new logger_1.Logger();
 //#endregion
@@ -59,7 +60,7 @@ var UserMiddleware = function (req, res, next) { return __awaiter(_this, void 0,
                 logger.debug("Enter User Middleware");
                 token = req.header('x-auth');
                 provider = req.header('provider');
-                if (token === null || token === undefined || provider === null || provider === undefined) {
+                if (ValidationAbstract_1.IsObjectNullOrUndefined(token) || ValidationAbstract_1.IsObjectNullOrUndefined(provider)) {
                     logger.error("Middleware found bad token or provider.", "Token is not valid or provider is not valid.", { token: token, provider: provider });
                     res.status(401).send("Given token or provider is not valid.");
                 }
@@ -104,7 +105,7 @@ var AdminMiddleware = function (req, res, next) { return __awaiter(_this, void 0
                 logger.debug("Enter User Middleware");
                 token = req.header('x-auth');
                 provider = req.header('provider');
-                if (token === null || token === undefined || provider === null || provider === undefined) {
+                if (ValidationAbstract_1.IsObjectNullOrUndefined(token) || ValidationAbstract_1.IsObjectNullOrUndefined(provider)) {
                     logger.error("Middleware found bad token or provider.", "Token is not valid or provider is not valid.", { token: token, provider: provider });
                     res.status(401).send("Given token or provider is not valid.");
                 }

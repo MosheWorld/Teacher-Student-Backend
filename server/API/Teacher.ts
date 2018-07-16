@@ -2,10 +2,11 @@ import { Router, Request, Response } from 'express';
 
 import { Logger } from './../LogService/logger';
 import { TeacherLogic } from './../Logic/TeacherLogic';
+import { UserMiddleware } from '../Common/Middleware';
 import { TeacherInterface } from './../Interfaces/Teacher.interface';
-import { UserMiddleware, AdminMiddleware } from '../Common/Middleware';
 import { SearchTeacherInterface } from '../Interfaces/SearchTeacher.interface';
 import { TeacherUpdateInterface } from './../Interfaces/TeacherUpdate.interface';
+import { IsObjectNullOrUndefined, IsStringNullOrEmpty } from '../Abstracts/ValidationAbstract';
 
 //#region Members
 const router: Router = Router();
@@ -45,7 +46,7 @@ router.get('/getbyid/:id', (req: Request, res: Response) => {
 
         let id = req.params.id;
 
-        if (id === null || id === undefined) {
+        if (IsObjectNullOrUndefined(id)) {
             logger.error("Model is not valid.", "teacher/getbyid/");
             res.status(400).send("Model is not valid.");
         }
@@ -75,7 +76,7 @@ router.get('/getteacherbytoken', UserMiddleware, (req: Request, res: Response) =
 
         let userInfo = process["currentUser"];
 
-        if (userInfo === null || userInfo === undefined || userInfo.id === null || userInfo.id === undefined) {
+        if (IsObjectNullOrUndefined(userInfo) || IsObjectNullOrUndefined(userInfo.id)) {
             logger.error("Model is not valid.", "teacher/getteacherbytoken");
             res.status(400).send("Model is not valid.");
         }
@@ -105,7 +106,7 @@ router.post('/getlistofteachersbyid', (req: Request, res: Response) => {
     try {
         logger.debug("Enter Teacher", "Router teacher/getlistofteachersbyid");
 
-        if (req.body == null || req.body.listOfTeacherID == null || !IsListOfIDValid(req.body.listOfTeacherID)) {
+        if (!IsListOfIDValid(req.body.listOfTeacherID)) {
             logger.error("Model is not valid.", "teacher/getlistofteachersbyid", req.body);
             return res.status(400).send("Model is not valid.");
         }
@@ -135,7 +136,7 @@ router.post('/search', (req: Request, res: Response) => {
     try {
         logger.debug("Enter Teacher", "Router teacher/search", req.body);
 
-        if (req.body == null || !IsTeacherSearchModelValid(req.body)) {
+        if (!IsTeacherSearchModelValid(req.body)) {
             logger.error("Model is not valid.", "teacher/search", req.body);
             return res.status(400).send("Model is not valid.");
         }
@@ -166,7 +167,7 @@ router.post('/create', (req: Request, res: Response) => {
     try {
         logger.debug("Enter Teacher", "Router teacher/create");
 
-        if (req.body == null || req.body === undefined || !IsCreateModelValid(req.body)) {
+        if (!IsCreateModelValid(req.body)) {
             logger.error("Model is not valid.", "teacher/create", req.body);
             return res.status(400).send("Model is not valid.");
         }
@@ -196,7 +197,7 @@ router.put('/update', UserMiddleware, (req: Request, res: Response) => {
     try {
         logger.debug("Enter Teacher", "Router teacher/update");
 
-        if (req.body == null || req.body === undefined || !IsTeacherUpdateModelValid(req.body)) {
+        if (!IsTeacherUpdateModelValid(req.body)) {
             logger.error("Model is not valid.", "teacher/update", req.body);
             return res.status(400).send("Model is not valid.");
         }
@@ -227,26 +228,25 @@ router.put('/update', UserMiddleware, (req: Request, res: Response) => {
  * @returns {boolean}
  */
 function IsCreateModelValid(model: any): boolean {
-    if (model === null
-        || model === undefined
-        || model.age == null
+    if (IsObjectNullOrUndefined(model)
+        || IsObjectNullOrUndefined(model.age)
         || model.age < 0
         || model.age > 120
-        || model.rate == null
+        || IsObjectNullOrUndefined(model.rate)
         || model.rate < 0
         || model.rate > 5
-        || model.priceFrom == null
+        || IsObjectNullOrUndefined(model.priceFrom)
         || model.priceFrom < 0
-        || model.priceTo == null
+        || IsObjectNullOrUndefined(model.priceTo)
         || model.priceTo > 200
         || model.priceFrom > model.priceTo
-        || model.teachesAt == null
+        || IsObjectNullOrUndefined(model.teachesAt)
         || model.teachesAt < 1
-        || model.gender == null
+        || IsObjectNullOrUndefined(model.gender)
         || model.gender < 0
-        || model.teachesInstitutions == null
+        || IsObjectNullOrUndefined(model.teachesInstitutions)
         || model.teachesInstitutions.length === 0
-        || model.teachesSubjects == null
+        || IsObjectNullOrUndefined(model.teachesSubjects)
         || model.teachesSubjects.length === 0
         || IsStringNullOrEmpty(model.email)
         || IsStringNullOrEmpty(model.phone)
@@ -266,11 +266,12 @@ function IsCreateModelValid(model: any): boolean {
  * @returns {boolean}
  */
 function IsTeacherSearchModelValid(model: any): boolean {
-    if (model == null ||
-        model.fromPrice == null || model.fromPrice < 0 ||
-        model.toPrice == null || model.toPrice < 0 ||
-        model.fromPrice > model.toPrice
-    ) {
+    if (IsObjectNullOrUndefined(model)
+        || IsObjectNullOrUndefined(model.fromPrice)
+        || IsObjectNullOrUndefined(model.toPrice)
+        || model.fromPrice < 0
+        || model.toPrice < 0
+        || model.fromPrice > model.toPrice) {
         return false;
     }
     else {
@@ -283,8 +284,7 @@ function IsTeacherSearchModelValid(model: any): boolean {
  * @param model 
  */
 function IsTeacherUpdateModelValid(model: any): boolean {
-    if (model === null
-        || model === undefined
+    if (IsObjectNullOrUndefined(model)
         || model.age < 18
         || model.age > 120
         || model.priceTo < 0 || model.priceTo > 200
@@ -303,42 +303,12 @@ function IsTeacherUpdateModelValid(model: any): boolean {
 }
 
 /**
- * Validates whether the new request to recommend a teacher is valid.
- * @param model New recommendation model.
- * @returns {boolean}
- */
-function IsRecommendValid(model: any): boolean {
-    if (model == null ||
-        model.rate == null || model.rate < 0 || model.rate > 5 ||
-        IsStringNullOrEmpty(model.email) ||
-        IsStringNullOrEmpty(model.fullName) ||
-        IsStringNullOrEmpty(model.message)) {
-        return false;
-    } else {
-        return true;
-    }
-}
-
-/**
- * Validates whether a string is null or empty.
- * @param str String.
- * @returns {boolean}
- */
-function IsStringNullOrEmpty(str: string): boolean {
-    if (str == null || str === "") {
-        return true;
-    } else {
-        return false;
-    }
-}
-
-/**
  * Validates whether the array of IDs are valid.
  * @param listOfTeacherID Array of IDs from database.
  * @returns {boolean}
  */
 function IsListOfIDValid(listOfTeacherID: any): boolean {
-    if (listOfTeacherID == null || listOfTeacherID.length === 0) {
+    if (IsObjectNullOrUndefined(listOfTeacherID) || listOfTeacherID.length === 0) {
         return false;
     } else {
         listOfTeacherID.forEach(element => {

@@ -1,8 +1,8 @@
-import { ObjectID } from 'mongodb';
-import { UserUpdateInterface } from './../Interfaces/UserUpdate.interface';
-
 import DataBaseConnector from '../DatabaseModels/UserModel';
+
 import { UserInterface } from './../Interfaces/User.interface';
+import { IsObjectNullOrUndefined } from '../Abstracts/ValidationAbstract';
+import { UserUpdateInterface } from './../Interfaces/UserUpdate.interface';
 
 export class AuthDal {
     //#region Public Methods
@@ -14,10 +14,10 @@ export class AuthDal {
         return new Promise((resolve, reject) => {
 
             // Search for the user.
-            DataBaseConnector.findOne({ id: user.id }, (error, foundUser) => {
+            DataBaseConnector.findOne({ id: user.id }, (error, user) => {
                 if (error) { reject("Error occurred when getting user from database."); }
 
-                if (foundUser === null || foundUser === undefined) {
+                if (IsObjectNullOrUndefined(user)) {
                     // User was not found and we will create new one.
                     DataBaseConnector.collection.insert(user, (error) => {
                         if (error) { reject("Error occurred when inserting new user to database."); }
@@ -42,13 +42,13 @@ export class AuthDal {
      */
     public GetUserByID(id: string): Promise<any> {
         return new Promise((resolve, reject) => {
-            DataBaseConnector.findOne({ id: id }, (error, foundUser) => {
+            DataBaseConnector.findOne({ id: id }, (error, user) => {
                 if (error) { reject("Error occurred when getting user from database."); }
 
-                if (foundUser === null || foundUser === undefined) {
+                if (IsObjectNullOrUndefined(user)) {
                     resolve(null);
                 } else {
-                    resolve(foundUser);
+                    resolve(user);
                 }
             });
         });
@@ -62,7 +62,7 @@ export class AuthDal {
     public UpdateTokenToUserByID(id: string, token: string): Promise<void> {
         return new Promise((resolve, reject) => {
             DataBaseConnector.collection.updateOne({ id: id }, {
-                $set: { "authToken": token },
+                $set: { 'authToken': token },
             }, (error) => {
                 if (error) { reject("Error occurred when updating authentication token for user at database."); }
                 resolve();
@@ -76,11 +76,11 @@ export class AuthDal {
      */
     public UpdateUser(model: UserUpdateInterface): Promise<void> {
         return new Promise((resolve, reject) => {
-            DataBaseConnector.findOne({ id: model.id }, (error, foundUser) => {
+            DataBaseConnector.findOne({ id: model.id }, (error, user) => {
                 if (error) { reject("Error occurred when update user at database while getting his info."); }
 
                 // User was not found, aborting.
-                if (foundUser === null || foundUser === undefined) {
+                if (IsObjectNullOrUndefined(user)) {
                     reject("User doesn't exist at database, aborting.");
                 }
 

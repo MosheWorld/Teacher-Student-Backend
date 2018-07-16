@@ -14,4 +14,4 @@ More information:
 * Added TypeScript packages to write the code more efficiently and to stay in the best technologies nowadays.
 
 
-Development tools versions: { NodeJS 10.5.0, NPM 6.1.0 }.
+Development tools versions: { NodeJS 10.6.0, NPM 6.1.0 }.

@@ -1,5 +1,4 @@
 import DataBaseConnector from '../DatabaseModels/LoggerModel';
-import { LoggerInterface } from './../Interfaces/Logger.interface';
 import { LogSearchInterface } from '../Interfaces/LogSearch.interface';
 
 export class LogDal {

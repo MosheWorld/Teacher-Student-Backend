@@ -6,6 +6,7 @@ import { UserInterface } from './../Interfaces/User.interface';
 import { UserMiddleware, AdminMiddleware } from '../Common/Middleware';
 import { UserUpdateInterface } from './../Interfaces/UserUpdate.interface';
 import { DoesUserExistsInterface } from './../Interfaces/DoesUserExists.interface';
+import { IsObjectNullOrUndefined, IsStringNullOrEmpty } from '../Abstracts/ValidationAbstract';
 
 //#region Members
 const router: Router = Router();
@@ -21,7 +22,7 @@ router.post('/createnewuser', (req: Request, res: Response) => {
     try {
         logger.debug("Enter Auth", "Router auth/createnewuser");
 
-        if (req.body == null || !IsCreateNewUserValid(req.body)) {
+        if (!IsCreateNewUserValid(req.body)) {
             logger.error("Model is not valid.", "auth/createnewuser", req.body);
             return res.status(400).send("Model is not valid.");
         }
@@ -53,7 +54,7 @@ router.post('/doesuserexistbyid', (req: Request, res: Response) => {
     try {
         logger.debug("Enter Auth", "Router auth/doesuserexistbyid");
 
-        if (req.body === null || req.body === undefined || !IsUserExistModelValid(req.body)) {
+        if (!IsUserExistModelValid(req.body)) {
             logger.error("Model is not valid.", "auth/doesuserexistbyid", req.body);
             return res.status(400).send("Model is not valid.");
         }
@@ -84,7 +85,7 @@ router.put('/update', UserMiddleware, (req: Request, res: Response) => {
     try {
         logger.debug("Enter Auth", "Router auth/update");
 
-        if (req.body === null || req.body === undefined || !IsUserUpdateModelValid(req.body)) {
+        if (!IsUserUpdateModelValid(req.body)) {
             logger.error("Model is not valid.", "auth/update", req.body);
             return res.status(400).send("Model is not valid.");
         }
@@ -117,7 +118,7 @@ router.delete('/deletebyuserid/:userid', AdminMiddleware, (req: Request, res: Re
 
         let userid = req.params.userid;
 
-        if (userid === null || userid === undefined) {
+        if (IsObjectNullOrUndefined(userid)) {
             logger.error("Model is not valid.", "auth/deletebyuserid/");
             res.status(400).send("Model is not valid.");
         }
@@ -146,7 +147,7 @@ router.delete('/deletebyuserid/:userid', AdminMiddleware, (req: Request, res: Re
  * @returns {boolean}
  */
 function IsCreateNewUserValid(model: any): boolean {
-    if (model == null
+    if (IsObjectNullOrUndefined(model)
         || IsStringNullOrEmpty(model.id)
         || IsStringNullOrEmpty(model.name)
         || IsStringNullOrEmpty(model.provider)
@@ -162,8 +163,7 @@ function IsCreateNewUserValid(model: any): boolean {
  * @param model 
  */
 function IsUserExistModelValid(model: any): boolean {
-    if (model === null
-        || model === undefined
+    if (IsObjectNullOrUndefined(model)
         || IsStringNullOrEmpty(model.id)
         || IsStringNullOrEmpty(model.token)
         || IsStringNullOrEmpty(model.provider))
@@ -176,8 +176,7 @@ function IsUserExistModelValid(model: any): boolean {
  * Validates whether the model is valid or not.
  */
 function IsUserUpdateModelValid(model: any): boolean {
-    if (model === null
-        || model === undefined
+    if (IsObjectNullOrUndefined(model)
         || IsStringNullOrEmpty(model.id)
         || IsStringNullOrEmpty(model.email)
         || IsStringNullOrEmpty(model.lastName)
@@ -185,19 +184,6 @@ function IsUserUpdateModelValid(model: any): boolean {
         return false;
     } else {
         return true;
-    }
-}
-
-/**
- * Validates whether a string is null or empty.
- * @param str String.
- * @returns {boolean}
- */
-function IsStringNullOrEmpty(str: string): boolean {
-    if (str === null || str === undefined || str === "") {
-        return true;
-    } else {
-        return false;
     }
 }
 
